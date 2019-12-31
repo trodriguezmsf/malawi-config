@@ -24,7 +24,17 @@
             "patientUuid",
             "activeVisitUuid"
         ],
-        "config" : {
+        "config" :
+        {
+            "showPatientIdentifier": false,
+            "forwardUrlsForVisitTypes": [
+                {
+                    "visitType": "OPD",
+                    "forwardUrl": "/bahmni/home/index.html#/dashboard",
+                    "translationKey": "Go to Home Page",
+                    "shortcutKey": "c"
+                }
+            ],
             "patientInformation": {
                 "Additional Information": {
                     "title": "Additional  Information",
@@ -101,7 +111,8 @@
             },
             "addressHierarchy": {
                 "showAddressFieldsTopDown": false,
-                "strictAutocompleteFromLevel": "stateProvince"
+                "strictAutocompleteFromLevel": "stateProvince",
+                "freeTextAddressFields": ["address2", "address1"]
             },
             "relationshipTypeMap": {
                 "Doctor":"provider",
@@ -117,6 +128,7 @@
             "isLastNameMandatory": true,
             "showSaveConfirmDialog": false,
             "showBirthTime": false,
+            "showEnterID":false,
             "showCasteSameAsLastNameCheckbox": false,
             "printOptions": [
                 {
@@ -166,16 +178,18 @@
                 "Secondary  Emergency Contact, Phone 1" : {"pattern": "[0-9\\s]{0,15}", "errorMessage" : "Should not exceed than 15 characters and should contain only numericals"},
                 "CV/HP Phone 1" : {"pattern": "[0-9\\s]{0,15}", "errorMessage" : "Should not exceed than 15 characters and should contain only numericals"}
             },
+                "patientSearchResults": {
+                    "address": {
+                        "fields": [
+                            "address1","address3"
+                        ]
+                    }
+                },
             "patientSearch": {
                 "address": {
-                    "label": "Rural Ward",
-                    "placeholder": "Enter ward",
-                    "field": "address2"
-                },
-                "customAttributes": {
-                    "label": "रुग्णाचे नाव",
-                    "placeholder": "रुग्णाचे नाव",
-                    "fields": ["givenNameLocal", "middleNameLocal", "familyNameLocal"]
+                    "label": "Country",
+                    "placeholder": "Enter Country Name",
+                    "field": "address1"
                 }
             }
         }
