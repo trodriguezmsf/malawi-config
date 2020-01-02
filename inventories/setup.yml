@@ -1,0 +1,7 @@
+# To see the list of valid variables in Bahmni please refer to:
+# https://bahmni.atlassian.net/wiki/display/BAH/List+Of+Configurable+Installation+Variables
+
+timezone: Africa/Blantyre
+implementation_name: malawi
+selinux_state: disabled
+omods: ["https://bahmni-msf.s3.ap-south-1.amazonaws.com/haiti-release-artefacts/release-1.0/patientidentifiergenerator-0.1.0.omod"]
