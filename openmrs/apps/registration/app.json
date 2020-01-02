@@ -181,7 +181,7 @@
                 "patientSearchResults": {
                     "address": {
                         "fields": [
-                            "address1","address3"
+                            "address3","address1"
                         ]
                     }
                 },
