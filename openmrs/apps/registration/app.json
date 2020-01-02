@@ -35,6 +35,11 @@
                     "shortcutKey": "c"
                 }
             ],
+            "mandatoryPersonAttributes" : [
+                "Patient Contact Type 1, Relationship",
+                "Patient Contact Type 1, Phone",
+                "Primary  Emergency Contact, Phone 1"
+            ],
             "patientInformation": {
                 "Additional Information": {
                     "title": "Additional  Information",
@@ -172,11 +177,11 @@
                 "middleName" : {"pattern" : "[a-zA-Z]{0,}", "errorMessage" : "Should contain characters"},
                 "address1" : {"pattern" : "[a-zA-Z0-9\\s]{2,}", "errorMessage" : "Should contain at least 2 characters"},
                 "National ID": {"pattern": "[a-zA-Z0-9\\s]{0,8}", "errorMessage" : "Should not exceed than 8 characters"},
-                "Patient Contact Type 1, Phone" : {"pattern": "[0-9\\s]{0,15}", "errorMessage" : "Should not exceed than 15 characters and should contain only numericals"},
-                "Patient Contact Type 2, Phone" : {"pattern": "[0-9\\s]{0,15}", "errorMessage" : "Should not exceed than 15 characters and should contain only numericals"},
-                "Primary  Emergency Contact, Phone 1": {"pattern": "[0-9\\s]{0,15}", "errorMessage" : "Should not exceed than 15 characters and should contain only numericals"},
-                "Secondary  Emergency Contact, Phone 1" : {"pattern": "[0-9\\s]{0,15}", "errorMessage" : "Should not exceed than 15 characters and should contain only numericals"},
-                "CV/HP Phone 1" : {"pattern": "[0-9\\s]{0,15}", "errorMessage" : "Should not exceed than 15 characters and should contain only numericals"}
+                "Patient Contact Type 1, Phone" : {"pattern": "[0-9\\s]{0,15}", "errorMessage" : "Should not exceed 15 characters and should contain only numbers"},
+                "Patient Contact Type 2, Phone" : {"pattern": "[0-9\\s]{0,15}", "errorMessage" : "Should not exceed 15 characters and should contain only numbers"},
+                "Primary  Emergency Contact, Phone 1": {"pattern": "[0-9\\s]{0,15}", "errorMessage" : "Should not exceed  15 characters and should contain only numbers"},
+                "Secondary  Emergency Contact, Phone 1" : {"pattern": "[0-9\\s]{0,15}", "errorMessage" : "Should not exceed 15 characters and should contain only numbers"},
+                "CV/HP Phone 1" : {"pattern": "[0-9\\s]{0,15}", "errorMessage" : "Should not exceed 15 characters and should contain only numbers"}
             },
                 "patientSearchResults": {
                     "address": {
