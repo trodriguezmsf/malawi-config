@@ -6,13 +6,26 @@
 }
 
 /* line 10, print.scss */
-p, h1, h2, h3, table, tr, td, div, span, li {
+p, h1, h2, h3, tr, div, span, li {
   margin: 0px;
   padding: 0px;
+  text-align:left;
 }
 
+
+td {
+  vertical-align: top;
+  margin: 0px;
+  padding: 0px;
+  text-align:left;
+  font-size:12px;
+
+}
+.arabic{
+  text-align:right;
+}
 /* line 14, print.scss */
-h1, h2, h3 {
+h1, h2, h3 ,h4 {
   text-align: center;
 }
 
@@ -23,21 +36,74 @@ h1, h2, h3 {
 
 /* line 20, print.scss */
 .registrationCard-print-table {
-  width: 150mm;
-  height: 83mm;
+
+  height: 3.70in;
   overflow: scroll;
   margin: 0 auto;
   table-layout: fixed;
 }
 
+.subpage {
+  height: 100%;
+  margin-top: 0.9cm;
+  margin-left: 0.9cm;
+  margin-right: 0.56cm;
+  margin-bottom: 0.56cm;
+  font-size: 13px;
+  line-height: 0.9;
+}
+@page{
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.subpage ul{
+  margin:0;
+  padding: 0;
+  list-style: none;
+  width:100%;
+  overflow: hidden;
+  clear: both;
+}
+.subpage ul li{
+  width:6cm;
+  height: 3.4cm;
+  display: block;
+  border: 0px solid;
+  border-radius: 7px;
+  padding-top : 10px;
+  padding-left : 10px;
+  float:left;
+  word-wrap: break-word;
+  box-sizing: border-box;
+}
+
+.subpage ul li:not(:last-child){
+  margin-right: 0.3cm;
+}
+.subpage ul li span.localname{
+  display: block;
+  line-height: 1.5;
+  font-size: 13px;
+}
+
+.subpage ul li span.patient-name {
+  /*display: inline-flex;*/
+  line-height: 1;
+  display: contents;
+}
+
 /* line 24, print.scss */
 .registrationCard-print-table td.registrationCard-photo {
   padding-top: 2px;
+  padding-left:100px;
 }
 
 /* line 27, print.scss */
 .print-table-left {
-  width: 77mm;
+  width: 2.13in;
 }
 
 /* line 30, print.scss */
@@ -77,24 +143,44 @@ h1, h2, h3 {
 
 /* line 55, print.scss */
 .print-table-right {
-  width: 77mm;
+  width : 4in;
 }
 
 /* line 58, print.scss */
 .print-table-right .logo {
   text-align: center;
-  width: 12mm;
-  padding: 0px;
+  width: 120mm;
+  padding: 5px;
   margin: 0px;
   height: 12mm;
 }
 
+.patient_id_card {
+  border: 0.5px solid grey;
+  height: 67.7mm;
+  max-height: 67.7mm;
+  width: 99.1mm;
+  max-width: 99.1mm;
+  padding-top:10px;
+
+}
+
+.patient_id_card tr td:first-child {
+  width: .8in;
+}
+
+.patient_id_card tr td:last-child {
+  width: 1in;
+}
+
+.patient_id_card tr img {
+  width: 1.35in;
+}
 /* line 65, print.scss */
 .print-table-right-header {
   text-align: center;
-  width: 42mm;
+  width: 22mm;
   text-align: left;
-  height: 12mm;
 }
 
 /* line 71, print.scss */
@@ -103,22 +189,47 @@ h1, h2, h3 {
 }
 
 /* line 74, print.scss */
-.registrationCard-details {
-  padding: 0mm 5mm 0mm 5mm;
-}
+
 
 /* line 77, print.scss */
 .registrationCard-details-name {
-  width: 70px;
+  text-align:left;
+  text-size:5px;
+
 }
 
 /* line 80, print.scss */
 .registrationCard-details-seperator {
-  width: 20px;
-  text-align: center;
+  width: 2px;
+
 }
 
 /* line 84, print.scss */
-.hindi-text {
-  vertical-align: bottom;
+.data-text {
+  text-size:5px;
+
+}
+
+.full_name {
+  font-size: 13px;
+}
+.column {
+  float: left;
+  padding: 2px;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+  clear: both;
+  display: table;
+}
+.content-header{
+  padding-left: 15px;
+  padding: 10px 8px 45px 15px;
+}
+
+.logos{
+  padding-left: 10px;
+  padding: 0px 3px 0px 7px;
+
 }
