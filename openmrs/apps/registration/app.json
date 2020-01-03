@@ -183,7 +183,9 @@
                 "Patient Contact Type 2, Phone" : {"pattern": "[0-9\\s]{0,15}", "errorMessage" : "Should not exceed 15 characters and should contain only numbers"},
                 "Primary  Emergency Contact, Phone 1": {"pattern": "[0-9\\s]{0,15}", "errorMessage" : "Should not exceed  15 characters and should contain only numbers"},
                 "Secondary  Emergency Contact, Phone 1" : {"pattern": "[0-9\\s]{0,15}", "errorMessage" : "Should not exceed 15 characters and should contain only numbers"},
-                "CV/HP Phone 1" : {"pattern": "[0-9\\s]{0,15}", "errorMessage" : "Should not exceed 15 characters and should contain only numbers"}
+                "CV/HP Phone 1" : {"pattern": "[0-9\\s]{0,15}", "errorMessage" : "Should not exceed 15 characters and should contain only numbers"},
+                "Latitude" : {"pattern":  "^[-+]?([1-8]?\\d\\.(\\d){1,4}|90\\.(0){1,4})$", "errorMessage":  "Should be 4 decimal value with in the range -90 to 90"},
+                "Longitude" : {"pattern":  "^[-+]?(180(\\.0{1,4})?|((1[0-7]\\d)|([1-9]?\\d))(\\.\\d{1,4})?)$", "errorMessage":  "Should be 4 decimal value with in the range -180 to 180"}
             },
                 "patientSearchResults": {
                     "address": {
