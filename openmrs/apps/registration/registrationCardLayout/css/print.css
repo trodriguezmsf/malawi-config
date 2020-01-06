@@ -9,23 +9,14 @@
 p, h1, h2, h3, tr, div, span, li {
   margin: 0px;
   padding: 0px;
-  text-align:left;
+  text-align: left;
 }
 
-
-td {
-  vertical-align: top;
-  margin: 0px;
-  padding: 0px;
-  text-align:left;
-  font-size:12px;
-
+.patient_id_card h3 {
+  font-family: Arial;
 }
-.arabic{
-  text-align:right;
-}
-/* line 14, print.scss */
-h1, h2, h3 ,h4 {
+
+h3 {
   text-align: center;
 }
 
@@ -50,7 +41,7 @@ h1, h2, h3 ,h4 {
   margin-right: 0.56cm;
   margin-bottom: 0.56cm;
   font-size: 13px;
-  line-height: 0.9;
+  line-height: 1.5;
 }
 @page{
   margin-left: 0px;
@@ -71,7 +62,7 @@ h1, h2, h3 ,h4 {
   width:6cm;
   height: 3.4cm;
   display: block;
-  border: 0px solid;
+  border: 1px solid;
   border-radius: 7px;
   padding-top : 10px;
   padding-left : 10px;
@@ -91,8 +82,9 @@ h1, h2, h3 ,h4 {
 
 .subpage ul li span.patient-name {
   /*display: inline-flex;*/
-  line-height: 1;
+  line-height: 1.5;
   display: contents;
+  word-break: break-all;
 }
 
 /* line 24, print.scss */
@@ -156,40 +148,36 @@ h1, h2, h3 ,h4 {
 }
 
 .patient_id_card {
-  border: 0.5px solid grey;
+  border: 0.2px solid grey;
   height: 67.7mm;
   max-height: 67.7mm;
   width: 99.1mm;
   max-width: 99.1mm;
-  padding-top:10px;
-
+  padding-top: 5mm;
+  margin-left: 1mm;
+  position: relative;
 }
 
-.patient_id_card tr td:first-child {
-  width: .8in;
+.column {
+  float: left;
+  padding: 2px;
 }
 
-.patient_id_card tr td:last-child {
-  width: 1in;
+.content-header {
+  padding-left: 15px;
+  padding-bottom: 15px;
 }
 
-.patient_id_card tr img {
-  width: 1.35in;
+.content-header div :last-child {
+  padding-bottom: 0;
 }
+
 /* line 65, print.scss */
 .print-table-right-header {
   text-align: center;
   width: 22mm;
   text-align: left;
 }
-
-/* line 71, print.scss */
-.registrationCard-location {
-  padding: 5px 8px 8px 8px;
-}
-
-/* line 74, print.scss */
-
 
 /* line 77, print.scss */
 .registrationCard-details-name {
@@ -204,32 +192,49 @@ h1, h2, h3 ,h4 {
 
 }
 
-/* line 84, print.scss */
-.data-text {
-  text-size:5px;
-
-}
-
-.full_name {
-  font-size: 13px;
-}
-.column {
-  float: left;
-  padding: 2px;
-}
-
 /* Clearfix (clear floats) */
 .row::after {
   clear: both;
   display: table;
 }
-.content-header{
-  padding-left: 15px;
-  padding: 10px 8px 45px 15px;
+
+.msf-logo {
+  padding-top: 12mm;
+  padding-left: 2mm;
+  width: 31mm;
+  height: 11mm
+}
+.logo-3{
+  padding-top: 4mm;
+  padding-left: 2mm;
+  width: 20mm;
+  height: 23mm;
+}
+.patient-image{
+  padding-top: 4mm;
+  padding-left: 2mm;
+  width: 19mm;
+  height: 21mm;
+}
+.logo-2 {
+  padding-top: 7mm;
+  padding-left: 2mm;
+  width: 14mm;
+  height: 19mm;
+}
+.MSF-ID{
+  padding-top: 2mm;
+}
+.MSF-ID, .Name, .DOB, .Registered{
+  padding-bottom: 2mm;
+  font-family: Arial;
+  word-break: break-all;
+}
+.arabic {
+  text-align: right;
 }
 
-.logos{
-  padding-left: 10px;
-  padding: 0px 3px 0px 7px;
-
+.logos {
+  bottom: 0;
+  position: absolute;
 }
