@@ -168,7 +168,7 @@
                 "givenName" : {"pattern" : "[a-zA-Z]{0,}", "errorMessage" : "Should contain characters"},
                 "middleName" : {"pattern" : "[a-zA-Z]{0,}", "errorMessage" : "Should contain characters"},
                 "address1" : {"pattern" : "[a-zA-Z0-9\\s]{2,}", "errorMessage" : "Should contain at least 2 characters"},
-                "National ID": {"pattern": "[a-zA-Z0-9\\s]{0,8}", "errorMessage" : "Should not exceed than 8 characters"},
+                "National ID": {"pattern": "[a-zA-Z0-9\\s]{0,8}", "errorMessage" : "Should not exceed more than 8 characters"},
                 "Patient Contact Type 1, Phone" : {"pattern": "[0-9\\s]{0,15}", "errorMessage" : "Should not exceed 15 characters and should contain only numbers"},
                 "Patient Contact Type 2, Phone" : {"pattern": "[0-9\\s]{0,15}", "errorMessage" : "Should not exceed 15 characters and should contain only numbers"},
                 "Primary  Emergency Contact, Phone 1": {"pattern": "[0-9\\s]{0,15}", "errorMessage" : "Should not exceed  15 characters and should contain only numbers"},
