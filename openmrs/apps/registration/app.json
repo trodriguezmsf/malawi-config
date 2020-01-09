@@ -67,7 +67,8 @@
                         "Patient Contact Type 1, Relationship",
                         "Patient Contact Type 1, Patient Contact, comments",
                         "Patient Contact Type 1, Phone"
-                    ]
+                    ],
+                    "expanded": true
                 },
                 "Patient Contact Type 2": {
                     "title" : "Patient Contact Type 2",
@@ -86,7 +87,8 @@
                         "Primary  Emergency Contact, Relationship",
                         "PEC, Emergency Contact, comments",
                         "Primary  Emergency Contact, Phone 1"
-                    ]
+                    ],
+                    "expanded":true
                 },
                 "Secondary  Emergency Contact": {
                     "title" : "Secondary  Emergency Contact",
