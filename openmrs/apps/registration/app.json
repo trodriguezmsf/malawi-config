@@ -45,16 +45,18 @@
             "patientInformation": {
                 "Additional Information": {
                     "title": "Additional  Information",
+                    "tranlsationkey": "REGISTRATION_TITLE_ADDITIONAL_INFORMATION",
                     "attributes": [
                         "Spoken Language English",
                         "Spoken Language Chichewa",
                         "Spoken Language Other"
-                    ]
+                    ],
+                    "expanded": true
                 },
 
                 "GPS": {
                     "title": "GPS",
-                    "translationKey": "GPS",
+                    "translationKey": "REGISTRATION_TITLE_ADDITIONAL_GPS",
                     "attributes" : [
                         "Latitude",
                         "Longitude"
@@ -62,7 +64,7 @@
                 },
                 "Patient Contact Type 1": {
                     "title" : "Patient Contact Type 1",
-                    "translationKey": "Patient Contact Type 1",
+                    "translationKey": "REGISTRATION_TITLE_ADDITIONAL_CONTACT_TYPE1",
                     "attributes": [
                         "Patient Contact Type 1, Relationship",
                         "Patient Contact Type 1, Patient Contact, comments",
@@ -72,16 +74,17 @@
                 },
                 "Patient Contact Type 2": {
                     "title" : "Patient Contact Type 2",
-                    "translationKey": "Patient Contact Type 2",
+                    "translationKey": "REGISTRATION_TITLE_ADDITIONAL_CONTACT_TYPE2",
                     "attributes": [
                         "Patient Contact Type 2, Relationship",
                         "Patient Contact Type 2, Patient Contact, comments",
                         "Patient Contact Type 2, Phone"
-                    ]
+                    ],
+                    "expanded": true
                 },
                 "Primary  Emergency Contact": {
                     "title" : "Primary  Emergency Contact",
-                    "translationKey": "Primary  Emergency Contact",
+                    "translationKey": "REGISTRATION_TITLE_PRIMARY_EMERGENCY_CONTACT",
                     "attributes": [
                         "Primary  Emergency Contact, Name",
                         "Primary  Emergency Contact, Relationship",
@@ -92,21 +95,23 @@
                 },
                 "Secondary  Emergency Contact": {
                     "title" : "Secondary  Emergency Contact",
-                    "translationKey": "Secondary  Emergency Contact",
+                    "translationKey": "REGISTRATION_TITLE_SECONDARY_EMERGENCY_CONTACT",
                     "attributes": [
                         "Secondary  Emergency Contact, Name",
                         "Secondary  Emergency Contact, Relationship",
                         "SEC, Emergency Contact, comments",
                         "Secondary  Emergency Contact, Phone 1"
-                    ]
+                    ],
+                    "expanded": true
                 },
                 "Community Volunteer/Healthcare Professional" : {
-                    "title" : "Community Volunteer/Healthcare Professional",
-                    "translationKey": "Community Volunteer/Healthcare Professional",
+                    "title" : "Community Volunteer/Healthcare Professional Contact",
+                    "translationKey": "REGISTRATION_TITLE_CVHPC",
                     "attributes": [
                         "CV/HP Name",
                         "CV/HP Phone 1"
-                    ]
+                    ],
+                    "expanded": true
                 },
                 "hidden": {
                     "attributes": [
