@@ -47,6 +47,8 @@
                     "title": "Additional  Information",
                     "tranlsationkey": "REGISTRATION_TITLE_ADDITIONAL_INFORMATION",
                     "attributes": [
+                        "nickName",
+                        "familyOrClanName",
                         "Spoken Language English",
                         "Spoken Language Chichewa",
                         "Spoken Language Other"
@@ -115,12 +117,9 @@
                 },
                 "hidden": {
                     "attributes": [
-                        "primaryContact"
                     ]
                 },
                 "defaults":  {
-                    "class": "General",
-                    "landHolding": 2
                 }
             },
             "addressHierarchy": {
@@ -132,9 +131,6 @@
                 "Doctor":"provider",
                 "Parent":"patient"
             },
-
-            "autoCompleteFields":["familyName", "caste"],
-            "defaultIdentifierPrefix": "GAN",
             "defaultVisitType": "OPD",
             "searchByIdForwardUrl": "/patient/{{patientUuid}}",
             "showMiddleName": true,
@@ -174,6 +170,8 @@
                 "familyName" : {"pattern" : "[a-zA-Z]{0,}", "errorMessage" : "Should contain characters"},
                 "givenName" : {"pattern" : "[a-zA-Z]{0,}", "errorMessage" : "Should contain characters"},
                 "middleName" : {"pattern" : "[a-zA-Z]{0,}", "errorMessage" : "Should contain characters"},
+                "nickName" : {"pattern" : "[a-zA-Z]{0,}", "errorMessage" : "Should contain characters"},
+                "familyOrClanName" : {"pattern" : "[a-zA-Z]{0,}", "errorMessage" : "Should contain characters"},
                 "address1" : {"pattern" : "[a-zA-Z0-9\\s]{2,}", "errorMessage" : "Should contain at least 2 characters"},
                 "National ID": {"pattern": "[a-zA-Z0-9\\s]{0,8}", "errorMessage" : "Should not exceed more than 8 characters"},
                 "Patient Contact Type 1, Phone" : {"pattern": "[0-9\\s]{0,15}", "errorMessage" : "Should not exceed 15 characters and should contain only numbers"},
