@@ -1,8 +1,8 @@
 implementerinterface: https://stable.s3.ap-south-1.amazonaws.com/msf-release-1.0/bahmni-implementer-interface-91-60.noarch.rpm
-bahmniapps: https://stable.s3.ap-south-1.amazonaws.com/msf-release-1.0/bahmniapps-135.zip
-appointments: https://stable.s3.ap-south-1.amazonaws.com/msf-release-1.0/appointments-refactor-1.2-SNAPSHOT-53.omod
-bahmnicore: https://stable.s3.ap-south-1.amazonaws.com/msf-release-1.0/bahmnicore-0.93-SNAPSHOT-23.omod
-bahmniieapps: https://stable.s3.ap-south-1.amazonaws.com/msf-release-1.0/bahmni.ie.apps-0.92-SNAPSHOT-46.omod
-visitclosemodule: https://stable.s3.ap-south-1.amazonaws.com/msf-release-1.0/visit-close-module-0.91-3.omod
+bahmniapps: https://stable.s3.ap-south-1.amazonaws.com/msf-release-1.0/bahmniapps.zip
+appointments: https://stable.s3.ap-south-1.amazonaws.com/msf-release-1.0/appointments-refactor-1.2-SNAPSHOT.omod
+bahmnicore: https://stable.s3.ap-south-1.amazonaws.com/msf-release-1.0/bahmnicore-0.93-SNAPSHOT.omod
+bahmniieapps: https://stable.s3.ap-south-1.amazonaws.com/msf-release-1.0/bahmni.ie.apps-0.92-SNAPSHOT.omod
+visitclosemodule: https://stable.s3.ap-south-1.amazonaws.com/msf-release-1.0/visit-close-module-0.91.omod
 
 
