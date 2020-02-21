@@ -132,6 +132,165 @@
         <sqlFile path="utils/createProcedureForCEIL.sql" endDelimiter="#"/>
     </changeSet>
 
+    <changeSet id="Malawi-202002021612" author="Sreekalyan">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_name where name in ("Oncogynae","Assessment Phase","MDT Phase","Treatment
+                Phase","Follow Up Phase","Non-cancer diagnosis","QECH Cancer referral","Transferred out","Lost to follow
+                up","Refused care","End of Follow Up","Beyond Curative (Palliative)","Death") and concept_name_type =
+                'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment> Adding program concepts </comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_short_id = 0;
+            set @concept_full_id = 0;
+            set @count = 0;
+            set @uuid = NULL;
+
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Oncogynae","Oncogynae","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Oncogynae-workflow","Oncogynae-workflow","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Oncogynae-outcome","Oncogynae-outcome","N/A","Misc",true);
+
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Assessment Phase","Assessment Phase","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"MDT Phase","MDT Phase","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Treatment Phase","Treatment Phase","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Follow Up Phase","Follow Up Phase","N/A","Misc",false);
+
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Non-cancer diagnosis","Non-cancer diagnosis","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"QECH Cancer referral","QECH Cancer referral","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Transferred out","Transferred out","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Lost to follow up","Lost to follow up","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Refused care","Refused care","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"End of Follow Up","End of Follow Up","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Beyond Curative (Palliative)","Beyond Curative (Palliative)","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Death","Death","N/A","Misc",false);
+
+        </sql>
+    </changeSet>
+
+    <changeSet id="Malawi-2020022110505" author="Sreekalyan">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+
+                select COUNT(*) from concept_set cs
+                join concept_name cn
+                on cs.concept_id = cn.concept_id
+                where cs.concept_id IN (select concept_id from concept_name where name in("Non-cancer diagnosis","QECH
+                Cancer referral","Transferred out","Lost to follow up","Refused care","End of Follow Up","Beyond
+                Curative (Palliative)","Death") AND concept_name_type = "FULLY_SPECIFIED")
+                and cs.concept_set IN (select concept_id from concept_name where name = 'Oncogynae-outcome') and
+                concept_name_type = "FULLY_SPECIFIED";
+
+
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding set members for "Oncogynae-outcome" concept</comment>
+        <sql>
+            select concept_id into @Oncogynae_outcome_concept_id from concept_name where name = "Oncogynae-outcome" and concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            set @child6_concept_id = 0;
+            set @child7_concept_id = 0;
+            set @child8_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Non-cancer diagnosis" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="QECH Cancer referral" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Transferred out" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Lost to follow up" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Refused care" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child6_concept_id from concept_name where name ="End of Follow Up" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child7_concept_id from concept_name where name ="Beyond Curative (Palliative)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child8_concept_id from concept_name where name ="Death" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+
+            call add_concept_set_members(@Oncogynae_outcome_concept_id, @child1_concept_id, 1);
+            call add_concept_set_members(@Oncogynae_outcome_concept_id, @child2_concept_id, 2);
+            call add_concept_set_members(@Oncogynae_outcome_concept_id, @child3_concept_id, 3);
+            call add_concept_set_members(@Oncogynae_outcome_concept_id, @child4_concept_id, 4);
+            call add_concept_set_members(@Oncogynae_outcome_concept_id, @child5_concept_id, 5);
+            call add_concept_set_members(@Oncogynae_outcome_concept_id, @child6_concept_id, 6);
+            call add_concept_set_members(@Oncogynae_outcome_concept_id, @child7_concept_id, 7);
+            call add_concept_set_members(@Oncogynae_outcome_concept_id, @child8_concept_id, 8);
+
+        </sql>
+    </changeSet>
+
+    <changeSet id="Malawi-202002211230" author="Sreekalyan">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from program where name='Oncogynae';
+            </sqlCheck>
+        </preConditions>
+        <comment> Adding program Oncogynae </comment>
+        <sql>
+
+            select concept_id into @Oncogynae_Concept_id from concept_name where name = 'Oncogynae' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @Oncogynae_Outcome_Concept_id from concept_name where name = 'Oncogynae-outcome' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select user_id    into @Creator_Concept_id from users where username='superman';
+
+            INSERT INTO program(concept_id,outcomes_concept_id,creator,date_created,name,description,uuid)
+            VALUES (@Oncogynae_Concept_id,@Oncogynae_Outcome_Concept_id,@Creator_Concept_id,now(),'Oncogynae','Oncogynae Program',uuid());
+
+        </sql>
+    </changeSet>
+
+    <changeSet id="Malawi-202002211304" author="Sreekalyan">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from program_workflow pw join concept_name cn on pw.concept_id = cn.concept_id
+                where pw.concept_id = (select concept_id from concept_name where name = 'Oncogynae-workflow' and
+                concept_name_type = 'FULLY_SPECIFIED') and concept_name_type = 'FULLY_SPECIFIED';
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Program workflow</comment>
+        <sql>
+
+            select program_id into @Oncogynae_program_id from program where name='Oncogynae';
+            select concept_id into @Oncogynae_workflow_concept_id from concept_name where name ="Oncogynae-workflow" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select user_id    into @Creator_Concept_id from users where username='superman';
+
+            INSERT INTO program_workflow (program_id , concept_id , creator , date_created , retired , uuid)
+            VALUES (@Oncogynae_program_id,@Oncogynae_workflow_concept_id,@Creator_Concept_id, now(),0, uuid());
+        </sql>
+    </changeSet>
+
+    <changeSet id="Malawi-202002211500" author="Sreekalyan">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from program_workflow_state pws join concept_name cn on pws.concept_id = cn.concept_id
+                where pws.concept_id in (select concept_id from concept_name where name in ('Assessment Phase','MDT
+                Phase','Treatment Phase','Follow Up Phase') and concept_name_type = 'FULLY_SPECIFIED')
+                and concept_name_type = 'FULLY_SPECIFIED';
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Program states for Oncogynae-workflow </comment>
+        <sql>
+
+            select concept_id into @Oncogynae_workflow_concept_id from concept_name where name = "Oncogynae-workflow" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select program_workflow_id into @program_workflow_id from program_workflow where concept_id = @Oncogynae_workflow_concept_id;
+
+            select concept_id into @MDT_Phase_concept_id from concept_name where name = "MDT Phase" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @Treatment_Phase_concept_id from concept_name where name = "Treatment Phase" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @Follow_Up_Phase_concept_id from concept_name where name = "Follow Up Phase" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @Assessment_Phase_concept_id from concept_name where name = "Assessment Phase" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+
+            insert into program_workflow_state (program_workflow_id,concept_id,initial,terminal,creator,date_created,retired ,uuid) values
+            (@program_workflow_id,@Assessment_Phase_concept_id,0,0,1,now(),0,uuid()),
+            (@program_workflow_id,@MDT_Phase_concept_id,0,0,1,now(),0,uuid()),
+            (@program_workflow_id,@Treatment_Phase_concept_id,0,0,1,now(),0,uuid()),
+            (@program_workflow_id,@Follow_Up_Phase_concept_id,0,0,1,now(),0,uuid());
+
+        </sql>
+    </changeSet>
+
+
     <include file="SurgeonPre-OperativeAssessment/SurgeonPreOperativeAssessment.xml"/>
 
 </databaseChangeLog>
