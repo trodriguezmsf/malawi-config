@@ -1,5 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
 <databaseChangeLog
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -7,48 +5,48 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-    <changeSet id="bahmni-atomfeed-offset-marker" author="tw" context="rel3">
-        <preConditions onFail="MARK_RAN">
-            <sqlCheck expectedResult="0">
-                SELECT COUNT(*) FROM scheduler_task_config where schedulable_class = 'org.openmrs.module.atomfeed.scheduler.tasks.EventRecordsNumberOffsetMarkerTask'
-            </sqlCheck>
-        </preConditions>
-        <comment>rel3</comment>
-        <sql>
-            INSERT INTO  scheduler_task_config  (name, description, schedulable_class,
-            start_time, start_time_pattern, repeat_interval, start_on_startup, started,
-            created_by, date_created, changed_by, date_changed, last_execution_time, uuid )
-            VALUES ('OpenMRS event offset marker task', NULL, 'org.openmrs.module.atomfeed.scheduler.tasks.EventRecordsNumberOffsetMarkerTask',
-            '2014-01-14 00:00:00','MM/dd/yyyy HH:mm:ss',86400, 1, 1,
-            1, now(), NULL, NULL, NULL, uuid());
-        </sql>
-    </changeSet>
-    <changeSet id="default-201604211822" author="Gautam, Angshuman">
-        <preConditions onFail="MARK_RAN">
-            <sqlCheck expectedResult="0">
-                select count(concept_id) from concept where uuid="5090AAAAAAAAAAAAAAAAAAAAAAAAAAAA";
-            </sqlCheck>
-        </preConditions>
-        <comment>update Height concept uuid to standard CEIL concept uuid</comment>
-        <sql>
-            update concept set uuid="5090AAAAAAAAAAAAAAAAAAAAAAAAAAAA" where concept_id in (
-            select concept_name.concept_id from concept_name where name="Height" and concept_name_type="FULLY_SPECIFIED"
-            );
-        </sql>
-    </changeSet>
-    <changeSet id="default-201604211823" author="Gautam, Angshuman">
-        <preConditions onFail="MARK_RAN">
-            <sqlCheck expectedResult="0">
-                select count(concept_id) from concept where uuid="5089AAAAAAAAAAAAAAAAAAAAAAAAAAAA";
-            </sqlCheck>
-        </preConditions>
-        <comment>update Weight concept uuid to standard CEIL concept uuid</comment>
-        <sql>
-            update concept set uuid="5089AAAAAAAAAAAAAAAAAAAAAAAAAAAA" where concept_id in (
-            select concept_name.concept_id from concept_name where name="Weight" and concept_name_type="FULLY_SPECIFIED"
-            );
-        </sql>
-    </changeSet>
+        <changeSet id="bahmni-atomfeed-offset-marker" author="tw" context="rel3">
+                <preConditions onFail="MARK_RAN">
+                        <sqlCheck expectedResult="0">
+                                SELECT COUNT(*) FROM scheduler_task_config where schedulable_class = 'org.openmrs.module.atomfeed.scheduler.tasks.EventRecordsNumberOffsetMarkerTask'
+                        </sqlCheck>
+                </preConditions>
+                <comment>rel3</comment>
+                <sql>
+                        INSERT INTO  scheduler_task_config  (name, description, schedulable_class,
+                        start_time, start_time_pattern, repeat_interval, start_on_startup, started,
+                        created_by, date_created, changed_by, date_changed, last_execution_time, uuid )
+                        VALUES ('OpenMRS event offset marker task', NULL, 'org.openmrs.module.atomfeed.scheduler.tasks.EventRecordsNumberOffsetMarkerTask',
+                        '2014-01-14 00:00:00','MM/dd/yyyy HH:mm:ss',86400, 1, 1,
+                        1, now(), NULL, NULL, NULL, uuid());
+                </sql>
+        </changeSet>
+        <changeSet id="default-201604211822" author="Gautam, Angshuman">
+            <preConditions onFail="MARK_RAN">
+                <sqlCheck expectedResult="0">
+                    select count(concept_id) from concept where uuid="5090AAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+                </sqlCheck>
+            </preConditions>
+            <comment>update Height concept uuid to standard CEIL concept uuid</comment>
+            <sql>
+                update concept set uuid="5090AAAAAAAAAAAAAAAAAAAAAAAAAAAA" where concept_id in (
+                select concept_name.concept_id from concept_name where name="Height" and concept_name_type="FULLY_SPECIFIED"
+                );
+            </sql>
+        </changeSet>
+        <changeSet id="default-201604211823" author="Gautam, Angshuman">
+            <preConditions onFail="MARK_RAN">
+                <sqlCheck expectedResult="0">
+                    select count(concept_id) from concept where uuid="5089AAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+                </sqlCheck>
+            </preConditions>
+            <comment>update Weight concept uuid to standard CEIL concept uuid</comment>
+            <sql>
+                update concept set uuid="5089AAAAAAAAAAAAAAAAAAAAAAAAAAAA" where concept_id in (
+                select concept_name.concept_id from concept_name where name="Weight" and concept_name_type="FULLY_SPECIFIED"
+                );
+            </sql>
+        </changeSet>
     <changeSet id="default-201905311115" author="Bindu, Angshuman">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
@@ -85,56 +83,54 @@
             INSERT INTO location_tag_map(location_id, location_tag_id) VALUES(@location_id, @location_tag_id);
         </sql>
     </changeSet>
-
-    <changeSet id="MALAWI-20200201214" author="Santhosh">
+    <changeSet id="MALAWI-20200201214" author="Santhosh" runAlways="true">
         <comment>Stored Procedure to add reference term</comment>
         <sql>
             DROP PROCEDURE IF EXISTS add_concept_answer;
         </sql>
         <sqlFile path="utils/add_concept_answer.sql" endDelimiter="#"/>
     </changeSet>
-    <changeSet id="MALAWI-20200201215" author="Santhosh">
+    <changeSet id="MALAWI-20200201215" author="Santhosh" runAlways="true">
         <comment>Stored Procedure to add reference term</comment>
         <sql>
             DROP PROCEDURE IF EXISTS add_concept_description;
         </sql>
         <sqlFile path="utils/add_concept_description.sql" endDelimiter="#"/>
     </changeSet>
-    <changeSet id="MALAWI-20200201216" author="Santhosh">
+    <changeSet id="MALAWI-20200201216" author="Santhosh" runAlways="true">
         <comment>Stored Procedure to add reference term</comment>
         <sql>
             DROP PROCEDURE IF EXISTS add_concept_numeric;
         </sql>
         <sqlFile path="utils/add_concept_numeric.sql" endDelimiter="#"/>
     </changeSet>
-    <changeSet id="MALAWI-20200201217" author="Santhosh">
+    <changeSet id="MALAWI-20200201217" author="Santhosh" runAlways="true">
         <comment>Stored Procedure to add reference term</comment>
         <sql>
             DROP PROCEDURE IF EXISTS add_concept_reference_map;
         </sql>
         <sqlFile path="utils/add_concept_reference_map.sql" endDelimiter="#"/>
     </changeSet>
-    <changeSet id="MALAWI-20200201218" author="Santhosh">
+    <changeSet id="MALAWI-20200201218" author="Santhosh" runAlways="true">
         <comment>Stored Procedure to add reference term</comment>
         <sql>
             DROP PROCEDURE IF EXISTS add_concept_set_members;
         </sql>
         <sqlFile path="utils/add_concept_set_members.sql" endDelimiter="#"/>
     </changeSet>
-    <changeSet id="MALAWI-20200201219" author="Santhosh">
+    <changeSet id="MALAWI-20200201219" author="Santhosh" runAlways="true">
         <comment>Stored Procedure to add reference term</comment>
         <sql>
             DROP PROCEDURE IF EXISTS add_concept;
         </sql>
         <sqlFile path="utils/add_concept.sql" endDelimiter="#"/>
     </changeSet>
-    <changeSet id="MALAWI-20200201220" author="Santhosh">
+    <changeSet id="MALAWI-20200201220" author="Santhosh" runAlways="true">
         <sql>
             DROP PROCEDURE IF EXISTS CREATE_REFERENCE_MAPPING_CEIL;
         </sql>
         <sqlFile path="utils/createProcedureForCEIL.sql" endDelimiter="#"/>
     </changeSet>
-
 
     <include file="SurgeonPre-OperativeAssessment/SurgeonPreOperativeAssessment.xml"/>
 
