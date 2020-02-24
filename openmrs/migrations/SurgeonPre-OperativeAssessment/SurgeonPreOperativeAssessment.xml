@@ -117,4 +117,34 @@
         </sql>
     </changeSet>
 
+    <changeSet id="MALAWI_CONFIG_202002111158" author="Santhosh">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select
+                count(*)
+                From
+                concept_reference_term
+                where `code` in
+                ('1065','1066')
+                and retired = 0
+                and concept_source_id = (
+                select concept_source_id from concept_reference_source where `name` = 'CEIL'  and retired =0
+                );
+            </sqlCheck>
+        </preConditions>
+        <sql>
+            SELECT concept_source_id INTO @source_id FROM concept_reference_source where name = 'CEIL';
+            select user_id    into @Creator_Concept_id from users where username='superman';
+
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+            (@Creator_Concept_id,'1065',@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+            (@Creator_Concept_id,'1066',@source_id,uuid(),now());
+
+            call CREATE_REFERENCE_MAPPING_CEIL('Yes', '1065');
+            call CREATE_REFERENCE_MAPPING_CEIL('No', '1066');
+
+        </sql>
+    </changeSet>
+
 </databaseChangeLog>
