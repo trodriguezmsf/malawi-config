@@ -6,6 +6,7 @@
         "extensionParams": {
             "searchHandler": "emrapi.sqlSearch.activePatients",
             "translationKey": "MODULE_LABEL_PROGRAMS_KEY",
+            "view": "tabular",
             "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext"
         },
         "label": "Active",

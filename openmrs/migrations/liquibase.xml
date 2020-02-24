@@ -263,10 +263,13 @@
     <changeSet id="Malawi-202002211500" author="Sreekalyan">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
-                select count(*) from program_workflow_state pws join concept_name cn on pws.concept_id = cn.concept_id
-                where pws.concept_id in (select concept_id from concept_name where name in ('Assessment Phase','MDT
-                Phase','Treatment Phase','Follow Up Phase') and concept_name_type = 'FULLY_SPECIFIED')
-                and concept_name_type = 'FULLY_SPECIFIED';
+                select count(*) from program_workflow_state where concept_id in (select concept_id from concept_name
+                where name in ('Assessment Phase','MDT Phase','Treatment Phase','Follow Up Phase')
+                and program_workflow_id = (select program_workflow_id from program_workflow pw join concept_name cn on
+                pw.concept_id = cn.concept_id
+                where pw.concept_id = (select concept_id from concept_name where name = 'Oncogynae-workflow' and
+                concept_name_type = 'FULLY_SPECIFIED' ) and concept_name_type = 'FULLY_SPECIFIED')
+                and concept_name_type = 'FULLY_SPECIFIED');
             </sqlCheck>
         </preConditions>
         <comment>Adding Program states for Oncogynae-workflow </comment>
@@ -286,6 +289,143 @@
             (@program_workflow_id,@MDT_Phase_concept_id,0,0,1,now(),0,uuid()),
             (@program_workflow_id,@Treatment_Phase_concept_id,0,0,1,now(),0,uuid()),
             (@program_workflow_id,@Follow_Up_Phase_concept_id,0,0,1,now(),0,uuid());
+
+        </sql>
+    </changeSet>
+
+    <changeSet id="Malawi-2020020241123" author="Sreekalyan">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_name where name in ('Palliative Care','Palliative
+                Care-workflow','Palliative Care-outcome','Outpatient Care','Inpatient Care','Homebased Care') and
+                concept_name_type =
+                'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Palliative Care Program concepts</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_short_id = 0;
+            set @concept_full_id = 0;
+            set @count = 0;
+            set @uuid = NULL;
+
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Palliative Care","Palliative Care","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Palliative Care-workflow","Palliative Care-workflow","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Palliative Care-outcome","Palliative Care-outcome","N/A","Misc",true);
+
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Outpatient Care","Outpatient Care","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Inpatient Care","Inpatient Care","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Homebased Care","Homebased Care","N/A","Misc",false);
+
+        </sql>
+    </changeSet>
+
+    <changeSet id="Malawi-202002241157" author="Sreekalyan">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+
+                select COUNT(*) from concept_set cs
+                join concept_name cn
+                on cs.concept_id = cn.concept_id
+                where cs.concept_id IN (select concept_id from concept_name where name in("Transferred out","Lost to
+                follow up","Refused care","Death","End of Follow Up") AND concept_name_type = "FULLY_SPECIFIED")
+                and cs.concept_set IN (select concept_id from concept_name where name = 'Palliative Care-outcome') and
+                concept_name_type = "FULLY_SPECIFIED";
+
+
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding set members for "Palliative Care-outcome" concept</comment>
+        <sql>
+            select concept_id into @Palliative_Care_concept_id from concept_name where name = "Palliative Care-outcome" and concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Transferred out" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Lost to follow up" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Refused care" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Death" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="End of Follow Up" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_set_members(@Palliative_Care_concept_id, @child1_concept_id, 1);
+            call add_concept_set_members(@Palliative_Care_concept_id, @child2_concept_id, 2);
+            call add_concept_set_members(@Palliative_Care_concept_id, @child3_concept_id, 3);
+            call add_concept_set_members(@Palliative_Care_concept_id, @child4_concept_id, 4);
+            call add_concept_set_members(@Palliative_Care_concept_id, @child5_concept_id, 5);
+
+        </sql>
+    </changeSet>
+
+    <changeSet id="Malawi-202002241212" author="Sreekalyan">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from program where name='Palliative Care';
+            </sqlCheck>
+        </preConditions>
+        <comment> Adding program Palliative Care </comment>
+        <sql>
+
+            select concept_id into @Palliative_Care_Concept_id from concept_name where name = 'Palliative Care' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @Palliative_Care_Outcome_Concept_id from concept_name where name = 'Palliative Care-outcome' and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select user_id    into @Creator_Concept_id from users where username='superman';
+
+            INSERT INTO program(concept_id,outcomes_concept_id,creator,date_created,name,description,uuid)
+            VALUES (@Palliative_Care_Concept_id,@Palliative_Care_Outcome_Concept_id,@Creator_Concept_id,now(),'Palliative Care','Palliative Care-outcome',uuid());
+
+        </sql>
+    </changeSet>
+
+    <changeSet id="Malawi-202002241215" author="Sreekalyan">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from program_workflow pw join concept_name cn on pw.concept_id = cn.concept_id
+                where pw.concept_id = (select concept_id from concept_name where name = 'Palliative Care-workflow' and
+                concept_name_type = 'FULLY_SPECIFIED') and concept_name_type = 'FULLY_SPECIFIED';
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Program workflow</comment>
+        <sql>
+
+            select program_id into @Palliative_Care_program_id from program where name='Palliative Care';
+            select concept_id into @Palliative_Care_workflow_concept_id from concept_name where name ="Palliative Care-workflow" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select user_id    into @Creator_Concept_id from users where username='superman';
+
+            INSERT INTO program_workflow (program_id , concept_id , creator , date_created , retired , uuid)
+            VALUES (@Palliative_Care_program_id,@Palliative_Care_workflow_concept_id,@Creator_Concept_id, now(),0,uuid());
+        </sql>
+    </changeSet>
+
+    <changeSet id="Malawi-202002241237" author="Sreekalyan">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from program_workflow_state where concept_id in (select concept_id from concept_name
+                where name in ('Outpatient Care','Inpatient Care','Homebased Care')
+                and program_workflow_id = (select program_workflow_id from program_workflow pw join concept_name cn on
+                pw.concept_id = cn.concept_id
+                where pw.concept_id = (select concept_id from concept_name where name = 'Palliative Care-workflow' and
+                concept_name_type = 'FULLY_SPECIFIED' ) and concept_name_type = 'FULLY_SPECIFIED')
+                and concept_name_type = 'FULLY_SPECIFIED');
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Program states for Palliative Care-workflow </comment>
+        <sql>
+
+            select concept_id into @Palliative_Care_workflow_concept_id from concept_name where name = "Palliative Care-workflow" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select program_workflow_id into @Palliative_Care_workflow_id from program_workflow where concept_id = @Palliative_Care_workflow_concept_id;
+
+            select concept_id into @Outpatient_Care_concept_id from concept_name where name = "Outpatient Care" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @Inpatient_Care_concept_id from concept_name where name = "Inpatient Care" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @Homebased_Care_concept_id from concept_name where name = "Homebased Care" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            insert into program_workflow_state (program_workflow_id,concept_id,initial,terminal,creator,date_created,retired ,uuid) values
+            (@Palliative_Care_workflow_id,@Outpatient_Care_concept_id,0,0,1,now(),0,uuid()),
+            (@Palliative_Care_workflow_id,@Inpatient_Care_concept_id,0,0,1,now(),0,uuid()),
+            (@Palliative_Care_workflow_id,@Homebased_Care_concept_id,0,0,1,now(),0,uuid());
 
         </sql>
     </changeSet>

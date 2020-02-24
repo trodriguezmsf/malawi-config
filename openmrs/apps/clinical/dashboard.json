@@ -91,7 +91,7 @@
             "programs":{  
                 "translationKey":"DASHBOARD_TITLE_PROGRAMS_KEY",
                 "type":"programs",
-                "displayOrder":10
+                "displayOrder":1
             },
             "radiologyOrders":{  
                 "orderType":"Radiology Order",
