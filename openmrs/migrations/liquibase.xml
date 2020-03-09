@@ -477,7 +477,7 @@
             </sqlCheck>
         </preConditions>
         <comment></comment>
-        <sqlFile path="ProgramQueues/ActivePatientProgramqueue.sql"/>
+        <sqlFile path="ProgramQueues/ActivePatientProgramQueue.sql"/>
     </changeSet>
 
     <include file="Operative-Report/Operative-Report.xml"/>
