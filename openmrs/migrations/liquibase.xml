@@ -429,8 +429,8 @@
 
         </sql>
     </changeSet>
-
-
+    
+    <include file="Operative-Report/Operative-Report.xml"/>
     <include file="SurgeonPre-OperativeAssessment/SurgeonPreOperativeAssessment.xml"/>
 
 </databaseChangeLog>
