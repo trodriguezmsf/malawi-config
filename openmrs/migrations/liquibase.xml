@@ -171,7 +171,7 @@
         </sql>
         <sqlFile  path="utils/createProcedureForICHI.sql" endDelimiter="#"/>
     </changeSet>
-    
+
     <changeSet id="Malawi-202002021612" author="Sreekalyan">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
@@ -469,7 +469,17 @@
 
         </sql>
     </changeSet>
-    
+
+    <changeSet id="IRAQ-2020021341" author="Bindu Sreekalyan">
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">
+                SELECT count(1) FROM global_property WHERE property='emrapi.sqlSearch.activePatients';
+            </sqlCheck>
+        </preConditions>
+        <comment></comment>
+        <sqlFile path="ProgramQueues/ActivePatientProgramqueue.sql"/>
+    </changeSet>
+
     <include file="Operative-Report/Operative-Report.xml"/>
     <include file="SurgeonPre-OperativeAssessment/SurgeonPreOperativeAssessment.xml"/>
 
