@@ -132,6 +132,46 @@
         <sqlFile path="utils/createProcedureForCEIL.sql" endDelimiter="#"/>
     </changeSet>
 
+    <changeSet id="Malawi-201704071423" author="Suraj" runAlways="true">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_reference_source where name = "ICD-O";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding ICD-O concept_reference_sources</comment>
+        <sql>
+            INSERT INTO concept_reference_source(name,description,hl7_code,creator,date_created,uuid) values ("ICD-O","ICD-O",NULL,1,now(),uuid());
+        </sql>
+    </changeSet>
+
+    <changeSet id="Malawi-201704071422" author="Suraj" runAlways="true">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_reference_source where name = "ICHI";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding ICHI concept_reference_sources</comment>
+        <sql>
+            INSERT INTO concept_reference_source(name,description,hl7_code,creator,date_created,uuid) values
+            ("ICHI","ICHI",NULL,1,now(),uuid());
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_050320201211" author="Sreekalyan" runAlways="true">
+        <sql>
+            DROP PROCEDURE IF EXISTS CREATE_REFERENCE_MAPPING_ICDO;
+        </sql>
+        <comment>Adding the Procedure for ICDO</comment>
+        <sqlFile path="utils/createProcedureForICDO.sql" endDelimiter="#"/>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_050320201212" author="Sreekalyan" runAlways="true">
+        <sql>
+            DROP PROCEDURE IF EXISTS CREATE_REFERENCE_MAPPING_ICHI;
+        </sql>
+        <sqlFile  path="utils/createProcedureForICHI.sql" endDelimiter="#"/>
+    </changeSet>
+    
     <changeSet id="Malawi-202002021612" author="Sreekalyan">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
