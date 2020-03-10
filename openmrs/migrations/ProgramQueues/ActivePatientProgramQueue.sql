@@ -44,10 +44,10 @@ VALUES ('emrapi.sqlSearch.activePatients', "select distinct
                                                                                                from patient_state
                                                                                                group by patient_program_id) maxdate
                                                                                               on maxdate.patient_program_id = patientState.patient_program_id and
-                                                                                                 maxdate.datecreated = patientState.date_created) ps
+                                                                                                 maxdate.datecreated = patientState.date_created and voided = 0) ps
                                                                     on ps.patient_program_id = pp.patient_program_id
                                                     left outer join program_workflow_state pws on pws.program_workflow_state_id = ps.state
                                                     left outer join program_workflow pw on pw.program_workflow_id = pws.program_workflow_id
-                                                    left outer join concept_name cn on cn.concept_id = pws.concept_id",
+                                                    left outer join concept_name cn on cn.concept_id = pws.concept_id group by pi.patient_id order by pi.patient_id",
         'Active Patients',
         @uuid);

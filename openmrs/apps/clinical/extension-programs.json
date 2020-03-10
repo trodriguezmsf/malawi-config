@@ -7,7 +7,8 @@
             "searchHandler": "emrapi.sqlSearch.activePatients",
             "translationKey": "MODULE_LABEL_PROGRAMS_KEY",
             "view": "tabular",
-            "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext"
+            "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext",
+            "searchColumns": ["identifier", "name","PATIENT_LISTING_PROGRAM_NAME","PATIENT_LISTING_PROGRAM_STATE"]
         },
         "label": "Active",
         "order": 1,

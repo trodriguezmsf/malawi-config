@@ -480,7 +480,8 @@
         <sqlFile path="ProgramQueues/ActivePatientProgramQueue.sql"/>
     </changeSet>
 
-    <include file="Operative-Report/Operative-Report.xml"/>
     <include file="SurgeonPre-OperativeAssessment/SurgeonPreOperativeAssessment.xml"/>
+    <include file="Operative-Report/Operative-Report.xml"/>
+
 
 </databaseChangeLog>
