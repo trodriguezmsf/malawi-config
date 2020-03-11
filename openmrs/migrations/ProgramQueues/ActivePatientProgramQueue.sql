@@ -31,8 +31,8 @@ VALUES ('emrapi.sqlSearch.activePatients', "select distinct
                                                                       from patient_program patientProgram
                                                                                join (select max(date_created) as datecreated, patient_id
                                                                                                 from patient_program
-                                                                                                where date_completed is null
-                                                                                                group by patient_id and voided = 0) as maxdate
+                                                                                                where voided = 0
+                                                                                                group by patient_id ) as maxdate
                                                                                                on maxdate.patient_id = patientProgram.patient_id and
                                                                                                   maxdate.datecreated = patientProgram.date_created )) as pp
                                                                     on pp.patient_id = p.person_id AND pp.date_completed IS NULL
