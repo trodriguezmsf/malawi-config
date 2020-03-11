@@ -241,7 +241,7 @@
             call CREATE_REFERENCE_MAPPING_ICHI("Para-aortic lymphadenectomy","DFF.JJ.AA",1);
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
             (4,"NMA.JK.AA",@source_id,uuid(),now());
-            call CREATE_REFERENCE_MAPPING_ICHI("Ovaries removal","NMA.JK.AA",1);
+            call CREATE_REFERENCE_MAPPING_ICHI("OR, Ovaries removal","NMA.JK.AA",1);
 
 
         </sql>
@@ -271,33 +271,33 @@
 
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
             (4,"NAE.JJ.AA",@source_id,uuid(),now());
-            call CREATE_REFERENCE_MAPPING_ICHI("Opening of the ureteric tunnel only","NAE.JJ.AA",2);
+            call CREATE_REFERENCE_MAPPING_ICHI("Opening of the ureteric tunnel only","NAE.JJ.AA",3);
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
             (4,"NAE.JK.AA",@source_id,uuid(),now());
-            call CREATE_REFERENCE_MAPPING_ICHI("Full mobilization","NAE.JK.AA",2);
+            call CREATE_REFERENCE_MAPPING_ICHI("Full mobilization","NAE.JK.AA",3);
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
             (4,"NAI.JJ.AA",@source_id,uuid(),now());
-            call CREATE_REFERENCE_MAPPING_ICHI("Mobilized to base of the cervix","NAI.JJ.AA",2);
-            call CREATE_REFERENCE_MAPPING_ICHI("Mobilized to upper vagina","NAI.JJ.AA",2);
-            call CREATE_REFERENCE_MAPPING_ICHI("Mobilized to middle vagina","NAI.JJ.AA",2);
+            call CREATE_REFERENCE_MAPPING_ICHI("Mobilized to base of the cervix","NAI.JJ.AA",3);
+            call CREATE_REFERENCE_MAPPING_ICHI("Mobilized to upper vagina","NAI.JJ.AA",3);
+            call CREATE_REFERENCE_MAPPING_ICHI("Mobilized to middle vagina","NAI.JJ.AA",3);
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
             (4,"KBW.JI.AA",@source_id,uuid(),now());
-            call CREATE_REFERENCE_MAPPING_ICHI("Mobilized below cervix","KBW.JI.AA",2);
-            call CREATE_REFERENCE_MAPPING_ICHI("Mobilized below middle vagina","KBW.JI.AA",2);
+            call CREATE_REFERENCE_MAPPING_ICHI("Mobilized below cervix","KBW.JI.AA",3);
+            call CREATE_REFERENCE_MAPPING_ICHI("Mobilized below middle vagina","KBW.JI.AA",3);
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
             (4,"NME.GA.AA",@source_id,uuid(),now());
-            call CREATE_REFERENCE_MAPPING_ICHI("Half way between cervix and ureter","NME.GA.AA",2);
-            call CREATE_REFERENCE_MAPPING_ICHI("At the level of the ureteral bed","NME.GA.AA",2);
-            call CREATE_REFERENCE_MAPPING_ICHI("At iliac vessels with nerve preservation","NME.GA.AA",2);
-            call CREATE_REFERENCE_MAPPING_ICHI("At iliac vessels without nerve preservation","NME.GA.AA",2);
-            call CREATE_REFERENCE_MAPPING_ICHI("Partial excision of the vesico-uterine ligament","NME.GA.AA",2);
-            call CREATE_REFERENCE_MAPPING_ICHI("Complete excision of the vesico-uterine ligament","NME.GA.AA",2);
-            call CREATE_REFERENCE_MAPPING_ICHI("Excision of the vesico-vaginal ligament with nerve sparing","NME.GA.AA",2);
-            call CREATE_REFERENCE_MAPPING_ICHI("Excision of the vesico-vaginal ligament without nerve sparing","NME.GA.AA",2);
-            call CREATE_REFERENCE_MAPPING_ICHI("Minimal excision","NME.GA.AA",2);
-            call CREATE_REFERENCE_MAPPING_ICHI("Partial resection of the rectouterine-rectovaginal ligament and uterosacral peritoneal fold","NME.GA.AA",2);
-            call CREATE_REFERENCE_MAPPING_ICHI("At the rectum, nerve spared","NME.GA.AA",2);
-            call CREATE_REFERENCE_MAPPING_ICHI("At the rectum, without nerve sparing","NME.GA.AA",2);
+            call CREATE_REFERENCE_MAPPING_ICHI("Half way between cervix and ureter","NME.GA.AA",3);
+            call CREATE_REFERENCE_MAPPING_ICHI("At the level of the ureteral bed","NME.GA.AA",3);
+            call CREATE_REFERENCE_MAPPING_ICHI("At iliac vessels with nerve preservation","NME.GA.AA",3);
+            call CREATE_REFERENCE_MAPPING_ICHI("At iliac vessels without nerve preservation","NME.GA.AA",3);
+            call CREATE_REFERENCE_MAPPING_ICHI("Partial excision of the vesico-uterine ligament","NME.GA.AA",3);
+            call CREATE_REFERENCE_MAPPING_ICHI("Complete excision of the vesico-uterine ligament","NME.GA.AA",3);
+            call CREATE_REFERENCE_MAPPING_ICHI("Excision of the vesico-vaginal ligament with nerve sparing","NME.GA.AA",3);
+            call CREATE_REFERENCE_MAPPING_ICHI("Excision of the vesico-vaginal ligament without nerve sparing","NME.GA.AA",3);
+            call CREATE_REFERENCE_MAPPING_ICHI("Minimal excision","NME.GA.AA",3);
+            call CREATE_REFERENCE_MAPPING_ICHI("Partial resection of the rectouterine-rectovaginal ligament and uterosacral peritoneal fold","NME.GA.AA",3);
+            call CREATE_REFERENCE_MAPPING_ICHI("At the rectum, nerve spared","NME.GA.AA",3);
+            call CREATE_REFERENCE_MAPPING_ICHI("At the rectum, without nerve sparing","NME.GA.AA",3);
         </sql>
     </changeSet>
 
@@ -546,12 +546,16 @@
             concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
             select concept_id into @child1_concept_id from concept_name where name ="Yes" and concept_name_type =
             'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @child2_concept_id from concept_name where name ="No" and concept_name_type =
             'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Unknown" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
         </sql>
     </changeSet>
 
@@ -581,7 +585,7 @@
             select concept_id into @child1_concept_id from concept_name where name ="Transverse laparotomy" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @child2_concept_id from concept_name where name ="Midline laparotomy" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @child3_concept_id from concept_name where name ="Transvaginal hysterectomy" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Other surgery" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Other" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -918,6 +922,7 @@
             set @child2_concept_id = 0;
             set @child3_concept_id = 0;
             set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
             select concept_id into @child1_concept_id from concept_name where name ="Type A" and concept_name_type =
             'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @child2_concept_id from concept_name where name ="Type B1" and concept_name_type =
@@ -926,10 +931,13 @@
             'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @child4_concept_id from concept_name where name ="Type C1" and concept_name_type =
             'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Type C2" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
             call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
         </sql>
     </changeSet>
 
@@ -958,6 +966,7 @@
             set @child2_concept_id = 0;
             set @child3_concept_id = 0;
             set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
             select concept_id into @child1_concept_id from concept_name where name ="Type A" and concept_name_type =
             'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @child2_concept_id from concept_name where name ="Type B1" and concept_name_type =
@@ -966,10 +975,13 @@
             'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @child4_concept_id from concept_name where name ="Type C1" and concept_name_type =
             'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Type C2" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
             call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
         </sql>
     </changeSet>
 
