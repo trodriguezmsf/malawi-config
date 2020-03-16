@@ -10,8 +10,8 @@
     "primarySurgeonsForOT" : ["George Chilinda","Oncologist Surgeon","MOH Surgeon"],
     "printListViewTemplateUrl" : "/bahmni_config/openmrs/apps/ot/printListView.html",
     "calendarView": {
-      "dayViewStart": "08:00",
-      "dayViewEnd": "18:00",
+      "dayViewStart": "07:30",
+      "dayViewEnd": "16:30",
       "dayViewSplit": "60"
     },
     "startOfWeek": "Monday"
