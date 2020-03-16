@@ -38,5 +38,15 @@
     "icon": "fa fa-pencil-square-o",
     "order": 6,
     "requiredPrivilege": "app:implementer-interface"
+  },
+  "bahmniOT": {
+    "id": "bahmni.ot",
+    "extensionPointId": "org.bahmni.home.dashboard",
+    "type": "link",
+    "translationKey": "Operation Theatre",
+    "url": "../ot/",
+    "icon": "fa-hospital-o",
+    "order": 9,
+    "requiredPrivilege": "app:ot"
   }
 }

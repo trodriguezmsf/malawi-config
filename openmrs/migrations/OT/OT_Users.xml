@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="MALAWI_CONFIG_202002111146" author="Sreekalyan Suraj">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from users where username in("George Chilinda");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding user/Surgeon G_Chilinda to openmrs for OT Module</comment>
+        <sql>
+
+
+            set @Passwd = 0;
+            set @salt = 0;
+            set @creator = 0;
+            set @max_person_id = 0;
+            set @max_user_id = 0;
+
+
+            select salt into @salt from users where username = 'superman';
+            select PASSWORD into @Passwd from users where username = 'superman';
+            select user_id into @creator from users where username = 'superman';
+
+            <!--  add to person table          -->
+            INSERT INTO person (creator,gender, date_created, uuid)VALUES (@creator,'M',now(),uuid());
+
+            <!--  add to person_name          -->
+            select max(person_id) into @max_person_id from person;
+            INSERT INTO person_name (person_id, given_name, family_name, creator, date_created, uuid)
+            VALUES (@max_person_id,"George","Chilinda",@creator, now(), uuid());
+
+            <!--  add to users table        -->
+            INSERT INTO users(username, password, salt, creator, date_created, changed_by, person_id,retired,uuid)
+            VALUES ("G_Chilinda",@Passwd,@salt,@creator,now(),@creator,@max_person_id,0,uuid());
+
+            <!--  add to user_role table           -->
+            select max(user_id) into @max_user_id from users;
+            insert into user_role values (@max_user_id,'Doctor');
+
+            <!--  add to provider table           -->
+            INSERT INTO provider (person_id, creator, date_created, retired, uuid)VALUES
+            (@max_person_id,@creator,now(),0,uuid());
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_202002111147" author="Sreekalyan Suraj">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from users where username in("Oncologist Surgeon");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding user/Surgeon Oncologist Surgeon to openmrs for OT Module</comment>
+        <sql>
+
+
+            set @Passwd = 0;
+            set @salt = 0;
+            set @creator = 0;
+            set @max_person_id = 0;
+            set @max_user_id = 0;
+
+
+            select salt into @salt from users where username = 'superman';
+            select PASSWORD into @Passwd from users where username = 'superman';
+            select user_id into @creator from users where username = 'superman';
+
+            <!--  add to person table          -->
+            INSERT INTO person (creator,gender, date_created, uuid)VALUES (@creator,'M',now(),uuid());
+
+            <!--  add to person_name          -->
+            select max(person_id) into @max_person_id from person;
+            INSERT INTO person_name (person_id, given_name, family_name, creator, date_created, uuid)
+            VALUES (@max_person_id,"Oncologist","Surgeon",@creator, now(), uuid());
+
+            <!--  add to users table        -->
+            INSERT INTO users(username, password, salt, creator, date_created, changed_by, person_id,retired,uuid)
+            VALUES ("O_Surgeon",@Passwd,@salt,@creator,now(),@creator,@max_person_id,0,uuid());
+
+            <!--  add to user_role table           -->
+            select max(user_id) into @max_user_id from users;
+            insert into user_role values (@max_user_id,'Doctor');
+
+            <!--  add to provider table           -->
+            INSERT INTO provider (person_id, creator, date_created, retired, uuid)VALUES
+            (@max_person_id,@creator,now(),0,uuid());
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_202002111148" author="Sreekalyan Suraj">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from users where username in("MOH Surgeon");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding user/Surgeon MOH Surgeon to openmrs for OT Module</comment>
+        <sql>
+
+
+            set @Passwd = 0;
+            set @salt = 0;
+            set @creator = 0;
+            set @max_person_id = 0;
+            set @max_user_id = 0;
+
+
+            select salt into @salt from users where username = 'superman';
+            select PASSWORD into @Passwd from users where username = 'superman';
+            select user_id into @creator from users where username = 'superman';
+
+            <!--  add to person table          -->
+            INSERT INTO person (creator,gender, date_created, uuid)VALUES (@creator,'M',now(),uuid());
+
+            <!--  add to person_name          -->
+            select max(person_id) into @max_person_id from person;
+            INSERT INTO person_name (person_id, given_name, family_name, creator, date_created, uuid)
+            VALUES (@max_person_id,"MOH","Surgeon",@creator, now(), uuid());
+
+            <!--  add to users table        -->
+            INSERT INTO users(username, password, salt, creator, date_created, changed_by, person_id,retired,uuid)
+            VALUES ("M_Surgeon",@Passwd,@salt,@creator,now(),@creator,@max_person_id,0,uuid());
+
+            <!--  add to user_role table           -->
+            select max(user_id) into @max_user_id from users;
+            insert into user_role values (@max_user_id,'Doctor');
+
+            <!--  add to provider table           -->
+            INSERT INTO provider (person_id, creator, date_created, retired, uuid)VALUES
+            (@max_person_id,@creator,now(),0,uuid());
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_202002111149" author="Sreekalyan">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from location where name = 'OT'
+            </sqlCheck>
+        </preConditions>
+        <comment>Updating the location</comment>
+        <sql>
+            update location set name = 'OT1' where name = 'OT';
+        </sql>
+    </changeSet>
+
+
+</databaseChangeLog>
