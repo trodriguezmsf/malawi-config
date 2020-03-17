@@ -3,7 +3,16 @@ SELECT uuid() INTO @uuid;
 
 INSERT INTO global_property (`property`, `property_value`, `description`, `uuid`)
 VALUES ('emrapi.sqlSearch.otScheduledQueue',
-"SELECT *
+"SELECT     pi.identifier                              AS PATIENT_LISTING_QUEUES_HEADER_IDENTIFIER,
+    CONCAT(pn.given_name, ' ', pn.family_name) AS PATIENT_LISTING_QUEUES_HEADER_NAME,
+    bed_info.bedNumber                         AS `Bed Number`,
+    'Enter Diagnosis'                          AS `Diagnosis`,
+    'Enter Planned Procedure'                  AS `Planned Procedure`,
+    'Enter HIV Status'                         AS `HIV Status`,
+    DATE_FORMAT(sb.start_datetime, '%d/%m/%Y') AS `Date of Surgery`,
+    surgeon_name.SurgeonName                   AS `Surgeon`,
+    sa.status                                  AS `Status`,
+    'Enter Outcome of Anesthesia'              AS `Outcome of Anesthesia`
 FROM surgical_block sb
   INNER JOIN surgical_appointment sa ON sb.surgical_block_id = sa.surgical_block_id
                                         AND sb.voided IS FALSE
@@ -36,6 +45,6 @@ FROM surgical_block sb
 									AND pro.retired IS FALSE
 						INNER JOIN surgical_block sb ON sb.primary_provider_id = pro.provider_id
 									AND sb.voided IS FALSE  ) surgeon_name ON surgeon_name.provider_id = sb.primary_provider_id
-						GROUP BY sa.surgical_appointment_id 
+						GROUP BY sa.surgical_appointment_id
   ORDER BY sb.start_datetime DESC;"
    ,'SQL for scheduled patient listing queues for OT module',@uuid);
