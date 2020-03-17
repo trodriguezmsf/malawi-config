@@ -46,5 +46,5 @@ FROM surgical_block sb
 						INNER JOIN surgical_block sb ON sb.primary_provider_id = pro.provider_id
 									AND sb.voided IS FALSE  ) surgeon_name ON surgeon_name.provider_id = sb.primary_provider_id
 						GROUP BY sa.surgical_appointment_id
-  ORDER BY sb.start_datetime DESC;"
+  ORDER BY sb.start_datetime ASC;"
    ,'SQL for scheduled patient listing queues for OT module',@uuid);

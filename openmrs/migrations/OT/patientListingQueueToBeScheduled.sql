@@ -63,5 +63,5 @@ VALUES ('emrapi.sqlSearch.otToBeScheduledQueue',
                                                                      AND sa.voided IS FALSE) appoinment
                 ON appoinment.patient_id = p.patient_id AND p.voided IS FALSE
           ) appointment_block ON appointment_block.patient_id = sa.patient_id
-          ORDER BY sb.start_datetime DESC;"
+          ORDER BY sb.start_datetime ASC;"
            , 'SQL for to be scheduled patient listing queues for OT module', @uuid);
