@@ -3,7 +3,7 @@ SELECT uuid() INTO @uuid;
 
 INSERT INTO global_property (`property`, `property_value`, `description`, `uuid`)
 VALUES ('emrapi.sqlSearch.otScheduledQueue',
-"SELECT     pi.identifier                              AS PATIENT_LISTING_QUEUES_HEADER_IDENTIFIER,
+"SELECT     pi.identifier  AS PATIENT_LISTING_QUEUES_HEADER_IDENTIFIER_SCHEDULE,
     CONCAT(pn.given_name, ' ', pn.family_name) AS PATIENT_LISTING_QUEUES_HEADER_NAME,
     bed_info.bedNumber                         AS `Bed Number`,
     ' '                          AS `Diagnosis`,

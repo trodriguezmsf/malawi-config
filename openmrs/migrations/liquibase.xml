@@ -480,6 +480,22 @@
         <sqlFile path="ProgramQueues/ActivePatientProgramQueue.sql"/>
     </changeSet>
 
+    <changeSet id="MALAWI-170320201547" author="Suraj">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM provider_attribute_type where name="otCalendarColor";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding provider attribute type for OT calendar color</comment>
+        <sql>
+            INSERT INTO provider_attribute_type (name, description, datatype, min_occurs, creator, date_created,
+            retired, uuid)
+            VALUES ("otCalendarColor","Color for provider on OT calendar",
+            "org.openmrs.customdatatype.datatype.FreeTextDatatype", 0, 8, NOW(), 0, UUID());
+        </sql>
+    </changeSet>
+
+
     <include file="SurgeonPre-OperativeAssessment/SurgeonPreOperativeAssessment.xml"/>
     <include file="Operative-Report/Operative-Report.xml"/>
 

@@ -10,6 +10,7 @@
           "linkColumn": "PATIENT_LISTING_QUEUES_HEADER_IDENTIFIER",
           "newTab": true
         }
+
       ],
       "view": "tabular",
       "searchHandler": "emrapi.sqlSearch.otToBeScheduledQueue",
@@ -27,20 +28,15 @@
     "extensionParams": {
       "links": [
         {
-          "url": "/bahmni/clinical/#/programs/patient/{{patientUuid}}/consultationContext",
-          "linkColumn": "Program State",
-          "newTab": true
-        },
-        {
-          "url": "/bahmni/clinical/#/programs/patient/{{patientUuid}}/dashboard/disposition?programUuid={{programUuid}}&enrollment={{enrollment}}",
-          "linkColumn": "disposition",
+          "url": "/bahmni/ot/#/otScheduling",
+          "linkColumn": "PATIENT_LISTING_QUEUES_HEADER_IDENTIFIER_SCHEDULE",
           "newTab": true
         }
       ],
       "view": "tabular",
       "searchHandler": "emrapi.sqlSearch.otScheduledQueue",
       "translationKey": "PATIENT_LISTING_QUEUE_SCHEDULED_LABEL_KEY",
-      "searchColumns": ["PATIENT_LISTING_QUEUES_HEADER_IDENTIFIER", "PATIENT_LISTING_QUEUES_HEADER_NAME", "Current Department", "Bed Number", "Current Program State", "Date of Surgery", "Status"]
+      "searchColumns": ["PATIENT_LISTING_QUEUES_HEADER_IDENTIFIER_SCHEDULE", "PATIENT_LISTING_QUEUES_HEADER_NAME", "Current Department", "Bed Number", "Current Program State", "Date of Surgery", "Status"]
     },
     "label": "Scheduled",
     "order": 2,
