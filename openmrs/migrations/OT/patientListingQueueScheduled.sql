@@ -6,13 +6,13 @@ VALUES ('emrapi.sqlSearch.otScheduledQueue',
 "SELECT     pi.identifier                              AS PATIENT_LISTING_QUEUES_HEADER_IDENTIFIER,
     CONCAT(pn.given_name, ' ', pn.family_name) AS PATIENT_LISTING_QUEUES_HEADER_NAME,
     bed_info.bedNumber                         AS `Bed Number`,
-    'Enter Diagnosis'                          AS `Diagnosis`,
-    'Enter Planned Procedure'                  AS `Planned Procedure`,
-    'Enter HIV Status'                         AS `HIV Status`,
+    ' '                          AS `Diagnosis`,
+    ' '                  AS `Planned Procedure`,
+    ' '                         AS `HIV Status`,
     DATE_FORMAT(sb.start_datetime, '%d/%m/%Y') AS `Date of Surgery`,
     surgeon_name.SurgeonName                   AS `Surgeon`,
     sa.status                                  AS `Status`,
-    'Enter Outcome of Anesthesia'              AS `Outcome of Anesthesia`
+    ' '              AS `Outcome of Anesthesia`
 FROM surgical_block sb
   INNER JOIN surgical_appointment sa ON sb.surgical_block_id = sa.surgical_block_id
                                         AND sb.voided IS FALSE

@@ -9,9 +9,9 @@ VALUES ('emrapi.sqlSearch.otToBeScheduledQueue',
         "SELECT
             pi.identifier                              AS PATIENT_LISTING_QUEUES_HEADER_IDENTIFIER,
             CONCAT(pn.given_name, ' ', pn.family_name) AS PATIENT_LISTING_QUEUES_HEADER_NAME,
-            'Enter Diagnosis'                          AS `Diagnosis`,
-            'Enter Planned Procedure'                  AS `Planned Procedure`,
-            'Enter HIV Status'                         AS `HIV Status`,
+            ' '                          AS `Diagnosis`,
+            ' '                  AS `Planned Procedure`,
+            ' '                         AS `HIV Status`,
             DATE_FORMAT(sb.start_datetime, '%d/%m/%Y') AS `Date of Surgery`,
             sa.status                                  AS `Status`,
             appointment_block.notes		 			   AS  `Reason for Change`
