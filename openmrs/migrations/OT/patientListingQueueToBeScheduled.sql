@@ -6,8 +6,7 @@ INTO @uuid;
 
 INSERT INTO global_property (`property`, `property_value`, `description`, `uuid`)
 VALUES ('emrapi.sqlSearch.otToBeScheduledQueue',
-        "SELECT
-            pi.identifier                              AS PATIENT_LISTING_QUEUES_HEADER_IDENTIFIER,
+        "SELECT pi.identifier                              AS PATIENT_LISTING_QUEUES_HEADER_IDENTIFIER,
             CONCAT(pn.given_name, ' ', pn.family_name) AS PATIENT_LISTING_QUEUES_HEADER_NAME,
             ' '                          AS `Diagnosis`,
             ' '                  AS `Planned Procedure`,
@@ -20,6 +19,11 @@ VALUES ('emrapi.sqlSearch.otToBeScheduledQueue',
                                                 AND sb.voided IS FALSE
                                                 AND sa.voided IS FALSE
                                                 AND sa.status = 'POSTPONED'
+                                                AND NOT EXISTS (SELECT 1
+															    FROM surgical_appointment saa
+															    WHERE saa.patient_id =  sa.patient_id and
+																	  saa.status = 'SCHEDULED'
+																)
           INNER JOIN person p ON p.person_id = sa.patient_id AND p.voided IS FALSE
           INNER JOIN person_name pn ON pn.person_id = sa.patient_id
                                        AND pn.voided IS FALSE
@@ -63,5 +67,6 @@ VALUES ('emrapi.sqlSearch.otToBeScheduledQueue',
                                                                      AND sa.voided IS FALSE) appoinment
                 ON appoinment.patient_id = p.patient_id AND p.voided IS FALSE
           ) appointment_block ON appointment_block.patient_id = sa.patient_id
+          GROUP BY sa.patient_id
           ORDER BY sb.start_datetime ASC;"
            , 'SQL for to be scheduled patient listing queues for OT module', @uuid);
