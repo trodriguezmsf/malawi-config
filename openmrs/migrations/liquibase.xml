@@ -518,5 +518,5 @@
         <sql>
             update global_property set property_value  = "^[a-zA-Z'_ ]{0,50}$.*$" where property = 'patient.nameValidationRegex';
         </sql>
-    </changeSet>q
+    </changeSet>
 </databaseChangeLog>
