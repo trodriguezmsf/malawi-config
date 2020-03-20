@@ -11,7 +11,6 @@ VALUES ('emrapi.sqlSearch.otToBeScheduledQueue',
             ' '                          AS `Diagnosis`,
             ' '                  AS `Planned Procedure`,
             ' '                         AS `HIV Status`,
-            DATE_FORMAT(sb.start_datetime, '%d/%m/%Y') AS `Date of Surgery`,
             sa.status                                  AS `Status`,
             appointment_block.notes		 			   AS  `Reason for Change`
         FROM surgical_block sb
