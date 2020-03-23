@@ -508,6 +508,26 @@
         <comment>Adding patient listing queues for patients whose are in scheduled queue</comment>
         <sqlFile path="OT/patientListingQueueScheduled.sql"/>
     </changeSet>
+
+    <changeSet id="MALAWI-1584447336" author="Siva R">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from surgical_appointment_attribute_type where name in ('Surgeon Name', 'Other Surgeon Name',
+                'Anaesthetist technician', 'HIV Status')
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding surgical appointment attribute types 'Surgeon Name', 'Other Surgeon Name', 'Anaesthetist
+            technician' and 'HIV Status'
+        </comment>
+        <sql>
+            INSERT INTO surgical_appointment_attribute_type (name, description, format, sort_weight, creator,
+            date_created, uuid) VALUES('Surgeon Name', 'Surgeon Name', 'java.lang.String' ,'11', 8, NOW(), UUID()),
+            ('Other Surgeon Name', 'Other Surgeon Name', 'java.lang.String' ,'12', 8, NOW(), UUID()),
+            ('Anaesthetist Technician', 'Anaesthetist Technician', 'java.lang.String' ,'13', 8, NOW(), UUID()),
+            ('HIV Status', 'HIV Status', 'java.lang.String' ,'14', 8, NOW(), UUID());
+        </sql>
+    </changeSet>
+
     <changeSet id="Malawi-180320191212" author="Pritam">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="1">
@@ -519,4 +539,5 @@
             update global_property set property_value  = "^[a-zA-Z'_ ]{0,50}$.*$" where property = 'patient.nameValidationRegex';
         </sql>
     </changeSet>
+
 </databaseChangeLog>
