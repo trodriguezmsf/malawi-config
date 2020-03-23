@@ -470,7 +470,7 @@
         </sql>
     </changeSet>
 
-    <changeSet id="MALAWI-2020021341" author="Bindu Sreekalyan">
+    <changeSet id="MALAWI-2020021500" author="Bindu Sreekalyan">
         <preConditions onFail="CONTINUE">
             <sqlCheck expectedResult="1">
                 SELECT count(1) FROM global_property WHERE property='emrapi.sqlSearch.activePatients';
@@ -528,5 +528,16 @@
         </sql>
     </changeSet>
 
+    <changeSet id="Malawi-180320191212" author="Pritam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from global_property gp where property = 'patient.nameValidationRegex';
+            </sqlCheck>
+        </preConditions>
+        <comment>Updating global property to accept apostophie in Names field in registartion page</comment>
+        <sql>
+            update global_property set property_value  = "^[a-zA-Z'_ ]{0,50}$.*$" where property = 'patient.nameValidationRegex';
+        </sql>
+    </changeSet>
 
 </databaseChangeLog>
