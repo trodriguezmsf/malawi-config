@@ -516,24 +516,16 @@
                 'Anaesthetist technician', 'HIV Status')
             </sqlCheck>
         </preConditions>
-            <comment>Adding surgical appointment attribute types 'Surgeon Name', 'Other Surgeon Name', 'Anaesthetist
-                technician' and 'HIV Status'
-            </comment>
-            <sql>
-                INSERT INTO surgical_appointment_attribute_type (name, description, format, sort_weight, creator,
-                date_created, uuid)
-                VALUES('Surgeon Name', 'Surgeon Name', 'java.lang.String' ,'11', 8, NOW(), UUID());
-                INSERT INTO surgical_appointment_attribute_type (name, description, format, sort_weight, creator,
-                date_created, uuid)
-                VALUES('Other Surgeon Name', 'Other Surgeon Name', 'java.lang.String' ,'12', 8, NOW(), UUID());
-                INSERT INTO surgical_appointment_attribute_type (name, description, format, sort_weight, creator,
-                date_created, uuid)
-                VALUES('Anaesthetist technician', 'technician', 'java.lang.String' ,'13', 8, NOW(), UUID());
-                INSERT INTO surgical_appointment_attribute_type (name, description, format, sort_weight, creator,
-                date_created, uuid)
-                VALUES('HIV Status', 'HIV Status', 'java.lang.String' ,'14', 8, NOW(), UUID());
-            </sql>
-
+        <comment>Adding surgical appointment attribute types 'Surgeon Name', 'Other Surgeon Name', 'Anaesthetist
+            technician' and 'HIV Status'
+        </comment>
+        <sql>
+            INSERT INTO surgical_appointment_attribute_type (name, description, format, sort_weight, creator,
+            date_created, uuid) VALUES('Surgeon Name', 'Surgeon Name', 'java.lang.String' ,'11', 8, NOW(), UUID()),
+            ('Other Surgeon Name', 'Other Surgeon Name', 'java.lang.String' ,'12', 8, NOW(), UUID()),
+            ('Anaesthetist Technician', 'Anaesthetist Technician', 'java.lang.String' ,'13', 8, NOW(), UUID()),
+            ('HIV Status', 'HIV Status', 'java.lang.String' ,'14', 8, NOW(), UUID());
+        </sql>
     </changeSet>
 
 
