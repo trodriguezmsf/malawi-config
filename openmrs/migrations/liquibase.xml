@@ -501,13 +501,13 @@
     <include file="IAA/IAA.xml"/>
     
     <include file="OT/OT_Users.xml"/>
-    <changeSet id="Malawi-110320201250" author="Suraj">
+    <changeSet id="Malawi-270320201319" author="Suraj" runOnChange=“true”>
         <comment>Adding patient listing queues for patients whose are in to be scheduled queue</comment>
-        <sqlFile path="OT/patientListingQueueToBeScheduled.sql"/>
+        <sqlFile path="OT/patientListingQueueToBeScheduled.sql" endDelimiter="#"/>
     </changeSet>
-    <changeSet id="Malawi-110320201251" author="Suraj">
+    <changeSet id="Malawi-270320201320" author="Suraj" runOnChange=“true”>
         <comment>Adding patient listing queues for patients whose are in scheduled queue</comment>
-        <sqlFile path="OT/patientListingQueueScheduled.sql"/>
+        <sqlFile path="OT/patientListingQueueScheduled.sql" endDelimiter="#"/>
     </changeSet>
 
     <changeSet id="MALAWI-1584447336" author="Siva R">
