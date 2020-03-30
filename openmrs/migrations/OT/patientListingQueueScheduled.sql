@@ -1,4 +1,3 @@
-DELETE FROM global_property WHERE property = 'emrapi.sqlSearch.otScheduledQueue';
 SELECT uuid() INTO @uuid;
 
 INSERT INTO global_property (`property`, `property_value`, `description`, `uuid`)
