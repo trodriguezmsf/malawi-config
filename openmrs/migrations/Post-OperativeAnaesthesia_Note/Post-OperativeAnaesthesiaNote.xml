@@ -370,7 +370,7 @@
             <sqlCheck expectedResult="0">
                 select count(*) From concept_reference_term
                 where `code` in
-                ("1107","149086","108","120148","158592","136602","161914","144464","136602","5622","161939","161925","161926","161900","5622","150787","148888","140238","116214","512","5622","156339","152714")
+                ("149086","108","120148","158592","136602","144464","136602","161939","161925","161926","161900","150787","148888","140238","116214","512","156339","152714")
                 and retired = 0
                 and concept_source_id = (
                 select concept_source_id from concept_reference_source where name = "CEIL" and retired =0
@@ -383,9 +383,6 @@
 
             SELECT concept_source_id INTO @source_id FROM concept_reference_source where name = "CEIL"
             and retired =0;
-
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (4,"1107",@source_id,uuid(),now());
-            call CREATE_REFERENCE_MAPPING_CEIL("None","1107");
 
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (4,"149086",@source_id,uuid(),now());
             call CREATE_REFERENCE_MAPPING_CEIL("Allergic reaction","149086");
@@ -404,12 +401,6 @@
 
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (4,"136602",@source_id,uuid(),now());
             call CREATE_REFERENCE_MAPPING_CEIL("Death","136602");
-
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (4,"5622",@source_id,uuid(),now());
-            call CREATE_REFERENCE_MAPPING_CEIL("Other","5622");
-
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (4,"161914",@source_id,uuid(),now());
-            call CREATE_REFERENCE_MAPPING_CEIL("LOA","161914");
 
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (4,"144464",@source_id,uuid(),now());
             call CREATE_REFERENCE_MAPPING_CEIL("POAN, Complication of anaesthesia","144464");
