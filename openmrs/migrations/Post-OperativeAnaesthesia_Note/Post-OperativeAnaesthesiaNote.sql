@@ -29,7 +29,6 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"POAN, Fluid int
 
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"POAN, Blood transfusion","Blood transfusion",'coded','Question',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"POAN, Intra-operative blood products","Intra-operative blood products",'coded','Question',false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"None","None",'N/A','Misc',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Whole blood","Whole blood",'N/A','Misc',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PRBC","PRBC",'N/A','Misc',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"FFP","FFP",'N/A','Misc',false);
@@ -38,7 +37,6 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Platelets","Pla
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"POAN, Intra-operative blood products, other","Intra-operative blood products, other",'Text','Misc',false);
 
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"POAN, Number of units given","Number of units given",'Numeric','Misc',false);
-
 
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"POAN, Intra-operative transfusion related reaction","Intra-operative transfusion related reaction",'coded','Question',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"ABO incompatibility","ABO incompatibility",'N/A','Misc',false);
