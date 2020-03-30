@@ -59,7 +59,8 @@
                 "formGroup": [
                     "Operative Report",
                     "Surgeon PreOperative Assessment",
-                    "Initial Anaesthesia Assessment"
+                    "Initial Anaesthesia Assessment",
+                    "Post Operative Anaesthesia Note"
                 ],
                 "translationKey": "DASHBOARD_TITLE_EDIT_FORMS"
             },
