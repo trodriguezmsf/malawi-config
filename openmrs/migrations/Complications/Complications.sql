@@ -54,7 +54,6 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"ATB prophylaxis
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Acute kidney injury","Acute kidney injury","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"After discharge","After discharge","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Anaesthetic complication in OT","Anaesthetic complication in OT","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Anaphylaxis","Anaphylaxis","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Anemia due to acute blood loss","Anemia due to acute blood loss","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Antibiotic adverse reaction","Antibiotic adverse reaction","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Aspiration","Aspiration","N/A","Misc",false);
@@ -82,7 +81,6 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Grade IVb - Mul
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Grade V - Death of patient","Grade V - Death of patient","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Heart Failure","Heart Failure","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Hematoma, surgical site","Hematoma, surgical site","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Hypotension","Hypotension","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Hypoxia","Hypoxia","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IPD","IPD","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Myocardial infarction, peri-operative","Myocardial infarction, peri-operative","N/A","Misc",false);
@@ -95,7 +93,6 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Pneumonia","Pne
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Pneumonia, post-operative","Pneumonia, post-operative","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Pre operative shower","Pre operative shower","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Pulmonary Embolus","Pulmonary Embolus","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Rash","Rash","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Recto-fistula","Recto-fistula","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Resolved","Resolved","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Not Resolved","Not Resolved","N/A","Misc",false);
