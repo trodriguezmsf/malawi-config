@@ -66,3 +66,22 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Drain","Drain",
 
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"POAN, Devices present, describe","Devices present, describe",'Text','Misc',false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"POAN, Anaesthetic post-operative notes","Anaesthetic post-operative notes",'Text','Misc',false);
+
+
+# Add description to the concepts (help text)
+
+INSERT INTO concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)
+VALUES ((select concept_id from concept_name where name = "POAN, Primary type of anaesthesia administered" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0),
+ 'GAI: GA with intubation; GAO: GA with nothing or facial mask; GAL: GA with laryngeal mask; RSA: Spinal; RPX: Plexus or Trunk block (Axillary/ Femoral/ Sciatic); RTA: Transverse abdominal plane block; RAO: Other Regional Technique; LOA: Local anaesthesia; SED: Sedation; INF: Infiltration by surgeon','en',1,now(),NULL,NULL,uuid());
+
+INSERT INTO concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)
+VALUES ((select concept_id from concept_name where name = "POAN, Secondary type of anaesthesia administered" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0),
+ 'GAI: GA with intubation; GAO: GA with nothing or facial mask; GAL: GA with laryngeal mask; RSA: Spinal; RPX: Plexus or Trunk block (Axillary/ Femoral/ Sciatic); RTA: Transverse abdominal plane block; RAO: Other Regional Technique; LOA: Local anaesthesia; SED: Sedation; INF: Infiltration by surgeon','en',1,now(),NULL,NULL,uuid());
+
+INSERT INTO concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)
+VALUES ((select concept_id from concept_name where name = "POAN, Special drugs used during surgery" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0),
+ 'ex. Anti-hypertensives','en',1,now(),NULL,NULL,uuid());
+
+INSERT INTO concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)
+VALUES ((select concept_id from concept_name where name = "POAN, Fluid intake (ml)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0),
+ 'Total Saline, Colloids, Crystalloids, Ringer Lactate','en',1,now(),NULL,NULL,uuid());
