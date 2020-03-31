@@ -60,7 +60,8 @@
                     "Operative Report",
                     "Surgeon PreOperative Assessment",
                     "Initial Anaesthesia Assessment",
-                    "Post Operative Anaesthesia Note"
+                    "Post Operative Anaesthesia Note",
+                    "Complications Form"
                 ],
                 "translationKey": "DASHBOARD_TITLE_EDIT_FORMS"
             },
