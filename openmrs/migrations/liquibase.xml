@@ -499,8 +499,9 @@
     <include file="SurgeonPre-OperativeAssessment/SurgeonPreOperativeAssessment.xml"/>
     <include file="Operative-Report/Operative-Report.xml"/>
     <include file="IAA/IAA.xml"/>
-
     <include file="OT/OT_Users.xml"/>
+    <include file="Complications/Complications.xml"/>
+    
     <changeSet id="Malawi-110320201250" author="Suraj">
         <comment>Adding patient listing queues for patients whose are in to be scheduled queue</comment>
         <sql>
