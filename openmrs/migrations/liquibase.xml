@@ -499,7 +499,7 @@
     <include file="SurgeonPre-OperativeAssessment/SurgeonPreOperativeAssessment.xml"/>
     <include file="Operative-Report/Operative-Report.xml"/>
     <include file="IAA/IAA.xml"/>
-    
+
     <include file="OT/OT_Users.xml"/>
     <changeSet id="Malawi-110320201250" author="Suraj">
         <comment>Adding patient listing queues for patients whose are in to be scheduled queue</comment>
@@ -515,7 +515,17 @@
         </sql>
         <sqlFile path="OT/patientListingQueueScheduled.sql"/>
     </changeSet>
-
+    <changeSet id="Malawi-180320191212" author="Pritam">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from global_property gp where property = 'patient.nameValidationRegex';
+            </sqlCheck>
+        </preConditions>
+        <comment>Updating global property to accept apostophie in Names field in registartion page</comment>
+        <sql>
+            update global_property set property_value  = "^[a-zA-Z'_ ]{0,50}$.*$" where property = 'patient.nameValidationRegex';
+        </sql>
+    </changeSet>
     <changeSet id="MALAWI-1584447336" author="Siva R">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
@@ -532,18 +542,6 @@
             ('Other Surgeon Name', 'Other Surgeon Name', 'java.lang.String' ,'12', 8, NOW(), UUID()),
             ('Anaesthetist Technician', 'Anaesthetist Technician', 'java.lang.String' ,'13', 8, NOW(), UUID()),
             ('HIV Status', 'HIV Status', 'java.lang.String' ,'14', 8, NOW(), UUID());
-        </sql>
-    </changeSet>
-
-    <changeSet id="Malawi-180320191212" author="Pritam">
-        <preConditions onFail="MARK_RAN">
-            <sqlCheck expectedResult="1">
-                select count(*) from global_property gp where property = 'patient.nameValidationRegex';
-            </sqlCheck>
-        </preConditions>
-        <comment>Updating global property to accept apostophie in Names field in registartion page</comment>
-        <sql>
-            update global_property set property_value  = "^[a-zA-Z'_ ]{0,50}$.*$" where property = 'patient.nameValidationRegex';
         </sql>
     </changeSet>
 
