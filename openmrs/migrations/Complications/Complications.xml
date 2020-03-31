@@ -19,7 +19,7 @@
                 From
                 concept_reference_term
                 where `code` in
-                ("144464","120148","163793","125807","17311","158443","116214","158855","158592","114100","158443","141709","112406","512","140483","148888","148203","125246")
+                ("163793","125807","17311","158443","158855","114100","158443","141709","112406","140483","148203","125246")
                 and retired = 0
                 and concept_source_id = (
                 select concept_source_id from concept_reference_source where name = "CEIL"  and retired =0
@@ -32,20 +32,21 @@
             SELECT concept_source_id INTO @source_id FROM concept_reference_source where name = "CEIL"
             and retired =0;
 
-            call CREATE_REFERENCE_MAPPING_CEIL("CM, End date of complication","162869");
             call CREATE_REFERENCE_MAPPING_CEIL("CM, Start date of complication","162869");
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
-            (4,"144464",@source_id,uuid(),now());
             call CREATE_REFERENCE_MAPPING_CEIL("CM, Anaesthetic complication in OT, description","144464");
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
-            (4,"120148",@source_id,uuid(),now());
             call CREATE_REFERENCE_MAPPING_CEIL("CM, Cardiac arrhythmia, description","120148");
+            call CREATE_REFERENCE_MAPPING_CEIL("CM, End date of complication","162869");
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
             (4,"163793",@source_id,uuid(),now());
             call CREATE_REFERENCE_MAPPING_CEIL("CM, Flap necrosis, description","163793");
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
             (4,"125807",@source_id,uuid(),now());
             call CREATE_REFERENCE_MAPPING_CEIL("CM, Stress ulcer, description","125807");
+
+            call CREATE_REFERENCE_MAPPING_CEIL("Hypotension","116214");
+            call CREATE_REFERENCE_MAPPING_CEIL("Rash","512");
+            call CREATE_REFERENCE_MAPPING_CEIL("Aspiration","158592");
+
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
             (4,"17311",@source_id,uuid(),now());
             call CREATE_REFERENCE_MAPPING_CEIL("Hypoxia","17311");
@@ -53,20 +54,11 @@
             (4,"158443",@source_id,uuid(),now());
             call CREATE_REFERENCE_MAPPING_CEIL("Severe nausea and vomiting","158443");
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
-            (4,"116214",@source_id,uuid(),now());
-            call CREATE_REFERENCE_MAPPING_CEIL("Hypotension","116214");
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
             (4,"158855",@source_id,uuid(),now());
             call CREATE_REFERENCE_MAPPING_CEIL("Spinal headache","158855");
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
-            (4,"158592",@source_id,uuid(),now());
-            call CREATE_REFERENCE_MAPPING_CEIL("Aspiration","158592");
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
             (4,"114100",@source_id,uuid(),now());
             call CREATE_REFERENCE_MAPPING_CEIL("Pneumonia","114100");
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
-            (4,"158443",@source_id,uuid(),now());
-            call CREATE_REFERENCE_MAPPING_CEIL("Severe nausea and vomiting","158443");
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
             (4,"141709",@source_id,uuid(),now());
             call CREATE_REFERENCE_MAPPING_CEIL("Neutropenia","141709");
@@ -74,14 +66,8 @@
             (4,"112406",@source_id,uuid(),now());
             call CREATE_REFERENCE_MAPPING_CEIL("Thrombocytopenia","112406");
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
-            (4,"512",@source_id,uuid(),now());
-            call CREATE_REFERENCE_MAPPING_CEIL("Rash","512");
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
             (4,"140483",@source_id,uuid(),now());
             call CREATE_REFERENCE_MAPPING_CEIL("Febrile reaction","140483");
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
-            (4,"148888",@source_id,uuid(),now());
-            call CREATE_REFERENCE_MAPPING_CEIL("Anaphylaxis","148888");
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
             (4,"148203",@source_id,uuid(),now());
             call CREATE_REFERENCE_MAPPING_CEIL("Atrial fibrillation","148203");
@@ -90,46 +76,7 @@
             call CREATE_REFERENCE_MAPPING_CEIL("SVT","125246");
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
             (4,"17311",@source_id,uuid(),now());
-            call CREATE_REFERENCE_MAPPING_CEIL("Hypoxia","17311");
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
-            (4,"158443",@source_id,uuid(),now());
-            call CREATE_REFERENCE_MAPPING_CEIL("Severe nausea and vomiting","158443");
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
-            (4,"116214",@source_id,uuid(),now());
-            call CREATE_REFERENCE_MAPPING_CEIL("Hypotension","116214");
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
-            (4,"158855",@source_id,uuid(),now());
-            call CREATE_REFERENCE_MAPPING_CEIL("Spinal headache","158855");
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
-            (4,"158592",@source_id,uuid(),now());
-            call CREATE_REFERENCE_MAPPING_CEIL("Aspiration","158592");
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
-            (4,"114100",@source_id,uuid(),now());
-            call CREATE_REFERENCE_MAPPING_CEIL("Pneumonia","114100");
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
-            (4,"158443",@source_id,uuid(),now());
-            call CREATE_REFERENCE_MAPPING_CEIL("Severe nausea and vomiting","158443");
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
-            (4,"141709",@source_id,uuid(),now());
-            call CREATE_REFERENCE_MAPPING_CEIL("Neutropenia","141709");
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
-            (4,"112406",@source_id,uuid(),now());
-            call CREATE_REFERENCE_MAPPING_CEIL("Thrombocytopenia","112406");
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
-            (4,"512",@source_id,uuid(),now());
-            call CREATE_REFERENCE_MAPPING_CEIL("Rash","512");
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
-            (4,"140483",@source_id,uuid(),now());
-            call CREATE_REFERENCE_MAPPING_CEIL("Febrile reaction","140483");
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
-            (4,"148888",@source_id,uuid(),now());
-            call CREATE_REFERENCE_MAPPING_CEIL("Anaphylaxis","148888");
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
-            (4,"148203",@source_id,uuid(),now());
-            call CREATE_REFERENCE_MAPPING_CEIL("Atrial fibrillation","148203");
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
-            (4,"125246",@source_id,uuid(),now());
-            call CREATE_REFERENCE_MAPPING_CEIL("SVT","125246");
+
         </sql>
     </changeSet>
 
