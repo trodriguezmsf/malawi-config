@@ -765,7 +765,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Grade I - No treatment","Grade II - Requiring drug treatment","Grade IIIa - Interventions with local anaesthesia","Grade IIIb - Interventions under general anaesthesia","Grade IVa - Single-organ dysfunction","Grade IVb - Multi-organ dysfunction")
+                ("Grade I - No treatment","Grade II - Requiring drug treatment","Grade IIIa - Interventions with local anaesthesia","Grade IIIb - Interventions under general anaesthesia","Grade IVa - Single-organ dysfunction","Grade IVb - Multi-organ dysfunction","Grade V - Death of patient")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "CM, Grade of complication");
@@ -782,6 +782,7 @@
             set @child4_concept_id = 0;
             set @child5_concept_id = 0;
             set @child6_concept_id = 0;
+            set @child7_concept_id = 0;
 
             select concept_id into @child1_concept_id from concept_name where name ="Grade I - No treatment" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @child2_concept_id from concept_name where name ="Grade II - Requiring drug treatment" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
@@ -789,6 +790,7 @@
             select concept_id into @child4_concept_id from concept_name where name ="Grade IIIb - Interventions under general anaesthesia" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @child5_concept_id from concept_name where name ="Grade IVa - Single-organ dysfunction" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @child6_concept_id from concept_name where name ="Grade IVb - Multi-organ dysfunction" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child7_concept_id from concept_name where name ="Grade V - Death of patient" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
 
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
@@ -796,6 +798,8 @@
             call add_concept_answer(@concept_id, @child4_concept_id, 4);
             call add_concept_answer(@concept_id, @child5_concept_id, 5);
             call add_concept_answer(@concept_id, @child6_concept_id, 6);
+            call add_concept_answer(@concept_id, @child7_concept_id, 7);
+
         </sql>
     </changeSet>
 
