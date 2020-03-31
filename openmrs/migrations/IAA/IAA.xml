@@ -22,7 +22,7 @@
                 concept_reference_term
                 where `code` in
                 ("1633","1107","126371","121375","141342","156639","156659","156649","158320","119481","158322","120066","155","112830","156664","5986","161181","163583","156625","151286","5622",
-                "161914","143050","156221","160327","160328","160329","160330","160331","160332","161914")
+                "143050","156221","160327","160328","160329","160330","160331","160332")
                 and retired = 0
                 and concept_source_id = (
                 select concept_source_id from concept_reference_source where name = "CEIL" and retired =0
@@ -128,8 +128,6 @@
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
             (4,"160332",@source_id,uuid(),now());
             call CREATE_REFERENCE_MAPPING_CEIL("ASA VI","160332");
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
-            (4,"161914",@source_id,uuid(),now());
             call CREATE_REFERENCE_MAPPING_CEIL("LOA","161914");
             call CREATE_REFERENCE_MAPPING_CEIL("General","161909");
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
