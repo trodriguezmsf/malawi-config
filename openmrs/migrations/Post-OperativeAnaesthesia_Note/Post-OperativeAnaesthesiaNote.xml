@@ -429,6 +429,9 @@
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (4,"512",@source_id,uuid(),now());
             call CREATE_REFERENCE_MAPPING_CEIL("Rash","512");
 
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (4,"512",@source_id,uuid(),now());
+            call CREATE_REFERENCE_MAPPING_CEIL("Urticaria","512");
+
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (4,"156339",@source_id,uuid(),now());
             call CREATE_REFERENCE_MAPPING_CEIL("Foley Catheter","156339");
 
