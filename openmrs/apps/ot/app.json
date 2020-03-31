@@ -9,7 +9,6 @@
     },
     "primarySurgeonsForOT" : ["George Chilinda","Oncologist Surgeon","MOH Surgeon"],
     "printListViewTemplateUrl" : "/bahmni_config/openmrs/apps/ot/printListView.html",
-    "surgicalAppointmentUrl": "/bahmni_config/openmrs/apps/ot/surgicalAppointment.html",
     "calendarView": {
       "dayViewStart": "07:30",
       "dayViewEnd": "16:30",
