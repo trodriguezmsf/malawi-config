@@ -547,6 +547,16 @@
         </sql>
     </changeSet>
 
-
+    <changeSet id="Malawi-020420202020" author="Suraj">
+        <comment>Removing the double space from the Names in Reg page attributes</comment>
+        <sql>
+            UPDATE person_attribute_type SET name = "Primary Emergency Contact, Name" WHERE name ="Primary  Emergency Contact, Name";
+            UPDATE person_attribute_type SET name = "Primary Emergency Contact, Relationship" WHERE name ="Primary  Emergency Contact, Relationship";
+            UPDATE person_attribute_type SET name = "Primary Emergency Contact, Phone 1" WHERE name ="Primary  Emergency Contact, Phone 1";
+            UPDATE person_attribute_type SET name = "Secondary Emergency Contact, Name" WHERE name ="Secondary  Emergency Contact, Name";
+            UPDATE person_attribute_type SET name = "Secondary Emergency Contact, Relationship" WHERE name ="Secondary  Emergency Contact, Relationship";
+            UPDATE person_attribute_type SET name = "Secondary Emergency Contact, Phone 1" WHERE name ="Secondary  Emergency Contact, Phone 1";
+        </sql>
+    </changeSet>
 
 </databaseChangeLog>

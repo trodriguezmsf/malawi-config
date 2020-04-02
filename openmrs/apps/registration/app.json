@@ -38,9 +38,9 @@
             "mandatoryPersonAttributes" : [
                 "Patient Contact Type 1, Relationship",
                 "Patient Contact Type 1, Phone",
-                "Primary  Emergency Contact, Phone 1",
-                "Primary  Emergency Contact, Name",
-                "Primary  Emergency Contact, Relationship"
+                "Primary Emergency Contact, Phone 1",
+                "Primary Emergency Contact, Name",
+                "Primary Emergency Contact, Relationship"
             ],
             "patientInformation": {
                 "Additional Information": {
@@ -88,10 +88,10 @@
                     "title" : "Primary  Emergency Contact",
                     "translationKey": "REGISTRATION_TITLE_PRIMARY_EMERGENCY_CONTACT",
                     "attributes": [
-                        "Primary  Emergency Contact, Name",
-                        "Primary  Emergency Contact, Relationship",
+                        "Primary Emergency Contact, Name",
+                        "Primary Emergency Contact, Relationship",
                         "PEC, Emergency Contact, comments",
-                        "Primary  Emergency Contact, Phone 1"
+                        "Primary Emergency Contact, Phone 1"
                     ],
                     "expanded":true
                 },
@@ -99,10 +99,10 @@
                     "title" : "Secondary  Emergency Contact",
                     "translationKey": "REGISTRATION_TITLE_SECONDARY_EMERGENCY_CONTACT",
                     "attributes": [
-                        "Secondary  Emergency Contact, Name",
-                        "Secondary  Emergency Contact, Relationship",
+                        "Secondary Emergency Contact, Name",
+                        "Secondary Emergency Contact, Relationship",
                         "SEC, Emergency Contact, comments",
-                        "Secondary  Emergency Contact, Phone 1"
+                        "Secondary Emergency Contact, Phone 1"
                     ],
                     "expanded": true
                 },
@@ -172,15 +172,15 @@
                 "middleName" : {"pattern" : "^[a-zA-Z'_ ]{1,50}$.*$", "errorMessage" : "Should contain characters"},
                 "nickName" : {"pattern" : "^[a-zA-Z'_ ]{1,50}$.*$", "errorMessage" : "Should not exceed 50 characters"},
                 "familyOrClanName" : {"pattern" : "^[a-zA-Z'_ ]{1,50}$.*$", "errorMessage" : "Should not exceed 50 characters"},
-                "Primary  Emergency Contact, Name" : {"pattern" : "^[a-zA-Z'_ ]{1,50}$.*$", "errorMessage" : "Should not exceed 50 characters"},
-                "Secondary  Emergency Contact, Name" : {"pattern" : "^[a-zA-Z'_ ]{1,50}$.*$", "errorMessage" : "Should not exceed 50 characters"},
+                "Primary Emergency Contact, Name" : {"pattern" : "^[a-zA-Z'_ ]{1,50}$.*$", "errorMessage" : "Should not exceed 50 characters"},
+                "Secondary Emergency Contact, Name" : {"pattern" : "^[a-zA-Z'_ ]{1,50}$.*$", "errorMessage" : "Should not exceed 50 characters"},
                 "CV/HP Name": {"pattern" : "^[a-zA-Z'_ ]{1,50}$.*$", "errorMessage" : "Should not exceed 50 characters"},
                 "address1" : {"pattern" : "[a-zA-Z0-9\\s]{2,}", "errorMessage" : "Should contain at least 2 characters"},
                 "National ID": {"pattern": "[a-zA-Z0-9\\s]{0,8}", "errorMessage" : "Should not exceed more than 8 characters"},
                 "Patient Contact Type 1, Phone" : {"pattern": "[0-9\\s]{0,15}", "errorMessage" : "Should not exceed 15 characters and should contain only numbers"},
                 "Patient Contact Type 2, Phone" : {"pattern": "[0-9\\s]{0,15}", "errorMessage" : "Should not exceed 15 characters and should contain only numbers"},
-                "Primary  Emergency Contact, Phone 1": {"pattern": "[0-9\\s]{0,15}", "errorMessage" : "Should not exceed  15 characters and should contain only numbers"},
-                "Secondary  Emergency Contact, Phone 1" : {"pattern": "[0-9\\s]{0,15}", "errorMessage" : "Should not exceed 15 characters and should contain only numbers"},
+                "Primary Emergency Contact, Phone 1": {"pattern": "[0-9\\s]{0,15}", "errorMessage" : "Should not exceed  15 characters and should contain only numbers"},
+                "Secondary Emergency Contact, Phone 1" : {"pattern": "[0-9\\s]{0,15}", "errorMessage" : "Should not exceed 15 characters and should contain only numbers"},
                 "CV/HP Phone 1" : {"pattern": "[0-9\\s]{0,15}", "errorMessage" : "Should not exceed 15 characters and should contain only numbers"},
                 "Latitude" : {"pattern":  "^[-+]?([1-8]?\\d\\.(\\d){1,4}|90\\.(0){1,4})$", "errorMessage":  "Should be 4 decimal value with in the range -90 to 90"},
                 "Longitude" : {"pattern":  "^[-+]?(180(\\.0{1,4})?|((1[0-7]\\d)|([1-9]?\\d))(\\.\\d{1,4})?)$", "errorMessage":  "Should be 4 decimal value with in the range -180 to 180"}
