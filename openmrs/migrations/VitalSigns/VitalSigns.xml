@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="MALAWI_CONFIG_202004010419" author="Sreekalyan">
+        <comment>Adding Concepts for VitalSings Form</comment>
+        <sqlFile path="VitalSigns/VitalSigns.sql"/>
+    </changeSet>
+
+    <changeSet id="Malawi_CONFIG_202004021003" author="SreeKalyan">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Awake","Verbal","Pain","Unresponsive")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "VS, AVPU Level of Consciousness");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to AVPU Level of Consciousness</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "VS, AVPU Level of Consciousness" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Awake" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Verbal" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Pain" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Unresponsive" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="IRAQ_CONFIG_2020040209595" author="SreeKalyan">
+    <preConditions onFail="MARK_RAN">
+        <sqlCheck expectedResult="0">
+            select
+            count(*)
+            From
+            concept_reference_term
+            where `code` in
+            ("5090","5089","1342","162643","5242","5092","162513","5087","5085","5086","5088","161929","160282","162645","162644","159508")
+            and retired = 0
+            and concept_source_id = (
+            select concept_source_id from concept_reference_source where name = "CEIL"  and retired =0
+            );
+        </sqlCheck>
+    </preConditions>
+
+    <comment>Adding codes to CEIL </comment>
+    <sql>
+
+    SELECT concept_source_id INTO @source_id FROM concept_reference_source where name = "CEIL"
+    and retired =0;
+
+    call CREATE_REFERENCE_MAPPING_CEIL("VS, Date and time","162869");
+    INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+    (4,"5090",@source_id,uuid(),now());
+    call CREATE_REFERENCE_MAPPING_CEIL("VS, Height","5090");
+    INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+    (4,"5089",@source_id,uuid(),now());
+    call CREATE_REFERENCE_MAPPING_CEIL("VS, Weight","5089");
+    INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+    (4,"1342",@source_id,uuid(),now());
+    call CREATE_REFERENCE_MAPPING_CEIL("VS, BMI","1342");
+    INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+    (4,"162643",@source_id,uuid(),now());
+    call CREATE_REFERENCE_MAPPING_CEIL("VS, AVPU Level of Consciousness","162643");
+    INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+    (4,"5242",@source_id,uuid(),now());
+    call CREATE_REFERENCE_MAPPING_CEIL("VS, Respiratory Rate","5242");
+    INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+    (4,"5092",@source_id,uuid(),now());
+    call CREATE_REFERENCE_MAPPING_CEIL("VS, SpO2","5092");
+    INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+    (4,"162513",@source_id,uuid(),now());
+    call CREATE_REFERENCE_MAPPING_CEIL("VS, Capillary Refill","162513");
+    INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+    (4,"5087",@source_id,uuid(),now());
+    call CREATE_REFERENCE_MAPPING_CEIL("VS, Pulse","5087");
+    INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+    (4,"5085",@source_id,uuid(),now());
+    call CREATE_REFERENCE_MAPPING_CEIL("VS, Systolic Blood Pressure","5085");
+    INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+    (4,"5086",@source_id,uuid(),now());
+    call CREATE_REFERENCE_MAPPING_CEIL("VS, Diastolic Blood Pressure","5086");
+    INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+    (4,"5088",@source_id,uuid(),now());
+    call CREATE_REFERENCE_MAPPING_CEIL("VS, Temperature","5088");
+    INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+    (4,"161929",@source_id,uuid(),now());
+    call CREATE_REFERENCE_MAPPING_CEIL("VS, Urine output","161929");
+    call CREATE_REFERENCE_MAPPING_CEIL("VS, Urine output in 24 hours","161929");
+    INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+    (4,"160282",@source_id,uuid(),now());
+    call CREATE_REFERENCE_MAPPING_CEIL("Awake","160282");
+    INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+    (4,"162645",@source_id,uuid(),now());
+    call CREATE_REFERENCE_MAPPING_CEIL("Verbal","162645");
+    INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+    (4,"162644",@source_id,uuid(),now());
+    call CREATE_REFERENCE_MAPPING_CEIL("Pain","162644");
+    INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
+    (4,"159508",@source_id,uuid(),now());
+    call CREATE_REFERENCE_MAPPING_CEIL("Unresponsive","159508");
+
+    </sql>
+
+    </changeSet>
+
+
+</databaseChangeLog>

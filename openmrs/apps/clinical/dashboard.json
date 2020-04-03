@@ -61,7 +61,8 @@
                     "Surgeon PreOperative Assessment",
                     "Initial Anaesthesia Assessment",
                     "Post Operative Anaesthesia Note",
-                    "Complications"
+                    "Complications",
+                    "Vital Signs"
                 ],
                 "translationKey": "DASHBOARD_TITLE_EDIT_FORMS"
             },
