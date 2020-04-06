@@ -25,7 +25,7 @@ VALUES ((select concept_id from concept_name where name = "VS, Height" and conce
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
 VALUES ((select concept_id from concept_name where name = "VS, Weight" and concept_name_type = 'FULLY_SPECIFIED'  and locale = 'en'  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"kg",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "VS, BMI" and concept_name_type = 'FULLY_SPECIFIED'  and locale = 'en'  and voided = 0),NULL,NULL,25,NULL,NULL,18,"kg/m²",1,1);
+VALUES ((select concept_id from concept_name where name = "VS, BMI" and concept_name_type = 'FULLY_SPECIFIED'  and locale = 'en'  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"kg/m²",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
 VALUES ((select concept_id from concept_name where name = "VS, Respiratory Rate" and concept_name_type = 'FULLY_SPECIFIED'  and locale = 'en'  and voided = 0),NULL,NULL,20,NULL,NULL,13,"/min",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
@@ -61,3 +61,8 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Awake","Awake",
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Pain","Pain","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Unresponsive","Unresponsive","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Verbal","Verbal","N/A","Misc",false);
+
+#Add Concept Description
+INSERT INTO concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)
+VALUES ((select concept_id from concept_name where name = "VS, BMI" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0),
+        'Normal Range:- 18-25','en',1,now(),NULL,NULL,uuid());

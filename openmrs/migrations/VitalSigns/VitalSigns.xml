@@ -119,8 +119,6 @@
     call CREATE_REFERENCE_MAPPING_CEIL("Unresponsive","159508");
 
     </sql>
-
     </changeSet>
-
 
 </databaseChangeLog>
