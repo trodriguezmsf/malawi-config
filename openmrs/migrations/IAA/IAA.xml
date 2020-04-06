@@ -55,22 +55,22 @@
             call CREATE_REFERENCE_MAPPING_CEIL("Emphysema","141342");
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
             (4,"156639",@source_id,uuid(),now());
-            call CREATE_REFERENCE_MAPPING_CEIL("History of hypertension","156639");
+            call CREATE_REFERENCE_MAPPING_CEIL("Hypertension","156639");
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
             (4,"156659",@source_id,uuid(),now());
-            call CREATE_REFERENCE_MAPPING_CEIL("History of Rheumatic fever","156659");
+            call CREATE_REFERENCE_MAPPING_CEIL("Rheumatic fever","156659");
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
             (4,"156649",@source_id,uuid(),now());
-            call CREATE_REFERENCE_MAPPING_CEIL("History of MI","156649");
+            call CREATE_REFERENCE_MAPPING_CEIL("MI","156649");
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
             (4,"158320",@source_id,uuid(),now());
-            call CREATE_REFERENCE_MAPPING_CEIL("History of renal stones","158320");
+            call CREATE_REFERENCE_MAPPING_CEIL("Renal stones","158320");
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
             (4,"119481",@source_id,uuid(),now());
             call CREATE_REFERENCE_MAPPING_CEIL("Diabetes","119481");
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
             (4,"158322",@source_id,uuid(),now());
-            call CREATE_REFERENCE_MAPPING_CEIL("History of corticosteroid drugs","158322");
+            call CREATE_REFERENCE_MAPPING_CEIL("Corticosteroid drugs","158322");
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
             (4,"120066",@source_id,uuid(),now());
             call CREATE_REFERENCE_MAPPING_CEIL("Congenital disorders of the nervous system","120066");
@@ -82,22 +82,22 @@
             call CREATE_REFERENCE_MAPPING_CEIL("Spinal cord disease","112830");
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
             (4,"156664",@source_id,uuid(),now());
-            call CREATE_REFERENCE_MAPPING_CEIL("History of upper GI bleeding","156664");
+            call CREATE_REFERENCE_MAPPING_CEIL("Upper GI bleeding","156664");
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
             (4,"5986",@source_id,uuid(),now());
-            call CREATE_REFERENCE_MAPPING_CEIL("History of jaundice","5986");
+            call CREATE_REFERENCE_MAPPING_CEIL("Jaundice","5986");
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
             (4,"161181",@source_id,uuid(),now());
-            call CREATE_REFERENCE_MAPPING_CEIL("History of cirrhosis","161181");
+            call CREATE_REFERENCE_MAPPING_CEIL("Cirrhosis","161181");
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
             (4,"163583",@source_id,uuid(),now());
-            call CREATE_REFERENCE_MAPPING_CEIL("History of blood disorder","163583");
+            call CREATE_REFERENCE_MAPPING_CEIL("Blood disorder","163583");
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
             (4,"156625",@source_id,uuid(),now());
-            call CREATE_REFERENCE_MAPPING_CEIL("History of anaemia","156625");
+            call CREATE_REFERENCE_MAPPING_CEIL("Anaemia","156625");
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
             (4,"151286",@source_id,uuid(),now());
-            call CREATE_REFERENCE_MAPPING_CEIL("History of cancer","151286");
+            call CREATE_REFERENCE_MAPPING_CEIL("Cancer","151286");
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES
             (4,"5622",@source_id,uuid(),now());
             call CREATE_REFERENCE_MAPPING_CEIL("Other","5622");
@@ -147,13 +147,13 @@
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
                 ("None","Congenital lung disease","Cough or cold","Sleep apnoea","Asthma","Emphysema","Congenital heart
-                disease","History of hypertension","History of Rheumatic fever","History of valve disease","History of
-                MI","History of palpitations","History of heart problems","Congenital renal disease","History of renal
-                infection","History of renal stones","History of renal failure","Diabetes","Thyroid hormone
-                diseases","History of corticosteroid drugs","Congenital disorders of the nervous system","Epilepsy or
-                seizure","History of CVA - TIA","Spinal cord disease","History of upper GI bleeding","History of
-                jaundice","History of cirrhosis","History of hepatitis","History of blood disorder","History of
-                anaemia","History of frequent bleeding","Abnormal blood clotting","History of cancer","Other")
+                disease","Hypertension","Rheumatic fever","Valve disease","MI","Palpitations","Heart
+                problems","Congenital renal disease","Renal
+                infection","Renal stones","Renal failure","Diabetes","Thyroid hormone
+                diseases","Corticosteroid drugs","Congenital disorders of the nervous system","Epilepsy or
+                seizure","CVA - TIA","Spinal cord disease","Upper GI bleeding","
+                Jaundice","Cirrhosis","Hepatitis","Blood disorder","Anaemia","Frequent bleeding","Abnormal blood
+                clotting","Cancer","Other")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "IAA, Past medical history");
@@ -197,70 +197,39 @@
             set @child32_concept_id = 0;
             set @child33_concept_id = 0;
             set @child34_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="None" and concept_name_type =
-            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Congenital lung disease" and
-            concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Cough or cold (present time)" and
-            concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Sleep apnoea" and concept_name_type
-            = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child5_concept_id from concept_name where name ="Asthma" and concept_name_type =
-            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child6_concept_id from concept_name where name ="Emphysema" and concept_name_type =
-            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child7_concept_id from concept_name where name ="Congenital heart disease" and
-            concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child8_concept_id from concept_name where name ="History of hypertension" and
-            concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child9_concept_id from concept_name where name ="History of Rheumatic fever" and
-            concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child10_concept_id from concept_name where name ="History of valve disease" and
-            concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child11_concept_id from concept_name where name ="History of MI" and
-            concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child12_concept_id from concept_name where name ="History of palpitations" and
-            concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child13_concept_id from concept_name where name ="History of heart problems (within last six months)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child14_concept_id from concept_name where name ="Congenital renal disease" and
-            concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child15_concept_id from concept_name where name ="History of renal infection" and
-            concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child16_concept_id from concept_name where name ="History of renal stones" and
-            concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child17_concept_id from concept_name where name ="History of renal failure" and
-            concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child18_concept_id from concept_name where name ="Diabetes" and concept_name_type =
-            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child19_concept_id from concept_name where name ="Thyroid hormone diseases" and
-            concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child20_concept_id from concept_name where name ="History of corticosteroid drugs"
-            and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="None" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Congenital lung disease" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Cough or cold (present time)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Sleep apnoea" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Asthma" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child6_concept_id from concept_name where name ="Emphysema" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child7_concept_id from concept_name where name ="Congenital heart disease" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child8_concept_id from concept_name where name ="Hypertension" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child9_concept_id from concept_name where name ="Rheumatic fever" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child10_concept_id from concept_name where name ="Valve disease" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child11_concept_id from concept_name where name ="MI" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child12_concept_id from concept_name where name ="Palpitations" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child13_concept_id from concept_name where name ="Heart problems (within last six months)" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child14_concept_id from concept_name where name ="Congenital renal disease" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child15_concept_id from concept_name where name ="Renal infection" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child16_concept_id from concept_name where name ="Renal stones" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child17_concept_id from concept_name where name ="Renal failure" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child18_concept_id from concept_name where name ="Diabetes" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child19_concept_id from concept_name where name ="Thyroid hormone diseases" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child20_concept_id from concept_name where name ="Corticosteroid drugs" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @child21_concept_id from concept_name where name ="Congenital disorders of the nervous system" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child22_concept_id from concept_name where name ="Epilepsy or seizure" and
-            concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child23_concept_id from concept_name where name ="History of CVA - TIA" and
-            concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child24_concept_id from concept_name where name ="Spinal cord disease" and
-            concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child25_concept_id from concept_name where name ="History of upper GI bleeding" and
-            concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child26_concept_id from concept_name where name ="History of jaundice" and
-            concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child27_concept_id from concept_name where name ="History of cirrhosis" and
-            concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child28_concept_id from concept_name where name ="History of hepatitis" and
-            concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child29_concept_id from concept_name where name ="History of blood disorder" and
-            concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child30_concept_id from concept_name where name ="History of anaemia" and
-            concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child31_concept_id from concept_name where name ="History of frequent bleeding" and
-            concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child32_concept_id from concept_name where name ="Abnormal blood clotting" and
-            concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
-            select concept_id into @child33_concept_id from concept_name where name ="History of cancer" and
-            concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child22_concept_id from concept_name where name ="Epilepsy or seizure" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child23_concept_id from concept_name where name ="CVA - TIA" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child24_concept_id from concept_name where name ="Spinal cord disease" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child25_concept_id from concept_name where name ="Upper GI bleeding" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child26_concept_id from concept_name where name ="Jaundice" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child27_concept_id from concept_name where name ="Cirrhosis" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child28_concept_id from concept_name where name ="Hepatitis" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child29_concept_id from concept_name where name ="Blood disorder" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child30_concept_id from concept_name where name ="Anaemia" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child31_concept_id from concept_name where name ="Frequent bleeding" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child32_concept_id from concept_name where name ="Abnormal blood clotting" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child33_concept_id from concept_name where name ="Cancer" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @child34_concept_id from concept_name where name ="Other" and concept_name_type =
             'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
