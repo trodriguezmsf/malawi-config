@@ -25,6 +25,26 @@
                 "allowFutureDates": true
             }
         },
+        "patientForwardUrl": "../clinical/index.html#/default/patient/{{patientUuid}}/dashboard?currentTab=DASHBOARD_TAB_GENERAL_KEY",
+        "hideStartNewVisitPopUp": true ,
+        "colorForTags": [
+            {
+                "name": "Pre operative",
+                "color": "#1D57C2"
+            },
+            {
+                "name": "Post operative",
+                "color": "#F39C12"
+            },
+            {
+                "name": "Out of service",
+                "color": "#ABB2B9"
+            },
+            {
+                "name": "OBGYN",
+                "color": "#6212AE"
+            }
+        ],
         "hideStartNewVisitPopUp": false,
         "dashboard": {
             "translationKey": "DASHBOARD_TAB_GENERAL_KEY",

@@ -31,6 +31,16 @@
                     {
                         "translationKey": "DASHBOARD_TITLE_RADIOLOGY_KEY",
                         "url": "../document-upload/?encounterType=RADIOLOGY&topLevelConcept=Radiology#/patient/{{patientUuid}}/document"
+                    },
+                    {
+                        "name": "bedManagement",
+                        "translationKey": "PATIENT_BED_MANAGEMENT_PAGE_KEY",
+                        "url": "../bedmanagement/#/bedManagement/patient/{{patientUuid}}/visit/{{visitUuid}}"
+                    },
+                    {
+                        "name": "ipdDashboard",
+                        "translationKey": "PATIENT_IPD_DASHBOARD_KEY",
+                        "url": "../bedmanagement/#/patient/{{patientUuid}}/visit/{{visitUuid}}/dashboard"
                     }
                 ]
             },

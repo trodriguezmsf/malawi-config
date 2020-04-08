@@ -234,5 +234,4 @@
     "icon": "icon-user-md",
     "order": 7,
     "requiredPrivilege": "app:clinical:bacteriologyTab"
-  }
-}
+  },

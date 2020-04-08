@@ -560,4 +560,83 @@
         </sql>
     </changeSet>
 
+   <changeSet id="MALAWI_CONFIG-030420201317" author="Suraj" runAlways="true">
+        <sqlFile  path="utils/bed_allocation.sql" endDelimiter="#"/>
+    </changeSet>
+
+    <changeSet id="Malawi-060420201639" author="Suraj">
+        <comment>Updating the concept DISCHARGE to Discharge</comment>
+        <sql>
+            UPDATE concept SET is_set = 0 WHERE concept_id = (SELECT concept_id FROM concept_name WHERE name = 'DISCHARGE' and concept_name_type = 'FULLY_SPECIFIED');
+            UPDATE concept_name SET name = 'Discharge' WHERE name = 'DISCHARGE' and concept_name_type in ('FULLY_SPECIFIED','SHORT');
+        </sql>
+    </changeSet>
+
+	<changeSet id="MALAWI_CONFIG-070420201526" author="Suraj">
+        <comment>Adding IPD Location to MALAWI</comment>
+        <sql>
+            INSERT INTO location (name, description, retired, uuid, date_created, creator) VALUES ('IPD', 'IPD', FALSE, uuid(), NOW(), 1);
+
+            SELECT location_tag_id INTO @location_tag_id FROM location_tag WHERE name = 'Login Location';
+
+            SELECT location_id INTO @location_id1 FROM location WHERE location.name='IPD';
+            INSERT INTO location_tag_map(location_id, location_tag_id) VALUES(@location_id1, @location_tag_id);
+
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG-070420201527" author="Suraj">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from location where name in('IPD') and
+                parent_location is null;
+            </sqlCheck>
+        </preConditions>
+        <comment>Mapping IPD to Visit location</comment>
+        <sql>
+            SELECT location_id INTO @location_id1 FROM location WHERE location.name='Malawi';
+            UPDATE location set parent_location = @location_id1 where name = 'IPD';
+        </sql>
+    </changeSet>
+
+	<changeSet id="MALAWI_CONFIG-070420201528" author="Suraj">
+        <comment>Adding OT Location to MALAWI</comment>
+        <sql>
+            INSERT INTO location (name, description, retired, uuid, date_created, creator) VALUES ('OT', 'Operation Theater', FALSE, uuid(), NOW(), 1);
+
+            SELECT location_tag_id INTO @location_tag_id FROM location_tag WHERE name = 'Login Location';
+
+            SELECT location_id INTO @location_id1 FROM location WHERE location.name='OT';
+            INSERT INTO location_tag_map(location_id, location_tag_id) VALUES(@location_id1, @location_tag_id);
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG-070420201529" author="Suraj">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from location where name in('OT') and
+                parent_location is null;
+            </sqlCheck>
+        </preConditions>
+        <comment>Mapping OT to Visit location</comment>
+        <sql>
+            SELECT location_id INTO @location_id1 FROM location WHERE location.name='Malawi';
+            UPDATE location set parent_location = @location_id1 where name = 'OT';
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG-070420201530" author="Suraj">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(1) from visit_type where name = 'IPD';
+            </sqlCheck>
+        </preConditions>
+        <comment>Add IPD visit type</comment>
+        <sql>
+            INSERT INTO visit_type(name, description, creator, date_created, retired, uuid) VALUES ('IPD', 'IPD vist', 1, now(), 0, uuid());
+        </sql>
+    </changeSet>
+
+    <include file="BedManagement/BedManagement.xml"/>
+
 </databaseChangeLog>

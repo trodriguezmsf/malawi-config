@@ -9,16 +9,6 @@
     "order": 1,
     "requiredPrivilege": "app:registration"
   },
-  "radiologyDocumentUpload": {
-    "id": "bahmni.radiology.document.upload",
-    "extensionPointId": "org.bahmni.home.dashboard",
-    "type": "link",
-    "translationKey": "MODULE_LABEL_RADIOLOGY_UPLOAD_KEY",
-    "url": "../document-upload/?encounterType=RADIOLOGY&topLevelConcept=Radiology",
-    "icon": "icon-bahmni-radiology",
-    "order": 5,
-    "requiredPrivilege": "app:radiology-upload"
-  },
   "programs": {
     "id": "bahmni.programs",
     "extensionPointId": "org.bahmni.home.dashboard",
@@ -29,15 +19,16 @@
     "order": 2,
     "requiredPrivilege": "app:clinical"
   },
-  "implementerInterface": {
-    "id": "bahmni.implementer.interface",
+  "bahmniIpd": {
+    "id": "bahmni.ipd",
     "extensionPointId": "org.bahmni.home.dashboard",
     "type": "link",
-    "translationKey": "MODULE_LABEL_IMPLEMENTER_INTERFACE_KEY",
-    "url": "/implementer-interface",
-    "icon": "fa fa-pencil-square-o",
-    "order": 6,
-    "requiredPrivilege": "app:implementer-interface"
+    "translationKey": "MODULE_LABEL_BED_MANAGEMENT_KEY",
+    "label": "InPatient",
+    "url": "../bedmanagement/#/admit",
+    "icon": "fa-bed",
+    "order": 3,
+    "requiredPrivilege": "app:adt"
   },
   "bahmniOT": {
     "id": "bahmni.ot",
@@ -46,7 +37,27 @@
     "translationKey": "Operation Theatre",
     "url": "../ot/",
     "icon": "fa-hospital-o",
-    "order": 9,
+    "order": 4,
     "requiredPrivilege": "app:ot"
+  },
+  "implementerInterface": {
+    "id": "bahmni.implementer.interface",
+    "extensionPointId": "org.bahmni.home.dashboard",
+    "type": "link",
+    "translationKey": "MODULE_LABEL_IMPLEMENTER_INTERFACE_KEY",
+    "url": "/implementer-interface",
+    "icon": "fa fa-pencil-square-o",
+    "order": 5,
+    "requiredPrivilege": "app:implementer-interface"
+  },
+  "radiologyDocumentUpload": {
+    "id": "bahmni.radiology.document.upload",
+    "extensionPointId": "org.bahmni.home.dashboard",
+    "type": "link",
+    "translationKey": "MODULE_LABEL_RADIOLOGY_UPLOAD_KEY",
+    "url": "../document-upload/?encounterType=RADIOLOGY&topLevelConcept=Radiology",
+    "icon": "icon-bahmni-radiology",
+    "order": 6,
+    "requiredPrivilege": "app:radiology-upload"
   }
 }

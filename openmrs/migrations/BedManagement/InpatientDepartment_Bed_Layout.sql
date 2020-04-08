@@ -1,0 +1,21 @@
+CALL BED_ALLOCATION('1', 'Surgical Ward',1,1);
+CALL BED_ALLOCATION('2', 'Surgical Ward',1,2);
+CALL BED_ALLOCATION('3', 'Surgical Ward',1,3);
+CALL BED_ALLOCATION('4', 'Surgical Ward',1,4);
+CALL BED_ALLOCATION('5', 'Surgical Ward',1,5);
+CALL BED_ALLOCATION('6', 'Surgical Ward',2,5);
+CALL BED_ALLOCATION('7', 'Surgical Ward',2,4);
+CALL BED_ALLOCATION('8', 'Surgical Ward',2,3);
+CALL BED_ALLOCATION('BF2', 'Surgical Ward',2,2);
+CALL BED_ALLOCATION('BF1', 'Surgical Ward',2,1);
+
+CALL BED_ALLOCATION('13', 'Supportive Care Ward',1,1);
+CALL BED_ALLOCATION('12', 'Supportive Care Ward',1,2);
+CALL BED_ALLOCATION('11', 'Supportive Care Ward',1,3);
+CALL BED_ALLOCATION('10', 'Supportive Care Ward',1,4);
+CALL BED_ALLOCATION('9', 'Supportive Care Ward',1,5);
+CALL BED_ALLOCATION('18', 'Supportive Care Ward',2,5);
+CALL BED_ALLOCATION('17', 'Supportive Care Ward',2,4);
+CALL BED_ALLOCATION('16', 'Supportive Care Ward',2,3);
+CALL BED_ALLOCATION('15', 'Supportive Care Ward',2,2);
+CALL BED_ALLOCATION('14', 'Supportive Care Ward',2,1);

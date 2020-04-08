@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="MALAWI_CONFIG-030420201312" author="Suraj">
+        <comment>Adding Concepts for Bed Management</comment>
+        <sqlFile path="BedManagement/BedManagement.sql"/>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG-030420201313" author="Suraj">
+        <comment>Clearing bed location tags and bed location maps</comment>
+        <sql>
+                TRUNCATE bed_patient_assignment_map;
+                TRUNCATE bed_location_map;
+                TRUNCATE bed_tag_map;
+                DELETE FROM bed;
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG-030420201314" author="Suraj">
+        <comment>Deleting existing Dispositions</comment>
+        <sql>
+            SELECT concept_id INTO @ConceptID FROM concept_name WHERE name ="Disposition" AND concept_name_type="FULLY_SPECIFIED";
+            DELETE FROM concept_answer WHERE concept_id=@conceptID;
+        </sql>
+    </changeSet>
+    <changeSet id="MALAWI_CONFIG-030420201315" author="Suraj">
+        <comment>Adding New Dispositions</comment>
+        <sql>
+            SELECT concept_id INTO @ConceptID FROM concept_name WHERE name ='Disposition' AND concept_name_type='FULLY_SPECIFIED';
+
+            SELECT concept_id INTO @Disposition1 FROM concept_name WHERE name ='Admit to Surgical Ward' AND concept_name_type='FULLY_SPECIFIED';
+            SELECT concept_id INTO @Disposition2 FROM concept_name WHERE name ='Admit to Supportive Care Ward' AND concept_name_type='FULLY_SPECIFIED';
+            SELECT concept_id INTO @Disposition3 FROM concept_name WHERE name ='Movement to Surgical Ward' AND concept_name_type='FULLY_SPECIFIED';
+            SELECT concept_id INTO @Disposition4 FROM concept_name WHERE name ='Movement to Supportive Care Ward' AND concept_name_type='FULLY_SPECIFIED';
+            SELECT concept_id INTO @Disposition5 FROM concept_name WHERE name ='Discharge' AND concept_name_type='FULLY_SPECIFIED';
+
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@ConceptID,@Disposition1,1,now(),0,uuid());
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@ConceptID,@Disposition2,1,now(),1,uuid());
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@ConceptID,@Disposition3,1,now(),2,uuid());
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@ConceptID,@Disposition4,1,now(),3,uuid());
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@ConceptID,@Disposition5,1,now(),4,uuid());
+
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG-030420201316" author="Suraj">
+        <comment>Mapping location_tag admission location to location</comment>
+        <sql>
+            INSERT INTO location_tag(name, description, creator, date_created, retired, uuid) VALUES ('Admission Location', 'Bed Management in Hospital', 1, now(), 0, uuid());
+
+            INSERT INTO location (name, description, retired, uuid, date_created, creator) VALUES ('Inpatient Department', 'Inpatient Department', FALSE, uuid(), NOW(), 1);
+            INSERT INTO location (name, description, retired, uuid, date_created, creator) VALUES ('Surgical Ward', 'Surgical Ward', FALSE, uuid(), NOW(), 1);
+            INSERT INTO location (name, description, retired, uuid, date_created, creator) VALUES ('Supportive Care Ward', 'Supportive Care Ward', FALSE, uuid(), NOW(), 1);
+
+            SELECT location_tag_id INTO @location_tag_id FROM location_tag WHERE name = 'Admission Location';
+
+            SELECT location_id INTO @location_id1 FROM location WHERE location.name='Inpatient Department';
+            INSERT INTO location_tag_map(location_id, location_tag_id) VALUES(@location_id1, @location_tag_id);
+
+            SELECT location_id INTO @location_id2 FROM location WHERE location.name='Surgical Ward';
+            INSERT INTO location_tag_map(location_id, location_tag_id) VALUES(@location_id2, @location_tag_id);
+
+            SELECT location_id INTO @location_id3 FROM location WHERE location.name='Supportive Care Ward';
+            INSERT INTO location_tag_map(location_id, location_tag_id) VALUES(@location_id3, @location_tag_id);
+        </sql>
+    </changeSet>
+    <changeSet id="MALAWI_CONFIG-030420202347" author="Suraj">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="2">
+                select count(*) from location where name in('Surgical Ward','Supportive Care Ward') and
+                parent_location is null;
+            </sqlCheck>
+        </preConditions>
+        <comment>Mapping to parent location</comment>
+        <sql>
+            SELECT location_id INTO @location_id1 FROM location WHERE location.name='Inpatient Department';
+            update location set parent_location = @location_id1 where name = 'Surgical Ward';
+            update location set parent_location = @location_id1 where name = 'Supportive Care Ward';
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG-060420201753" author="Suraj">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from location where name in('Inpatient Department') and
+                parent_location is null;
+            </sqlCheck>
+        </preConditions>
+        <comment>Mapping to Inpatient Department to Visit location</comment>
+        <sql>
+            SELECT location_id INTO @location_id1 FROM location WHERE location.name='Malawi';
+            update location set parent_location = @location_id1 where name = 'Inpatient Department';
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG-030420202348" author="Suraj">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from bed_type where `name` = 'Normal';
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Bed type</comment>
+        <sql>
+            INSERT INTO bed_type (name, display_name, description) VALUES ('Normal', 'Normal Bed', 'NRM');
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG-030420201318" author="Suraj">
+        <comment>Adding bed layout to Ward</comment>
+        <sqlFile path="BedManagement/InpatientDepartment_Bed_Layout.sql"/>
+    </changeSet>
+
+       <changeSet id="MALAWI_CONFIG-030420201325" author="Suraj">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from bed_tag;
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding bed tags</comment>
+        <sql>
+            INSERT INTO bed_tag(name, creator, date_created, voided, uuid) VALUES ("Pre operative", 1, now(), 0, uuid());
+            INSERT INTO bed_tag(name, creator, date_created, voided, uuid) VALUES ("Post operative", 1, now(), 0, uuid());
+            INSERT INTO bed_tag(name, creator, date_created, voided, uuid) VALUES ("Out of service", 1, now(), 0, uuid());
+            INSERT INTO bed_tag(name, creator, date_created, voided, uuid) VALUES ("OBGYN", 1, now(), 0, uuid());
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG-030420201326" author="Suraj" runOnChange="true">
+        <comment>Bed management patient listing queues</comment>
+        <sqlFile path="BedManagement/patientsAdmitted.sql"/>
+        <sqlFile path="BedManagement/patientsAdmittoSurgicalWard.sql"/>
+        <sqlFile path="BedManagement/patientsAdmittoSupportiveCareWard.sql"/>
+    </changeSet>
+
+</databaseChangeLog>

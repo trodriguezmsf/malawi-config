@@ -23,20 +23,42 @@
         "visitUuid"
     ],
     "config": {
+        "diagnosisStatus": "Inactive",
+        "adtNavigationConfig": {
+            "hideGoToIPDButton": false,
+            "forwardUrl": "../bedmanagement/#/patient/{{patientUuid}}/visit/{{visitUuid}}/dashboard",
+            "privilege": "app:adt",
+            "title": "Go to IPD dashboard"
+        },
         "hideConditions": false,
-        "enableRadiologyOrderOptions":["Urgent","NeedsPrint"],
-        "enableLabOrderOptions":["Urgent", "NeedsPrint"],
-        "quickPrints":false,
-        "networkConnectivity" : {
+        "enableRadiologyOrderOptions": [
+            "Urgent",
+            "NeedsPrint"
+        ],
+        "enableLabOrderOptions": [
+            "Urgent",
+            "NeedsPrint"
+        ],
+        "quickPrints": false,
+        "networkConnectivity": {
             "showNetworkStatusMessage": false,
             "networkStatusCheckInterval": 20000,
-            "locales" : [
-                { "locale" : "fr", "css" : "offline-language-french"},
-                { "locale" : "es", "css": "offline-language-spanish"},
-                { "locale" : "pt", "css": "offline-language-portuguese-brazil"}
+            "locales": [
+                {
+                    "locale": "fr",
+                    "css": "offline-language-french"
+                },
+                {
+                    "locale": "es",
+                    "css": "offline-language-spanish"
+                },
+                {
+                    "locale": "pt",
+                    "css": "offline-language-portuguese-brazil"
+                }
             ]
         },
-    	"diagnosisStatus": "Inactive",
+        "diagnosisStatus": "Inactive",
             "program": {
                 "patientInformation": {
                     "ageLimit": 100

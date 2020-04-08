@@ -90,5 +90,9 @@
   "DASHBOARD_TITLE_RADIOLOGY_KEY": "Patient Medical Document Upload",
   "DASHBOARD_TITLE_EDIT_FORMS" : "Edit Forms",
   "CLINICALSUMMARY_OPERATIVE_REPORT": "Operative Report",
-  "CLINICALSUMMARY_PATIENT_SUMMARY" : "Patient Summary"
+  "CLINICALSUMMARY_PATIENT_SUMMARY" : "Patient Summary",
+
+  "PATIENT_BED_MANAGEMENT_PAGE_KEY":"Patient Bed Management",
+  "PATIENT_IPD_DASHBOARD_KEY":"Patient IPD Dashboard"
+
 }

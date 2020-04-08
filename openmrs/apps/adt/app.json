@@ -50,13 +50,6 @@
                     "numberOfVisits": 1,
                     "displayOrder": 1
                 },
-                "diagnosis":{
-                    "translationKey":"DASHBOARD_TITLE_DIAGNOSIS_KEY",
-                    "type": "diagnosis",
-                    "numberOfVisits": 1,
-                    "showDetailsButton":true,
-                    "displayOrder": 2
-                },
                 "patientInformation":{
                     "translationKey": "DASHBOARD_TITLE_PATIENT_INFORMATION_KEY",
                     "type": "patientInformation",
