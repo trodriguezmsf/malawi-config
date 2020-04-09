@@ -565,7 +565,7 @@
     </changeSet>
 
     <changeSet id="Malawi-060420201639" author="Suraj">
-        <comment>Updating the concept DISCHARGE to Discharge</comment>
+        <comment>Updating the concept DISCHARGE to Discharge </comment>
         <sql>
             UPDATE concept SET is_set = 0 WHERE concept_id = (SELECT concept_id FROM concept_name WHERE name = 'DISCHARGE' and concept_name_type = 'FULLY_SPECIFIED');
             UPDATE concept_name SET name = 'Discharge' WHERE name = 'DISCHARGE' and concept_name_type in ('FULLY_SPECIFIED','SHORT');
@@ -635,6 +635,11 @@
         <sql>
             INSERT INTO visit_type(name, description, creator, date_created, retired, uuid) VALUES ('IPD', 'IPD vist', 1, now(), 0, uuid());
         </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG-080420202140" author="Suraj">
+        <comment>Stored Procedure to add reference term</comment>
+        <sqlFile path="utils/createReferenceMappingORGOPENMRSMODULEEMRAPI.sql" endDelimiter="#"/>
     </changeSet>
 
     <include file="BedManagement/BedManagement.xml"/>

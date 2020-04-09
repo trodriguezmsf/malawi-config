@@ -49,6 +49,36 @@
         </sql>
     </changeSet>
 
+    <changeSet id="MALAWI_CONFIG-080420202134" author="Suraj">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) From concept_reference_term where `code` in
+                ("ADMITTING_TO_SURGICAL_WARD","ADMIT_TO_SUPPORTIVE_CARE_WARD","MOVEMENT_TO_SURGICAL_WARD", "MOVEMENT_TO_SUPPORTIVE_CARE_WARD","DISPOSITION_DISCHARGE")
+                and retired = 0 and concept_source_id = ( select concept_source_id from concept_reference_source where `name` = 'org.openmrs.module.emrapi' and retired =0 );
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding codes to specific concepts</comment>
+        <sql>
+            SELECT concept_source_id INTO @source_id FROM concept_reference_source where name = 'org.openmrs.module.emrapi';
+
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (4,'ADMITTING_TO_SURGICAL_WARD',@source_id,uuid(),now());
+            call CREATE_REFERENCE_ORG_OPENMRS_MODULE_EMRAPI('Admit to Surgical Ward', 'ADMITTING_TO_SURGICAL_WARD');
+
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (4,'ADMIT_TO_SUPPORTIVE_CARE_WARD',@source_id,uuid(),now());
+            call CREATE_REFERENCE_ORG_OPENMRS_MODULE_EMRAPI('Admit to Supportive Care Ward', 'ADMIT_TO_SUPPORTIVE_CARE_WARD');
+
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (4,'MOVEMENT_TO_SURGICAL_WARD',@source_id,uuid(),now());
+            call CREATE_REFERENCE_ORG_OPENMRS_MODULE_EMRAPI('Movement to Surgical Ward', 'MOVEMENT_TO_SURGICAL_WARD');
+
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (4,'MOVEMENT_TO_SUPPORTIVE_CARE_WARD',@source_id,uuid(),now());
+            call CREATE_REFERENCE_ORG_OPENMRS_MODULE_EMRAPI('Movement to Supportive Care Ward', 'MOVEMENT_TO_SUPPORTIVE_CARE_WARD');
+
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (4,'DISPOSITION_DISCHARGE',@source_id,uuid(),now());
+            call CREATE_REFERENCE_ORG_OPENMRS_MODULE_EMRAPI('Discharge', 'DISPOSITION_DISCHARGE');
+
+        </sql>
+    </changeSet>
+
     <changeSet id="MALAWI_CONFIG-030420201316" author="Suraj">
         <comment>Mapping location_tag admission location to location</comment>
         <sql>
