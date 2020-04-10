@@ -39,7 +39,7 @@ from bed
                             INNER JOIN (SELECT v.patient_id, MAX(v.date_started) AS date_started FROM visit v GROUP BY v.patient_id
                                        ) latest_visit ON latest_visit.patient_id = parentObs.person_id AND latest_visit.date_started = visit.date_started GROUP BY parentObs.person_id
                                        ) ipd_expected_dd ON ipd_expected_dd.person_id = o.person_id AND ipd_expected_dd.obs_id = o.obs_group_id
-                           ) expected_date_of_discharge ON expected_date_of_discharge.person_   id = p.person_id
+                           ) expected_date_of_discharge ON expected_date_of_discharge.person_id = p.person_id
          # Block to fetch Date of procedure
          LEFT OUTER JOIN ( select DISTINCT sa.patient_id, MIN(sb.start_datetime) as 'dateofProcedure' from surgical_appointment sa
                            INNER JOIN surgical_block sb ON sa.surgical_block_id = sb.surgical_block_id WHERE sb.start_datetime >= CURDATE() and sa.status = 'SCHEDULED' group by sa.patient_id
