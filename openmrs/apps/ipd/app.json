@@ -12,13 +12,13 @@
         "visitUuid"
     ],
     "config": {
-        "wardListSqlSearchHandler": "bedManagement.sqlGet.patientListForAdmissionLocation",
+        "wardListSqlSearchHandler": "emrapi.sqlGet.allWardsListDetails",
         "diagnosisStatus": "Inactive",
         "onAdmissionForwardTo": "#",
         "onTransferForwardTo": "#",
         "onDischargeForwardTo": "#",
         "defaultVisitType": "IPD",
-        "expectedDateOfDischarge": "",
+        "expectedDateOfDischarge": "IPD Expected DD",
         "conceptSetUI": {
             "Expected Date of Discharge": {
                 "disableAddNotes": true,

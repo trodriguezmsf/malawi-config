@@ -168,4 +168,14 @@
         <sqlFile path="BedManagement/patientsAdmittoSupportiveCareWard.sql"/>
     </changeSet>
 
+    <changeSet id="MALAWI-202004100906" author="Sreekalyan">
+        <comment>
+            Deleting the global property for Bed management list view and adding with new sql query.
+        </comment>
+        <sql>
+            DELETE FROM global_property WHERE property='emrapi.sqlGet.allWardsListDetails';
+        </sql>
+        <sqlFile path="BedManagement/wardListView.sql"/>
+    </changeSet>
+
 </databaseChangeLog>
