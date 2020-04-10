@@ -633,7 +633,7 @@
         </preConditions>
         <comment>Add IPD visit type</comment>
         <sql>
-            INSERT INTO visit_type(name, description, creator, date_created, retired, uuid) VALUES ('IPD', 'IPD vist', 1, now(), 0, uuid());
+            INSERT INTO visit_type(name, description, creator, date_created, retired, uuid) VALUES ('IPD', 'IPD visit', 1, now(), 0, uuid());
         </sql>
     </changeSet>
 
