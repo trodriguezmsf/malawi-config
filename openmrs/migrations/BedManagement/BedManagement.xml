@@ -178,4 +178,35 @@
         <sqlFile path="BedManagement/wardListView.sql"/>
     </changeSet>
 
+    <changeSet id="MALAWI_CONFIG_202004091601" author="Sreekalyan">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_set cs where cs.concept_set in (SELECT concept_id from concept_name where name = 'IPD Expected DD' and concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding the concepts for expected date of discharge</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_datatype_coded = 0;
+            call add_concept(@concept_id, @concept_name_short_id, @concept_name_full_id, 'IPD Expected DD', 'IPD Expected DD', 'N/A', 'misc', true);
+
+            set @child1_concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_datatype_coded = 0;
+            call add_concept(@child1_concept_id, @concept_name_short_id, @concept_name_full_id, 'Expected Date of Discharge', 'Expected Date of Discharge', 'Date', 'misc', false);
+
+            set @child2_concept_id = 0;
+            set @concept_name_short_id = 0;
+            set @concept_name_full_id = 0;
+            set @concept_datatype_coded = 0;
+            call add_concept(@child2_concept_id, @concept_name_short_id, @concept_name_full_id, 'Reason for Change in EDD', 'Reason for Change in EDD', 'Text', 'misc', false);
+
+            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@child1_concept_id,@concept_id,1,8,now(),uuid());
+            INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@child2_concept_id,@concept_id,1,8,now(),uuid());
+        </sql>
+    </changeSet>
+
 </databaseChangeLog>
