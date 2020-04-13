@@ -319,6 +319,9 @@
                     }
                 }
             }
-        }
+        },
+        "wardListPrintEnabled": true,
+        "wardListPrintViewTemplateUrl": "/bahmni_config/openmrs/apps/ipd/wardListPrint.html",
+        "wardListPrintAttributes": []
     }
 }
