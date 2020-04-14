@@ -8,10 +8,7 @@
       "translationKey": "MODULE_LABEL_ADMITTED_TO_SURGICAL_WARD_KEY",
       "linkColumn": "action",
       "forwardUrl": "#/bedManagement/patient/{{patientUuid}}",
-      "searchColumns": [
-        "identifier",
-        "PATIENT_LISTING_QUEUES_HEADER_NAME"
-      ]
+      "searchColumns": ["identifier", "name"]
     },
     "order": 1,
     "requiredPrivilege": "app:adt"
@@ -25,10 +22,7 @@
       "translationKey": "MODULE_LABEL_ADMITTED_TO_SUPPORTIVE_CARE_WARD_KEY",
       "linkColumn": "action",
       "forwardUrl": "#/bedManagement/patient/{{patientUuid}}",
-      "searchColumns": [
-        "identifier",
-        "PATIENT_LISTING_QUEUES_HEADER_NAME"
-      ]
+      "searchColumns": ["identifier", "name"]
     },
     "order": 2,
     "requiredPrivilege": "app:adt"
