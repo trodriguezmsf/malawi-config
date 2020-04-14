@@ -162,8 +162,11 @@
     </changeSet>
 
     <changeSet id="MALAWI_CONFIG-030420201326" author="Suraj" runOnChange="true">
-        <comment>Bed management patient listing queues</comment>
-        <sqlFile path="BedManagement/patientsAdmitted.sql"/>
+        <comment>Bed management patient Search Queues</comment>
+        <sql>
+            DELETE FROM global_property WHERE property='emrapi.sqlSearch.patientsAdmittedToSupportiveCareWard';
+            DELETE FROM global_property WHERE property='emrapi.sqlSearch.patientsAdmittedToSurgicalWard';
+        </sql>
         <sqlFile path="BedManagement/patientsAdmittoSurgicalWard.sql"/>
         <sqlFile path="BedManagement/patientsAdmittoSupportiveCareWard.sql"/>
     </changeSet>
