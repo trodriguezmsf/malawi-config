@@ -12,6 +12,9 @@
         "visitUuid"
     ],
     "config": {
+        "wardListPrintEnabled": true,
+        "wardListPrintViewTemplateUrl": "/bahmni_config/openmrs/apps/ipd/wardListPrint.html",
+        "wardListPrintAttributes": [],
         "wardListSqlSearchHandler": "emrapi.sqlGet.allWardsListDetails",
         "diagnosisStatus": "Inactive",
         "onAdmissionForwardTo": "#/bedManagement/patient/{{patientUuid}}/visit/{{visitUuid}}",
@@ -90,55 +93,8 @@
                         }
                     ]
                 },
-                "Vitalform": {
-                    "translationKey": "DASHBOARD_VITAL_FORM_KEY",
-                    "type": "vitals",
-                    "isObservation": true,
-                    "displayOrder": 2,
-                    "dashboardConfig": {
-                        "showDetailsButton": true,
-                        "isEditable": true,
-                        "conceptNames": [
-                            "Weight",
-                            "Height",
-                            "BMI Data",
-                            "VS, Blood pressure",
-                            "VS, Blood glucose"
-                        ],
-                        "showGroupDateTime": true
-                    },
-                    "expandedViewConfig": {
-                        "conceptNames": [
-                            "Weight",
-                            "Height",
-                            "BMI Data",
-                            "VS, Blood pressure",
-                            "VS, Blood glucose"
-                        ],
-                        "isEditable": true,
-                        "numberOfVisits": 3,
-                        "showDetailsButton": true,
-                        "pivotTable": {}
-                    }
-                },
-                "admissionDetails": {
-                    "translationKey": "DASHBOARD_TITLE_ADMISSION_DETAILS_KEY",
-                    "type": "admissionDetails",
-                    "displayOrder": 3,
-                    "expandedViewConfig": {
-                        "numberOfVisits": 3,
-                        "showDetailsButton": true,
-                        "pivotTable": {}
-                    }
-                },
-                "disposition": {
-                    "translationKey": "DASHBOARD_TITLE_DISPOSITION_KEY",
-                    "type": "disposition",
-                    "numberOfVisits": 6,
-                    "displayOrder": 4
-                },
-                "nursingnote": {
-                    "translationKey": "DASHBOARD_TITLE_WARD_NURSING_NOTE_KEY",
+                "Initial Anaesthesia Assessment": {
+                    "translationKey": "DASHBOARD_INITIAL_ANAESTHESIA_ASSESSMENT",
                     "type": "vitals",
                     "isObservation": true,
                     "displayOrder": 8,
@@ -146,182 +102,50 @@
                         "showDetailsButton": true,
                         "isEditable": true,
                         "conceptNames": [
-                            "Ward Nursing Note"
+                            "IAA, Date of Consultation",
+                            "IAA, Outcome of initial anaesthesia assessment"
                         ],
-                        "showGroupDateTime": true
+                        "numberOfVisits": 2
                     },
                     "expandedViewConfig": {
                         "conceptNames": [
-                            "Ward Nursing Note"
+                            "IAA, Date of Consultation",
+                            "IAA, Outcome of initial anaesthesia assessment"
                         ],
                         "isEditable": true,
-                        "numberOfVisits": 3,
                         "showDetailsButton": true,
-                        "pivotTable": {}
+                        "numberOfVisits": 2,
+                        "pivotTable": {
+                        }
                     }
                 },
-                "postopmonitoring": {
-                    "translationKey": "DASHBOARD_POST_OPERATIVE_MONITORING_KEY",
+                "Pre-operative Assessment": {
+                    "translationKey": "DASHBOARD_PRE_OPERATIVE_ASSESSMENT",
                     "type": "vitals",
                     "isObservation": true,
-                    "displayOrder": 9,
+                    "displayOrder": 8,
                     "dashboardConfig": {
                         "showDetailsButton": true,
                         "isEditable": true,
                         "conceptNames": [
-                            "Post-Op Ward Monitoring"
+                            "SPOA, Date recorded",
+                            "SPOA, Surgeon validation"
                         ],
-                        "showGroupDateTime": true
+                        "numberOfVisits": 2
                     },
                     "expandedViewConfig": {
                         "conceptNames": [
-                            "Post-Op Ward Monitoring"
-                        ],
-                        "isEditable": true,
-                        "numberOfVisits": 3,
-                        "showDetailsButton": true,
-                        "pivotTable": {}
-                    }
-                },
-                "surgicalwardnursingassessment": {
-                    "translationKey": "DASHBOARD_SURGICAL_WARD_ADMISSION_NURSING_ASSESSMENT_KEY",
-                    "type": "vitals",
-                    "isObservation": true,
-                    "displayOrder": 10,
-                    "dashboardConfig": {
-                        "showDetailsButton": true,
-                        "isEditable": true,
-                        "conceptNames": [
-                            "Surgical Ward Admission Nursing Assessment"
-                        ],
-                        "showGroupDateTime": true
-                    },
-                    "expandedViewConfig": {
-                        "conceptNames": [
-                            "Surgical Ward Admission Nursing Assessment"
-                        ],
-                        "isEditable": true,
-                        "numberOfVisits": 3,
-                        "showDetailsButton": true,
-                        "pivotTable": {}
-                    }
-                },
-                "physicianprogress": {
-                    "translationKey": "DASHBOARD_PHYSICIAN_PROGRESS_NOTE_KEY",
-                    "type": "vitals",
-                    "isObservation": true,
-                    "displayOrder": 11,
-                    "dashboardConfig": {
-                        "showDetailsButton": true,
-                        "isEditable": true,
-                        "conceptNames": [
-                            "Physician Progress Note-Ward"
-                        ],
-                        "showGroupDateTime": true
-                    },
-                    "expandedViewConfig": {
-                        "conceptNames": [
-                            "Physician Progress Note-Ward"
+                            "SPOA, Date recorded",
+                            "SPOA, Surgeon validation"
                         ],
                         "isEditable": true,
                         "showDetailsButton": true,
-                        "pivotTable": {}
-                    }
-                },
-                "complications": {
-                    "translationKey": "DASHBOARD_COMPLICATIONS_KEY",
-                    "type": "vitals",
-                    "isObservation": true,
-                    "displayOrder": 12,
-                    "dashboardConfig": {
-                        "showDetailsButton": true,
-                        "isEditable": true,
-                        "conceptNames": [
-                            "CC, Complications"
-                        ],
-                        "showGroupDateTime": true
-                    },
-                    "expandedViewConfig": {
-                        "conceptNames": [
-                            "CC, Complications"
-                        ],
-                        "isEditable": true,
-                        "showDetailsButton": true,
-                        "pivotTable": {}
-                    }
-                },
-                "observationssheet": {
-                    "translationKey": "DASHBOARD_OBSERVATIONS_SHEET_KEY",
-                    "type": "vitals",
-                    "isObservation": true,
-                    "displayOrder": 14,
-                    "dashboardConfig": {
-                        "showDetailsButton": true,
-                        "isEditable": true,
-                        "conceptNames": [
-                            "Observation Sheet"
-                        ],
-                        "showGroupDateTime": true
-                    },
-                    "expandedViewConfig": {
-                        "conceptNames": [
-                            "Observation Sheet"
-                        ],
-                        "isEditable": true,
-                        "numberOfVisits": 3,
-                        "showDetailsButton": true,
-                        "pivotTable": {}
-                    }
-                },
-                "consultationnote": {
-                    "translationKey": "DASHBOARD_CONSULTATION_NOTE_KEY",
-                    "type": "vitals",
-                    "isObservation": true,
-                    "displayOrder": 13,
-                    "dashboardConfig": {
-                        "showDetailsButton": true,
-                        "isEditable": true,
-                        "conceptNames": [
-                            "Consultation Note"
-                        ],
-                        "showGroupDateTime": true
-                    },
-                    "expandedViewConfig": {
-                        "conceptNames": [
-                            "Consultation Note"
-                        ],
-                        "isEditable": true,
-                        "showDetailsButton": true,
-                        "pivotTable": {}
-                    }
-                },
-                "Surgical Procedures": {
-                    "translationKey": "DASHBOARD_SURGICAL_PROCEDURES_KEY",
-                    "type": "vitals",
-                    "isObservation": true,
-                    "displayOrder": 6,
-                    "dashboardConfig": {
-                        "showDetailsButton": true,
-                        "isEditable": true,
-                        "conceptNames": [
-                            "SAP, Planned Surgical procedures"
-                        ],
-                        "showGroupDateTime": true
-                    },
-                    "expandedViewConfig": {
-                        "conceptNames": [
-                            "SAP, Planned Surgical procedures"
-                        ],
-                        "isEditable": true,
-                        "numberOfVisits": 3,
-                        "showDetailsButton": true,
-                        "pivotTable": {}
+                        "numberOfVisits": 2,
+                        "pivotTable": {
+                        }
                     }
                 }
             }
-        },
-        "wardListPrintEnabled": true,
-        "wardListPrintViewTemplateUrl": "/bahmni_config/openmrs/apps/ipd/wardListPrint.html",
-        "wardListPrintAttributes": []
+        }
     }
 }
