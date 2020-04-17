@@ -45,5 +45,8 @@
 
   "PATIENT_ADT_PAGE_KEY":"Patient ADT Page",
   "DASHBOARD_INITIAL_ANAESTHESIA_ASSESSMENT" : "Initial Anaesthesia Assessment",
-  "DASHBOARD_PRE_OPERATIVE_ASSESSMENT" : "Surgeon PreOperative Assessment"
+  "DASHBOARD_PRE_OPERATIVE_ASSESSMENT" : "Surgeon PreOperative Assessment",
+  "DASHBOARD_POST_OPERATIVE_ASSESSMENT": "Post Operative Anaesthesia Note",
+  "DASHBOARD_COMPLICATIONS": "Complications",
+  "DASHBOARD_OPERATIVE_REPORT": "Operative Reoprt"
 }
