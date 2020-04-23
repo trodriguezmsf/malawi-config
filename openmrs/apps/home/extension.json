@@ -59,5 +59,15 @@
     "icon": "icon-bahmni-radiology",
     "order": 6,
     "requiredPrivilege": "app:radiology-upload"
+  },
+"appointmentSchedulingV2": {
+    "id": "bahmni.appointment.scheduling",
+    "extensionPointId": "org.bahmni.home.dashboard",
+    "type": "link",
+    "translationKey": "MODULE_LABEL_APPOINTMENT_SCHEDULING_V2_KEY",
+    "url": "/appointments-v2",
+    "icon": "fa fa-calendar",
+    "order": 9,
+    "requiredPrivilege": "app:appointments"
   }
 }
