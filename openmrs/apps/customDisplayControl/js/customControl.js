@@ -196,4 +196,44 @@ angular.module('bahmni.common.displaycontrol.custom')
         },
         template: '<ng-include src="contentUrl"/>'
     };
+}]).directive('surgicalAppointments', ['$http', 'appService', 'spinner', function ($http, appService, spinner) {
+    var link = function ($scope) {
+        $scope.isEmpty = true;
+        $scope.contentUrl = appService.configBaseUrl() + "/customDisplayControl/views/surgicalAppointments.html";
+        $scope.title = $scope.config.title;
+
+        var getResponseFromQuery = function () {
+            var params = {
+                q: "bahmni.sqlGet.otSurgicalAppointments",
+                v: "full",
+                patientUuid: $scope.patient.uuid
+            };
+            return $http.get('/openmrs/ws/rest/v1/bahmnicore/sql', {
+                method: "GET",
+                params: params,
+                withCredentials: true
+            });
+        };
+
+        spinner.forPromise(getResponseFromQuery().then(function (response) {
+            var entries = response.data;
+            if (_.isEmpty(entries)) {
+                $scope.$emit("no-data-present-event");
+            } else {
+                $scope.surgicalAppointments = entries;
+                $scope.headings = _.filter(_.keys(_.first(entries)), function (header) {
+                    return _.some(entries, function (entry) {
+                        return !_.isEmpty(entry[header]);
+                    });
+                });
+            }
+            $scope.isEmpty = _.isEmpty($scope.headings);
+        }));
+    };
+
+    return {
+        restrict: 'E',
+        link: link,
+        template: '<ng-include src="contentUrl"/>'
+    }
 }]);

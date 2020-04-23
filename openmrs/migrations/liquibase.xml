@@ -644,4 +644,9 @@
 
     <include file="BedManagement/BedManagement.xml"/>
 
+    <changeSet id="malawi-202004231453" author="Vinisha, Bindu">
+        <comment>Adding global property for surgical appointments display control</comment>
+        <sqlFile path="OT/surgicalAppointments.sql"/>
+    </changeSet>
+
 </databaseChangeLog>
