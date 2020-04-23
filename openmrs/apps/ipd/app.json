@@ -76,22 +76,15 @@
                         "countryDistrict"
                     ]
                 },
-                "navigationLinksControl": {
-                    "translationKey": "DASHBOARD_TITLE_NAVIGATION_LINKS_CONTROL_KEY",
-                    "type": "navigationLinksControl",
-                    "displayOrder": 1,
-                    "showLinks": [
-                        "home",
-                        "registration",
-                        "enrolment"
-                    ],
-                    "customLinks": [
-                        {
-                            "name": "bedManagement",
-                            "translationKey": "PATIENT_BED_MANAGEMENT_PAGE_KEY",
-                            "url": "../bedmanagement/#/bedManagement/patient/{{patientUuid}}"
-                        }
-                    ]
+                "admissionDetails": {
+                    "translationKey": "DASHBOARD_TITLE_ADMISSION_DETAILS_KEY",
+                    "type": "admissionDetails",
+                    "displayOrder": 3,
+                    "expandedViewConfig": {
+                        "numberOfVisits": 3,
+                        "showDetailsButton": true,
+                        "pivotTable": {}
+                    }
                 },
                 "Initial Anaesthesia Assessment": {
                     "translationKey": "DASHBOARD_INITIAL_ANAESTHESIA_ASSESSMENT",
