@@ -286,6 +286,15 @@
                         }
                     }
                 },
+                "surgicalAppointments": {
+                    "type": "custom",
+                    "displayOrder": 7,
+                    "displayType": "Full-Page",
+                    "config": {
+                        "title": "DASHBOARD_TITLE_SURGICAL_APPOINTMENTS_KEY",
+                        "template": "<surgical-appointments section='section' patient='patient'></surgical-appointments>"
+                    }
+                },
                 "Operative Report": {
                     "translationKey": "DASHBOARD_OPERATIVE_REPORT",
                     "type": "vitals",
