@@ -175,9 +175,9 @@ DROP TABLE temp_person_uuid_old;
 -- Bahmni specific
 --
 TRUNCATE failed_events;
---Database restoring issue with definer
+/* Database restoring issue with definer */
 UPDATE
-   `mysql`.`proc` p
+   `mysql`.`proc`
 SET
    definer = 'openmrs-user@localhost'
 WHERE
@@ -185,7 +185,7 @@ WHERE
 --
 -- Malawi specific
 --
---for all person attribute WHERE Name is getting captured
+/* for all person attribute WHERE Name is getting captured */
 
 UPDATE
   person_attribute pa
@@ -196,7 +196,9 @@ UPDATE
      AND pat.format = 'java.lang.String'
 SET
   pa.value = concat('Annon-', char(round(rand()* 25) + 97), char(round(rand()* 25) + 97), char(round(rand()* 25) + 97), char(round(rand()* 25) + 97), char(round(rand()* 25) + 97), char(round(rand()* 25) + 97), char(round(rand()* 25) + 97), char(round(rand()* 25) + 97) );
---for all person attribute WHERE Comments is getting captured
+
+/* for all person attribute WHERE Comments is getting captured */
+
 UPDATE
  person_attribute pa
  INNER JOIN
@@ -207,7 +209,7 @@ UPDATE
 SET
  pa.value = CONCAT('Annon-', SUBSTR('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz', FLOOR(1.0 + RAND()* 62), 1), SUBSTR('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz', FLOOR(1.0 + RAND()* 62), 1), SUBSTR('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz', FLOOR(1.0 + RAND()* 62), 1), SUBSTR('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz', FLOOR(1.0 + RAND()* 62), 1), SUBSTR('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz', FLOOR(1.0 + RAND()* 62), 1), SUBSTR('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz', FLOOR(1.0 + RAND()* 62), 1), SUBSTR('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz', FLOOR(1.0 + RAND()* 62), 1), SUBSTR('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz', FLOOR(1.0 + RAND()* 62), 1), '-', pat.person_attribute_type_id);
 
---for all person attribute WHERE Phone number is getting captured
+/* for all person attribute WHERE Phone number is getting captured */
 UPDATE
 person_attribute pa
 INNER JOIN
@@ -218,7 +220,8 @@ INNER JOIN
 SET
 pa.value = FLOOR(RAND() * 100000000);
 
---Making National ID to random 6 digit number
+/* Making National ID to random 6 digit number */
+
 UPDATE
    person_attribute pa
    INNER JOIN
@@ -232,7 +235,8 @@ UPDATE
 SET
    pa.value = LPAD(FLOOR(RAND() * 999999.99), 6, '0');
 
---Random longitude and latitude
+/* Random longitude and latitude */
+
 UPDATE
    person_attribute pa
    INNER JOIN
@@ -247,7 +251,8 @@ UPDATE
 SET
    pa.value = ROUND( 0.1 + RAND( ) * 99, 2 );
 
---Other Language
+/* Other Language */
+
 UPDATE
    person_attribute pa
    INNER JOIN
@@ -257,7 +262,9 @@ UPDATE
       AND pat.format = 'java.lang.String'
 SET
    pa.value = CONCAT('Annon-', SUBSTR('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz', FLOOR(1.0 + RAND()* 62), 1), SUBSTR('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz', FLOOR(1.0 + RAND()* 62), 1), SUBSTR('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz', FLOOR(1.0 + RAND()* 62), 1), SUBSTR('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz', FLOOR(1.0 + RAND()* 62), 1), SUBSTR('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz', FLOOR(1.0 + RAND()* 62), 1), SUBSTR('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz', FLOOR(1.0 + RAND()* 62), 1), SUBSTR('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz', FLOOR(1.0 + RAND()* 62), 1), SUBSTR('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz', FLOOR(1.0 + RAND()* 62), 1), '-', pat.person_attribute_type_id);
---OT annonymisation # annonymising Data captured during the creation of surgical appointment
+
+/* OT annonymisation # annonymising Data captured during the creation of surgical appointment */
+
 UPDATE
    surgical_appointment_attribute_type saat
    JOIN
@@ -318,19 +325,21 @@ SET
          CONCAT('Annon-RandomAttribute')
    END
 ;
---Annonymising Notes while cancelling / postponing
+/* Annonymising Notes while cancelling / postponing */
 UPDATE
    surgical_appointment
 SET
    notes = concat('Annon-surgicalNotes-', char(round(rand()* 25) + 97), char(round(rand()* 25) + 97), char(round(rand()* 25) + 97), char(round(rand()* 25) + 97), char(round(rand()* 25) + 97), char(round(rand()* 25) + 97) )
 WHERE
    notes is not NULL ;
---Appointment scheduling Notes
+/*  Appointment scheduling Notes */
 UPDATE
    patient_appointment
 SET
    comments = CONCAT('Annon-AppointmentComments', char(round(rand()* 25) + 97), char(round(rand()* 25) + 97), char(round(rand()* 25) + 97), char(round(rand()* 25) + 97) );
---  as the following comments fiels having some sensitive info
+
+/*  as the following comments fields having some sensitive info */
+
 UPDATE
    obs
 SET
@@ -352,7 +361,7 @@ SET
    comments = 'Annon-TestNotes'
 WHERE
    comments is not null;
--- updating notes for document obs if Any
+/* updating notes for document obs if Any */
 UPDATE
    obs
 SET
@@ -372,7 +381,7 @@ WHERE
          )
    )
 ;
---  Updating the documentUrls to 'document url'
+/*  Updating the documentUrls to 'document url' */
 UPDATE
    obs
 SET
