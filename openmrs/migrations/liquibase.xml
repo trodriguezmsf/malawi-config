@@ -472,12 +472,12 @@
 
     <changeSet id="MALAWI-2020021500" author="Bindu Sreekalyan">
         <preConditions onFail="CONTINUE">
-            <sqlCheck expectedResult="1">
-                SELECT count(1) FROM global_property WHERE property='emrapi.sqlSearch.activePatients';
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM global_property WHERE property='emrapi.sqlSearch.activePrograms';
             </sqlCheck>
         </preConditions>
         <comment></comment>
-        <sqlFile path="ProgramQueues/ActivePatientProgramQueue.sql"/>
+        <sqlFile path="ProgramQueues/activeProgramsQueue.sql"/>
     </changeSet>
 
     <changeSet id="MALAWI-170320201547" author="Suraj">

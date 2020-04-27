@@ -1,16 +1,22 @@
 {
-    "bahmniClinicalPatientsSearchActivePatientsForPrograms": {
-        "id": "bahmni.clinical.patients.search.activePatients",
+    "bahmniClinicalPatientsSearchActivePrograms": {
+        "id": "bahmni.clinical.patients.search.activePrograms",
         "extensionPointId": "org.bahmni.patient.search",
         "type": "config",
         "extensionParams": {
-            "searchHandler": "emrapi.sqlSearch.activePatients",
+            "searchHandler": "emrapi.sqlSearch.activePrograms",
             "translationKey": "MODULE_LABEL_PROGRAMS_KEY",
-            "view": "tabular",
+            "links": [
+                {
+                    "url": "/bahmni/bedmanagement/#/bedManagement/patient/{{patientUuid}}",
+                    "linkColumn": "Bed Management",
+                    "newTab": false
+                }],
+                "view": "tabular",
             "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext",
-            "searchColumns": ["identifier", "name","PATIENT_LISTING_PROGRAM_NAME","PATIENT_LISTING_PROGRAM_STATE"]
+            "searchColumns": ["ID", "Name","DOB","Date of Registration","Oncogynae program state","Palliative program state","Bed Number"]
         },
-        "label": "Active",
+        "label": "Programs",
         "order": 1,
         "requiredPrivilege": "app:clinical"
     },
