@@ -7,3 +7,4 @@
     - { role: appointments, tags: appointments }
     - { role: bahmni-ie-apps, tags: bahmni_ie_apps }
     - { role: visit-close-module, tags: visit_close_module }
+    - { role: bahmni-92-mysql-performance, tags: mysql_performance }
