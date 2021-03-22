@@ -648,5 +648,28 @@
         <comment>Adding global property for surgical appointments display control</comment>
         <sqlFile path="OT/surgicalAppointments.sql"/>
     </changeSet>
-
+    <changeSet id="malawi-202103222255" author="Tarun, Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM global_property WHERE property = "webservices.rest.maxResultsDefault";
+            </sqlCheck>
+        </preConditions>
+        <comment>Updating the global property for webservices maxResultsDefault</comment>
+        <sql>
+            UPDATE global_property
+            SET property_value = 200
+            WHERE property = "webservices.rest.maxResultsDefault";
+        </sql>
+    </changeSet>
+    <changeSet id="malawi-202103222256" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM global_property WHERE property = "obs.complex_obs_dir";
+            </sqlCheck>
+        </preConditions>
+        <comment>Update value for obs.complex_obs_dir global property</comment>
+        <sql>
+            update global_property set property_value = 'complex_obs' where property = 'obs.complex_obs_dir';
+        </sql>
+    </changeSet>
 </databaseChangeLog>
