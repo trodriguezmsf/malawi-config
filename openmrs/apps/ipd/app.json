@@ -17,7 +17,7 @@
         "wardListPrintAttributes": [],
         "wardListSqlSearchHandler": "emrapi.sqlGet.allWardsListDetails",
         "diagnosisStatus": "Inactive",
-        "onAdmissionForwardTo": "#/bedManagement/patient/{{patientUuid}}/visit/{{visitUuid}}",
+        "onAdmissionForwardTo": "#",
         "onTransferForwardTo": "#",
         "onDischargeForwardTo": "#",
         "defaultVisitType": "IPD",
@@ -28,7 +28,7 @@
                 "allowFutureDates": true
             }
         },
-        "patientForwardUrl": "../bedmanagement/#/patient/{{patientUuid}}/visit/{{visitUuid}}/dashboard",
+        "patientForwardUrl": "../clinical/index.html#/default/patient/{{patientUuid}}/dashboard?currentTab=DASHBOARD_TAB_GENERAL_KEY",
         "hideStartNewVisitPopUp": true ,
         "colorForTags": [
             {
