@@ -19,7 +19,6 @@
     "extensionParams": {
       "searchHandler": "emrapi.sqlSearch.patientsToAdmit",
       "translationKey": "MODULE_LABEL_ADMITTED_TO_SURGICAL_WARD_KEY",
-      "forwardUrl": "#/bedManagement/patient/{{patientUuid}}"
       "linkColumn": "action",
       "forwardUrl": "#/bedManagement/patient/{{patientUuid}}",
       "searchColumns": ["identifier", "name"]
@@ -35,7 +34,6 @@
     "extensionParams": {
       "searchHandler": "emrapi.sqlSearch.admittedPatients",
       "translationKey": "MODULE_LABEL_ADMITTED_TO_SUPPORTIVE_CARE_WARD_KEY",
-      "forwardUrl": "#/bedManagement/patient/{{patientUuid}}"
       "linkColumn": "action",
       "forwardUrl": "#/bedManagement/patient/{{patientUuid}}",
       "searchColumns": ["identifier", "name"]

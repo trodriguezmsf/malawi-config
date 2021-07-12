@@ -19,17 +19,6 @@
     "order": 2,
     "requiredPrivilege": "app:clinical"
   },
-  "bahmniIpd": {
-    "id": "bahmni.ipd",
-    "extensionPointId": "org.bahmni.home.dashboard",
-    "type": "link",
-    "translationKey": "MODULE_LABEL_BED_MANAGEMENT_KEY",
-    "label": "InPatient",
-    "url": "../bedmanagement/#/admit",
-    "icon": "fa-bed",
-    "order": 3,
-    "requiredPrivilege": "app:adt"
-  },
   "bahmniOT": {
     "id": "bahmni.ot",
     "extensionPointId": "org.bahmni.home.dashboard",
