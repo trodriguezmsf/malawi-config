@@ -674,4 +674,6 @@
             update global_property set property_value = 'complex_obs' where property = 'obs.complex_obs_dir';
         </sql>
     </changeSet>
+
+    <include file="PatientHistory/PatientHistory.xml"/>
 </databaseChangeLog>
