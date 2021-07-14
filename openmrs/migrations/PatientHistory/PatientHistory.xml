@@ -669,8 +669,8 @@
             select concept_id into @child2_concept_id from concept_name where name ="Doesn't want children" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             select concept_id into @child3_concept_id from concept_name where name ="Doesn't know" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
-            call add_concept_answer(@concept_id, @child2_concept_id, 1);
-            call add_concept_answer(@concept_id, @child3_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
         </sql>
     </changeSet>
 
