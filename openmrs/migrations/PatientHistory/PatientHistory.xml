@@ -309,9 +309,7 @@
         </sql>
     </changeSet>
 
-
-
-    <changeSet id="Malawi_CONFIG_2021071319425" author="Venkatesh, Supriya">
+    <changeSet id="Malawi_CONFIG_2021071419425" author="Venkatesh, Supriya">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
                 select count(*) from concept_answer ca
@@ -322,12 +320,12 @@
                 ("On ART","Not on ART")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
-                cn.concept_id IN (select concept_id from concept_name where name = "PH, HIV Status , HIV(+)");
+                cn.concept_id IN (select concept_id from concept_name where name = "PH, HIV Status, HIV(Plus)");
             </sqlCheck>
         </preConditions>
         <comment>Adding Answers to HIV Status , HIV(+)</comment>
         <sql>
-            select concept_id into @concept_id from concept_name where name = "PH, HIV Status , HIV(+)" and
+            select concept_id into @concept_id from concept_name where name = "PH, HIV Status, HIV(Plus)" and
             concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
@@ -340,7 +338,7 @@
 
 
 
-    <changeSet id="Malawi_CONFIG_2021071319465" author="SreeKalyan">
+    <changeSet id="Malawi_CONFIG_2021071319465" author="Venkatesh, Supriya">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
                 select count(*) from concept_answer ca
@@ -584,7 +582,7 @@
 
 
 
-    <changeSet id="Malawi_CONFIG_2021071320110" author="SreeKalyan">
+    <changeSet id="Malawi_CONFIG_2021071320110" author="Venkatesh, Supriya">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
                 select count(*) from concept_answer ca

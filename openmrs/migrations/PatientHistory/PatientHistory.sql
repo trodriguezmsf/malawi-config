@@ -78,7 +78,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Feeling dow
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Feeling nervous, anxious or on edge","Feeling nervous, anxious or on edge","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Fertility intentions","Fertility intentions","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, HIV Status","HIV Status","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, HIV Status , HIV(+)","HIV Status , HIV(+)","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, HIV Status, HIV(Plus)","HIV Status , HIV(+)","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, HIV Status, Unknown","HIV Status, Unknown","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, HPV","HPV","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Histopathology","Histopathology","Coded","Misc",false);
