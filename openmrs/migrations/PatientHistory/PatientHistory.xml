@@ -51,7 +51,7 @@
         </sql>
     </changeSet>
 
-    <changeSet id="Malawi_CONFIG_2021071319238" author="Venkatesh, Supriya">
+    <changeSet id="Malawi_CONFIG_2021071419238" author="Venkatesh, Supriya">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
                 select count(*) from concept_answer ca
@@ -77,7 +77,7 @@
             select concept_id into @child3_concept_id from concept_name where name ="Other" and concept_name_type = 'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
-            call add_concept_answer(@concept_id, @child2_concept_id, 3);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
         </sql>
     </changeSet>
 

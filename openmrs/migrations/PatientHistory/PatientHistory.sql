@@ -13,21 +13,21 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Date of pos
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, HIV status, HIV(-)","HIV status, HIV(-)","Date","Misc",false);
 
 #Text Concepts
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Allergie, other","Allergie, other","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Allergies, Other","Allergies, Other","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Cancer, comment","Cancer, comment","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Cardiovascular, disease of heart","Cardiovascular, disease of heart","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Current ART regimen, other","Current ART regimen, other","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Cardiovascular, Disease of heart","Cardiovascular, Disease of heart","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Current ART regimen, Other","Current ART regimen, Other","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Current medication, including herbal/traditional remedies","Current medication, including herbal/traditional remedies","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Diabetes, comment","Diabetes, comment","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Hypertension, comment","Hypertension, comment","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Mastercard ID","Mastercard ID","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Other health issues","Other health issues","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Pregnancy/Delivery complications","Pregnancy/Delivery complications","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Psychiatric, other (specify)","Psychiatric, other (specify)","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Reason for referral, other","Reason for referral, other","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Referring Facility, other","Referring Facility, other","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Surgery, major Accident (specify)","Surgery, major Accident (specify)","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Surgery, other (specify)","Surgery, other (specify)","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Psychiatric, Other (specify)","Psychiatric, Other (specify)","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Reason for referral, Other","Reason for referral, Other","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Referring Facility, Other","Referring Facility, Other","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Surgery, Major Accident (specify)","Surgery, Major Accident (specify)","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Surgery, Other (specify)","Surgery, Other (specify)","Text","Misc",false);
 
 #Add Numeric Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Caesareans","Caesareans","Numeric","Misc",false);
@@ -39,7 +39,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, VIA screeni
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Vaginal deliveries","Vaginal deliveries","Numeric","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Alcohol, units/day","Alcohol, units/day","Numeric","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Smoking, Cigarettes/day","Smoking, Cigarettes/day","Numeric","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Total","Total","Numeric","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Total","Total","Numeric","Computed",false);
 
 #Add concepts to concept Numeric Table
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
@@ -57,9 +57,9 @@ VALUES ((select concept_id from concept_name where name = "PH, VIA screening ID"
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
 VALUES ((select concept_id from concept_name where name = "PH, Vaginal deliveries" and concept_name_type = 'FULLY_SPECIFIED'  and locale = 'en'  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "PH, Alcohol, units/day" and concept_name_type = 'FULLY_SPECIFIED'  and locale = 'en'  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"units/day",1,1);
+VALUES ((select concept_id from concept_name where name = "PH, Alcohol, units/day" and concept_name_type = 'FULLY_SPECIFIED'  and locale = 'en'  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "PH, Smoking, Cigarettes/day" and concept_name_type = 'FULLY_SPECIFIED'  and locale = 'en'  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"Cigarattes/day",1,1);
+VALUES ((select concept_id from concept_name where name = "PH, Smoking, Cigarettes/day" and concept_name_type = 'FULLY_SPECIFIED'  and locale = 'en'  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
 VALUES ((select concept_id from concept_name where name = "PH, Total" and concept_name_type = 'FULLY_SPECIFIED'  and locale = 'en'  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
 
