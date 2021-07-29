@@ -676,4 +676,5 @@
     </changeSet>
 
     <include file="PatientHistory/PatientHistory.xml"/>
+    <include file="InitialConsultation/InitialConsultation.xml"/>
 </databaseChangeLog>
