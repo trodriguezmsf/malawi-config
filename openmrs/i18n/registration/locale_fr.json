@@ -18,5 +18,6 @@
   "REGISTRATION_SMOKING_INJURIOUS_TEXT_KEY" : "Fumeurs , le tabac à chiquer peut causer le cancer , les maladies cardiaques et asthama .",
   "REGISTRATION_INSTITUTE_NAME_TEXT_KEY": "Jan Swasthya Sahyog",
   "REGISTRATION_INSTITUTE_REGISTERED_TEXT_KEY": "(Enregistré)",
-  "REGISTRATION_INSTITUTE_ADDRESS": "Ganiyari , District - Bilaspur"
+  "REGISTRATION_INSTITUTE_ADDRESS": "Ganiyari , District - Bilaspur",
+  "REGISTRATION_HOUSE_NUMBER_STREET_TEXT_ERROR_KEY":"Numéro de maison, rue ne doit pas dépasser 50 caractères"
 }
