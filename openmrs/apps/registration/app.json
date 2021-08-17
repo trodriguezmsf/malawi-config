@@ -183,11 +183,11 @@
                 "CV/HP Phone 1" : {"pattern": "[0-9\\s]{0,15}", "errorMessage" : "Should not exceed 15 characters and should contain only numbers"},
                 "Latitude" : {"pattern":  "^[-+]?([1-8]?\\d\\.(\\d){1,4}|90\\.(0){1,4})$", "errorMessage":  "Should be 4 decimal value with in the range -90 to 90"},
                 "Longitude" : {"pattern":  "^[-+]?(180(\\.0{1,4})?|((1[0-7]\\d)|([1-9]?\\d))(\\.\\d{1,4})?)$", "errorMessage":  "Should be 4 decimal value with in the range -180 to 180"},
-                "SEC, Emergency Contact, comments": {"pattern" : "^[a-zA-Z'_ ]{1,50}$.*$", "errorMessage" : "Should not exceed 50 characters"},
-                "PEC, Emergency Contact, comments": {"pattern" : "^[a-zA-Z'_ ]{1,50}$.*$", "errorMessage" : "Should not exceed 50 characters"},
-                "Patient Contact Type 2, Patient Contact, comments": {"pattern" : "^[a-zA-Z'_ ]{1,50}$.*$", "errorMessage" : "Should not exceed 50 characters"},
-                "Patient Contact Type 1, Patient Contact, comments": {"pattern" : "^[a-zA-Z'_ ]{1,50}$.*$", "errorMessage" : "Should not exceed 50 characters"},
-                "Spoken Language Other": {"pattern" : "^[a-zA-Z'_ ]{1,50}$.*$", "errorMessage" : "Should not exceed 50 characters"}
+                "SEC, Emergency Contact, comments": {"pattern" : "^.{1,50}$", "errorMessage" : "Should not exceed 50 characters"},
+                "PEC, Emergency Contact, comments": {"pattern" : "^.{1,50}$", "errorMessage" : "Should not exceed 50 characters"},
+                "Patient Contact Type 2, Patient Contact, comments": {"pattern" : "^.{1,50}$", "errorMessage" : "Should not exceed 50 characters"},
+                "Patient Contact Type 1, Patient Contact, comments": {"pattern" : "^.{1,50}$", "errorMessage" : "Should not exceed 50 characters"},
+                "Spoken Language Other": {"pattern" : "^.{1,50}$", "errorMessage" : "Should not exceed 50 characters"}
             },
                 "patientSearchResults": {
                     "address": {
