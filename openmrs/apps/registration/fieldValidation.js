@@ -16,5 +16,11 @@ Bahmni.Registration.customValidator = {
             return value.match(/^\w+$/);
         },
         errorMessage: "REGISTRATION_CASTE_TEXT_ERROR_KEY"
+    },
+    "address.country": {
+        method: function (name, value, personAttributeDetails) {
+            return value && value.length <= 50;
+        },
+        errorMessage: "REGISTRATION_HOUSE_NUMBER_STREET_TEXT_ERROR_KEY"
     }
 };

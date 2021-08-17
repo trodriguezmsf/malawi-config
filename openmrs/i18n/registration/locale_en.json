@@ -31,6 +31,6 @@
   "REGISTRATION_TITLE_ADDITIONAL_CONTACT_TYPE2": "Patient Contact Type 2",
   "REGISTRATION_TITLE_PRIMARY_EMERGENCY_CONTACT": "Primary  Emergency Contact",
   "REGISTRATION_TITLE_SECONDARY_EMERGENCY_CONTACT": "Secondary Emergency Contact",
-  "REGISTRATION_TITLE_CVHPC": "Community Volunteer/Healthcare Professional Contact"
-
+  "REGISTRATION_TITLE_CVHPC": "Community Volunteer/Healthcare Professional Contact",
+  "REGISTRATION_HOUSE_NUMBER_STREET_TEXT_ERROR_KEY":"House number, street should not exceed 50 characters"
 }
