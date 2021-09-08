@@ -63,7 +63,8 @@
           "Post Operative Anaesthesia Note",
           "Complications",
           "Vital Signs",
-          "Patient History"
+          "Patient History",
+          "Leep"
         ],
         "translationKey": "DASHBOARD_TITLE_EDIT_FORMS"
       },
