@@ -20,7 +20,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Suspected HSIL with lesion > 75% of cervical surface", "Suspected HSIL with lesion extending into cervical canal", "Suspected HSIL with SCJ not fully visualized", "Other indication")
+                ("Suspected HSIL with lesion > 75 percentage of cervical surface", "Suspected HSIL with lesion extending into cervical canal", "Suspected HSIL with SCJ not fully visualized", "Other indication")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "LP, LEEP Indication");
@@ -34,7 +34,7 @@
             set @child2_concept_id = 0;
             set @child3_concept_id = 0;
             set @child4_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Suspected HSIL with lesion > 75% of cervical surface" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Suspected HSIL with lesion > 75 percentage of cervical surface" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child2_concept_id from concept_name where name ="Suspected HSIL with lesion extending into cervical canal" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child3_concept_id from concept_name where name ="Suspected HSIL with SCJ not fully visualized" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child4_concept_id from concept_name where name ="Other indication" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
@@ -134,7 +134,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Lidocaine 2%/Epinephrine", "Lidocaine 1%")
+                ("Lidocaine 2 percentage/Epinephrine", "Lidocaine 1 percentage")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "LP, Drug injected for local anaesthesia");
@@ -146,8 +146,8 @@
             concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Lidocaine 2%/Epinephrine" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Lidocaine 1%" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Lidocaine 2 percentage/Epinephrine" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Lidocaine 1 percentage" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
         </sql>
@@ -447,15 +447,15 @@
             call CREATE_REFERENCE_MAPPING_MSFOCP("LP, Appointment needed (weeks)","MSFF195");
             call CREATE_REFERENCE_MAPPING_MSFOCP("LP, Other indication, specify","MSFF68");
             call CREATE_REFERENCE_MAPPING_MSFOCP("Single Pass","MSFF152");
-            call CREATE_REFERENCE_MAPPING_MSFOCP("Lidocaine 1%","MSFF150");
-            call CREATE_REFERENCE_MAPPING_MSFOCP("Lidocaine 2%/Epinephrine","MSFF149");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Lidocaine 1 percentage","MSFF150");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Lidocaine 2 percentage/Epinephrine","MSFF149");
             call CREATE_REFERENCE_MAPPING_MSFOCP("LP, Localisation of passes","MSFF156");
             call CREATE_REFERENCE_MAPPING_MSFOCP("LP, Drug injected for local anaesthesia","MSFF151");
             call CREATE_REFERENCE_MAPPING_MSFOCP("Ibuprofen 400 mg tid for three days","MSFF159");
             call CREATE_REFERENCE_MAPPING_MSFOCP("LP, Administered dose","MSFF69");
             call CREATE_REFERENCE_MAPPING_MSFOCP("Other indication","MSFF67");
             call CREATE_REFERENCE_MAPPING_MSFOCP("LP, Prescription, other","MSFF194");
-            call CREATE_REFERENCE_MAPPING_MSFOCP("Suspected HSIL with lesion > 75% of cervical surface","MSFF184");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Suspected HSIL with lesion > 75 percentage of cervical surface","MSFF184");
             call CREATE_REFERENCE_MAPPING_MSFOCP("LP, Warning signs explained","MSFF160");
         </sql>
     </changeSet>

@@ -54,13 +54,13 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Full extent of 
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Suture of cervix","Suture of cervix","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Suspected HSIL with SCJ not fully visualized","Suspected HSIL with SCJ not fully visualized","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Other indication","Other indication","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Lidocaine 2%/Epinephrine","Lidocaine 2%/Epinephrine","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Lidocaine 2 percentage/Epinephrine","Lidocaine 2%/Epinephrine","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Suspected HSIL with lesion extending into cervical canal","Suspected HSIL with lesion extending into cervical canal","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Lesion extending into the endocervical canal","Lesion extending into the endocervical canal","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Ball electrode","Ball electrode","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Suspected HSIL with lesion > 75% of cervical surface","Suspected HSIL with lesion > 75% of cervical surface","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Suspected HSIL with lesion > 75 percentage of cervical surface","Suspected HSIL with lesion > 75% of cervical surface","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Monsel's solution","Monsel's solution","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Lidocaine 1%","Lidocaine 1%","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Lidocaine 1 percentage","Lidocaine 1%","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Multiple Pass","Multiple Pass","N/A","Misc",false);
 
 #Add Help Text to Concepts
