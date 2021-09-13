@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="MALAWI_CONFIG_20210913110328320" author="Tarun">
+        <comment>Adding Concepts for Colposcopy Form</comment>
+        <sqlFile path="Colposcopy/Colposcopy.sql"/>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_20210913110329543" author="Tarun">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Normal", "Vulva condyloma acuminata", "Vaginal condyloma acuminata", "Other")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "CS, Vulva and Vagina examination");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to CS, Vulva and Vagina examination</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "CS, Vulva and Vagina examination" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Normal" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Vulva condyloma acuminata" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Vaginal condyloma acuminata" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Other" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_20210913110329900" author="Tarun">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Fully visualised", "Not fully visualised")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "CS, Cervix visibility");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to CS, Cervix visibility</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "CS, Cervix visibility" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Fully visualised" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Not fully visualised" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_20210913110330264" author="Tarun">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Aceto-white areas", "Other lesion")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "CS, Colposcopic findings");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to CS, Colposcopic findings</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "CS, Colposcopic findings" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Aceto-white areas" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Other lesion" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_20210913110331266" author="Tarun">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Normal", "Benign", "LSIL", "HSIL", "Cancer")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "CS, Colposcopy conclusion");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to CS, Colposcopy conclusion</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "CS, Colposcopy conclusion" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Normal" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Benign" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="LSIL" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="HSIL" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Cancer" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_20210913110331834" author="Tarun">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Biopsy of cervix", "Biopsy of endocervix", "Curettage of endocervix")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "CS, Procedure performed");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to CS, Procedure performed</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "CS, Procedure performed" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Biopsy of cervix" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Biopsy of endocervix" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Curettage of endocervix" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_20210913110332164" author="Tarun">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("At lesion", "At SCJ")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "CS, Biopsy localisation");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to CS, Biopsy localisation</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "CS, Biopsy localisation" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="At lesion" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="At SCJ" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_20210913110332177" author="Tarun">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_reference_term
+                where code in
+                ("161826","160430","116030")
+                and retired = 0
+                and concept_source_id = (
+                select concept_source_id from concept_reference_source where name = "CEIL"  and retired =0
+                );
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding CEIL codes to concepts</comment>
+        <sql>
+            SELECT concept_source_id INTO @source_id FROM concept_reference_source where name = "CEIL";
+
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"161826",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"160430",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"116030",@source_id,uuid(),now());
+            call CREATE_REFERENCE_MAPPING_CEIL("CS, Reason for visit","160430");
+            call CREATE_REFERENCE_MAPPING_CEIL("CS, Date/time recorded","162869");
+            call CREATE_REFERENCE_MAPPING_CEIL("Cancer","116030");
+            call CREATE_REFERENCE_MAPPING_CEIL("Biopsy of cervix","161826");
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_20210913110332189" author="Tarun">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_reference_term
+                where code in
+                ("MSFF139","MSFF138","MSFF64","MSFF65","MSFF66","MSFF60","MSFF61","MSFF62","MSFF63","MSFF161","MSFF162","MSFF163","MSFF164","MSFF165","MSFF142","MSFF143","MSFF140","MSFF141","MSFF144","MSFF145","MSFF53","MSFF52","MSFF55","MSFF54","MSFF57","MSFF56","MSFF59","MSFF58","MSFF183")
+                and retired = 0
+                and concept_source_id = (
+                select concept_source_id from concept_reference_source where name = "MSFOCP"  and retired =0
+                );
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding MSFOCP codes to concepts</comment>
+        <sql>
+            SELECT concept_source_id INTO @source_id FROM concept_reference_source where name = "MSFOCP";
+
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF139",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF138",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF64",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF65",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF66",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF60",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF61",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF62",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF63",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF161",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF162",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF163",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF164",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF165",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF142",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF143",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF140",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF141",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF144",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF145",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF53",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF52",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF55",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF54",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF57",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF56",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF59",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF58",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF183",@source_id,uuid(),now());
+            call CREATE_REFERENCE_MAPPING_MSFOCP("CS, Cervix visibility","MSFF165");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("CS, Colposcopic findings","MSFF62");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Aceto-white areas","MSFF54");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("LSIL","MSFF140");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("CS, Colposcopy conclusion","MSFF63");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("CS, Aceto-white areas, Description","MSFF58");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("At lesion","MSFF144");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Vaginal condyloma acuminata","MSFF139");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("At SCJ","MSFF145");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("CS, Vulva and Vagina examination","MSFF52");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("CS, Aceto-white areas, Size","MSFF56");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("HSIL","MSFF141");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Benign","MSFF142");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("CS, Other lesion, Description","MSFF61");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("CS, Biopsy localisation","MSFF65");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("CS, Other lesion, Size","MSFF59");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Not fully visualised","MSFF164");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("CS, Other lesion, Localisation","MSFF60");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Vulva condyloma acuminata","MSFF138");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("CS, Aceto-white areas, Localisation","MSFF57");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Other lesion","MSFF55");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Curettage of endocervix","MSFF162");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("CS, Date of appointment for results","MSFF183");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Biopsy of endocervix","MSFF161");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Fully visualised","MSFF163");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("CS, Procedure performed","MSFF64");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("CS, Biopsies, Number of specimen(s) collected","MSFF143");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("CS, Other/Description Vulva and Vagina examination, comment","MSFF53");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("CS, Biopsy localisation detail","MSFF66");
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

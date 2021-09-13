@@ -696,4 +696,5 @@
     <include file="PatientHistory/PatientHistory.xml"/>
     <include file="Leep/Leep.xml"/>
     <include file="VitalSigns/VitalSigns.xml"/>
+    <include file="Colposcopy/Colposcopy.xml"/>
 </databaseChangeLog>
