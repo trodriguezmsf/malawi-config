@@ -1048,7 +1048,7 @@
             <sqlCheck expectedResult="0">
                 select count(*) from concept_reference_term
                 where code in
-                ("MSFF112","MSFF181","MSFFF103","MSFFF34","MSFF115","MSFFF31","MSFF114","MSFF173","MSFF172","MSFF171","MSFF170","MSFF177","MSFF131","MSFF175","MSFF174","MSFF179","MSFF178","MSFF119","MSFFF120","MSFFF108","MSFFF125","MSFFF124","MSFF135","MSFF111","MSFFF102","MSFF113","MSFF134","MSFF133","MSFF132","MSFF117","MSFF130","MSFF42","MSFF40","MSFF41","MSFF197","MSFF118","MSFF106","MSFF107","MSFF104","MSFF105","MSFF180","MSFF167","MSFF169","MSFF110","MSFF109","MSFF128","MSFF129","MSFF37","MSFF116","MSFF121","MSFF122","MSFF123","MSFF51","MSFF50","MSFF96","MSFF33","MSFF32","MSFF136","MSFF137","MSFF182","MSFF126","MSFF39","MSFF38","MSFF176","MSF36","MW32")
+                ("MSFF112","MSFF181","MSFF103","MSFF34","MSFF115","MSFF31","MSFF114","MSFF173","MSFF172","MSFF171","MSFF170","MSFF177","MSFF131","MSFF175","MSFF174","MSFF179","MSFF178","MSFF119","MSFF120","MSFF108","MSFF125","MSFF124","MSFF135","MSFF111","MSFF102","MSFF113","MSFF134","MSFF133","MSFF132","MSFF117","MSFF130","MSFF42","MSFF40","MSFF41","MSFF197","MSFF118","MSFF106","MSFF107","MSFF104","MSFF105","MSFF180","MSFF167","MSFF169","MSFF110","MSFF109","MSFF128","MSFF129","MSFF37","MSFF116","MSFF121","MSFF122","MSFF123","MSFF51","MSFF50","MSFF96","MSFF33","MSFF32","MSFF136","MSFF137","MSFF182","MSFF126","MSFF39","MSFF38","MSFF176","MSFF36","MW32")
                 and retired = 0
                 and concept_source_id = (
                 select concept_source_id from concept_reference_source where name = "MSFOCP"  and retired =0
@@ -1061,10 +1061,10 @@
 
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF112",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF181",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFFF103",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFFF34",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF103",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF34",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF115",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFFF31",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF31",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF114",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF173",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF172",@source_id,uuid(),now());
@@ -1077,13 +1077,13 @@
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF179",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF178",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF119",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFFF120",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFFF108",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFFF125",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFFF124",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF120",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF108",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF125",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF124",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF135",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF111",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFFF102",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF102",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF113",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF134",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF133",@source_id,uuid(),now());
@@ -1123,16 +1123,16 @@
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF39",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF38",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF176",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSF36",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF36",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MW32",@source_id,uuid(),now());
             call CREATE_REFERENCE_MAPPING_MSFOCP("PH, History of allergy","MSFF50");
             call CREATE_REFERENCE_MAPPING_MSFOCP("PH, Past medical history, comment","MSFF32");
-            call CREATE_REFERENCE_MAPPING_MSFOCP("PH, VIA screening ID","MSFFF31");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("PH, VIA screening ID","MSFF31");
             call CREATE_REFERENCE_MAPPING_MSFOCP("PH, Fertility intentions","MSFF167");
             call CREATE_REFERENCE_MAPPING_MSFOCP("PH, Feeling nervous, anxious or on edge","MSFF130");
             call CREATE_REFERENCE_MAPPING_MSFOCP("Supportive services","MSFF109");
             call CREATE_REFERENCE_MAPPING_MSFOCP("Other pathology","MSFF197");
-            call CREATE_REFERENCE_MAPPING_MSFOCP("PH, Initial Health Education received","MSFFF125");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("PH, Initial Health Education received","MSFF125");
             call CREATE_REFERENCE_MAPPING_MSFOCP("PH, Current medication, including herbal/traditional remedies","MSFF128");
             call CREATE_REFERENCE_MAPPING_MSFOCP("3=Nearly every day","MSFF42");
             call CREATE_REFERENCE_MAPPING_MSFOCP("Namitambo","MSFF118");
@@ -1144,7 +1144,7 @@
             call CREATE_REFERENCE_MAPPING_MSFOCP("PH, PHQ-4 score","MSFF96");
             call CREATE_REFERENCE_MAPPING_MSFOCP("1=Several days","MSFF40");
             call CREATE_REFERENCE_MAPPING_MSFOCP("Cancer treatment","MSFF104");
-            call CREATE_REFERENCE_MAPPING_MSFOCP("PH, MSF VIA centre name","MSFFF120");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("PH, MSF VIA centre name","MSFF120");
             call CREATE_REFERENCE_MAPPING_MSFOCP("AZT 300 / 3TC 150 + DTG 50","MSFF178");
             call CREATE_REFERENCE_MAPPING_MSFOCP("Limbe","MSFF112");
             call CREATE_REFERENCE_MAPPING_MSFOCP("Cancer suspect","MSFF105");
@@ -1155,7 +1155,7 @@
             call CREATE_REFERENCE_MAPPING_MSFOCP("DREAM","MSFF122");
             call CREATE_REFERENCE_MAPPING_MSFOCP("ABC 600 / 3TC 300 + DTG 50","MSFF179");
             call CREATE_REFERENCE_MAPPING_MSFOCP("MSF VIA centre","MSFF110");
-            call CREATE_REFERENCE_MAPPING_MSFOCP("PH, Oncology ID","MSFFF102");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("PH, Oncology ID","MSFF102");
             call CREATE_REFERENCE_MAPPING_MSFOCP("PH, Alcohol consumption","MSFF137");
             call CREATE_REFERENCE_MAPPING_MSFOCP("PH, Little interest or pleasure in doing things","MSFF132");
             call CREATE_REFERENCE_MAPPING_MSFOCP("AZT 300 / 3TC 150 + LPV/ 200/50","MSFF175");
@@ -1163,15 +1163,15 @@
             call CREATE_REFERENCE_MAPPING_MSFOCP("2=More than half the days","MSFF41");
             call CREATE_REFERENCE_MAPPING_MSFOCP("Occasional","MSFF134");
             call CREATE_REFERENCE_MAPPING_MSFOCP("ABC 600 / 3TC 300 + LPV/r 200/50","MSFF173");
-            call CREATE_REFERENCE_MAPPING_MSFOCP("PH, Mastercard ID","MSFFF103");
-            call CREATE_REFERENCE_MAPPING_MSFOCP("PH, Referring facility, other","MSFFF34");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("PH, Mastercard ID","MSFF103");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("PH, Referring facility, other","MSFF34");
             call CREATE_REFERENCE_MAPPING_MSFOCP("EGPAF","MSFF121");
             call CREATE_REFERENCE_MAPPING_MSFOCP("0=Not at all","MSFF39");
             call CREATE_REFERENCE_MAPPING_MSFOCP("AZT 300 / 3TC 150 + ATV/r 300/100","MSFF172");
             call CREATE_REFERENCE_MAPPING_MSFOCP("TDF 300 / 3TC 300 + LPV/r 200/50","MSFF174");
             call CREATE_REFERENCE_MAPPING_MSFOCP("NGO's VIA centre","MSFF111");
             call CREATE_REFERENCE_MAPPING_MSFOCP("PH, Not being able to stop or control worrying","MSFF131");
-            call CREATE_REFERENCE_MAPPING_MSFOCP("PH, NGO's VIA centre name","MSFFF124");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("PH, NGO's VIA centre name","MSFF124");
             call CREATE_REFERENCE_MAPPING_MSFOCP("Milepa","MSFF116");
             call CREATE_REFERENCE_MAPPING_MSFOCP("Ndirande","MSFF114");
             call CREATE_REFERENCE_MAPPING_MSFOCP("PH, HPV status","MSFF182");
@@ -1183,13 +1183,13 @@
             call CREATE_REFERENCE_MAPPING_MSFOCP("Positive VIA results","MSFF106");
             call CREATE_REFERENCE_MAPPING_MSFOCP("ABC 600 / 3TC 300 + EFV 600","MSFF181");
             call CREATE_REFERENCE_MAPPING_MSFOCP("CHAI","MSFF123");
-            call CREATE_REFERENCE_MAPPING_MSFOCP("PH, Covid-19 test result","MSFFF108");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("PH, Covid-19 test result","MSFF108");
             call CREATE_REFERENCE_MAPPING_MSFOCP("PH, Feeling down, depressed, or hopeless","MSFF133");
             call CREATE_REFERENCE_MAPPING_MSFOCP("TDF 300 / 3TC 300 + ATV/r 300/100","MSFF171");
             call CREATE_REFERENCE_MAPPING_MSFOCP("AZT 300 / 3TC 150 + EFV 600","MSFF169");
             call CREATE_REFERENCE_MAPPING_MSFOCP("PH, History of obstetrical complication","MSFF33");
             call CREATE_REFERENCE_MAPPING_MSFOCP("DRV 600 + r 100 + DTG 50 (+/- NRTIs)","MSFF176");
-            call CREATE_REFERENCE_MAPPING_MSFOCP("PH, History of surgery","MSF36");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("PH, History of surgery","MSFF36");
             call CREATE_REFERENCE_MAPPING_MSFOCP("PH, Referral for testing","MW32");
         </sql>
     </changeSet>

@@ -5,8 +5,8 @@ set @count = 0;
 set @uuid = NULL;
 
 #Add Parent Concepts
-#Add Date Concepts
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"VS, Date/Time recorded","Date/Time recorded","Date","Misc",false);
+#Add Datetime Concepts
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"VS, Date/Time recorded","Date/Time recorded","Datetime","Misc",false);
 
 #Add Coded Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"VS, Level of consciousness","AVPU (awake, voice, pain, unresponsive)","Coded","Misc",false);
