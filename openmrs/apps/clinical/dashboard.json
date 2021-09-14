@@ -64,7 +64,8 @@
           "Complications",
           "Vital Signs",
           "Patient History",
-          "Leep"
+          "Leep",
+          "Colposcopy"
         ],
         "translationKey": "DASHBOARD_TITLE_EDIT_FORMS"
       },
