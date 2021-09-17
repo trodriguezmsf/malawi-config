@@ -4,19 +4,10 @@
     "displayByDefault": true,
     "maxRecentlyViewedPatients": 10,
     "sections": {
-      "patientInformation": {
-        "translationKey": "DASHBOARD_TITLE_PATIENT_INFORMATION_KEY",
-        "type": "patientInformation",
-        "displayOrder": 1,
-        "ageLimit": 100,
-        "patientAttributes": [
-        ],
-        "addressFields": [
-          "address1",
-          "address2",
-          "cityVillage",
-          "countyDistrict"
-        ]
+      "programs": {
+        "translationKey": "DASHBOARD_TITLE_PROGRAMS_KEY",
+        "type": "programs",
+        "displayOrder": 1
       },
       "navigationLinksControl": {
         "translationKey": "DASHBOARD_TITLE_NAVIGATION_LINKS_CONTROL_KEY",
@@ -34,199 +25,153 @@
           }
         ]
       },
-      "programs": {
-        "translationKey": "DASHBOARD_TITLE_PROGRAMS_KEY",
-        "type": "programs",
-        "displayOrder": 1
+      "Patient History": {
+        "translationKey": "CLINICALSUMMARY_PATIENT_HISTORY",
+        "isObservation": true,
+        "displayOrder": 3,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "scope":"latest",
+          "conceptNames": [
+            "PH, Oncology ID",
+            "PH, Reason for referral",
+            "PH, Source of initial patient referral",
+            "PH, Informed consent",
+            "PH, Initial Health Education received",
+            "PH, Result of HIV test",
+            "PH, HPV status",
+            "PH, Histopathology/ Last histopathology exam result",
+            "PH, History of allergy"
+          ]
+        },
+        "expandedViewConfig": {
+          "scope":"latest",
+          "conceptNames": [
+            "PH, Oncology ID",
+            "PH, Reason for referral",
+            "PH, Source of initial patient referral",
+            "PH, Informed consent",
+            "PH, Initial Health Education received",
+            "PH, Result of HIV test",
+            "PH, HPV status",
+            "PH, Histopathology/ Last histopathology exam result ",
+            "PH, History of allergy"
+          ],
+          "isEditable": true,
+          "showDetailsButton": true,
+          "pivotTable": {
+          }
+        }
       },
       "visits": {
         "translationKey": "DASHBOARD_TITLE_VISITS_KEY",
         "type": "visits",
-        "displayOrder": 3,
+        "displayOrder": 4,
         "dashboardConfig": {
           "title": null,
           "maximumNoOfVisits": 8,
           "groupByVisits": true
         }
       },
-      "validationForms-2.0": {
-        "type": "formsV2",
-        "displayOrder": 2,
+      "Vital Signs": {
+        "translationKey": "CLINICALSUMMARY_VITAL_SIGNS",
+        "isObservation": true,
+        "displayOrder": 5,
         "dashboardConfig": {
-          "title": null,
-          "maximumNoOfVisits": 5
+          "showDetailsButton": true,
+          "isEditable": true,
+          "numberOfEncounters": 6,
+          "conceptNames": [
+            "VS, Date/Time recorded",
+            "VS, Weight",
+            "VS, Body mass index",
+            "VS, Level of consciousness",
+            "VS, Respiratory rate",
+            "VS, Arterial blood oxygen saturation",
+            "VS, Pulse",
+            "VS, Systolic blood pressure",
+            "VS, Diastolic blood pressure",
+            "VS, Temperature"
+          ],
+          "pivotTable": {
+          }
         },
-        "formGroup": [
-          "Operative Report",
-          "Surgeon PreOperative Assessment",
-          "Initial Anaesthesia Assessment",
-          "Post Operative Anaesthesia Note",
-          "Complications",
-          "Vital Signs",
-          "Patient History",
-          "Leep",
-          "Colposcopy",
-          "Laboratory"
-        ],
-        "translationKey": "DASHBOARD_TITLE_EDIT_FORMS"
+        "expandedViewConfig": {
+          "numberOfEncounters": 6,
+          "conceptNames": [
+            "VS, Date/Time recorded",
+            "VS, Weight",
+            "VS, Body mass index",
+            "VS, Level of consciousness",
+            "VS, Respiratory rate",
+            "VS, Arterial blood oxygen saturation",
+            "VS, Pulse",
+            "VS, Systolic blood pressure",
+            "VS, Diastolic blood pressure",
+            "VS, Temperature"
+          ],
+          "isEditable": true,
+          "showDetailsButton": true,
+          "pivotTable": {
+          }
+        }
       },
       "Radiology": {
         "type": "radiology",
         "groupByVisits": true,
         "translationKey": "DASHBOARD_TITLE_RADIOLOGY_KEY",
-        "displayOrder": 7,
+        "displayOrder": 6,
         "config": {
           "translationKey": "DASHBOARD_TITLE_RADIOLOGY_KEY"
         }
       },
-      "Operative Report": {
-        "translationKey": "CLINICALSUMMARY_OPERATIVE_REPORT",
-        "type": "vitals",
-        "isObservation": true,
-        "displayOrder": 8,
+      "validationForms-2.0": {
+        "type": "formsV2",
+        "displayOrder": 7,
         "dashboardConfig": {
-          "showDetailsButton": true,
-          "isEditable": true,
-          "conceptNames": [
-            "OR, Time started",
-            "OR, Time ended",
-            "OR, Surgeon",
-            "OR, Surgeon assistant",
-            "OR, Second surgeon assistant",
-            "OR, Scrub nurse",
-            "OR, Anaesthetist",
-            "OR, Anaesthesia technician",
-            "OR, Type of Anaesthesia used",
-            "OR, Topography of the tumor",
-            "OR, Topography of the tumor, other",
-            "OR, Morphology",
-            "OR, Morphology, other",
-            "OR, FIGO Staging",
-            "OR, Operation performed in the OT",
-            "OR, Lymphovascular space invasion",
-            "OR, Surgical Approach",
-            "OR, Surgical Approach, other",
-            "OR, Abdominal exploration",
-            "OR, Metastasis, comments",
-            "OR, Lymph node dissection",
-            "OR, Ovaries Removal",
-            "OR, Ureters",
-            "OR, Bladder",
-            "OR, Rectum",
-            "OR, Lateral parametrium",
-            "OR, Ventral parametrium",
-            "OR, Type of hysterectomy on right side",
-            "OR, Type of hysterectomy on left side",
-            "OR, Name of procedure",
-            "OR, Indication",
-            "OR, Findings and technique",
-            "OR, Operation details",
-            "OR, Exact gauze count",
-            "OR, Does the patient have a drain?",
-            "OR, Specimen sent to lab",
-            "OR, Estimated blood loss",
-            "OR, Blood transfusion",
-            "OR, Number of units",
-            "OR, Image Upload",
-            "OR, Video Upload"
-          ],
-          "numberOfVisits": 2
+          "maximumNoOfVisits": 5
         },
-        "expandedViewConfig": {
-          "conceptNames": [
-            "OR, Time started",
-            "OR, Time ended",
-            "OR, Surgeon",
-            "OR, Surgeon assistant",
-            "OR, Second surgeon assistant",
-            "OR, Scrub nurse",
-            "OR, Anaesthetist",
-            "OR, Anaesthesia technician",
-            "OR, Type of Anaesthesia used",
-            "OR, Topography of the tumor",
-            "OR, Topography of the tumor, other",
-            "OR, Morphology",
-            "OR, Morphology, other",
-            "OR, FIGO Staging",
-            "OR, Operation performed in the OT",
-            "OR, Lymphovascular space invasion",
-            "OR, Surgical Approach",
-            "OR, Surgical Approach, other",
-            "OR, Abdominal exploration",
-            "OR, Metastasis, comments",
-            "OR, Lymph node dissection",
-            "OR, Ovaries Removal",
-            "OR, Ureters",
-            "OR, Bladder",
-            "OR, Rectum",
-            "OR, Lateral parametrium",
-            "OR, Ventral parametrium",
-            "OR, Type of hysterectomy on right side",
-            "OR, Type of hysterectomy on left side",
-            "OR, Name of procedure",
-            "OR, Indication",
-            "OR, Findings and technique",
-            "OR, Operation details",
-            "OR, Exact gauze count",
-            "OR, Does the patient have a drain?",
-            "OR, Specimen sent to lab",
-            "OR, Estimated blood loss",
-            "OR, Blood transfusion",
-            "OR, Number of units",
-            "OR, Image Upload",
-            "OR, Video Upload"
-          ],
-          "isEditable": true,
-          "showDetailsButton": true,
-          "numberOfVisits": 2,
-          "pivotTable": {
-          }
-        }
+        "formGroup": [
+          "Vital Signs",
+          "Patient History",
+          "LEEP",
+          "Colposcopy",
+          "Laboratory"
+        ],
+        "translationKey": "DASHBOARD_TITLE_EDIT_FORMS"
       }
-
     }
   },
   "trends": {
         "translationKey": "DASHBOARD_TAB_TRENDS_KEY",
         "maxRecentlyViewedPatients": 10,
         "sections": {
-          "Weight": {
-            "type": "observationGraph",
-            "translationKey": "DASHBOARD_TITLE_WEIGHT",
-            "config": {
-              "yAxisConcepts": [
-                "VS, Weight"
-              ],
-              "xAxisConcept": "observationDateTime",
-              "numberOfVisits": 1
-            },
-            "displayOrder": 9
-          },
           "Respiratory Rate": {
             "type": "observationGraph",
             "translationKey": "DASHBOARD_TITLE_RR",
             "config": {
               "yAxisConcepts": [
-                "VS, Respiratory Rate"
+                "VS, Respiratory rate"
               ],
               "xAxisConcept": "observationDateTime",
               "numberOfVisits": 1
             },
-            "displayOrder": 10
+            "displayOrder": 1
           },
           "SpO2": {
             "type": "observationGraph",
             "translationKey": "DASHBOARD_TITLE_SpO2",
             "config": {
               "yAxisConcepts": [
-                "VS, SpO2"
+                "VS, Arterial blood oxygen saturation"
               ],
               "xAxisConcept": "observationDateTime",
               "numberOfVisits": 1
             },
-            "displayOrder": 11
+            "displayOrder": 2
           },
-          "observationGraph": {
+          "Pulse": {
             "type": "observationGraph",
             "translationKey": "DASHBOARD_TITLE_PULSE",
             "config": {
@@ -236,9 +181,9 @@
               "xAxisConcept": "observationDateTime",
               "numberOfVisits": 1
             },
-            "displayOrder": 12
+            "displayOrder": 3
           },
-          "Blood pressure": {
+          "Blood Pressure": {
             "type": "observationGraph",
             "translationKey": "DASHBOARD_TITLE_BLOOD_PRESSURE",
             "config": {
@@ -249,7 +194,7 @@
               "xAxisConcept": "observationDateTime",
               "numberOfVisits": 1
             },
-            "displayOrder": 13
+            "displayOrder": 4
           },
           "Temperature": {
             "type": "observationGraph",
@@ -261,19 +206,31 @@
               "xAxisConcept": "observationDateTime",
               "numberOfVisits": 1
             },
-            "displayOrder": 14
+            "displayOrder": 5
           },
-          "Pain": {
+          "Weight": {
             "type": "observationGraph",
-            "translationKey": "DASHBOARD_TITLE_PAIN",
+            "translationKey": "DASHBOARD_TITLE_WEIGHT",
             "config": {
               "yAxisConcepts": [
-                "VS, Pain"
+                "VS, Weight"
               ],
               "xAxisConcept": "observationDateTime",
               "numberOfVisits": 1
             },
-            "displayOrder": 15
+            "displayOrder": 6
+          },
+          "BMI": {
+            "type": "observationGraph",
+            "translationKey": "DASHBOARD_TITLE_BMI",
+            "config": {
+              "yAxisConcepts": [
+                "VS, Body mass index"
+              ],
+              "xAxisConcept": "observationDateTime",
+              "numberOfVisits": 1
+            },
+            "displayOrder": 7
           }
         }
       }
