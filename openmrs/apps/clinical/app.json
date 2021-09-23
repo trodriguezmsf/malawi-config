@@ -68,14 +68,12 @@
             },
             "patientContext": {
         		"programAttributes": [
-            		"Id_Number",
-            		"Doctor",
-            		"Stage"
         		],
         		"personAttributes": [
-            		"class",
-            		"caste"
+            		"Patient Contact Type 1, Phone",
+            		"Primary Emergency Contact, Phone 1"
         		],
+
         		"additionalPatientIdentifiers": [
            			"National ID"
        		],
