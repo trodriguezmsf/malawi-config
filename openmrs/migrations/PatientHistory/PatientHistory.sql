@@ -6,7 +6,7 @@ set @uuid = NULL;
 
 #Add Parent Concepts
 #Add Date Concepts
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Date Recorded","Date Recorded","Date","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Date/time recorded","Date recorded","Date","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, HIV test date","HIV test date","Date","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Last CD4 count date","Last CD4 count date","Date","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Date test resulted","Date of positive result","Date","Misc",false);
