@@ -860,7 +860,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Intravenous drug user", "Marijuana use", "Crack cocaine use", "Other")
+                ("Intravenous drug user", "Marijuana use", "Crack cocaine use", "Other", "None")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "PH, Illicit drug use, specified");
@@ -874,14 +874,17 @@
             set @child2_concept_id = 0;
             set @child3_concept_id = 0;
             set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
             select concept_id into @child1_concept_id from concept_name where name ="Intravenous drug user" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child2_concept_id from concept_name where name ="Marijuana use" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child3_concept_id from concept_name where name ="Crack cocaine use" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child4_concept_id from concept_name where name ="Other" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="None" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
             call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
         </sql>
     </changeSet>
 
@@ -1026,7 +1029,7 @@
             call CREATE_REFERENCE_MAPPING_CEIL("Living with partner","1060");
             call CREATE_REFERENCE_MAPPING_CEIL("PH, Last CD4 count date","160103");
             call CREATE_REFERENCE_MAPPING_CEIL("Anaemia","121629");
-            call CREATE_REFERENCE_MAPPING_CEIL("PH, Date/time recorded","162869");
+            call CREATE_REFERENCE_MAPPING_CEIL("PH, Date Recorded","162869");
             call CREATE_REFERENCE_MAPPING_CEIL("Mental disorder","134337");
             call CREATE_REFERENCE_MAPPING_CEIL("PH, Date test resulted","162079");
             call CREATE_REFERENCE_MAPPING_CEIL("PH, Last CD4 count","5497");

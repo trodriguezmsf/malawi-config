@@ -6,13 +6,15 @@ set @uuid = NULL;
 
 #Add Parent Concepts
 #Add Date Concepts
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Date/time recorded","Date recorded","Date","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Date Recorded","Date Recorded","Date","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, HIV test date","HIV test date","Date","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Last CD4 count date","Last CD4 count date","Date","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Date test resulted","Date of positive result","Date","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Date of last histopathology exam result","Date of last histopathology exam result","Date","Misc",false);
 
 #Add Text Concepts
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, VIA screening ID","VIA screening ID","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Oncology ID","Oncology ID","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Mastercard ID","Mastercard ID","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Reason for referral, text","Reason for referral, text","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Referring facility, other","Referring facility, other","Text","Misc",false);
@@ -53,8 +55,6 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Alcohol con
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Illicit drug use, specified","Illicit drug use, specified","Coded","Misc",false);
 
 #Add Numeric Concepts
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, VIA screening ID","VIA screening ID","Numeric","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Oncology ID","Oncology ID","Numeric","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Last CD4 count","Last CD4 count","Numeric","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Gravida","Number of previous pregnancies (including current if applicable)","Numeric","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Number of vaginal deliveries","Number of vaginal deliveries","Numeric","Misc",false);
@@ -66,10 +66,6 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Litres of a
 
 #Add Numeric concepts to concept Numeric Table
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "PH, VIA screening ID" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
-INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "PH, Oncology ID" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
-INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
 VALUES ((select concept_id from concept_name where name = "PH, Last CD4 count" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
 VALUES ((select concept_id from concept_name where name = "PH, Gravida" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
@@ -80,7 +76,7 @@ VALUES ((select concept_id from concept_name where name = "PH, Number of previou
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
 VALUES ((select concept_id from concept_name where name = "PH, Total number of living children" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "PH, PHQ-4 score" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
+VALUES ((select concept_id from concept_name where name = "PH, PHQ-4 score" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,6,NULL,NULL,0,"",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
 VALUES ((select concept_id from concept_name where name = "PH, Number of tobacco cigarettes smoked per day" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
