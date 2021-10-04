@@ -4,15 +4,21 @@
     "displayByDefault": true,
     "maxRecentlyViewedPatients": 10,
     "sections": {
-      "programs": {
-        "translationKey": "DASHBOARD_TITLE_PROGRAMS_KEY",
-        "type": "programs",
-        "displayOrder": 1
+      "patientInformation":{
+        "translationKey":"DASHBOARD_TITLE_PATIENT_INFORMATION_KEY",
+        "type":"patientInformation",
+        "displayOrder":0,
+        "ageLimit":100,
+        "patientAttributes":[
+        ],
+        "addressFields":[
+          "address3"
+        ]
       },
       "navigationLinksControl": {
         "translationKey": "DASHBOARD_TITLE_NAVIGATION_LINKS_CONTROL_KEY",
         "type": "navigationLinksControl",
-        "displayOrder": 2,
+        "displayOrder": 1,
         "showLinks": [
           "home",
           "registration",
@@ -25,6 +31,11 @@
           }
         ]
       },
+      "programs": {
+        "translationKey": "DASHBOARD_TITLE_PROGRAMS_KEY",
+        "type": "programs",
+        "displayOrder": 2
+      },
       "Patient History": {
         "translationKey": "CLINICALSUMMARY_PATIENT_HISTORY",
         "isObservation": true,
@@ -34,6 +45,7 @@
           "isEditable": true,
           "scope":"latest",
           "conceptNames": [
+            "PH, VIA screening ID",
             "PH, Oncology ID",
             "PH, Reason for referral",
             "PH, Source of initial patient referral",
@@ -56,6 +68,7 @@
         "expandedViewConfig": {
           "scope":"latest",
           "conceptNames": [
+            "PH, VIA screening ID",
             "PH, Oncology ID",
             "PH, Reason for referral",
             "PH, Source of initial patient referral",
