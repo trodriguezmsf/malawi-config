@@ -371,7 +371,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Positive", "Negative", "Not done")
+                ("Growth", "No Growth", "Not done")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "LB, Blood culture result");
@@ -384,8 +384,8 @@
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
             set @child3_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Positive" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Negative" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Growth" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="No Growth" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child3_concept_id from concept_name where name ="Not done" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
@@ -473,7 +473,7 @@
             <sqlCheck expectedResult="0">
                 select count(*) from concept_reference_term
                 where code in
-                ("699","161440","161441","161442","1874","1875","692","690","160912","696","21","694","790","160523","163680","654","653","1017","159734","1230","1231","785","300","1132","856","701","162096","1042","161134","1643","848","1364","1365","1362","1363","165398","1369")
+                ("699","161440","161441","161442","1874","1875","692","690","160912","696","21","694","790","160523","163680","654","653","1017","159734","1230","1231","785","300","1132","856","701","162096","1042","161134","1643","848","1364","1365","1362","1363","165398","1369","165390","165392")
                 and retired = 0
                 and concept_source_id = (
                 select concept_source_id from concept_reference_source where name = "CEIL"  and retired =0
@@ -521,6 +521,8 @@
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1363",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"165398",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1369",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"165390",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"165392",@source_id,uuid(),now());
             call CREATE_REFERENCE_MAPPING_CEIL("LB, Urine leukocyte esterase test","161441");
             call CREATE_REFERENCE_MAPPING_CEIL("LB, Creatinine clearance test","161134");
             call CREATE_REFERENCE_MAPPING_CEIL("LB, Urine nitrite test","161440");
@@ -530,7 +532,7 @@
             call CREATE_REFERENCE_MAPPING_CEIL("1+","1362");
             call CREATE_REFERENCE_MAPPING_CEIL("LB, Fasting blood glucose measurement","160912");
             call CREATE_REFERENCE_MAPPING_CEIL("B+","694");
-            call CREATE_REFERENCE_MAPPING_CEIL("LB, Date/time recorded","162869");
+            call CREATE_REFERENCE_MAPPING_CEIL("LB, Date recorded","162869");
             call CREATE_REFERENCE_MAPPING_CEIL("LB, Blood typing","300");
             call CREATE_REFERENCE_MAPPING_CEIL("LB, Urine protein (dip stick)","1875");
             call CREATE_REFERENCE_MAPPING_CEIL("LB, Glucose measurement, qualitative, urine","159734");
@@ -561,6 +563,8 @@
             call CREATE_REFERENCE_MAPPING_CEIL("LB, Rapid test for malaria","1643");
             call CREATE_REFERENCE_MAPPING_CEIL("LB, CD4 count","5497");
             call CREATE_REFERENCE_MAPPING_CEIL("LB, Serum sodium","1132");
+            call CREATE_REFERENCE_MAPPING_CEIL("Growth","165390");
+            call CREATE_REFERENCE_MAPPING_CEIL("No Growth","165392");
         </sql>
     </changeSet>
 
