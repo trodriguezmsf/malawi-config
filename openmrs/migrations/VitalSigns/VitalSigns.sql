@@ -12,6 +12,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"VS, Date/Time r
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"VS, Level of consciousness","AVPU (awake, voice, pain, unresponsive)","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"VS, Bowel continence status","Bowel continence status","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"VS, Appearance of stool","Appearance of stool","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"VS, Flatulence","Flatulence","Coded","Misc",false);
 
 #Add Numeric Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"VS, Frequency of observation","Frequency of observation","Numeric","Misc",false);
@@ -27,7 +28,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"VS, Pulse","Hea
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"VS, Systolic blood pressure","Systolic blood pressure","Numeric","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"VS, Diastolic blood pressure","Diastolic blood pressure","Numeric","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"VS, Temperature","Temperature","Numeric","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"VS, Total urine output over 24 hours","Total urine output over 24 hours","Numeric","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"VS, Total urine output","Total urine output","Numeric","Misc",false);
 
 #Add Numeric concepts to concept Numeric Table
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
@@ -57,7 +58,7 @@ VALUES ((select concept_id from concept_name where name = "VS, Diastolic blood p
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
 VALUES ((select concept_id from concept_name where name = "VS, Temperature" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,38,NULL,NULL,36,"C",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "VS, Total urine output over 24 hours" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"ml",1,1);
+VALUES ((select concept_id from concept_name where name = "VS, Total urine output" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"ml",1,1);
 
 #Add Child Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Responds to voice","Responds to voice","N/A","Misc",false);
@@ -99,5 +100,5 @@ INSERT INTO concept_description (concept_id,description,locale,creator,date_crea
 VALUES ((select concept_id from concept_name where name = "VS, Temperature" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0),
 "Normal Range: 36-38","en",1,now(),NULL,NULL,uuid());
 INSERT INTO concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)
-VALUES ((select concept_id from concept_name where name = "VS, Total urine output over 24 hours" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0),
+VALUES ((select concept_id from concept_name where name = "VS, Total urine output" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0),
 "Urine output since last documented.","en",1,now(),NULL,NULL,uuid());

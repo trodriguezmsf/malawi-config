@@ -44,10 +44,6 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Past medica
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Fertility intentions","Fertility intentions","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, HPV status","HPV status","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Histopathology/ Last histopathology exam result","Histopathology/ Last histopathology exam result","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Feeling nervous, anxious or on edge","Feeling nervous, anxious or on edge","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Not being able to stop or control worrying","Not being able to stop or control worrying","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Little interest or pleasure in doing things","Little interest or pleasure in doing things","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Feeling down, depressed, or hopeless","Feeling down, depressed, or hopeless","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Family history diagnosis","Family history diagnosis","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, History of allergy","History of allergy","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Smoker","Smoker","Coded","Misc",false);
@@ -60,7 +56,6 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Gravida","N
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Number of vaginal deliveries","Number of vaginal deliveries","Numeric","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Number of previous caesarean sections","Number of previous caesarean sections","Numeric","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Total number of living children","Total number of living children","Numeric","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, PHQ-4 score","PHQ-4 score","Numeric","Computed",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Number of tobacco cigarettes smoked per day","Number of tobacco cigarettes smoked per day","Numeric","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, Litres of alcohol consumed per day","Litres of alcohol consumed per day","Numeric","Misc",false);
 
@@ -76,8 +71,6 @@ VALUES ((select concept_id from concept_name where name = "PH, Number of previou
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
 VALUES ((select concept_id from concept_name where name = "PH, Total number of living children" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "PH, PHQ-4 score" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,6,NULL,NULL,0,"",1,1);
-INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
 VALUES ((select concept_id from concept_name where name = "PH, Number of tobacco cigarettes smoked per day" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
 VALUES ((select concept_id from concept_name where name = "PH, Litres of alcohol consumed per day" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
@@ -85,7 +78,6 @@ VALUES ((select concept_id from concept_name where name = "PH, Litres of alcohol
 #Add Child Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"AZT 300 / 3TC 150 + EFV 600","AZT 300 / 3TC 150 + EFV 600","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"AZT 300 / 3TC 150 + ATV/r 300/100","AZT 300 / 3TC 150 + ATV/r 300/100","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3=Nearly every day","3=Nearly every day","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Divorced","Divorced","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Epilepsy","Epilepsy","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Drugs","Drugs","N/A","Misc",false);
@@ -96,9 +88,6 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Married","Marri
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Marijuana use","Marijuana use","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Crack cocaine use","Crack cocaine use","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"TDF 300 / 3TC 300 / DTG 50","TDF 300 / 3TC 300 / DTG 50","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"1=Several days","1=Several days","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"0=Not at all","0=Not at all","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"2=More than half the days","2=More than half the days","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Milepa","Milepa","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"AZT 300 / 3TC 150 + DTG 50","AZT 300 / 3TC 150 + DTG 50","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"TDF 300 / 3TC 300 + LPV/r 200/50","TDF 300 / 3TC 300 + LPV/r 200/50","N/A","Misc",false);
@@ -171,7 +160,4 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Approved","Appr
 #Add Help Text to Concepts
 INSERT INTO concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)
 VALUES ((select concept_id from concept_name where name = "PH, Informed consent" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0),
-"Documentation that someone has given informed consent.  Select yes, if the consent form was signed by the patient","en",1,now(),NULL,NULL,uuid());
-INSERT INTO concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)
-VALUES ((select concept_id from concept_name where name = "PH, PHQ-4 score" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0),
-"if > 6 = refer to the counsellor","en",1,now(),NULL,NULL,uuid());
+"Informed consent on data collection and use. Select yes, if the consent form was signed by the patient","en",1,now(),NULL,NULL,uuid());

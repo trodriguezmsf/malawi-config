@@ -594,138 +594,6 @@
         </sql>
     </changeSet>
 
-    <changeSet id="MALAWI_CONFIG_20210901094849122" author="Tarun">
-        <preConditions onFail="MARK_RAN">
-            <sqlCheck expectedResult="0">
-                select count(*) from concept_answer ca
-                join
-                concept_name cn
-                on ca.concept_id = cn.concept_id
-                where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("0=Not at all", "1=Several days", "2=More than half the days", "3=Nearly every day")
-                and concept_name_type = "FULLY_SPECIFIED")
-                AND
-                cn.concept_id IN (select concept_id from concept_name where name = "PH, Feeling nervous, anxious or on edge");
-            </sqlCheck>
-        </preConditions>
-        <comment>Adding Answers to PH, Feeling nervous, anxious or on edge</comment>
-        <sql>
-            select concept_id into @concept_id from concept_name where name = "PH, Feeling nervous, anxious or on edge" and
-            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
-            set @child1_concept_id = 0;
-            set @child2_concept_id = 0;
-            set @child3_concept_id = 0;
-            set @child4_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="0=Not at all" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="1=Several days" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="2=More than half the days" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="3=Nearly every day" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            call add_concept_answer(@concept_id, @child1_concept_id, 1);
-            call add_concept_answer(@concept_id, @child2_concept_id, 2);
-            call add_concept_answer(@concept_id, @child3_concept_id, 3);
-            call add_concept_answer(@concept_id, @child4_concept_id, 4);
-        </sql>
-    </changeSet>
-
-    <changeSet id="MALAWI_CONFIG_20210901094850068" author="Tarun">
-        <preConditions onFail="MARK_RAN">
-            <sqlCheck expectedResult="0">
-                select count(*) from concept_answer ca
-                join
-                concept_name cn
-                on ca.concept_id = cn.concept_id
-                where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("0=Not at all", "1=Several days", "2=More than half the days", "3=Nearly every day")
-                and concept_name_type = "FULLY_SPECIFIED")
-                AND
-                cn.concept_id IN (select concept_id from concept_name where name = "PH, Not being able to stop or control worrying");
-            </sqlCheck>
-        </preConditions>
-        <comment>Adding Answers to PH, Not being able to stop or control worrying</comment>
-        <sql>
-            select concept_id into @concept_id from concept_name where name = "PH, Not being able to stop or control worrying" and
-            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
-            set @child1_concept_id = 0;
-            set @child2_concept_id = 0;
-            set @child3_concept_id = 0;
-            set @child4_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="0=Not at all" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="1=Several days" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="2=More than half the days" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="3=Nearly every day" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            call add_concept_answer(@concept_id, @child1_concept_id, 1);
-            call add_concept_answer(@concept_id, @child2_concept_id, 2);
-            call add_concept_answer(@concept_id, @child3_concept_id, 3);
-            call add_concept_answer(@concept_id, @child4_concept_id, 4);
-        </sql>
-    </changeSet>
-
-    <changeSet id="MALAWI_CONFIG_20210901094850801" author="Tarun">
-        <preConditions onFail="MARK_RAN">
-            <sqlCheck expectedResult="0">
-                select count(*) from concept_answer ca
-                join
-                concept_name cn
-                on ca.concept_id = cn.concept_id
-                where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("0=Not at all", "1=Several days", "2=More than half the days", "3=Nearly every day")
-                and concept_name_type = "FULLY_SPECIFIED")
-                AND
-                cn.concept_id IN (select concept_id from concept_name where name = "PH, Little interest or pleasure in doing things");
-            </sqlCheck>
-        </preConditions>
-        <comment>Adding Answers to PH, Little interest or pleasure in doing things</comment>
-        <sql>
-            select concept_id into @concept_id from concept_name where name = "PH, Little interest or pleasure in doing things" and
-            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
-            set @child1_concept_id = 0;
-            set @child2_concept_id = 0;
-            set @child3_concept_id = 0;
-            set @child4_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="0=Not at all" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="1=Several days" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="2=More than half the days" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="3=Nearly every day" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            call add_concept_answer(@concept_id, @child1_concept_id, 1);
-            call add_concept_answer(@concept_id, @child2_concept_id, 2);
-            call add_concept_answer(@concept_id, @child3_concept_id, 3);
-            call add_concept_answer(@concept_id, @child4_concept_id, 4);
-        </sql>
-    </changeSet>
-
-    <changeSet id="MALAWI_CONFIG_20210901094851643" author="Tarun">
-        <preConditions onFail="MARK_RAN">
-            <sqlCheck expectedResult="0">
-                select count(*) from concept_answer ca
-                join
-                concept_name cn
-                on ca.concept_id = cn.concept_id
-                where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("0=Not at all", "1=Several days", "2=More than half the days", "3=Nearly every day")
-                and concept_name_type = "FULLY_SPECIFIED")
-                AND
-                cn.concept_id IN (select concept_id from concept_name where name = "PH, Feeling down, depressed, or hopeless");
-            </sqlCheck>
-        </preConditions>
-        <comment>Adding Answers to PH, Feeling down, depressed, or hopeless</comment>
-        <sql>
-            select concept_id into @concept_id from concept_name where name = "PH, Feeling down, depressed, or hopeless" and
-            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
-            set @child1_concept_id = 0;
-            set @child2_concept_id = 0;
-            set @child3_concept_id = 0;
-            set @child4_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="0=Not at all" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="1=Several days" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="2=More than half the days" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="3=Nearly every day" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            call add_concept_answer(@concept_id, @child1_concept_id, 1);
-            call add_concept_answer(@concept_id, @child2_concept_id, 2);
-            call add_concept_answer(@concept_id, @child3_concept_id, 3);
-            call add_concept_answer(@concept_id, @child4_concept_id, 4);
-        </sql>
-    </changeSet>
-
     <changeSet id="MALAWI_CONFIG_20210901094852437" author="Tarun">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
@@ -1051,7 +919,7 @@
             <sqlCheck expectedResult="0">
                 select count(*) from concept_reference_term
                 where code in
-                ("MSFF112","MSFF181","MSFF103","MSFF34","MSFF115","MSFF31","MSFF114","MSFF173","MSFF172","MSFF171","MSFF170","MSFF177","MSFF131","MSFF175","MSFF174","MSFF179","MSFF178","MSFF119","MSFF120","MSFF108","MSFF125","MSFF124","MSFF135","MSFF111","MSFF102","MSFF113","MSFF134","MSFF133","MSFF132","MSFF117","MSFF130","MSFF42","MSFF40","MSFF41","MSFF197","MSFF118","MSFF106","MSFF107","MSFF104","MSFF105","MSFF180","MSFF167","MSFF169","MSFF110","MSFF109","MSFF128","MSFF129","MSFF37","MSFF116","MSFF121","MSFF122","MSFF123","MSFF51","MSFF50","MSFF96","MSFF33","MSFF32","MSFF136","MSFF137","MSFF182","MSFF126","MSFF39","MSFF38","MSFF176","MSFF36","MW32")
+                ("MSFF112","MSFF181","MSFF103","MSFF34","MSFF115","MSFF31","MSFF114","MSFF173","MSFF172","MSFF171","MSFF170","MSFF177","MSFF175","MSFF174","MSFF179","MSFF178","MSFF119","MSFF120","MSFF108","MSFF125","MSFF124","MSFF135","MSFF111","MSFF102","MSFF113","MSFF134","MSFF117","MSFF197","MSFF118","MSFF106","MSFF107","MSFF104","MSFF105","MSFF180","MSFF167","MSFF169","MSFF110","MSFF109","MSFF128","MSFF129","MSFF37","MSFF116","MSFF121","MSFF122","MSFF123","MSFF51","MSFF50","MSFF33","MSFF32","MSFF136","MSFF137","MSFF182","MSFF126","MSFF38","MSFF176","MSFF36","MW32")
                 and retired = 0
                 and concept_source_id = (
                 select concept_source_id from concept_reference_source where name = "MSFOCP"  and retired =0
@@ -1074,7 +942,6 @@
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF171",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF170",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF177",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF131",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF175",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF174",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF179",@source_id,uuid(),now());
@@ -1089,13 +956,7 @@
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF102",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF113",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF134",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF133",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF132",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF117",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF130",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF42",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF40",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF41",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF197",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF118",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF106",@source_id,uuid(),now());
@@ -1116,14 +977,12 @@
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF123",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF51",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF50",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF96",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF33",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF32",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF136",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF137",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF182",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF126",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF39",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF38",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF176",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF36",@source_id,uuid(),now());
@@ -1132,20 +991,16 @@
             call CREATE_REFERENCE_MAPPING_MSFOCP("PH, Past medical history, comment","MSFF32");
             call CREATE_REFERENCE_MAPPING_MSFOCP("PH, VIA screening ID","MSFF31");
             call CREATE_REFERENCE_MAPPING_MSFOCP("PH, Fertility intentions","MSFF167");
-            call CREATE_REFERENCE_MAPPING_MSFOCP("PH, Feeling nervous, anxious or on edge","MSFF130");
             call CREATE_REFERENCE_MAPPING_MSFOCP("Supportive services","MSFF109");
             call CREATE_REFERENCE_MAPPING_MSFOCP("Other pathology","MSFF197");
             call CREATE_REFERENCE_MAPPING_MSFOCP("PH, Initial Health Education received","MSFF125");
             call CREATE_REFERENCE_MAPPING_MSFOCP("PH, Current medication, including herbal/traditional remedies","MSFF128");
-            call CREATE_REFERENCE_MAPPING_MSFOCP("3=Nearly every day","MSFF42");
             call CREATE_REFERENCE_MAPPING_MSFOCP("Namitambo","MSFF118");
             call CREATE_REFERENCE_MAPPING_MSFOCP("PH, Date of last histopathology exam result","MSFF38");
             call CREATE_REFERENCE_MAPPING_MSFOCP("Cancer follow-up","MSFF107");
             call CREATE_REFERENCE_MAPPING_MSFOCP("ABC 600 / 3TC 300 + RAL 400","MSFF180");
             call CREATE_REFERENCE_MAPPING_MSFOCP("Bangwe","MSFF113");
             call CREATE_REFERENCE_MAPPING_MSFOCP("TDF 300 / 3TC 300 / DTG 50","MSFF177");
-            call CREATE_REFERENCE_MAPPING_MSFOCP("PH, PHQ-4 score","MSFF96");
-            call CREATE_REFERENCE_MAPPING_MSFOCP("1=Several days","MSFF40");
             call CREATE_REFERENCE_MAPPING_MSFOCP("Cancer treatment","MSFF104");
             call CREATE_REFERENCE_MAPPING_MSFOCP("PH, MSF VIA centre name","MSFF120");
             call CREATE_REFERENCE_MAPPING_MSFOCP("AZT 300 / 3TC 150 + DTG 50","MSFF178");
@@ -1160,20 +1015,16 @@
             call CREATE_REFERENCE_MAPPING_MSFOCP("MSF VIA centre","MSFF110");
             call CREATE_REFERENCE_MAPPING_MSFOCP("PH, Oncology ID","MSFF102");
             call CREATE_REFERENCE_MAPPING_MSFOCP("PH, Alcohol consumption","MSFF137");
-            call CREATE_REFERENCE_MAPPING_MSFOCP("PH, Little interest or pleasure in doing things","MSFF132");
             call CREATE_REFERENCE_MAPPING_MSFOCP("AZT 300 / 3TC 150 + LPV/ 200/50","MSFF175");
             call CREATE_REFERENCE_MAPPING_MSFOCP("DHO/Chiradzulu","MSFF119");
-            call CREATE_REFERENCE_MAPPING_MSFOCP("2=More than half the days","MSFF41");
             call CREATE_REFERENCE_MAPPING_MSFOCP("Occasional","MSFF134");
             call CREATE_REFERENCE_MAPPING_MSFOCP("ABC 600 / 3TC 300 + LPV/r 200/50","MSFF173");
             call CREATE_REFERENCE_MAPPING_MSFOCP("PH, Mastercard ID","MSFF103");
             call CREATE_REFERENCE_MAPPING_MSFOCP("PH, Referring facility, other","MSFF34");
             call CREATE_REFERENCE_MAPPING_MSFOCP("EGPAF","MSFF121");
-            call CREATE_REFERENCE_MAPPING_MSFOCP("0=Not at all","MSFF39");
             call CREATE_REFERENCE_MAPPING_MSFOCP("AZT 300 / 3TC 150 + ATV/r 300/100","MSFF172");
             call CREATE_REFERENCE_MAPPING_MSFOCP("TDF 300 / 3TC 300 + LPV/r 200/50","MSFF174");
             call CREATE_REFERENCE_MAPPING_MSFOCP("NGO's VIA centre","MSFF111");
-            call CREATE_REFERENCE_MAPPING_MSFOCP("PH, Not being able to stop or control worrying","MSFF131");
             call CREATE_REFERENCE_MAPPING_MSFOCP("PH, NGO's VIA centre name","MSFF124");
             call CREATE_REFERENCE_MAPPING_MSFOCP("Milepa","MSFF116");
             call CREATE_REFERENCE_MAPPING_MSFOCP("Ndirande","MSFF114");
@@ -1187,7 +1038,6 @@
             call CREATE_REFERENCE_MAPPING_MSFOCP("ABC 600 / 3TC 300 + EFV 600","MSFF181");
             call CREATE_REFERENCE_MAPPING_MSFOCP("CHAI","MSFF123");
             call CREATE_REFERENCE_MAPPING_MSFOCP("PH, Covid-19 test result","MSFF108");
-            call CREATE_REFERENCE_MAPPING_MSFOCP("PH, Feeling down, depressed, or hopeless","MSFF133");
             call CREATE_REFERENCE_MAPPING_MSFOCP("TDF 300 / 3TC 300 + ATV/r 300/100","MSFF171");
             call CREATE_REFERENCE_MAPPING_MSFOCP("AZT 300 / 3TC 150 + EFV 600","MSFF169");
             call CREATE_REFERENCE_MAPPING_MSFOCP("PH, History of obstetrical complication","MSFF33");

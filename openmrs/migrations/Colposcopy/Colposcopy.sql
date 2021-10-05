@@ -9,7 +9,7 @@ set @uuid = NULL;
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CS, Date/time recorded","Date recorded","Date","Misc",false);
 
 #Add Text Concepts
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CS, Reason for visit","Reason for visit","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CS, Reason for presentation","Reason for presentation","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CS, Other/Description Vulva and Vagina examination, comment","Other/Description Vulva & Vagina examination, comment","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CS, Aceto-white areas, Localisation","Aceto-white areas, Localisation","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CS, Aceto-white areas, Description","Aceto-white areas, Description","Text","Misc",false);
@@ -23,7 +23,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CS, Other lesio
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CS, Vulva and Vagina examination","Vulva & Vagina examination","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CS, Cervix visibility","Cervix visibility","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CS, Colposcopic findings","Colposcopic findings","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CS, Colposcopy conclusion","Colposcopy conclusion","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CS, Colposcopy impression","Colposcopy impression","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CS, Procedure performed","Procedure performed","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CS, Biopsy localisation","Biopsy localisation","Coded","Misc",false);
 
@@ -45,7 +45,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Biopsy of cervi
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Curettage of endocervix","Curettage of endocervix","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Vaginal condyloma acuminata","Vaginal condyloma acuminata","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Biopsy of endocervix","Biopsy of endocervix","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Cancer","Cancer","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Cancer suspected","Cancer suspected","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Not fully visualised","Not fully visualised","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Benign","Benign","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"LSIL","LSIL","N/A","Misc",false);

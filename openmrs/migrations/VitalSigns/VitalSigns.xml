@@ -111,12 +111,39 @@
         </sql>
     </changeSet>
 
+    <changeSet id="MALAWI_CONFIG_20210909103542673" author="Tarun">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Yes", "No")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "VS, Flatulence");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to VS, Flatulence</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "VS, Flatulence" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Yes" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="No" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
     <changeSet id="MALAWI_CONFIG_20210909103542681" author="Tarun">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
                 select count(*) from concept_reference_term
                 where code in
-                ("163638","160282","162660","980","163637","5090","164518","5092","162513","1115","1342","163640","1175","996","159508","5089","5088","117208","165986","5087","5086","5085","5242","162643","135603","162645","162644","163636 ")
+                ("163638","160282","162660","980","163637","5090","164518","5092","162513","1115","1342","163640","1175","996","159508","5089","5088","117208","165986","5087","5086","5085","5242","162643","135603","162645","162644","163636","140938")
                 and retired = 0
                 and concept_source_id = (
                 select concept_source_id from concept_reference_source where name = "CEIL"  and retired =0
@@ -154,10 +181,11 @@
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"135603",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"162645",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"162644",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"163636 ",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"163636",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"140938 ",@source_id,uuid(),now());
             call CREATE_REFERENCE_MAPPING_CEIL("VS, Body mass index","1342");
             call CREATE_REFERENCE_MAPPING_CEIL("VS, Respiratory rate","5242");
-            call CREATE_REFERENCE_MAPPING_CEIL("Pasty stool","163636 ");
+            call CREATE_REFERENCE_MAPPING_CEIL("Pasty stool","163636");
             call CREATE_REFERENCE_MAPPING_CEIL("Not applicable","1175");
             call CREATE_REFERENCE_MAPPING_CEIL("Staring or unresponsive to stimuli","159508");
             call CREATE_REFERENCE_MAPPING_CEIL("Solid Stool","163638");
@@ -181,9 +209,10 @@
             call CREATE_REFERENCE_MAPPING_CEIL("VS, Date/Time recorded","162869");
             call CREATE_REFERENCE_MAPPING_CEIL("VS, Systolic blood pressure","5085");
             call CREATE_REFERENCE_MAPPING_CEIL("VS, Arterial blood oxygen saturation","5092");
-            call CREATE_REFERENCE_MAPPING_CEIL("VS, Total urine output over 24 hours","162660");
+            call CREATE_REFERENCE_MAPPING_CEIL("VS, Total urine output","162660");
             call CREATE_REFERENCE_MAPPING_CEIL("VS, Capillary filling time","162513");
             call CREATE_REFERENCE_MAPPING_CEIL("Loose stool","135603");
+            call CREATE_REFERENCE_MAPPING_CEIL("Flatulence","140938");
         </sql>
     </changeSet>
 

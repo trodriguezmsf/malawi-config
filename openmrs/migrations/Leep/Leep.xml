@@ -384,7 +384,7 @@
             <sqlCheck expectedResult="0">
                 select count(*) from concept_reference_term
                 where code in
-                ("MSFF159","MSFF158","MSFF155","MSFF154","MSFF157","MSFF156","MSFF151","MSFF150","MSFF153","MSFF152","MSFF191","MSFF190","MSFF193","MSFF192","MSFF195","MSFF194","MSFF196","MSFF68","MSFF67","MSFF69","MSFF160","MSFF148","MSFF149","MSFF146","MSFF147","MSFF188","MSFF189","MSFF186","MSFF187","MSFF184","MSFF185")
+                ("MSFF159","MSFF158","MSFF155","MSFF154","MSFF157","MSFF156","MSFF151","MSFF150","MSFF153","MSFF152","MSFF191","MSFF190","MSFF193","MSFF192","MSFF195","MSFF194","MSFF68","MSFF67","MSFF69","MSFF160","MSFF148","MSFF149","MSFF146","MSFF147","MSFF188","MSFF189","MSFF186","MSFF187","MSFF184","MSFF185")
                 and retired = 0
                 and concept_source_id = (
                 select concept_source_id from concept_reference_source where name = "MSFOCP"  and retired =0
@@ -411,7 +411,6 @@
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF192",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF195",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF194",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF196",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF68",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF67",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF69",@source_id,uuid(),now());
@@ -433,7 +432,6 @@
             call CREATE_REFERENCE_MAPPING_MSFOCP("LP, Instructions","MSFF192");
             call CREATE_REFERENCE_MAPPING_MSFOCP("LP, Prescription","MSFF193");
             call CREATE_REFERENCE_MAPPING_MSFOCP("LP, Type of pass","MSFF154");
-            call CREATE_REFERENCE_MAPPING_MSFOCP("LP, Date of next appointment","MSFF196");
             call CREATE_REFERENCE_MAPPING_MSFOCP("Suspected HSIL with SCJ not fully visualized","MSFF186");
             call CREATE_REFERENCE_MAPPING_MSFOCP("Ball electrode","MSFF188");
             call CREATE_REFERENCE_MAPPING_MSFOCP("Full extent of lesion seen","MSFF146");

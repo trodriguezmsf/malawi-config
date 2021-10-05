@@ -7,7 +7,6 @@ set @uuid = NULL;
 #Add Parent Concepts
 #Add Date Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"LP, Date/time recorded","Date recorded","Date","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"LP, Date of next appointment","Date of next appointment","Date","Misc",false);
 
 #Add Text Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"LP, Other indication, specify","Other indication, specify","Text","Misc",false);

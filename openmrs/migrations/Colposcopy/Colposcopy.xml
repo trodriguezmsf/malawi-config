@@ -107,15 +107,15 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Normal", "Benign", "LSIL", "HSIL", "Cancer")
+                ("Normal", "Benign", "LSIL", "HSIL", "Cancer suspected")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
-                cn.concept_id IN (select concept_id from concept_name where name = "CS, Colposcopy conclusion");
+                cn.concept_id IN (select concept_id from concept_name where name = "CS, Colposcopy impression");
             </sqlCheck>
         </preConditions>
-        <comment>Adding Answers to CS, Colposcopy conclusion</comment>
+        <comment>Adding Answers to CS, Colposcopy impression</comment>
         <sql>
-            select concept_id into @concept_id from concept_name where name = "CS, Colposcopy conclusion" and
+            select concept_id into @concept_id from concept_name where name = "CS, Colposcopy impression" and
             concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
@@ -126,7 +126,7 @@
             select concept_id into @child2_concept_id from concept_name where name ="Benign" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child3_concept_id from concept_name where name ="LSIL" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child4_concept_id from concept_name where name ="HSIL" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child5_concept_id from concept_name where name ="Cancer" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Cancer suspected" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -211,9 +211,9 @@
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"161826",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"160430",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"116030",@source_id,uuid(),now());
-            call CREATE_REFERENCE_MAPPING_CEIL("CS, Reason for visit","160430");
+            call CREATE_REFERENCE_MAPPING_CEIL("CS, Reason for presentation","160430");
             call CREATE_REFERENCE_MAPPING_CEIL("CS, Date/time recorded","162869");
-            call CREATE_REFERENCE_MAPPING_CEIL("Cancer","116030");
+            call CREATE_REFERENCE_MAPPING_CEIL("Cancer suspected","116030");
             call CREATE_REFERENCE_MAPPING_CEIL("Biopsy of cervix","161826");
         </sql>
     </changeSet>
@@ -267,7 +267,7 @@
             call CREATE_REFERENCE_MAPPING_MSFOCP("CS, Colposcopic findings","MSFF62");
             call CREATE_REFERENCE_MAPPING_MSFOCP("Aceto-white areas","MSFF54");
             call CREATE_REFERENCE_MAPPING_MSFOCP("LSIL","MSFF140");
-            call CREATE_REFERENCE_MAPPING_MSFOCP("CS, Colposcopy conclusion","MSFF63");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("CS, Colposcopy impression","MSFF63");
             call CREATE_REFERENCE_MAPPING_MSFOCP("CS, Aceto-white areas, Description","MSFF58");
             call CREATE_REFERENCE_MAPPING_MSFOCP("At lesion","MSFF144");
             call CREATE_REFERENCE_MAPPING_MSFOCP("Vaginal condyloma acuminata","MSFF139");
