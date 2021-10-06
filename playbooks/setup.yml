@@ -3,7 +3,7 @@ bahmni_core: https://stable.s3.ap-south-1.amazonaws.com/msf-release-2.5.0/bahmni
 bahmni_ie_apps: https://stable.s3.ap-south-1.amazonaws.com/msf-release-2.5.0/bahmni.ie.apps-1.1.0-SNAPSHOT-2.5.0.omod
 bahmniapps: https://stable.s3.ap-south-1.amazonaws.com/msf-release-2.5.0/bahmniapps-2.5.0.zip
 implementer_interface: https://stable.s3.ap-south-1.amazonaws.com/msf-release-2.5.0/bahmni-implementer-interface-91-2.5.0.noarch.rpm
-appointment_frontend: https://stable.s3.ap-south-1.amazonaws.com/msf-release-2.5.0/appointment-frontend-2.0.1.zip
+appointment_frontend: https://stable.s3.ap-south-1.amazonaws.com/msf-release-2.5.0/appointment-frontend-2.5.0.zip
 uiframework: https://stable.s3.ap-south-1.amazonaws.com/msf-release-2.5.0/uiframework-3.19-2.1.0.omod
 emr_api_omod: https://stable.s3.ap-south-1.amazonaws.com/msf-release-2.5.0/emrapi-omod-1.24.7-2.1.0-SNAPSHOT.omod
 event_omod: https://stable.s3.ap-south-1.amazonaws.com/msf-release-2.5.0/event-2.8.0-2.1.0.omod
