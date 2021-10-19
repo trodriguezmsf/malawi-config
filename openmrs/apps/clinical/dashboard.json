@@ -166,7 +166,8 @@
           "Patient History",
           "LEEP",
           "Colposcopy",
-          "Laboratory"
+          "Laboratory",
+          "Symptoms Assessment"
         ],
         "translationKey": "DASHBOARD_TITLE_EDIT_FORMS"
       }
