@@ -6,15 +6,20 @@ set @uuid = NULL;
 
 #Add Parent Concepts
 #Add Date Concepts
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"LP, Date/time recorded","Date recorded","Date","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"LP, Date recorded","Date recorded","Date","Misc",false);
+
+#Add Datetime Concepts
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"LP, Time for removal of tampon","Time for removal of tampon","Datetime","Misc",false);
 
 #Add Text Concepts
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"LP, Other indication, specify","Other indication, specify","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"LP, Other LEEP indication, specify","Other LEEP indication, specify","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"LP, Localisation of passes","Localisation of passes","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"LP, Bleeding control technique, other","Bleeding control technique, other","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"LP, Complication of procedure (text)","Complication of procedure","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"LP, Instructions","Instructions","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"LP, Prescription, other","Prescription, other","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"LP, Other conization indication, specify","Other conization indication, specify","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"LP, Comments","Comments","Text","Misc",false);
 
 #Add Coded Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"LP, LEEP Indication","LEEP Indication","Coded","Misc",false);
@@ -24,11 +29,13 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"LP, Cervix exam
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"LP, Drug injected for local anaesthesia","Drug injected for local anaesthesia","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"LP, Type of pass","Type of pass","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"LP, Endocervical curettage performed","Endocervical curettage performed","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"LP, Endocervical curettage, Yes, Specimen marked at 12 o'clock (suture)","Endocervical curettage, Yes, Specimen marked at 12 o'clock (suture)","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"LP, Specimen marked at 12 o’clock (suture)","Specimen marked at 12 o’clock (suture)","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"LP, Bleeding control technique","Bleeding control technique","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"LP, Complication of procedure","Complication of procedure","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"LP, Warning signs explained","Warning signs explained","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"LP, Prescription","Prescription","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"LP, Conization indication","Conization indication","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"LP, Insertion of tampon into vagina","Insertion of tampon into vagina","Coded","Misc",false);
 
 #Add Numeric Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"LP, Administered dose","Administered dose","Numeric","Misc",false);
@@ -61,8 +68,10 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Suspected HSIL 
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Monsel's solution","Monsel's solution","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Lidocaine 1 percentage","Lidocaine 1%","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Multiple Pass","Multiple Pass","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CIN II","CIN II","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CIN III","CIN III","N/A","Misc",false);
 
 #Add Help Text to Concepts
 INSERT INTO concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)
 VALUES ((select concept_id from concept_name where name = "LP, Informed consent" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0),
-"Risk of procedure and alternatives have been explained to the patient, and the patient has signed the LEEP consent form","en",1,now(),NULL,NULL,uuid());
+"Risk of procedure and alternatives have been explained to the patient, and the patient has signed the LEEP/Conization consent form","en",1,now(),NULL,NULL,uuid());
