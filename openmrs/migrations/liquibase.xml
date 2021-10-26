@@ -693,6 +693,83 @@
         <sqlFile path="utils/createProcedureForMSFOCP.sql" endDelimiter="#"/>
     </changeSet>
 
+    <changeSet id="Malawi-202110251822" author="Venky, Supriya">
+        <preConditions>
+            <sqlCheck expectedResult="1">
+                    select count(*) from address_hierarchy_entry where name = 'Nkkhota Kota';
+            </sqlCheck>
+        </preConditions>
+        <comment>update District table Nkkhota Kota to Nkhotakota</comment>
+        <sql>
+                update address_hierarchy_entry set name = "Nkhotakota" where name = "Nkkhota Kota";
+                update person_address set address3 = "Nkhotakota" where address3 = "Nkkhota Kota";
+        </sql>
+    </changeSet>
+
+    <changeSet id="Malawi-202110251823" author="Venky, Supriya">
+        <preConditions>
+            <sqlCheck expectedResult="1">
+                    select count(*) from address_hierarchy_entry where name = 'Machinja Boma';
+            </sqlCheck>
+        </preConditions>
+        <comment>update TA table Machinja Boma to Machinga Boma</comment>
+        <sql>
+                update address_hierarchy_entry set name = "Machinga Boma" where name = "Machinja Boma";
+                update person_address set address4 = "Machinga Boma" where address4 = "Machinja Boma";
+        </sql>
+    </changeSet>
+
+    <changeSet id="Malawi-202110251824" author="Venky, Supriya">
+        <preConditions>
+            <sqlCheck expectedResult="1">
+                    select count(*) from address_hierarchy_entry where name = 'Chriadzulu';
+            </sqlCheck>
+        </preConditions>
+        <comment>update TA table Chriadzulu to Chiradzulu</comment>
+        <sql>
+                update address_hierarchy_entry set name = "Chiradzulu" where name = "Chriadzulu";
+                update person_address set address3 = "Chiradzulu" where address3 = "Chriadzulu";
+        </sql>
+    </changeSet>
+
+    <changeSet id="Malawi-202110251825" author="Venky, Supriya">
+        <preConditions>
+            <sqlCheck expectedResult="1">
+                    select count(*) from address_hierarchy_entry where name = 'Chriradzulu BOMA';
+            </sqlCheck>
+        </preConditions>
+        <comment>update TA table Chriradzulu BOMA to Chiradzulu BOMA</comment>
+        <sql>
+                update address_hierarchy_entry set name = "Chiradzulu BOMA" where name = "Chriradzulu BOMA";
+                update person_address set address4 = "Chiradzulu BOMA" where address4 = "Chriradzulu BOMA";
+        </sql>
+    </changeSet>
+
+    <changeSet id="Malawi-202110251826" author="Venky, Supriya">
+        <preConditions>
+            <sqlCheck expectedResult="1">
+                    select count(*) from address_hierarchy_entry where name = 'TA Machinjiri';
+            </sqlCheck>
+        </preConditions>
+        <comment>update TA table TA Machinjiri to TA Machinjili</comment>
+        <sql>
+                update address_hierarchy_entry set name = "TA Machinjili" where name = "TA Machinjiri";
+                update person_address set address4 = "TA Machinjili" where address4 = "TA Machinjiri";
+        </sql>
+    </changeSet>
+
+    <changeSet id="Malawi-202110261826" author="Venky, Supriya">
+        <preConditions>
+            <sqlCheck expectedResult="1">
+                    select count(*) from address_hierarchy_level where name = 'District/City';
+            </sqlCheck>
+        </preConditions>
+        <comment>update District/City to District in address_hierarcht_level</comment>
+        <sql>
+                update address_hierarchy_level set name = "District" where name = "District/City";
+        </sql>
+    </changeSet>
+
     <include file="PatientHistory/PatientHistory.xml"/>
     <include file="Leep/Leep.xml"/>
     <include file="VitalSigns/VitalSigns.xml"/>
