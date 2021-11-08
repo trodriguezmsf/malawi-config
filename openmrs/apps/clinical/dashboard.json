@@ -167,7 +167,8 @@
           "LEEP",
           "Colposcopy",
           "Laboratory",
-          "Symptoms Assessment"
+          "Symptoms Assessment",
+          "UltraSound"
         ],
         "translationKey": "DASHBOARD_TITLE_EDIT_FORMS"
       }

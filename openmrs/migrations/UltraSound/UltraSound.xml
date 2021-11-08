@@ -1,0 +1,833 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="malawi_CONFIG_20211101074650832" author="Bindu">
+        <comment>Adding Concepts for Ultra Sound Form</comment>
+        <sqlFile path="UltraSound/UltraSound.sql"/>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211101074652013" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Solid", "Hypoechoic", "Heterogenous", "Vascular")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "UR, Tumour criteria");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to UR, Tumour criteria</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "UR, Tumour criteria" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Solid" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Hypoechoic" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Heterogenous" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Vascular" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211101074652321" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Involved", "Not involved")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "UR, Parametrial invasion");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to UR, Parametrial invasion</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "UR, Parametrial invasion" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Involved" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Not involved" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211101074652848" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Normal", "Abnormal")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "UR, Left ovary");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to UR, Left ovary</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "UR, Left ovary" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Normal" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Abnormal" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211101074653354" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Normal", "Abnormal")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "UR, Right ovary");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to UR, Right ovary</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "UR, Right ovary" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Normal" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Abnormal" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211101074654130" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Unicolar", "Solid components with largest diameter less than 7 mm", "Presence of acoustic shadows", "Smooth multilocular tumour with largest diameter less than 100 mm", "No blood flow")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "UR, Right ovary, B-features");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to UR, Right ovary, B-features</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "UR, Right ovary, B-features" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Unicolar" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Solid components with largest diameter less than 7 mm" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Presence of acoustic shadows" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Smooth multilocular tumour with largest diameter less than 100 mm" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="No blood flow" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211101074654958" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Irregular solid tumour", "Presence of ascites", "At least 4 papillary structures", "Smooth multilocular tumour with largest diameter >100 mm", "Very strong blood flow")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "UR, Right ovary, M-features");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to UR, Right ovary, M-features</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "UR, Right ovary, M-features" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Irregular solid tumour" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Presence of ascites" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="At least 4 papillary structures" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Smooth multilocular tumour with largest diameter >100 mm" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Very strong blood flow" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211101074655574" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Benign", "Malignant", "Inconclusive")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "UR, Right ovary, IOTA-classification");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to UR, Right ovary, IOTA-classification</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "UR, Right ovary, IOTA-classification" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Benign" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Malignant" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Inconclusive" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211101074656350" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Unicolar", "Solid components with largest diameter less than 7 mm", "Presence of acoustic shadows", "Smooth multilocular tumour with largest diameter less than 100 mm", "No blood flow")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "UR, Left ovary, B-features");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to UR, Left ovary, B-features</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "UR, Left ovary, B-features" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Unicolar" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Solid components with largest diameter less than 7 mm" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Presence of acoustic shadows" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Smooth multilocular tumour with largest diameter less than 100 mm" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="No blood flow" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211101074657139" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Irregular solid tumour", "Presence of ascites", "At least 4 papillary structures", "Smooth multilocular tumour with largest diameter less than 100 mm", "Very strong blood flow")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "UR, Left ovary, M-features");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to UR, Left ovary, M-features</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "UR, Left ovary, M-features" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Irregular solid tumour" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Presence of ascites" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="At least 4 papillary structures" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Smooth multilocular tumour with largest diameter less than 100 mm" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Very strong blood flow" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211101074657851" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Benign", "Malignant", "Inconclusive")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "UR, Left ovary, IOTA-classification");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to UR, Left ovary, IOTA-classification</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "UR, Left ovary, IOTA-classification" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Benign" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Malignant" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Inconclusive" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211101074658546" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("True", "False")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "UR, Pelvic ascites (abdominal transducer)");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to UR, Pelvic ascites (abdominal transducer)</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "UR, Pelvic ascites (abdominal transducer)" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="True" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="False" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211101074659071" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Normal", "Abnormal")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "UR, Kidney position");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to UR, Kidney position</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "UR, Kidney position" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Normal" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Abnormal" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211101074700115" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Normal", "Hydroureter", "Hydronephrosis", "Other")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "UR, Renal ultrasound findings");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to UR, Renal ultrasound findings</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "UR, Renal ultrasound findings" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Normal" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Hydroureter" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Hydronephrosis" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Other" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211101074700442" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Left", "Right")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "UR, Hydroureter laterality");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to UR, Hydroureter laterality</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "UR, Hydroureter laterality" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Left" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Right" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211101074700767" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Left", "Right")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "UR, Hydronephrosis laterality");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to UR, Hydronephrosis laterality</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "UR, Hydronephrosis laterality" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Left" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Right" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211101074701406" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Grade 1", "Grade 2", "Grade 3", "Grade 4")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "UR, Hydronephrosis grading");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to UR, Hydronephrosis grading</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "UR, Hydronephrosis grading" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Grade 1" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Grade 2" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Grade 3" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Grade 4" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211101074703169" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Not done", "Normal", "Right pelvic lymphadenopathy", "Left pelvic lymphadenopathy", "Bilateral pelvic lymphadenopathy", "Para-aortic lymphadenopathy", "Other")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "UR, Lymph node ultrasound findings");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to UR, Lymph node ultrasound findings</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "UR, Lymph node ultrasound findings" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            set @child6_concept_id = 0;
+            set @child7_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Not done" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Normal" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Right pelvic lymphadenopathy" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Left pelvic lymphadenopathy" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Bilateral pelvic lymphadenopathy" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child6_concept_id from concept_name where name ="Para-aortic lymphadenopathy" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child7_concept_id from concept_name where name ="Other" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+            call add_concept_answer(@concept_id, @child6_concept_id, 6);
+            call add_concept_answer(@concept_id, @child7_concept_id, 7);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211101074703604" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Left", "Right")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "UR, Lymph node laterality");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to UR, Lymph node laterality</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "UR, Lymph node laterality" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Left" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Right" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211101074706829" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("IA", "IA1", "IA2", "IB", "IB1", "IB2", "IB3", "IC", "II", "IIA", "IIA1", "IIA2", "IIB", "III", "IIIA", "IIIB", "IIIC1", "IIIC2", "IVA", "IVB")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "UR, Ultrasound FIGO staging");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to UR, Ultrasound FIGO staging</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "UR, Ultrasound FIGO staging" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            set @child6_concept_id = 0;
+            set @child7_concept_id = 0;
+            set @child8_concept_id = 0;
+            set @child9_concept_id = 0;
+            set @child10_concept_id = 0;
+            set @child11_concept_id = 0;
+            set @child12_concept_id = 0;
+            set @child13_concept_id = 0;
+            set @child14_concept_id = 0;
+            set @child15_concept_id = 0;
+            set @child16_concept_id = 0;
+            set @child17_concept_id = 0;
+            set @child18_concept_id = 0;
+            set @child19_concept_id = 0;
+            set @child20_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="IA" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="IA1" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="IA2" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="IB" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="IB1" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child6_concept_id from concept_name where name ="IB2" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child7_concept_id from concept_name where name ="IB3" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child8_concept_id from concept_name where name ="IC" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child9_concept_id from concept_name where name ="II" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child10_concept_id from concept_name where name ="IIA" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child11_concept_id from concept_name where name ="IIA1" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child12_concept_id from concept_name where name ="IIA2" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child13_concept_id from concept_name where name ="IIB" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child14_concept_id from concept_name where name ="III" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child15_concept_id from concept_name where name ="IIIA" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child16_concept_id from concept_name where name ="IIIB" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child17_concept_id from concept_name where name ="IIIC1" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child18_concept_id from concept_name where name ="IIIC2" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child19_concept_id from concept_name where name ="IVA" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child20_concept_id from concept_name where name ="IVB" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+            call add_concept_answer(@concept_id, @child6_concept_id, 6);
+            call add_concept_answer(@concept_id, @child7_concept_id, 7);
+            call add_concept_answer(@concept_id, @child8_concept_id, 8);
+            call add_concept_answer(@concept_id, @child9_concept_id, 9);
+            call add_concept_answer(@concept_id, @child10_concept_id, 10);
+            call add_concept_answer(@concept_id, @child11_concept_id, 11);
+            call add_concept_answer(@concept_id, @child12_concept_id, 12);
+            call add_concept_answer(@concept_id, @child13_concept_id, 13);
+            call add_concept_answer(@concept_id, @child14_concept_id, 14);
+            call add_concept_answer(@concept_id, @child15_concept_id, 15);
+            call add_concept_answer(@concept_id, @child16_concept_id, 16);
+            call add_concept_answer(@concept_id, @child17_concept_id, 17);
+            call add_concept_answer(@concept_id, @child18_concept_id, 18);
+            call add_concept_answer(@concept_id, @child19_concept_id, 19);
+            call add_concept_answer(@concept_id, @child20_concept_id, 20);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211101074706840" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_reference_term
+                where code in
+                ("164332","164333","164334","164335","166805","166804","166801","166803","166802","5139","166798","161011","160784","160786","166789","160780","160783","166762","166765","166778","166779","1116","138352","166776","166775","166774","166772","166771","166770","166766","166819","166816","166764","166814","166815","166812","166813","164336","166782","166777","166780","166781","166786","166787","166784","166785","166761","166788","5141","166826","166767","138362","166811","160779","160778","166783","160775","160774","165649","160770","160773","160772","166827","160594","166825","166763","166823","166822","166821","166820","166768","166769","166828")
+                and retired = 0
+                and concept_source_id = (
+                select concept_source_id from concept_reference_source where name = "CEIL"  and retired =0
+                );
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding CEIL codes to concepts</comment>
+        <sql>
+            SELECT concept_source_id INTO @source_id FROM concept_reference_source where name = "CEIL";
+
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"164332",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"164333",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"164334",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"164335",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166805",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166804",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166801",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166803",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166802",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"5139",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166798",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"161011",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"160784",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166785",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166789",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"160780",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"160783",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166762",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166765",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166778",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166779",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1116",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"138352",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166776",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166775",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166774",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166772",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166771",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166770",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166766",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166819",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166816",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166764",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166814",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166815",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166812",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166813",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"164336",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166782",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166777",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166780",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166781",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166786",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166787",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166784",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"160786",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166761",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166788",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"5141",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166826",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166767",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"138362",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166811",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"160779",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"160778",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166783",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"160775",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"160774",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"165649",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"160770",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"160773",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"160772",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166827",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"160594",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166825",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166763",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166823",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166822",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166821",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166820",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166768",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166769",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166828",@source_id,uuid(),now());
+            call CREATE_REFERENCE_MAPPING_CEIL("UR, Other findings","166765");
+            call CREATE_REFERENCE_MAPPING_CEIL("UR, Right ovary, comments","161011");
+            call CREATE_REFERENCE_MAPPING_CEIL("Left pelvic lymphadenopathy","166826");
+            call CREATE_REFERENCE_MAPPING_CEIL("UR, Ureter maximum diameter","166822");
+            call CREATE_REFERENCE_MAPPING_CEIL("UR, Transversal diameter","166763");
+            call CREATE_REFERENCE_MAPPING_CEIL("UR, Hydronephrosis laterality","160594");
+            call CREATE_REFERENCE_MAPPING_CEIL("IIIB","160780");
+            call CREATE_REFERENCE_MAPPING_CEIL("IIA","160775");
+            call CREATE_REFERENCE_MAPPING_CEIL("IIIC1","166815");
+            call CREATE_REFERENCE_MAPPING_CEIL("UR, Comments","161011");
+            call CREATE_REFERENCE_MAPPING_CEIL("Benign","166777");
+            call CREATE_REFERENCE_MAPPING_CEIL("Not involved","166803");
+            call CREATE_REFERENCE_MAPPING_CEIL("Bilateral pelvic lymphadenopathy","166827");
+            call CREATE_REFERENCE_MAPPING_CEIL("Left","5139");
+            call CREATE_REFERENCE_MAPPING_CEIL("UR, Right ovary, M-features","166805");
+            call CREATE_REFERENCE_MAPPING_CEIL("Very strong blood flow","166788");
+            call CREATE_REFERENCE_MAPPING_CEIL("UR, Right ovary, B-features","166804");
+            call CREATE_REFERENCE_MAPPING_CEIL("Smooth multilocular tumour with largest diameter less than 100 mm","166787");
+            call CREATE_REFERENCE_MAPPING_CEIL("UR, Left ovary, IOTA-classification","166776");
+            call CREATE_REFERENCE_MAPPING_CEIL("IC","160773");
+            call CREATE_REFERENCE_MAPPING_CEIL("UR, Lymph node ultrasound findings","166828");
+            call CREATE_REFERENCE_MAPPING_CEIL("UR, Left ovary, B-features","166804");
+            call CREATE_REFERENCE_MAPPING_CEIL("Grade 3","moderate) 16433");
+            call CREATE_REFERENCE_MAPPING_CEIL("Heterogenous","166769");
+            call CREATE_REFERENCE_MAPPING_CEIL("UR, Kidney position","166789");
+            call CREATE_REFERENCE_MAPPING_CEIL("III","160778");
+            call CREATE_REFERENCE_MAPPING_CEIL("UR, Left ovary, comments","161011");
+            call CREATE_REFERENCE_MAPPING_CEIL("Solid","166767");
+            call CREATE_REFERENCE_MAPPING_CEIL("Presence of ascites","166785");
+            call CREATE_REFERENCE_MAPPING_CEIL("IB1","166819");
+            call CREATE_REFERENCE_MAPPING_CEIL("IVB","160784");
+            call CREATE_REFERENCE_MAPPING_CEIL("UR, Hydronephrosis grading","164336");
+            call CREATE_REFERENCE_MAPPING_CEIL("UR, Right ovary","166772");
+            call CREATE_REFERENCE_MAPPING_CEIL("UR, Right ovary, IOTA-classification","166776");
+            call CREATE_REFERENCE_MAPPING_CEIL("UR, Endometrial thickness","166764");
+            call CREATE_REFERENCE_MAPPING_CEIL("No blood flow","166783");
+            call CREATE_REFERENCE_MAPPING_CEIL("Grade 1","minimal) 16433");
+            call CREATE_REFERENCE_MAPPING_CEIL("Presence of acoustic shadows","166781");
+            call CREATE_REFERENCE_MAPPING_CEIL("IIB","160773");
+            call CREATE_REFERENCE_MAPPING_CEIL("II","160774");
+            call CREATE_REFERENCE_MAPPING_CEIL("UR, Longitudinal diameter","166761");
+            call CREATE_REFERENCE_MAPPING_CEIL("IIA1","166813");
+            call CREATE_REFERENCE_MAPPING_CEIL("IIIA","160779");
+            call CREATE_REFERENCE_MAPPING_CEIL("IB2","166820");
+            call CREATE_REFERENCE_MAPPING_CEIL("UR, Renal ultrasound findings","166823");
+            call CREATE_REFERENCE_MAPPING_CEIL("IA2","166812");
+            call CREATE_REFERENCE_MAPPING_CEIL("Involved","166802");
+            call CREATE_REFERENCE_MAPPING_CEIL("Grade 2","mild) 16433");
+            call CREATE_REFERENCE_MAPPING_CEIL("Smooth multilocular tumour with largest diameter less than 100 mm","166782");
+            call CREATE_REFERENCE_MAPPING_CEIL("UR, Left ovary","166771");
+            call CREATE_REFERENCE_MAPPING_CEIL("Right pelvic lymphadenopathy","166825");
+            call CREATE_REFERENCE_MAPPING_CEIL("UR, Lymph node laterality","160594");
+            call CREATE_REFERENCE_MAPPING_CEIL("UR, Anteroposterior (AP) diameter","166762");
+            call CREATE_REFERENCE_MAPPING_CEIL("Hydroureter","138352");
+            call CREATE_REFERENCE_MAPPING_CEIL("IA","160770");
+            call CREATE_REFERENCE_MAPPING_CEIL("Grade 4","severe) 16433");
+            call CREATE_REFERENCE_MAPPING_CEIL("UR, Date recorded","162869");
+            call CREATE_REFERENCE_MAPPING_CEIL("IVA","160783");
+            call CREATE_REFERENCE_MAPPING_CEIL("UR, Left ovary description","166774");
+            call CREATE_REFERENCE_MAPPING_CEIL("UR, Tumour criteria","166766");
+            call CREATE_REFERENCE_MAPPING_CEIL("Inconclusive","165649");
+            call CREATE_REFERENCE_MAPPING_CEIL("Solid components with largest diameter less than 7 mm","166780");
+            call CREATE_REFERENCE_MAPPING_CEIL("UR, Ultrasound FIGO staging","160786");
+            call CREATE_REFERENCE_MAPPING_CEIL("UR, Hydroureter laterality","160594");
+            call CREATE_REFERENCE_MAPPING_CEIL("At least 4 papillary structures","166786");
+            call CREATE_REFERENCE_MAPPING_CEIL("UR, Pelvic ascites (abdominal transducer)","166785");
+            call CREATE_REFERENCE_MAPPING_CEIL("Hypoechoic","166768");
+            call CREATE_REFERENCE_MAPPING_CEIL("Hydronephrosis","138362");
+            call CREATE_REFERENCE_MAPPING_CEIL("Smooth multilocular tumour with largest diameter >100 mm","166787");
+            call CREATE_REFERENCE_MAPPING_CEIL("IA1","166811");
+            call CREATE_REFERENCE_MAPPING_CEIL("IB","160772");
+            call CREATE_REFERENCE_MAPPING_CEIL("Abnormal","1116");
+            call CREATE_REFERENCE_MAPPING_CEIL("IIIC2","166816");
+            call CREATE_REFERENCE_MAPPING_CEIL("Malignant","166778");
+            call CREATE_REFERENCE_MAPPING_CEIL("UR, Left ovary, M-features","166805");
+            call CREATE_REFERENCE_MAPPING_CEIL("UR, Tumour largest diameter","166798");
+            call CREATE_REFERENCE_MAPPING_CEIL("UR, Parametrial invasion","166801");
+            call CREATE_REFERENCE_MAPPING_CEIL("Vascular","166770");
+            call CREATE_REFERENCE_MAPPING_CEIL("Irregular solid tumour","166784");
+            call CREATE_REFERENCE_MAPPING_CEIL("IIA2","166814");
+            call CREATE_REFERENCE_MAPPING_CEIL("IB3","166821");
+            call CREATE_REFERENCE_MAPPING_CEIL("Para-aortic lymphadenopathy","166828");
+            call CREATE_REFERENCE_MAPPING_CEIL("Unicolar","166779");
+            call CREATE_REFERENCE_MAPPING_CEIL("UR, Right ovary description","166775");
+            call CREATE_REFERENCE_MAPPING_CEIL("Right","5141");
+        </sql>
+    </changeSet>
+</databaseChangeLog>

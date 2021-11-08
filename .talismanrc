@@ -1,0 +1,6 @@
+fileignoreconfig:
+- filename: clinicalForms/UltraSound_1.json
+  checksum: aaad0dd6024de05e0caa613bc28d141077fc13da1b4cbc1291844e6789f91efc
+- filename: openmrs/migrations/UltraSound/UltraSound.sql
+  checksum: 9807cee3e1438b416cd78b8e6ee3d746ea40ffa32641859c732a5b30b712e815
+version: "1.0"
