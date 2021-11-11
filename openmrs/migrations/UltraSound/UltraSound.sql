@@ -92,7 +92,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Grade 2 (mild)"
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IIIC2","IIIC2","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Smooth multilocular tumour with largest diameter >100 mm","Smooth multilocular tumour with largest diameter >100 mm","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"II","II","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Solid components with largest diameter less than 7 mm","Solid components with largest diameter less than 7 mm","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Solid components with largest diameter less than 7 mm","Solid components with largest diameter < 7 mm","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Presence of acoustic shadows","Presence of acoustic shadows","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Solid","Solid","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC","IC","N/A","Misc",false);
