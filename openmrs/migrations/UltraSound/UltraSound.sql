@@ -88,7 +88,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IIB","IIB","N/A
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IA","IA","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IVB","IVB","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IB","IB","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Grade 2","Grade 2","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Grade 2 (mild)","Grade 2 (mild)","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IIIC2","IIIC2","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Smooth multilocular tumour with largest diameter >100 mm","Smooth multilocular tumour with largest diameter >100 mm","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"II","II","N/A","Misc",false);
@@ -106,8 +106,8 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IIIA","IIIA","N
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Not involved","Not involved","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Involved","Involved","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Left pelvic lymphadenopathy","Left pelvic lymphadenopathy","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Grade 4","Grade 4","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Grade 3","Grade 3","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Grade 4 (severe)","Grade 4 (severe)","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Grade 3 (moderate)","Grade 3 (moderate)","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IIIC1","IIIC1","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Inconclusive","Inconclusive","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Heterogenous","Heterogenous","N/A","Misc",false);
@@ -123,7 +123,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Irregular solid
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Vascular","Vascular","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IIA","IIA","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Left","Left","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Grade 1","Grade 1","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Grade 1 (minimal)","Grade 1 (minimal)","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Hypoechoic","Hypoechoic","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Right","Right","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IA2","IA2","N/A","Misc",false);

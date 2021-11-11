@@ -479,7 +479,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Grade 1", "Grade 2", "Grade 3", "Grade 4")
+                ("Grade 1 (minimal)", "Grade 2 (mild)", "Grade 3 (moderate)", "Grade 4 (severe)")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "UR, Hydronephrosis grading");
@@ -493,10 +493,10 @@
             set @child2_concept_id = 0;
             set @child3_concept_id = 0;
             set @child4_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Grade 1" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Grade 2" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Grade 3" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Grade 4" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Grade 1 (minimal)" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Grade 2 (mild)" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Grade 3 (moderate)" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Grade 4 (severe)" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -765,7 +765,7 @@
             call CREATE_REFERENCE_MAPPING_CEIL("IC","160773");
             call CREATE_REFERENCE_MAPPING_CEIL("UR, Lymph node ultrasound findings","166828");
             call CREATE_REFERENCE_MAPPING_CEIL("UR, Left ovary, B-features","166804");
-            call CREATE_REFERENCE_MAPPING_CEIL("Grade 3","moderate) 16433");
+            call CREATE_REFERENCE_MAPPING_CEIL("Grade 3 (moderate)", "16433");
             call CREATE_REFERENCE_MAPPING_CEIL("Heterogenous","166769");
             call CREATE_REFERENCE_MAPPING_CEIL("UR, Kidney position","166789");
             call CREATE_REFERENCE_MAPPING_CEIL("III","160778");
@@ -779,7 +779,7 @@
             call CREATE_REFERENCE_MAPPING_CEIL("UR, Right ovary, IOTA-classification","166776");
             call CREATE_REFERENCE_MAPPING_CEIL("UR, Endometrial thickness","166764");
             call CREATE_REFERENCE_MAPPING_CEIL("No blood flow","166783");
-            call CREATE_REFERENCE_MAPPING_CEIL("Grade 1","minimal) 16433");
+            call CREATE_REFERENCE_MAPPING_CEIL("Grade 1 (minimal)", "16433");
             call CREATE_REFERENCE_MAPPING_CEIL("Presence of acoustic shadows","166781");
             call CREATE_REFERENCE_MAPPING_CEIL("IIB","160773");
             call CREATE_REFERENCE_MAPPING_CEIL("II","160774");
@@ -790,7 +790,7 @@
             call CREATE_REFERENCE_MAPPING_CEIL("UR, Renal ultrasound findings","166823");
             call CREATE_REFERENCE_MAPPING_CEIL("IA2","166812");
             call CREATE_REFERENCE_MAPPING_CEIL("Involved","166802");
-            call CREATE_REFERENCE_MAPPING_CEIL("Grade 2","mild) 16433");
+            call CREATE_REFERENCE_MAPPING_CEIL("Grade 2 (mild)", "16433");
             call CREATE_REFERENCE_MAPPING_CEIL("Smooth multilocular tumour with largest diameter less than 100 mm","166782");
             call CREATE_REFERENCE_MAPPING_CEIL("UR, Left ovary","166771");
             call CREATE_REFERENCE_MAPPING_CEIL("Right pelvic lymphadenopathy","166825");
@@ -798,7 +798,7 @@
             call CREATE_REFERENCE_MAPPING_CEIL("UR, Anteroposterior (AP) diameter","166762");
             call CREATE_REFERENCE_MAPPING_CEIL("Hydroureter","138352");
             call CREATE_REFERENCE_MAPPING_CEIL("IA","160770");
-            call CREATE_REFERENCE_MAPPING_CEIL("Grade 4","severe) 16433");
+            call CREATE_REFERENCE_MAPPING_CEIL("Grade 4 (severe)", "16433");
             call CREATE_REFERENCE_MAPPING_CEIL("UR, Date recorded","162869");
             call CREATE_REFERENCE_MAPPING_CEIL("IVA","160783");
             call CREATE_REFERENCE_MAPPING_CEIL("UR, Left ovary description","166774");
