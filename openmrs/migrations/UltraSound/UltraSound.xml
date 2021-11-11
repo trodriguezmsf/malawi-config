@@ -765,7 +765,7 @@
             call CREATE_REFERENCE_MAPPING_CEIL("IC","160773");
             call CREATE_REFERENCE_MAPPING_CEIL("UR, Lymph node ultrasound findings","166828");
             call CREATE_REFERENCE_MAPPING_CEIL("UR, Left ovary, B-features","166804");
-            call CREATE_REFERENCE_MAPPING_CEIL("Grade 3 (moderate)", "16433");
+            call CREATE_REFERENCE_MAPPING_CEIL("Grade 3 (moderate)", "164334");
             call CREATE_REFERENCE_MAPPING_CEIL("Heterogenous","166769");
             call CREATE_REFERENCE_MAPPING_CEIL("UR, Kidney position","166789");
             call CREATE_REFERENCE_MAPPING_CEIL("III","160778");
@@ -779,7 +779,7 @@
             call CREATE_REFERENCE_MAPPING_CEIL("UR, Right ovary, IOTA-classification","166776");
             call CREATE_REFERENCE_MAPPING_CEIL("UR, Endometrial thickness","166764");
             call CREATE_REFERENCE_MAPPING_CEIL("No blood flow","166783");
-            call CREATE_REFERENCE_MAPPING_CEIL("Grade 1 (minimal)", "16433");
+            call CREATE_REFERENCE_MAPPING_CEIL("Grade 1 (minimal)", "164332");
             call CREATE_REFERENCE_MAPPING_CEIL("Presence of acoustic shadows","166781");
             call CREATE_REFERENCE_MAPPING_CEIL("IIB","160773");
             call CREATE_REFERENCE_MAPPING_CEIL("II","160774");
@@ -790,7 +790,7 @@
             call CREATE_REFERENCE_MAPPING_CEIL("UR, Renal ultrasound findings","166823");
             call CREATE_REFERENCE_MAPPING_CEIL("IA2","166812");
             call CREATE_REFERENCE_MAPPING_CEIL("Involved","166802");
-            call CREATE_REFERENCE_MAPPING_CEIL("Grade 2 (mild)", "16433");
+            call CREATE_REFERENCE_MAPPING_CEIL("Grade 2 (mild)", "164333");
             call CREATE_REFERENCE_MAPPING_CEIL("Smooth multilocular tumour with largest diameter less than 100 mm","166782");
             call CREATE_REFERENCE_MAPPING_CEIL("UR, Left ovary","166771");
             call CREATE_REFERENCE_MAPPING_CEIL("Right pelvic lymphadenopathy","166825");
@@ -798,7 +798,7 @@
             call CREATE_REFERENCE_MAPPING_CEIL("UR, Anteroposterior (AP) diameter","166762");
             call CREATE_REFERENCE_MAPPING_CEIL("Hydroureter","138352");
             call CREATE_REFERENCE_MAPPING_CEIL("IA","160770");
-            call CREATE_REFERENCE_MAPPING_CEIL("Grade 4 (severe)", "16433");
+            call CREATE_REFERENCE_MAPPING_CEIL("Grade 4 (severe)", "164335");
             call CREATE_REFERENCE_MAPPING_CEIL("UR, Date recorded","162869");
             call CREATE_REFERENCE_MAPPING_CEIL("IVA","160783");
             call CREATE_REFERENCE_MAPPING_CEIL("UR, Left ovary description","166774");
