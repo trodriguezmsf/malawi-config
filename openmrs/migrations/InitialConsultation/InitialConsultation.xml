@@ -1,0 +1,1715 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="malawi_CONFIG_20211108160722406" author="Bindu">
+        <comment>Adding Concepts for InitialConsultation Form</comment>
+        <sqlFile path="InitialConsultation/InitialConsultation.sql"/>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160722480" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Choose from Calendar")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Date recorded");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, Date recorded</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, Date recorded" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Choose from Calendar" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160722537" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Free entry")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, History of present illness");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, History of present illness</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, History of present illness" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Free entry" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160722573" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Select multiple")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Previously received oncology treatment");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, Previously received oncology treatment</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, Previously received oncology treatment" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Select multiple" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160722608" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Free entry / Choose from Calendar")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Previous chemotherapy start date");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, Previous chemotherapy start date</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, Previous chemotherapy start date" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Free entry / Choose from Calendar" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160722661" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Free entry")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Previous chemotherapy facility name");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, Previous chemotherapy facility name</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, Previous chemotherapy facility name" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Free entry" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160722684" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Free entry")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Previous chemotherapy regimen");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, Previous chemotherapy regimen</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, Previous chemotherapy regimen" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Free entry" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160722704" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Free entry / Choose from Calendar")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Previous radiation therapy start date");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, Previous radiation therapy start date</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, Previous radiation therapy start date" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Free entry / Choose from Calendar" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160722776" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Free entry")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Previous radiation therapy regimen");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, Previous radiation therapy regimen</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, Previous radiation therapy regimen" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Free entry" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160722805" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Free entry / Choose from Calendar")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Previous oncosurgery start date");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, Previous oncosurgery start date</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, Previous oncosurgery start date" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Free entry / Choose from Calendar" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160722826" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Free entry")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Previous oncosurgery facility name");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, Previous oncosurgery facility name</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, Previous oncosurgery facility name" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Free entry" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160722847" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Select multiple")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Procedure performed");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, Procedure performed</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, Procedure performed" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Select multiple" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160722867" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Free entry")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Other procedure performed");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, Other procedure performed</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, Other procedure performed" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Free entry" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160722904" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Free entry / Choose from Calendar")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Other treatment start date");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, Other treatment start date</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, Other treatment start date" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Free entry / Choose from Calendar" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160722926" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Free entry")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Other treatment facility name");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, Other treatment facility name</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, Other treatment facility name" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Free entry" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160722947" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Select multiple")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Other treatment modality");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, Other treatment modality</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, Other treatment modality" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Select multiple" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160722969" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Free entry")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Other treatment modality, other");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, Other treatment modality, other</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, Other treatment modality, other" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Free entry" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160723013" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Select multiple")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Cardiac examination");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, Cardiac examination</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, Cardiac examination" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Select multiple" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160723035" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Select 1 Option")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, NYHA Heart failure classification");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, NYHA Heart failure classification</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, NYHA Heart failure classification" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Select 1 Option" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160723057" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Select multiple")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Respiratory system examination");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, Respiratory system examination</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, Respiratory system examination" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Select multiple" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160723079" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Select multiple")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Abdominal examination");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, Abdominal examination</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, Abdominal examination" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Select multiple" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160723100" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Select 1 Option")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Retention of urine");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, Retention of urine</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, Retention of urine" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Select 1 Option" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160723124" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Free entry")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Neurological examination");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, Neurological examination</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, Neurological examination" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Free entry" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160723144" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Select multiple")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Skin disorder");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, Skin disorder</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, Skin disorder" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Select multiple" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160723173" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Free entry")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Other examination findings");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, Other examination findings</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, Other examination findings" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Free entry" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160723218" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Select 1 Option")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Lymph node examination");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, Lymph node examination</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, Lymph node examination" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Select 1 Option" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160723276" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Select 1 Option")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Laterality");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, Laterality</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, Laterality" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Select 1 Option" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160723296" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Select 1 Option")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, ECOG Performance Status");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, ECOG Performance Status</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, ECOG Performance Status" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Select 1 Option" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160723334" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Select multiple")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Vulva and vagina examination");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, Vulva and vagina examination</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, Vulva and vagina examination" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Select multiple" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160723371" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Free entry")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Vulva and vagina examination comment");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, Vulva and vagina examination comment</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, Vulva and vagina examination comment" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Free entry" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160723412" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Free entry")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Uterine cervix diameter");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, Uterine cervix diameter</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, Uterine cervix diameter" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Free entry" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160723435" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Free entry")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Digital vaginal examination");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, Digital vaginal examination</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, Digital vaginal examination" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Free entry" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160723457" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Select 1 Option")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Digital rectal examination");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, Digital rectal examination</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, Digital rectal examination" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Select 1 Option" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160723478" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Select 1 Option")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Parametrial invasion");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, Parametrial invasion</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, Parametrial invasion" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Select 1 Option" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160723500" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Free entry")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Rectal examination, comments");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, Rectal examination, comments</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, Rectal examination, comments" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Free entry" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160723524" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("multiselect")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Procedure performed");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, Procedure performed</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, Procedure performed" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="multiselect" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160723545" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Select 1 Option")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Ultrasound exam");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, Ultrasound exam</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, Ultrasound exam" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Select 1 Option" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160723565" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Select multiple")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Clinical Diagnosis");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, Clinical Diagnosis</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, Clinical Diagnosis" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Select multiple" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160723585" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Select multiple")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Confirmed malignancy diagnosis");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, Confirmed malignancy diagnosis</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, Confirmed malignancy diagnosis" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Select multiple" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160723609" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Select multiple")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Topography of Squamous cell carcinoma");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, Topography of Squamous cell carcinoma</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, Topography of Squamous cell carcinoma" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Select multiple" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160723629" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Select 1 Option")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Benign");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, Benign</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, Benign" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Select 1 Option" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160723651" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Free entry")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Benign, other");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, Benign, other</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, Benign, other" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Free entry" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160723673" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Select 1 Option")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Abnormal findings");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, Abnormal findings</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, Abnormal findings" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Select 1 Option" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160723697" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Free entry")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Abnormal findings, other");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, Abnormal findings, other</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, Abnormal findings, other" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Free entry" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160723722" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Select multiple")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Topography of the Tumour");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, Topography of the Tumour</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, Topography of the Tumour" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Select multiple" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160723746" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Select 1 Option")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Clinical FIGO staging");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, Clinical FIGO staging</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, Clinical FIGO staging" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Select 1 Option" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160723771" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Select 1 Option")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Refusal of treatment by patient");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, Refusal of treatment by patient</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, Refusal of treatment by patient" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Select 1 Option" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160723791" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Free entry")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Reason for refusal of treatment");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, Reason for refusal of treatment</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, Reason for refusal of treatment" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Free entry" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160723816" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Select 1 Option")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Resuscitation status");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, Resuscitation status</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, Resuscitation status" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Select 1 Option" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160723841" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Select 1 Option")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Cancer diagnosis disclosed to patient");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, Cancer diagnosis disclosed to patient</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, Cancer diagnosis disclosed to patient" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Select 1 Option" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160723862" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Free entry")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Management plan");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, Management plan</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, Management plan" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Free entry" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160723972" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Select 1 Option")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Pharmacy prescription");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, Pharmacy prescription</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, Pharmacy prescription" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Select 1 Option" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160723993" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("multiselect")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Reason for referral");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, Reason for referral</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, Reason for referral" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="multiselect" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160724013" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Free entry")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Comments");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, Comments</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, Comments" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Free entry" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160724033" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Select multiple")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Patient support appointment type");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, Patient support appointment type</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, Patient support appointment type" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Select multiple" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160724054" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Free entry")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Patient support, other");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, Patient support, other</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, Patient support, other" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Free entry" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160724077" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Select multiple")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Appointment needed");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, Appointment needed</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, Appointment needed" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Select multiple" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160724097" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Choose from Calendar")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, MDT date");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, MDT date</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, MDT date" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Choose from Calendar" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160724124" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Free entry")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Gynaecological consultation (weeks)");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, Gynaecological consultation (weeks)</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, Gynaecological consultation (weeks)" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Free entry" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108160724149" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Free entry")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Appointment scheduling, note");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to IC, Appointment scheduling, note</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, Appointment scheduling, note" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Free entry" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108172332477" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_reference_term
+                where code in
+                ("125996","116023","1607050","127640","159919","128803","151828","166269","139069","161833","166818","117559","166810","160680","125996","116023","1607050","155249","111379","5009","5008","164955","159619","36443","116033","155080","159360","162403","161831","161830","5209","126931","134988","128845","165084","507","120148","161174","166353","161831","161830","5209","126931","134988","128845","165084","507","120148","161174","166353","162812","162811","127918","152591","885","166571","166572","151924","123092","146179","148346","159359","127146","159357","166254","125782","165972","159358","162673","116077","166273","158532","158533","166275","165175","122496","166706")
+                and retired = 0
+                and concept_source_id = (
+                select concept_source_id from concept_reference_source where name = "CEIL"  and retired =0
+                );
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding CEIL codes to concepts</comment>
+        <sql>
+            SELECT concept_source_id INTO @source_id FROM concept_reference_source where name = "CEIL";
+
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,125996,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,116023,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,1607050,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,127640,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,159919,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,128803,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,151828,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,166269,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,139069,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,161833,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,166818,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,117559,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,166810,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,160680,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,125996,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,116023,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,1607050,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,155249,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,111379,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,5009,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,5008,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,164955,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,159619,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,36443,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,116033,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,155080,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,159360,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,162403,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,161831,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,161830,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,5209,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,126931,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,134988,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,128845,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,165084,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,507,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,120148,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,161174,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,166353,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,161831,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,161830,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,5209,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,126931,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,134988,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,128845,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,165084,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,507,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,120148,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,161174,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,166353,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,162812,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,162811,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,127918,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,152591,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,885,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,166571,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,166572,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,151924,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,123092,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,146179,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,148346,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,159359,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,127146,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,159357,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,166254,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,125782,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,165972,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,159358,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,162673,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,116077,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,166273,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,158532,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,158533,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,166275,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,165175,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,122496,@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,166706,@source_id,uuid(),now());
+
+            call CREATE_REFERENCE_MAPPING_CEIL("IC, Cardiac examination","163046");
+            call CREATE_REFERENCE_MAPPING_CEIL("IC, Skin disorder","119022");
+            call CREATE_REFERENCE_MAPPING_CEIL("Other","5622");
+            call CREATE_REFERENCE_MAPPING_CEIL("IC","160773");
+            call CREATE_REFERENCE_MAPPING_CEIL("Inguinal Lymph node","160680");
+            call CREATE_REFERENCE_MAPPING_CEIL("Jaundice","36443");
+            call CREATE_REFERENCE_MAPPING_CEIL("Not involved","166803");
+            call CREATE_REFERENCE_MAPPING_CEIL("II","160774");
+            call CREATE_REFERENCE_MAPPING_CEIL("Adenocarcinoma","151924");
+            call CREATE_REFERENCE_MAPPING_CEIL("Radiation therapy","161174");
+            call CREATE_REFERENCE_MAPPING_CEIL("IC, Clinical Diagnosis","164398");
+            call CREATE_REFERENCE_MAPPING_CEIL("LEEP","165084");
+            call CREATE_REFERENCE_MAPPING_CEIL("Bilateral","160594");
+            call CREATE_REFERENCE_MAPPING_CEIL("Thermocoagulation","166706");
+            call CREATE_REFERENCE_MAPPING_CEIL("Do not attempt to resuscitate","111379");
+            call CREATE_REFERENCE_MAPPING_CEIL("Bed Sore","155249");
+            call CREATE_REFERENCE_MAPPING_CEIL("NYHA III","159359");
+            call CREATE_REFERENCE_MAPPING_CEIL("IVA","160783");
+            call CREATE_REFERENCE_MAPPING_CEIL("IC, Reason for referral","1887");
+            call CREATE_REFERENCE_MAPPING_CEIL("Malignant neoplasm of corpus uteri","116077");
+            call CREATE_REFERENCE_MAPPING_CEIL("Pap smear","885");
+            call CREATE_REFERENCE_MAPPING_CEIL("IC, Benign","164398");
+            call CREATE_REFERENCE_MAPPING_CEIL("Malignant neoplasm of vagina","158532");
+            call CREATE_REFERENCE_MAPPING_CEIL("IIA2","166814");
+            call CREATE_REFERENCE_MAPPING_CEIL("Scars","127146");
+            call CREATE_REFERENCE_MAPPING_CEIL("Virchow's Node","123092");
+            call CREATE_REFERENCE_MAPPING_CEIL("TVH","161833");
+            call CREATE_REFERENCE_MAPPING_CEIL("IC, Parametrial invasion","166801");
+            call CREATE_REFERENCE_MAPPING_CEIL("IC, Confirmed malignancy diagnosis","164398");
+            call CREATE_REFERENCE_MAPPING_CEIL("Chemotherapy","165175");
+            call CREATE_REFERENCE_MAPPING_CEIL("NYHA IV","159360");
+            call CREATE_REFERENCE_MAPPING_CEIL("Ascites","148346");
+            call CREATE_REFERENCE_MAPPING_CEIL("Ovary","166269");
+            call CREATE_REFERENCE_MAPPING_CEIL("IB","160772");
+            call CREATE_REFERENCE_MAPPING_CEIL("IC, Date recorded","162869");
+            call CREATE_REFERENCE_MAPPING_CEIL("Cardiac Oedema","146179");
+            call CREATE_REFERENCE_MAPPING_CEIL("NYHA II","159358");
+            call CREATE_REFERENCE_MAPPING_CEIL("Right","5141");
+            call CREATE_REFERENCE_MAPPING_CEIL("IC, Abdominal examination","160947");
+            call CREATE_REFERENCE_MAPPING_CEIL("IIIB","160780");
+            call CREATE_REFERENCE_MAPPING_CEIL("IIIC1","166815");
+            call CREATE_REFERENCE_MAPPING_CEIL("Vulva condyloma acuminata","166571");
+            call CREATE_REFERENCE_MAPPING_CEIL("Left","5139");
+            call CREATE_REFERENCE_MAPPING_CEIL("Perianal Condyloma Acuminata","155080");
+            call CREATE_REFERENCE_MAPPING_CEIL("IC, Other treatment modality, other","162965");
+            call CREATE_REFERENCE_MAPPING_CEIL("IC, Other treatment start date","163526");
+            call CREATE_REFERENCE_MAPPING_CEIL("Squamous cell carcinoma","125996");
+            call CREATE_REFERENCE_MAPPING_CEIL("Hepatomegaly","5008");
+            call CREATE_REFERENCE_MAPPING_CEIL("IIA1","166813");
+            call CREATE_REFERENCE_MAPPING_CEIL("IC, Previous chemotherapy regimen","163073");
+            call CREATE_REFERENCE_MAPPING_CEIL("Stridor","125782");
+            call CREATE_REFERENCE_MAPPING_CEIL("Consultation for palliative care","164955");
+            call CREATE_REFERENCE_MAPPING_CEIL("IC, Previous chemotherapy facility name","162724");
+            call CREATE_REFERENCE_MAPPING_CEIL("Malignant neoplasm of uterus","116033");
+            call CREATE_REFERENCE_MAPPING_CEIL("Ascitic fluid","162403");
+            call CREATE_REFERENCE_MAPPING_CEIL("Malignant neoplasm of cervix uteri","116023");
+            call CREATE_REFERENCE_MAPPING_CEIL("IC, MDT date","5096");
+            call CREATE_REFERENCE_MAPPING_CEIL("Cervix Uteri","166275");
+            call CREATE_REFERENCE_MAPPING_CEIL("IA","160770");
+            call CREATE_REFERENCE_MAPPING_CEIL("Colposcopy","1607050");
+            call CREATE_REFERENCE_MAPPING_CEIL("Dyspnoea","122496");
+            call CREATE_REFERENCE_MAPPING_CEIL("IC, Uterine cervix diameter in cm","160704");
+            call CREATE_REFERENCE_MAPPING_CEIL("IC, Clinical FIGO staging","160786");
+            call CREATE_REFERENCE_MAPPING_CEIL("Splenomegaly","5009");
+            call CREATE_REFERENCE_MAPPING_CEIL("IB1","166819");
+            call CREATE_REFERENCE_MAPPING_CEIL("Vesicovaginal fistula (VVF) repair","159919");
+            call CREATE_REFERENCE_MAPPING_CEIL("Yes","1065");
+            call CREATE_REFERENCE_MAPPING_CEIL("IB3","166821");
+            call CREATE_REFERENCE_MAPPING_CEIL("IC, Patient support, other","161011");
+            call CREATE_REFERENCE_MAPPING_CEIL("IC, Previously received oncology treatment","162964");
+            call CREATE_REFERENCE_MAPPING_CEIL("IIA","160775");
+            call CREATE_REFERENCE_MAPPING_CEIL("Resuscitate","166810");
+            call CREATE_REFERENCE_MAPPING_CEIL("Heart failure","139069");
+            call CREATE_REFERENCE_MAPPING_CEIL("Kaposi sarcoma","507");
+            call CREATE_REFERENCE_MAPPING_CEIL("IC, ECOG Performance Status","160379");
+            call CREATE_REFERENCE_MAPPING_CEIL("Abdominal hernia","117559");
+            call CREATE_REFERENCE_MAPPING_CEIL("Other female genital organs","166353");
+            call CREATE_REFERENCE_MAPPING_CEIL("Metastasis","151828");
+            call CREATE_REFERENCE_MAPPING_CEIL("Carcinomatosis","134988");
+            call CREATE_REFERENCE_MAPPING_CEIL("Vagina","162673");
+            call CREATE_REFERENCE_MAPPING_CEIL("Condyloma Acuminatum of the Cervix","152591");
+            call CREATE_REFERENCE_MAPPING_CEIL("Cervical conization","162811");
+            call CREATE_REFERENCE_MAPPING_CEIL("Arrhythmia","120148");
+            call CREATE_REFERENCE_MAPPING_CEIL("Cryotherapy","162812");
+            call CREATE_REFERENCE_MAPPING_CEIL("IA2","166812");
+            call CREATE_REFERENCE_MAPPING_CEIL("Involved","166802");
+            call CREATE_REFERENCE_MAPPING_CEIL("IC, Retention of urine","127579");
+            call CREATE_REFERENCE_MAPPING_CEIL("IC, Respiratory system examination","1123");
+            call CREATE_REFERENCE_MAPPING_CEIL("Pipelle","166818");
+            call CREATE_REFERENCE_MAPPING_CEIL("IC, NYHA Heart failure classification","166817");
+            call CREATE_REFERENCE_MAPPING_CEIL("IC, Digital rectal examination","160961");
+            call CREATE_REFERENCE_MAPPING_CEIL("IC, Procedure performed","1651");
+            call CREATE_REFERENCE_MAPPING_CEIL("TAH","161830");
+            call CREATE_REFERENCE_MAPPING_CEIL("IC, Previous radiation therapy regimen","163073");
+            call CREATE_REFERENCE_MAPPING_CEIL("IIB","160773");
+            call CREATE_REFERENCE_MAPPING_CEIL("Radical hysterectomy","161831");
+            call CREATE_REFERENCE_MAPPING_CEIL("IC, Previous radiation therapy start date","163526");
+            call CREATE_REFERENCE_MAPPING_CEIL("Malignant neoplasm of ovary","128845");
+            call CREATE_REFERENCE_MAPPING_CEIL("IB2","166820");
+            call CREATE_REFERENCE_MAPPING_CEIL("IC, Appointment scheduling, note","161011");
+            call CREATE_REFERENCE_MAPPING_CEIL("IC, Laterality","160594");
+            call CREATE_REFERENCE_MAPPING_CEIL("Corpus Uteri","166273");
+            call CREATE_REFERENCE_MAPPING_CEIL("IC, Other treatment facility name","162724");
+            call CREATE_REFERENCE_MAPPING_CEIL("IA1","166811");
+            call CREATE_REFERENCE_MAPPING_CEIL("Biopsy of cervix","161826");
+            call CREATE_REFERENCE_MAPPING_CEIL("IIIA","160779");
+            call CREATE_REFERENCE_MAPPING_CEIL("IC, Digital vaginal examination","160969");
+            call CREATE_REFERENCE_MAPPING_CEIL("Adenosquamous carcinoma","165972");
+            call CREATE_REFERENCE_MAPPING_CEIL("IC, Other examination findings","163042");
+            call CREATE_REFERENCE_MAPPING_CEIL("IC, Reason for refusal of treatment","159602");
+            call CREATE_REFERENCE_MAPPING_CEIL("Wheeze","5209");
+            call CREATE_REFERENCE_MAPPING_CEIL("IC, Previous oncosurgery start date","163526");
+            call CREATE_REFERENCE_MAPPING_CEIL("III","160778");
+            call CREATE_REFERENCE_MAPPING_CEIL("IC, Refusal of treatment by patient","127750");
+            call CREATE_REFERENCE_MAPPING_CEIL("Unknown","1067");
+            call CREATE_REFERENCE_MAPPING_CEIL("IC, Other procedure performed","166635");
+            call CREATE_REFERENCE_MAPPING_CEIL("Elevated jugular venous pressure","127918");
+            call CREATE_REFERENCE_MAPPING_CEIL("IC, Resuscitation status","166807");
+            call CREATE_REFERENCE_MAPPING_CEIL("Oncosurgery","159619");
+            call CREATE_REFERENCE_MAPPING_CEIL("Malignant neoplasm of placenta","128803");
+            call CREATE_REFERENCE_MAPPING_CEIL("No","1066");
+            call CREATE_REFERENCE_MAPPING_CEIL("IC, Ultrasound exam","166806");
+            call CREATE_REFERENCE_MAPPING_CEIL("IC, History of present illness","1390");
+            call CREATE_REFERENCE_MAPPING_CEIL("Lymph node involvement","126931");
+            call CREATE_REFERENCE_MAPPING_CEIL("Crackle","127640");
+            call CREATE_REFERENCE_MAPPING_CEIL("IC, Previous chemotherapy start date","163526");
+            call CREATE_REFERENCE_MAPPING_CEIL("NYHA I","159357");
+            call CREATE_REFERENCE_MAPPING_CEIL("Normal","1115");
+            call CREATE_REFERENCE_MAPPING_CEIL("IIIC2","166816");
+            call CREATE_REFERENCE_MAPPING_CEIL("IC, Previous radiation therapy regimen","162724");
+            call CREATE_REFERENCE_MAPPING_CEIL("IC, Comments","161011");
+            call CREATE_REFERENCE_MAPPING_CEIL("Malignant neoplasm of vulva","158533");
+            call CREATE_REFERENCE_MAPPING_CEIL("Vaginal condyloma acuminata","166572");
+            call CREATE_REFERENCE_MAPPING_CEIL("IC, Previous oncosurgery facility name","162724");
+            call CREATE_REFERENCE_MAPPING_CEIL("None","1107");
+            call CREATE_REFERENCE_MAPPING_CEIL("IVB","160784");
+            call CREATE_REFERENCE_MAPPING_CEIL("IC, Lymph node examination","160685");
+            call CREATE_REFERENCE_MAPPING_CEIL("Vulva","166254");
+        </sql>
+    </changeSet>
+
+    <changeSet id="malawi_CONFIG_20211108172332512" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_reference_term
+                where code in
+                ("MSFF313","MSFF312","MSFF311","MSFF352","MSFF375","MSFF363","MSFF370","MSFF376","MSFF369")
+                and retired = 0
+                and concept_source_id = (
+                select concept_source_id from concept_reference_source where name = "MSFOCP"  and retired =0
+                );
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding MSFOCP codes to concepts</comment>
+        <sql>
+            SELECT concept_source_id INTO @source_id FROM concept_reference_source where name = "MSFOCP";
+
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF313",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF312",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF311",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF352",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF375",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF363",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF370",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF376",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF369",@source_id,uuid(),now());
+
+            call CREATE_REFERENCE_MAPPING_MSFOCP("IC, Appointment needed","MSFF195");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("IC, Vulva and vagina examination","MSFF52");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Suspected malignancy","MSFF311");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("IC, Vulva and vagina examination comment","MSFF53");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("IC, Cancer diagnosis disclosed to patient","MSFF308");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("IC, Pharmacy prescription","MSFF193");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Confirmed malignancy","MSFF312");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Valvular abnormalities","MSFF363");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("IC, Patient support appointment type","MSFF372");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("IC, Neurological examination","MSFF305");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("MDT","MSFF376");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("IC, Management plan","MSFF324");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Gynaecological consultation","MSFF375");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("IC, Gynaecological consultation (weeks)","MSFF195");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Counselling","MSFF352");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("IC, Other treatment modality","MSFF306");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("IC, Rectal examination, comments","MSFF374");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Laboratory tests","MSFF369");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Patient support","MSFF370");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Benign","MSFF313");
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
