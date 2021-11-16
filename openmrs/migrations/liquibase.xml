@@ -777,4 +777,5 @@
     <include file="Laboratory/Laboratory.xml"/>
     <include file="SymptomsAssessment/SymptomsAssessment.xml"/>
     <include file="UltraSound/UltraSound.xml"/>
+    <include file="InitialConsultation/InitialConsultation.xml"/>
 </databaseChangeLog>
