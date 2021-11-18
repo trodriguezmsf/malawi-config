@@ -617,7 +617,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Squamous cell carcinoma", "Adenocarcinoma", "Adenosquamous carcinoma", "Malignant neoplasm of placenta", "Malignant neoplasm of ovary", "Malignant neoplasm of uterus", "Malignant neoplasm of corpus uteri", "Malignant neoplasm of cervix uteri", "Malignant neoplasm of vagina", "Malignant neoplasm of vulva", "Metastasis", "Carcinomatosis", "Lymph node involvement")
+                ("Squamous cell carcinoma", "Adenocarcinoma", "Adenosquamous carcinoma", "Malignant neoplasm", "Metastasis", "Carcinomatosis", "Lymph node involvement")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "IC, Confirmed malignancy diagnosis");
@@ -634,25 +634,13 @@
             set @child5_concept_id = 0;
             set @child6_concept_id = 0;
             set @child7_concept_id = 0;
-            set @child8_concept_id = 0;
-            set @child9_concept_id = 0;
-            set @child10_concept_id = 0;
-            set @child11_concept_id = 0;
-            set @child12_concept_id = 0;
-            set @child13_concept_id = 0;
             select concept_id into @child1_concept_id from concept_name where name ="Squamous cell carcinoma" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child2_concept_id from concept_name where name ="Adenocarcinoma" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child3_concept_id from concept_name where name ="Adenosquamous carcinoma" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Malignant neoplasm of placenta" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child5_concept_id from concept_name where name ="Malignant neoplasm of ovary" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child6_concept_id from concept_name where name ="Malignant neoplasm of uterus" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child7_concept_id from concept_name where name ="Malignant neoplasm of corpus uteri" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child8_concept_id from concept_name where name ="Malignant neoplasm of cervix uteri" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child9_concept_id from concept_name where name ="Malignant neoplasm of vagina" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child10_concept_id from concept_name where name ="Malignant neoplasm of vulva" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child11_concept_id from concept_name where name ="Metastasis" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child12_concept_id from concept_name where name ="Carcinomatosis" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child13_concept_id from concept_name where name ="Lymph node involvement" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Malignant neoplasm" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Metastasis" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child6_concept_id from concept_name where name ="Carcinomatosis" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child7_concept_id from concept_name where name ="Lymph node involvement" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -660,12 +648,6 @@
             call add_concept_answer(@concept_id, @child5_concept_id, 5);
             call add_concept_answer(@concept_id, @child6_concept_id, 6);
             call add_concept_answer(@concept_id, @child7_concept_id, 7);
-            call add_concept_answer(@concept_id, @child8_concept_id, 8);
-            call add_concept_answer(@concept_id, @child9_concept_id, 9);
-            call add_concept_answer(@concept_id, @child10_concept_id, 10);
-            call add_concept_answer(@concept_id, @child11_concept_id, 11);
-            call add_concept_answer(@concept_id, @child12_concept_id, 12);
-            call add_concept_answer(@concept_id, @child13_concept_id, 13);
         </sql>
     </changeSet>
 
@@ -1118,7 +1100,7 @@
             <sqlCheck expectedResult="0">
                 select count(*) from concept_reference_term
                 where code in
-                ("127640","128803","151828","127146","166269","139069","127579","161833","166818","166817","117559","166810","160685","160680","125996","160969","160961","166635","162724","166807","1123","116023","1607050","119022","5096","1651","155249","1390","111379","163526","162964","162965","5009","5008","164955","159619","36443","116033","155080","159360","159919","162403","161831","161830","127750","5209","126931","134988","128845","164398","159602","165084","163046","507","120148","163042","166806","161174","166353","162812","162811","127918","152591","885","160379","166571","166572","151924","160704","123092","146179","148346","159359","159358","159357","166254","125782","165972","162673","116077","1887","166273","158532","158533","163073","166275","165175","122496","160947","166706")
+                ("127640","128803","151828","127146","166269","139069","127579","161833","166818","166817","117559","166810","160685","160680","125996","160969","160961","166635","162724","166807","1123","1607050","119022","5096","1651","155249","1390","111379","163526","162964","162965","5009","5008","164955","159619","36443","155080","159360","159919","162403","161831","161830","127750","5209","126931","134988","164398","159602","165084","163046","507","120148","163042","166806","161174","166353","162812","162811","127918","152591","885","160379","166571","166572","151924","160704","123092","146179","148346","159359","159358","159357","166254","125782","165972","162673","1887","166273","163073","166275","165175","122496","160947","166706")
                 and retired = 0
                 and concept_source_id = (
                 select concept_source_id from concept_reference_source where name = "CEIL"  and retired =0
@@ -1150,7 +1132,6 @@
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"162724",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166807",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1123",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"116023",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1607050",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"119022",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"5096",@source_id,uuid(),now());
@@ -1166,7 +1147,6 @@
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"164955",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"159619",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"36443",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"116033",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"155080",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"159360",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"159919",@source_id,uuid(),now());
@@ -1177,7 +1157,6 @@
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"5209",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"126931",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"134988",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"128845",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"164398",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"159602",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"165084",@source_id,uuid(),now());
@@ -1208,11 +1187,8 @@
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"125782",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"165972",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"162673",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"116077",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1887",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166273",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"158532",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"158533",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"163073",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166275",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"165175",@source_id,uuid(),now());
@@ -1233,10 +1209,8 @@
             call CREATE_REFERENCE_MAPPING_CEIL("Bed Sore","155249");
             call CREATE_REFERENCE_MAPPING_CEIL("NYHA III","159359");
             call CREATE_REFERENCE_MAPPING_CEIL("IC, Reason for referral","1887");
-            call CREATE_REFERENCE_MAPPING_CEIL("Malignant neoplasm of corpus uteri","116077");
             call CREATE_REFERENCE_MAPPING_CEIL("Pap smear","885");
             call CREATE_REFERENCE_MAPPING_CEIL("IC, Benign","164398");
-            call CREATE_REFERENCE_MAPPING_CEIL("Malignant neoplasm of vagina","158532");
             call CREATE_REFERENCE_MAPPING_CEIL("Scars","127146");
             call CREATE_REFERENCE_MAPPING_CEIL("Virchow's Node","123092");
             call CREATE_REFERENCE_MAPPING_CEIL("TVH","161833");
@@ -1261,10 +1235,8 @@
             call CREATE_REFERENCE_MAPPING_CEIL("Stridor","125782");
             call CREATE_REFERENCE_MAPPING_CEIL("Consultation for palliative care","164955");
             call CREATE_REFERENCE_MAPPING_CEIL("IC, Previous chemotherapy facility name","162724");
-            call CREATE_REFERENCE_MAPPING_CEIL("Malignant neoplasm of uterus","116033");
             call CREATE_REFERENCE_MAPPING_CEIL("IC, Ultrasound exam","166806");
             call CREATE_REFERENCE_MAPPING_CEIL("Ascitic fluid","162403");
-            call CREATE_REFERENCE_MAPPING_CEIL("Malignant neoplasm of cervix uteri","116023");
             call CREATE_REFERENCE_MAPPING_CEIL("IC, MDT date","5096");
             call CREATE_REFERENCE_MAPPING_CEIL("Cervix Uteri","166275");
             call CREATE_REFERENCE_MAPPING_CEIL("Colposcopy","1607050");
@@ -1298,7 +1270,6 @@
             call CREATE_REFERENCE_MAPPING_CEIL("IC, Previous radiation therapy regimen","163073");
             call CREATE_REFERENCE_MAPPING_CEIL("Radical hysterectomy","161831");
             call CREATE_REFERENCE_MAPPING_CEIL("IC, Previous radiation therapy start date","163526");
-            call CREATE_REFERENCE_MAPPING_CEIL("Malignant neoplasm of ovary","128845");
             call CREATE_REFERENCE_MAPPING_CEIL("IC, Appointment scheduling, note","161011");
             call CREATE_REFERENCE_MAPPING_CEIL("IC, Laterality","160594");
             call CREATE_REFERENCE_MAPPING_CEIL("Corpus Uteri","166273");
@@ -1314,7 +1285,7 @@
             call CREATE_REFERENCE_MAPPING_CEIL("Elevated jugular venous pressure","127918");
             call CREATE_REFERENCE_MAPPING_CEIL("IC, Resuscitation status","166807");
             call CREATE_REFERENCE_MAPPING_CEIL("Oncosurgery","159619");
-            call CREATE_REFERENCE_MAPPING_CEIL("Malignant neoplasm of placenta","128803");
+            call CREATE_REFERENCE_MAPPING_CEIL("Malignant neoplasm","128803");
             call CREATE_REFERENCE_MAPPING_CEIL("IC, Procedure performed, Gynaecological Exam","1651");
             call CREATE_REFERENCE_MAPPING_CEIL("IC, History of present illness","1390");
             call CREATE_REFERENCE_MAPPING_CEIL("Crackle","127640");
@@ -1322,7 +1293,6 @@
             call CREATE_REFERENCE_MAPPING_CEIL("Lymph node involvement","126931");
             call CREATE_REFERENCE_MAPPING_CEIL("IC, Previous radiation therapy facility name","162724");
             call CREATE_REFERENCE_MAPPING_CEIL("IC, Comments","161011");
-            call CREATE_REFERENCE_MAPPING_CEIL("Malignant neoplasm of vulva","158533");
             call CREATE_REFERENCE_MAPPING_CEIL("Vaginal condyloma acuminata","166572");
             call CREATE_REFERENCE_MAPPING_CEIL("IC, Previous oncosurgery facility name","162724");
             call CREATE_REFERENCE_MAPPING_CEIL("IC, Lymph node examination","160685");
