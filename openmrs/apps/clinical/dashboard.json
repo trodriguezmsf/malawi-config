@@ -171,6 +171,181 @@
           "UltraSound"
         ],
         "translationKey": "DASHBOARD_TITLE_EDIT_FORMS"
+      },
+      "Colposcopy": {
+        "translationKey": "CLINICAL_SUMMARY_COLPOSCOPY",
+        "isObservation": true,
+        "displayOrder": 10,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "scope":"latest",
+          "conceptNames": [
+            "CS, Colposcopic findings",
+            "CS, Date of appointment for results in"
+          ]
+        },
+        "expandedViewConfig": {
+          "scope":"latest",
+          "conceptNames": [
+            "CS, Colposcopic findings",
+            "CS, Date of appointment for results in"
+          ],
+          "isEditable": true,
+          "showDetailsButton": true,
+          "pivotTable": {
+          }
+        }
+      },
+      "Ultrasound": {
+        "translationKey": "CLINICAL_SUMMARY_ULTRASOUND",
+        "isObservation": true,
+        "displayOrder": 11,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "scope":"latest",
+          "conceptNames": [
+            "UR, Tumour criteria",
+            "UR, Parametrial invasion",
+            "UR, Tumour largest diameter",
+            "UR, Ultrasound FIGO staging"
+          ]
+        },
+        "expandedViewConfig": {
+          "scope":"latest",
+          "conceptNames": [
+            "UR, Tumour criteria",
+            "UR, Parametrial invasion",
+            "UR, Tumour largest diameter",
+            "UR, Ultrasound FIGO staging"
+          ],
+          "isEditable": true,
+          "showDetailsButton": true,
+          "pivotTable": {
+          }
+        }
+      },
+      "LEEP&Conization": {
+        "translationKey": "CLINICAL_SUMMARY_LEEP&CONIZATION",
+        "isObservation": true,
+        "displayOrder": 12,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "scope":"latest",
+          "conceptNames": [
+            "LP, LEEP Indication",
+            "LP, Conization indication",
+            "LP, Informed consent",
+            "LP, Urine Pregnancy Test",
+            "LP, Appointment needed (weeks)"
+          ]
+        },
+        "expandedViewConfig": {
+          "scope":"latest",
+          "conceptNames": [
+            "LP, LEEP Indication",
+            "LP, Conization indication",
+            "LP, Informed consent",
+            "LP, Urine Pregnancy Test",
+            "LP, Appointment needed (weeks)"
+          ],
+          "isEditable": true,
+          "showDetailsButton": true,
+          "pivotTable": {
+          }
+        }
+      },
+      "SymptomAssessment": {
+        "translationKey": "CLINICAL_SUMMARY_SYMPTOM_ASSESSMENT",
+        "isObservation": true,
+        "displayOrder": 13,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "scope":"latest",
+          "conceptNames": [
+            "SA, Visit type",
+            "SA, Signs and symptoms",
+            "SA, Fatigue severity of symptom",
+            "SA, Sleep disorder severity of symptom",
+            "SA, Nausea and vomiting severity of symptom",
+            "SA, Poor appetite severity of symptom",
+            "SA, Shortness of breath severity of symptom",
+            "SA, Constipation severity of symptom",
+            "SA, Urge incontinence of urine severity of symptom",
+            "SA, Dysuria severity of symptom",
+            "SA, Oral lesion severity of symptom",
+            "SA, Abnormal vaginal bleeing severity of symptom",
+            "SA, Postcoital and contact bleeding severity of symptom",
+            "SA, Vaginal odor severity of symptom",
+            "SA, Vaginal discharge severity of symptom",
+            "SA, Dyspareunia severity of symptom",
+            "SA, Other symptoms severity"
+          ]
+        },
+        "expandedViewConfig": {
+          "scope":"latest",
+          "conceptNames": [
+            "SA, Visit type",
+            "SA, Signs and symptoms",
+            "SA, Fatigue severity of symptom",
+            "SA, Sleep disorder severity of symptom",
+            "SA, Nausea and vomiting severity of symptom",
+            "SA, Poor appetite severity of symptom",
+            "SA, Shortness of breath severity of symptom",
+            "SA, Constipation severity of symptom",
+            "SA, Urge incontinence of urine severity of symptom",
+            "SA, Dysuria severity of symptom",
+            "SA, Oral lesion severity of symptom",
+            "SA, Abnormal vaginal bleeing severity of symptom",
+            "SA, Postcoital and contact bleeding severity of symptom",
+            "SA, Vaginal odor severity of symptom",
+            "SA, Vaginal discharge severity of symptom",
+            "SA, Dyspareunia severity of symptom",
+            "SA, Other symptoms severity"
+          ],
+          "isEditable": true,
+          "showDetailsButton": true,
+          "pivotTable": {
+          }
+        }
+      },
+      "Laboratory": {
+        "translationKey": "CLINICAL_SUMMARY_LABORATORY",
+        "isObservation": true,
+        "displayOrder": 14,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "scope":"latest",
+          "conceptNames": [
+            "LB, Type of visit",
+            "LB, Haemoglobin",
+            "LB, Serum creatinine",
+            "LB, HIV enzyme immunoassay, qualitative",
+            "LB, Date recorded",
+            "LB, CD4 count",
+            "LB, HIV viral load"
+          ]
+        },
+        "expandedViewConfig": {
+          "scope":"latest",
+          "conceptNames": [
+            "LB, Type of visit",
+            "LB, Haemoglobin",
+            "LB, Serum creatinine",
+            "LB, HIV enzyme immunoassay, qualitative",
+            "LB, Date recorded",
+            "LB, CD4 count",
+            "LB, HIV viral load"
+          ],
+          "isEditable": true,
+          "showDetailsButton": true,
+          "pivotTable": {
+          }
+        }
       }
     }
   },
