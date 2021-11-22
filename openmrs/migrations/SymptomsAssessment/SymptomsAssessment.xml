@@ -194,12 +194,12 @@
                 ("None", "Mild", "Moderate", "Severe", "Very severe")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
-                cn.concept_id IN (select concept_id from concept_name where name = "SA, Nausea and vomiting  severity of symptom");
+                cn.concept_id IN (select concept_id from concept_name where name = "SA, Nausea and vomiting severity of symptom");
             </sqlCheck>
         </preConditions>
-        <comment>Adding Answers to SA, Nausea and vomiting  severity of symptom</comment>
+        <comment>Adding Answers to SA, Nausea and vomiting severity of symptom</comment>
         <sql>
-            select concept_id into @concept_id from concept_name where name = "SA, Nausea and vomiting  severity of symptom" and
+            select concept_id into @concept_id from concept_name where name = "SA, Nausea and vomiting severity of symptom" and
             concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
@@ -446,12 +446,12 @@
                 ("None", "Mild", "Moderate", "Severe", "Very severe")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
-                cn.concept_id IN (select concept_id from concept_name where name = "SA, Abnormal vaginal bleeing severity of symptom");
+                cn.concept_id IN (select concept_id from concept_name where name = "SA, Abnormal vaginal bleeding severity of symptom");
             </sqlCheck>
         </preConditions>
-        <comment>Adding Answers to SA, Abnormal vaginal bleeing severity of symptom</comment>
+        <comment>Adding Answers to SA, Abnormal vaginal bleeding severity of symptom</comment>
         <sql>
-            select concept_id into @concept_id from concept_name where name = "SA, Abnormal vaginal bleeing severity of symptom" and
+            select concept_id into @concept_id from concept_name where name = "SA, Abnormal vaginal bleeding severity of symptom" and
             concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
@@ -590,12 +590,12 @@
                 ("None", "Mild", "Moderate", "Severe", "Very severe")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
-                cn.concept_id IN (select concept_id from concept_name where name = "SA, Dyspareunia  severity of symptom");
+                cn.concept_id IN (select concept_id from concept_name where name = "SA, Dyspareunia severity of symptom");
             </sqlCheck>
         </preConditions>
-        <comment>Adding Answers to SA, Dyspareunia  severity of symptom</comment>
+        <comment>Adding Answers to SA, Dyspareunia severity of symptom</comment>
         <sql>
-            select concept_id into @concept_id from concept_name where name = "SA, Dyspareunia  severity of symptom" and
+            select concept_id into @concept_id from concept_name where name = "SA, Dyspareunia severity of symptom" and
             concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
@@ -708,9 +708,9 @@
             call CREATE_REFERENCE_MAPPING_CEIL("Urge Incontinence of Urine","123508");
             call CREATE_REFERENCE_MAPPING_CEIL("SA, Oral lesion severity of symptom","162642");
             call CREATE_REFERENCE_MAPPING_CEIL("SA, Other symptoms severity","162642");
-            call CREATE_REFERENCE_MAPPING_CEIL("SA, Dyspareunia  severity of symptom","162642");
+            call CREATE_REFERENCE_MAPPING_CEIL("SA, Dyspareunia severity of symptom","162642");
             call CREATE_REFERENCE_MAPPING_CEIL("SA, Other symptoms","165996");
-            call CREATE_REFERENCE_MAPPING_CEIL("SA, Abnormal vaginal bleeing severity of symptom","162642");
+            call CREATE_REFERENCE_MAPPING_CEIL("SA, Abnormal vaginal bleeding severity of symptom","162642");
             call CREATE_REFERENCE_MAPPING_CEIL("Shortness of breath","141600");
             call CREATE_REFERENCE_MAPPING_CEIL("Severe","1500");
             call CREATE_REFERENCE_MAPPING_CEIL("Vaginal discharge","123396");
@@ -723,7 +723,7 @@
             call CREATE_REFERENCE_MAPPING_CEIL("Return visit type","160530");
             call CREATE_REFERENCE_MAPPING_CEIL("SA, Fatigue severity of symptom","162642");
             call CREATE_REFERENCE_MAPPING_CEIL("SA, Date recorded","162869");
-            call CREATE_REFERENCE_MAPPING_CEIL("SA, Nausea and vomiting  severity of symptom","162642");
+            call CREATE_REFERENCE_MAPPING_CEIL("SA, Nausea and vomiting severity of symptom","162642");
             call CREATE_REFERENCE_MAPPING_CEIL("Very severe","159409");
             call CREATE_REFERENCE_MAPPING_CEIL("SA, Shortness of breath severity of symptom","162642");
             call CREATE_REFERENCE_MAPPING_CEIL("Nausea and vomiting","133473");
