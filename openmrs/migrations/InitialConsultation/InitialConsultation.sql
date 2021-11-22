@@ -35,6 +35,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Management 
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Comments","Comments","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Patient support, other","Patient support, other","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Appointment scheduling, note","Appointment scheduling, note","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Diagnosis Comments","Diagnosis Comments","Text","Misc",false);
 
 #Add Coded Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Previously received oncology treatment","Previously received oncology treatment","Coded","Misc",false);
@@ -60,7 +61,11 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Benign","Be
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Abnormal findings","Abnormal findings","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Topography of the Tumour (confirmed)","Topography of the Tumour (confirmed)","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Topography of the Tumour (suspected)","Topography of the Tumour (suspected)","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Clinical FIGO staging","Clinical FIGO staging","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Clinical FIGO staging for cancer of the vulva","Clinical FIGO staging for cancer of the vulva","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Clinical FIGO staging for cancer of the vagina","Clinical FIGO staging for cancer of the vagina","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Clinical FIGO staging for cancer of the cervix","Clinical FIGO staging for cancer of the cervix","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Clinical FIGO staging for cancer of the uterus","Clinical FIGO staging for cancer of the uterus","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Clinical FIGO staging for cancer of the ovary","Clinical FIGO staging for cancer of the ovary","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Refusal of treatment by patient","Refusal of treatment by patient","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Resuscitation status","Resuscitation status","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Cancer diagnosis disclosed to patient","Cancer diagnosis disclosed to patient","Coded","Misc",false);
@@ -159,6 +164,12 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Other female ge
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Jaundice","Jaundice","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Cardiac Oedema","Cardiac Oedema","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Condyloma acuminata","Condyloma acuminata","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC2","IC2","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IIIA2","IIIA2","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IIIC","IIIC","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC3","IC3","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC1","IC1","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IIIA1","IIIA1","N/A","Misc",false);
 
 #Add Help Text to Concepts
 INSERT INTO concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)
