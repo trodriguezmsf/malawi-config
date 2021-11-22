@@ -778,4 +778,5 @@
     <include file="SymptomsAssessment/SymptomsAssessment.xml"/>
     <include file="UltraSound/UltraSound.xml"/>
     <include file="InitialConsultation/InitialConsultation.xml"/>
+    <include file="SubsequentConsultation/SubsequentConsultation.xml"/>
 </databaseChangeLog>
