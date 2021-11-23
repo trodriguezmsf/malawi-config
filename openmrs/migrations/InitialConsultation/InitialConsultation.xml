@@ -1471,7 +1471,7 @@
             call CREATE_REFERENCE_MAPPING_CEIL("IC, Previous chemotherapy start date","163526");
             call CREATE_REFERENCE_MAPPING_CEIL("Lymph node involvement","126931");
             call CREATE_REFERENCE_MAPPING_CEIL("IC, Previous radiation therapy facility name","162724");
-            call CREATE_REFERENCE_MAPPING_CEIL("IC, Comments","161011");
+            call CREATE_REFERENCE_MAPPING_CEIL("IC, Consultation for palliative care, comments","161011");
             call CREATE_REFERENCE_MAPPING_CEIL("Vaginal condyloma acuminata","166572");
             call CREATE_REFERENCE_MAPPING_CEIL("IC, Previous oncosurgery facility name","162724");
             call CREATE_REFERENCE_MAPPING_CEIL("IC, Lymph node examination","160685");

@@ -32,7 +32,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Benign, oth
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Abnormal findings, other","Abnormal findings, other","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Reason for refusal of treatment","Reason for refusal of treatment","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Management plan","Management plan","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Comments","Comments","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Consultation for palliative care, comments","Consultation for palliative care, comments","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Patient support, other","Patient support, other","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Appointment scheduling, note","Appointment scheduling, note","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Diagnosis Comments","Diagnosis Comments","Text","Misc",false);
@@ -174,8 +174,12 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IIIA1","IIIA1",
 #Add Help Text to Concepts
 INSERT INTO concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)
 VALUES ((select concept_id from concept_name where name = "IC, ECOG Performance Status" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0),
-"0: Fully active, able to carry on all pre-disease performance without restriction                                                                                                                 1: Restricted in physically strenuous activity but ambulatory and able to carry out work of a light or sedentary nature,                                                                            2: Ambulatory and capable of all self-care but unable to carry out any work activities. Up and about more than 50% of waking hours
-3: Capable of only limited self-care, confined to bed or chair more than 50% of waking hours                                                                              4: Completely disabled. Cannot carry out any selfcare; totally confined to bed or chair                                                                                            5: Dead","en",1,now(),NULL,NULL,uuid());
+"0: Fully active, able to carry on all pre-disease performance without restriction
+ 1: Restricted in physically strenuous activity but ambulatory and able to carry out work of a light or sedentary nature
+ 2: Ambulatory and capable of all self-care but unable to carry out any work activities. Up and about more than 50% of waking hours
+ 3: Capable of only limited self-care, confined to bed or chair more than 50% of waking hours
+ 4: Completely disabled. Cannot carry out any selfcare; totally confined to bed or chair
+ 5: Dead","en",1,now(),NULL,NULL,uuid());
 INSERT INTO concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)
 VALUES ((select concept_id from concept_name where name = "IC, Pharmacy prescription" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0),
 "Use form CC-PHARM-1","en",1,now(),NULL,NULL,uuid());

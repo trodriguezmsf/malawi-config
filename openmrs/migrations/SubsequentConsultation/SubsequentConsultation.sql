@@ -105,8 +105,12 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Kaposi's sarcom
 #Add Help Text to Concepts
 INSERT INTO concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)
 VALUES ((select concept_id from concept_name where name = "SC, ECOG performance status" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0),
-"0: Fully active, able to carry on all pre-disease performance without restriction                                                                         1: Restricted in physically strenuous activity but ambulatory and able to carry out work of a light or sedentary nature,                                                                            2: Ambulatory and capable of all self-care but unable to carry out any work activities. Up and about more than 50% of waking hours
-3: Capable of only limited self-care, confined to bed or chair more than 50% of waking hours                                                                          4: Completely disabled. Cannot carry out any selfcare; totally confined to bed or chair                                                                    5: Dead","en",1,now(),NULL,NULL,uuid());
+"0: Fully active, able to carry on all pre-disease performance without restriction
+ 1: Restricted in physically strenuous activity but ambulatory and able to carry out work of a light or sedentary nature
+ 2: Ambulatory and capable of all self-care but unable to carry out any work activities. Up and about more than 50% of waking hours
+ 3: Capable of only limited self-care, confined to bed or chair more than 50% of waking hours
+ 4: Completely disabled. Cannot carry out any selfcare; totally confined to bed or chair
+ 5: Dead","en",1,now(),NULL,NULL,uuid());
 INSERT INTO concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)
 VALUES ((select concept_id from concept_name where name = "SC, Informed consent" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0),
 "Documentation that someone has given informed consent.  Select yes, if the consent form was signed by the patient","en",1,now(),NULL,NULL,uuid());
