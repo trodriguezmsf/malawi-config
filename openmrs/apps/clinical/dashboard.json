@@ -168,7 +168,8 @@
           "Colposcopy",
           "Laboratory",
           "Symptoms Assessment",
-          "UltraSound"
+          "UltraSound",
+          "Initial Consultation"
         ],
         "translationKey": "DASHBOARD_TITLE_EDIT_FORMS"
       },
