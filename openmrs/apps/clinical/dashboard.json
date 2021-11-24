@@ -174,6 +174,112 @@
         ],
         "translationKey": "DASHBOARD_TITLE_EDIT_FORMS"
       },
+      "Initial Gynecological Consultation": {
+        "translationKey": "CLINICAL_SUMMARY_INITIAL_CONSULTATION",
+        "isObservation": true,
+        "displayOrder": 8,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "scope":"latest",
+          "conceptNames": [
+            "IC, Previously received oncology treatment",
+            "IC, Clinical diagnosis",
+            "IC, Topography of the tumour (suspected)",
+            "IC, Confirmed malignancy diagnosis",
+            "IC, Topography of the tumour (confirmed)",
+            "IC, Clinical FIGO staging for cancer of the vulva",
+            "IC, Clinical FIGO staging for cancer of the vagina",
+            "IC, Clinical FIGO staging for cancer of the cervix",
+            "IC, Clinical FIGO staging for cancer of the uterus",
+            "IC, Clinical FIGO staging for cancer of the ovary",
+            "IC, Benign",
+            "IC, Benign, other",
+            "IC, Appointment needed",
+            "IC, MDT date",
+            "IC, Gynaecological consultation"
+          ]
+        },
+        "expandedViewConfig": {
+          "scope":"latest",
+          "conceptNames": [
+            "IC, Previously received oncology treatment",
+            "IC, Clinical diagnosis",
+            "IC, Topography of the tumour (suspected)",
+            "IC, Confirmed malignancy diagnosis",
+            "IC, Topography of the tumour (confirmed)",
+            "IC, Clinical FIGO staging for cancer of the vulva",
+            "IC, Clinical FIGO staging for cancer of the vagina",
+            "IC, Clinical FIGO staging for cancer of the cervix",
+            "IC, Clinical FIGO staging for cancer of the uterus",
+            "IC, Clinical FIGO staging for cancer of the ovary",
+            "IC, Benign",
+            "IC, Benign, other",
+            "IC, Appointment needed",
+            "IC, MDT date",
+            "IC, Gynaecological consultation"
+          ],
+          "isEditable": true,
+          "showDetailsButton": true,
+          "pivotTable": {
+          }
+        }
+      },
+      "Subsequent Gynecological Consultation": {
+        "translationKey": "CLINICAL_SUMMARY_SUBSEQUENT_CONSULTATION",
+        "isObservation": true,
+        "displayOrder": 9,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "scope":"latest",
+          "conceptNames": [
+            "SC, Reason for visit",
+            "SC, Time",
+            "SC, Clinical diagnosis",
+            "SC, Topography of the tumour (suspected)",
+            "SC, Confirmed malignancy diagnosis",
+            "SC, Topography of the tumour (confirmed)",
+            "SC, Clinical FIGO staging for cancer of the vulva",
+            "SC, Clinical FIGO staging for cancer of the vagina",
+            "SC, Clinical FIGO staging for cancer of the cervix",
+            "SC, Clinical FIGO staging for cancer of the uterus",
+            "SC, Clinical FIGO staging for cancer of the ovary",
+            "SC, Benign",
+            "SC, Benign, other",
+            "SC, Cancer disease status",
+            "SC, Treatment proposed (MDT)",
+            "SC, Appointment needed",
+            "SC, Next appointment"
+          ]
+        },
+        "expandedViewConfig": {
+          "scope":"latest",
+          "conceptNames": [
+            "SC, Reason for visit",
+            "SC, Time",
+            "SC, Clinical diagnosis",
+            "SC, Topography of the tumour (suspected)",
+            "SC, Confirmed malignancy diagnosis",
+            "SC, Topography of the tumour (confirmed)",
+            "SC, Clinical FIGO staging for cancer of the vulva",
+            "SC, Clinical FIGO staging for cancer of the vagina",
+            "SC, Clinical FIGO staging for cancer of the cervix",
+            "SC, Clinical FIGO staging for cancer of the uterus",
+            "SC, Clinical FIGO staging for cancer of the ovary",
+            "SC, Benign",
+            "SC, Benign, other",
+            "SC, Cancer disease status",
+            "SC, Treatment proposed (MDT)",
+            "SC, Appointment needed",
+            "SC, Next appointment"
+          ],
+          "isEditable": true,
+          "showDetailsButton": true,
+          "pivotTable": {
+          }
+        }
+      },
       "Colposcopy": {
         "translationKey": "CLINICAL_SUMMARY_COLPOSCOPY",
         "isObservation": true,
