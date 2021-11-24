@@ -35,7 +35,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Management 
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Consultation for palliative care, comments","Consultation for palliative care, comments","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Patient support, other","Patient support, other","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Appointment scheduling, note","Appointment scheduling, note","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Diagnosis Comments","Diagnosis Comments","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Diagnosis comments","Diagnosis comments","Text","Misc",false);
 
 #Add Coded Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Previously received oncology treatment","Previously received oncology treatment","Coded","Misc",false);
@@ -49,18 +49,18 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Retention o
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Skin disorder","Skin disorder","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Lymph node examination","Lymph node examination","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Laterality","Laterality","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, ECOG Performance Status","ECOG Performance Status","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, ECOG performance status","ECOG performance status","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Vulva and vagina examination","Vulva and vagina examination","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Digital rectal examination","Digital rectal examination","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Parametrial invasion","Parametrial invasion","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Procedure performed, Gynaecological Exam","Procedure performed","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Procedure performed, Gynaecological Exam","Procedure performed, Gynaecological Exam","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Ultrasound exam","Ultrasound exam","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Clinical Diagnosis","Clinical Diagnosis","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Clinical diagnosis","Clinical diagnosis","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Confirmed malignancy diagnosis","Confirmed malignancy diagnosis","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Benign","Benign","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Abnormal findings","Abnormal findings","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Topography of the Tumour (confirmed)","Topography of the Tumour (confirmed)","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Topography of the Tumour (suspected)","Topography of the Tumour (suspected)","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Topography of the tumour (confirmed)","Topography of the tumour (confirmed)","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Topography of the tumour (suspected)","Topography of the tumour (suspected)","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Clinical FIGO staging for cancer of the vulva","Clinical FIGO staging for cancer of the vulva","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Clinical FIGO staging for cancer of the vagina","Clinical FIGO staging for cancer of the vagina","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Clinical FIGO staging for cancer of the cervix","Clinical FIGO staging for cancer of the cervix","Coded","Misc",false);
@@ -164,6 +164,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Other female ge
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Jaundice","Jaundice","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Cardiac Oedema","Cardiac Oedema","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Condyloma acuminata","Condyloma acuminata","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"I","I","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC2","IC2","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IIIA2","IIIA2","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IIIC","IIIC","N/A","Misc",false);
@@ -173,7 +174,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IIIA1","IIIA1",
 
 #Add Help Text to Concepts
 INSERT INTO concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)
-VALUES ((select concept_id from concept_name where name = "IC, ECOG Performance Status" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0),
+VALUES ((select concept_id from concept_name where name = "IC, ECOG performance status" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0),
 "0: Fully active, able to carry on all pre-disease performance without restriction
  1: Restricted in physically strenuous activity but ambulatory and able to carry out work of a light or sedentary nature
  2: Ambulatory and capable of all self-care but unable to carry out any work activities. Up and about more than 50% of waking hours

@@ -169,7 +169,8 @@
           "Laboratory",
           "Symptoms Assessment",
           "UltraSound",
-          "Initial Consultation"
+          "Initial Consultation",
+          "Subsequent Consultation"
         ],
         "translationKey": "DASHBOARD_TITLE_EDIT_FORMS"
       },

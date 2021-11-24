@@ -392,12 +392,12 @@
                 ("0", "1", "2", "3", "4", "5")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
-                cn.concept_id IN (select concept_id from concept_name where name = "IC, ECOG Performance Status");
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, ECOG performance status");
             </sqlCheck>
         </preConditions>
-        <comment>Adding Answers to IC, ECOG Performance Status</comment>
+        <comment>Adding Answers to IC, ECOG performance status</comment>
         <sql>
-            select concept_id into @concept_id from concept_name where name = "IC, ECOG Performance Status" and
+            select concept_id into @concept_id from concept_name where name = "IC, ECOG performance status" and
             concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
@@ -737,12 +737,12 @@
                 ("Vulva", "Vagina", "Cervix Uteri", "Corpus Uteri", "Ovary", "Other female genital organs")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
-                cn.concept_id IN (select concept_id from concept_name where name = "IC, Topography of the Tumour (confirmed)");
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Topography of the tumour (confirmed)");
             </sqlCheck>
         </preConditions>
-        <comment>Adding Answers to IC, Topography of the Tumour (confirmed)</comment>
+        <comment>Adding Answers to IC, Topography of the tumour (confirmed)</comment>
         <sql>
-            select concept_id into @concept_id from concept_name where name = "IC, Topography of the Tumour (confirmed)" and
+            select concept_id into @concept_id from concept_name where name = "IC, Topography of the tumour (confirmed)" and
             concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
@@ -776,12 +776,12 @@
                 ("Vulva", "Vagina", "Cervix Uteri", "Corpus Uteri", "Ovary", "Other female genital organs")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
-                cn.concept_id IN (select concept_id from concept_name where name = "IC, Topography of the Tumour (suspected)");
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Topography of the tumour (suspected)");
             </sqlCheck>
         </preConditions>
-        <comment>Adding Answers to IC, Topography of the Tumour (suspected)</comment>
+        <comment>Adding Answers to IC, Topography of the tumour (suspected)</comment>
         <sql>
-            select concept_id into @concept_id from concept_name where name = "IC, Topography of the Tumour (suspected)" and
+            select concept_id into @concept_id from concept_name where name = "IC, Topography of the tumour (suspected)" and
             concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
@@ -857,7 +857,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("IA", "IB", "IIA", "IIB", "III", "IVA", "IVB")
+                ("I", "I", "III", "IVA", "IVB")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "IC, Clinical FIGO staging for cancer of the vagina");
@@ -872,22 +872,16 @@
             set @child3_concept_id = 0;
             set @child4_concept_id = 0;
             set @child5_concept_id = 0;
-            set @child6_concept_id = 0;
-            set @child7_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="IA" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="IB" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="IIA" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="IIB" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child5_concept_id from concept_name where name ="III" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child6_concept_id from concept_name where name ="IVA" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child7_concept_id from concept_name where name ="IVB" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="I" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="I" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="III" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="IVA" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="IVB" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
             call add_concept_answer(@concept_id, @child4_concept_id, 4);
             call add_concept_answer(@concept_id, @child5_concept_id, 5);
-            call add_concept_answer(@concept_id, @child6_concept_id, 6);
-            call add_concept_answer(@concept_id, @child7_concept_id, 7);
         </sql>
     </changeSet>
 
@@ -1277,7 +1271,7 @@
             <sqlCheck expectedResult="0">
                 select count(*) from concept_reference_term
                 where code in
-                ("127640","128803","151828","127146","166269","139069","127579","161833","166818","166817","117559","166810","160685","160680","125996","160969","160961","166635","162724","166807","1123","1607050","119022","5096","1651","155249","1390","111379","163526","162964","162965","5009","5008","164955","159619","36443","155080","159360","159919","162403","161831","161830","127750","5209","126931","134988","164398","159602","165084","163046","507","120148","163042","166806","161174","166353","162812","162811","127918","152591","885","160379","166571","166572","151924","160704","123092","146179","148346","159359","159358","159357","166254","125782","165972","162673","1887","166273","163073","166275","165175","122496","160947","166706","160776","160781")
+                ("127640","128803","151828","127146","166269","139069","127579","161833","166818","166817","117559","166810","160685","160680","125996","160969","160961","166635","162724","166807","1123","1607050","119022","5096","1651","155249","1390","111379","163526","162964","162965","5009","5008","164955","159619","36443","155080","159360","159919","162403","161831","161830","127750","5209","126931","134988","164398","159602","165084","163046","507","120148","163042","166806","161174","166353","162812","162811","127918","152591","885","160379","166571","166572","151924","160704","123092","146179","148346","159359","159358","159357","166254","125782","165972","162673","1887","166273","163073","166275","165175","122496","160947","166706","160776","160781","160771")
                 and retired = 0
                 and concept_source_id = (
                 select concept_source_id from concept_reference_source where name = "CEIL"  and retired =0
@@ -1374,13 +1368,14 @@
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166706",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"160776",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"160781",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"160771",@source_id,uuid(),now());
             call CREATE_REFERENCE_MAPPING_CEIL("IC, Cardiac examination","163046");
             call CREATE_REFERENCE_MAPPING_CEIL("IC, Skin disorder","119022");
             call CREATE_REFERENCE_MAPPING_CEIL("Inguinal Lymph node","160680");
             call CREATE_REFERENCE_MAPPING_CEIL("Jaundice","36443");
             call CREATE_REFERENCE_MAPPING_CEIL("Adenocarcinoma","151924");
             call CREATE_REFERENCE_MAPPING_CEIL("Radiation therapy","161174");
-            call CREATE_REFERENCE_MAPPING_CEIL("IC, Clinical Diagnosis","164398");
+            call CREATE_REFERENCE_MAPPING_CEIL("IC, Clinical diagnosis","164398");
             call CREATE_REFERENCE_MAPPING_CEIL("LEEP","165084");
             call CREATE_REFERENCE_MAPPING_CEIL("Bilateral","160594");
             call CREATE_REFERENCE_MAPPING_CEIL("Thermocoagulation","166706");
@@ -1428,7 +1423,7 @@
             call CREATE_REFERENCE_MAPPING_CEIL("Resuscitate","166810");
             call CREATE_REFERENCE_MAPPING_CEIL("Heart failure","139069");
             call CREATE_REFERENCE_MAPPING_CEIL("Kaposi sarcoma","507");
-            call CREATE_REFERENCE_MAPPING_CEIL("IC, ECOG Performance Status","160379");
+            call CREATE_REFERENCE_MAPPING_CEIL("IC, ECOG performance status","160379");
             call CREATE_REFERENCE_MAPPING_CEIL("Abdominal hernia","117559");
             call CREATE_REFERENCE_MAPPING_CEIL("Other female genital organs","166353");
             call CREATE_REFERENCE_MAPPING_CEIL("Metastasis","151828");
@@ -1478,7 +1473,7 @@
             call CREATE_REFERENCE_MAPPING_CEIL("Vulva","166254");
             call CREATE_REFERENCE_MAPPING_CEIL("IA","160772");
             call CREATE_REFERENCE_MAPPING_CEIL("IIIC","160781");
-            call CREATE_REFERENCE_MAPPING_CEIL("IIB","160776");
+            call CREATE_REFERENCE_MAPPING_CEIL("I","160771");
         </sql>
     </changeSet>
 

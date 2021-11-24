@@ -15,7 +15,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Neurologica
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Other","Other","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Vulva and vagina examination comment","Vulva and vagina examination comment","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Digital vaginal examination","Digital vaginal examination","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Diagnosis Comments","Diagnosis Comments","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Diagnosis comments","Diagnosis comments","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Benign, other","Benign, other","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Abnormal findings, other","Abnormal findings, other","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Treatment phase, other","Treatment phase, other","Text","Misc",false);
@@ -41,13 +41,13 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Lymph node 
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Laterality","Laterality","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, ECOG performance status","ECOG performance status","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Vulva and vagina examination","Vulva and vagina examination","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Procedure performed","Procedure performed","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Procedure performed, Gynaecological Exam","Procedure performed, Gynaecological Exam","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Digital rectal examination","Digital rectal examination","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Parametrial invasion","Parametrial invasion","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Clinical diagnosis","Clinical diagnosis","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Confirmed malignancy diagnosis","Confirmed malignancy diagnosis","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Topography of the Tumour (confirmed)","Topography of the Tumour (confirmed)","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Topography of the Tumour (suspected)","Topography of the Tumour (suspected)","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Topography of the tumour (confirmed)","Topography of the tumour (confirmed)","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Topography of the tumour (suspected)","Topography of the tumour (suspected)","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Clinical FIGO staging for cancer of the vulva","Clinical FIGO staging for cancer of the vulva","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Clinical FIGO staging for cancer of the vagina","Clinical FIGO staging for cancer of the vagina","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Clinical FIGO staging for cancer of the cervix","Clinical FIGO staging for cancer of the cervix","Coded","Misc",false);
