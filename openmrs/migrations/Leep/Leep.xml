@@ -506,7 +506,7 @@
             call CREATE_REFERENCE_MAPPING_MSFOCP("LP, Number of passes","MSFF155");
             call CREATE_REFERENCE_MAPPING_MSFOCP("LP, Endocervical curettage performed","MSFF157");
             call CREATE_REFERENCE_MAPPING_MSFOCP("Suspected HSIL with lesion extending into cervical canal","MSFF185");
-            call CREATE_REFERENCE_MAPPING_MSFOCP("LP, Appointment needed (weeks)","MSFF195");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("LP, Appointment needed","MSFF195");
             call CREATE_REFERENCE_MAPPING_MSFOCP("LP, Other LEEP indication, specify","MSFF68");
             call CREATE_REFERENCE_MAPPING_MSFOCP("LP, Other conization indication, specify","MSFF68");
             call CREATE_REFERENCE_MAPPING_MSFOCP("Single Pass","MSFF152");

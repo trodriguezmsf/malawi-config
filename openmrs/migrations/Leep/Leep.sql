@@ -41,7 +41,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"LP, Insertion o
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"LP, Administered dose","Administered dose","Numeric","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"LP, Number of passes","Number of passes","Numeric","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"LP, Estimated blood loss","Estimated blood loss","Numeric","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"LP, Appointment needed (weeks)","Appointment needed (weeks)","Numeric","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"LP, Appointment needed","Appointment needed","Numeric","Misc",false);
 
 #Add Numeric concepts to concept Numeric Table
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
@@ -51,7 +51,7 @@ VALUES ((select concept_id from concept_name where name = "LP, Number of passes"
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
 VALUES ((select concept_id from concept_name where name = "LP, Estimated blood loss" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "LP, Appointment needed (weeks)" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
+VALUES ((select concept_id from concept_name where name = "LP, Appointment needed" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"weeks",1,1);
 
 #Add Child Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Ibuprofen 400 mg tid for three days","Ibuprofen 400 mg tid for three days","N/A","Misc",false);

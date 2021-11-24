@@ -347,7 +347,7 @@
             "LP, Conization indication",
             "LP, Informed consent",
             "LP, Urine Pregnancy Test",
-            "LP, Appointment needed (weeks)"
+            "LP, Appointment needed"
           ]
         },
         "expandedViewConfig": {
@@ -357,7 +357,7 @@
             "LP, Conization indication",
             "LP, Informed consent",
             "LP, Urine Pregnancy Test",
-            "LP, Appointment needed (weeks)"
+            "LP, Appointment needed"
           ],
           "isEditable": true,
           "showDetailsButton": true,
