@@ -85,7 +85,6 @@ INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_ab
 VALUES ((select concept_id from concept_name where name = "IC, Gynaecological consultation" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"weeks",1,1);
 
 #Add Child Concepts
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Bilateral","Bilateral","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Pipelle","Pipelle","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Chemotherapy","Chemotherapy","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NYHA I","NYHA I","N/A","Misc",false);

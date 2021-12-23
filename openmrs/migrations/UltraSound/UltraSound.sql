@@ -14,6 +14,8 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"UR, Right ovary
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"UR, Left ovary description","Left ovary description","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"UR, Left ovary, comments","Left ovary, comments","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"UR, Comments","Comments","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"UR, Other findings","Comments","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"UR, Lymph node ultrasound findings, other","Comments","Text","Misc",false);
 
 #Add Coded Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"UR, Tumour criteria","Tumour criteria","Coded","Misc",false);
@@ -35,13 +37,13 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"UR, Hydronephro
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"UR, Lymph node ultrasound findings","Lymph node ultrasound findings","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"UR, Lymph node laterality","Lymph node laterality","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"UR, Ultrasound FIGO staging","Ultrasound FIGO staging","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"UR, Parametrial invasion laterality","Parametrial invasion laterality","Coded","Misc",false);
 
 #Add Numeric Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"UR, Longitudinal diameter","Longitudinal diameter","Numeric","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"UR, Anteroposterior (AP) diameter","Anteroposterior (AP) diameter","Numeric","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"UR, Transversal diameter","Transversal diameter","Numeric","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"UR, Endometrial thickness","Endometrial thickness","Numeric","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"UR, Other findings","Other findings","Numeric","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"UR, Tumour largest diameter","Tumour largest diameter","Numeric","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"UR, Right ovary length","Right ovary length","Numeric","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"UR, Right ovary width","Right ovary width","Numeric","Misc",false);
@@ -60,8 +62,6 @@ INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_ab
 VALUES ((select concept_id from concept_name where name = "UR, Transversal diameter" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"mm",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
 VALUES ((select concept_id from concept_name where name = "UR, Endometrial thickness" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"mm",1,1);
-INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "UR, Other findings" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"mm",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
 VALUES ((select concept_id from concept_name where name = "UR, Tumour largest diameter" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"mm",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
@@ -131,6 +131,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Malignant","Mal
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Abnormal","Abnormal","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IB3","IB3","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IIA1","IIA1","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Bilateral","Bilateral","N/A","Misc",false);
 
 #Add Help Text to Concepts
 INSERT INTO concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)

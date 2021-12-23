@@ -504,6 +504,36 @@
         </sql>
     </changeSet>
 
+    <changeSet id="malawi_CONFIG_20211201074401406" author="Venky">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Bilateral", "Right", "Left")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "UR, Parametrial invasion laterality");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to UR, Parametrial invasion laterality</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "UR, Parametrial invasion laterality" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Left" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Right" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Bilateral" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+        </sql>
+    </changeSet>
+
     <changeSet id="malawi_CONFIG_20211101074703169" author="Bindu">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
@@ -659,7 +689,7 @@
             <sqlCheck expectedResult="0">
                 select count(*) from concept_reference_term
                 where code in
-                ("164332","164333","164334","164335","166805","166804","166801","166803","166802","5139","166798","161011","160784","160786","166789","160780","160783","166762","166765","166778","166779","1116","138352","166776","166775","166774","166772","166771","166770","166766","166819","166816","166764","166814","166815","166812","166813","164336","166782","166777","166780","166781","166786","166787","166784","166785","166761","166788","5141","166826","166767","138362","166811","160779","160778","166783","160775","160774","165649","160770","160773","160772","166827","160594","166825","166763","166823","166822","166821","166820","166768","166769","166828")
+                ("164332","164333","164334","164335","166805","166804","166801","166803","166802","5139","166798","161011","160784","160786","166789","160780","160783","166762","166765","166778","166779","1116","138352","166776","166775","166774","166772","166771","166770","166766","166819","166816","166764","166814","166815","166812","166813","164336","166782","166777","166780","166781","166786","166787","166784","166785","166761","166788","5141","166826","166767","138362","166811","160779","160778","166783","160775","160774","165649","160770","160773","160772","166827","160594","166825","166763","166823","166822","166821","166820","166768","166769","166828", "160406")
                 and retired = 0
                 and concept_source_id = (
                 select concept_source_id from concept_reference_source where name = "CEIL"  and retired =0
@@ -743,6 +773,7 @@
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166768",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166769",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166828",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"160406",@source_id,uuid(),now());
             call CREATE_REFERENCE_MAPPING_CEIL("UR, Other findings","166765");
             call CREATE_REFERENCE_MAPPING_CEIL("UR, Right ovary, comments","161011");
             call CREATE_REFERENCE_MAPPING_CEIL("Left pelvic lymphadenopathy","166826");
@@ -828,6 +859,8 @@
             call CREATE_REFERENCE_MAPPING_CEIL("Unicolar","166779");
             call CREATE_REFERENCE_MAPPING_CEIL("UR, Right ovary description","166775");
             call CREATE_REFERENCE_MAPPING_CEIL("Right","5141");
+            call CREATE_REFERENCE_MAPPING_CEIL("Bilateral","160406");
+
         </sql>
     </changeSet>
 </databaseChangeLog>
