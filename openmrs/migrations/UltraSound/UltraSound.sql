@@ -14,8 +14,8 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"UR, Right ovary
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"UR, Left ovary description","Left ovary description","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"UR, Left ovary, comments","Left ovary, comments","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"UR, Comments","Comments","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"UR, Other findings","Comments","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"UR, Lymph node ultrasound findings, other","Comments","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"UR, Other findings","Other findings","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"UR, Lymph node ultrasound findings, other","Lymph node ultrasound findings, other","Text","Misc",false);
 
 #Add Coded Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"UR, Tumour criteria","Tumour criteria","Coded","Misc",false);
