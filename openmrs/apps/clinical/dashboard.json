@@ -168,7 +168,7 @@
           "Colposcopy",
           "Laboratory",
           "Symptoms Assessment",
-          "UltraSound",
+          "Ultrasound",
           "Initial Consultation",
           "Subsequent Consultation"
         ],
@@ -316,6 +316,7 @@
           "conceptNames": [
             "UR, Tumour criteria",
             "UR, Parametrial invasion",
+            "UR, Parametrial invasion laterality",
             "UR, Tumour largest diameter",
             "UR, Ultrasound FIGO staging"
           ]
@@ -325,6 +326,7 @@
           "conceptNames": [
             "UR, Tumour criteria",
             "UR, Parametrial invasion",
+            "UR, Parametrial invasion laterality",
             "UR, Tumour largest diameter",
             "UR, Ultrasound FIGO staging"
           ],
