@@ -779,7 +779,7 @@
     <include file="UltraSound/UltraSound.xml"/>
     <include file="InitialConsultation/InitialConsultation.xml"/>
     <include file="SubsequentConsultation/SubsequentConsultation.xml"/>
-    <changeSet id="gaza-20211130122009" author="Supriya, Bindu">
+    <changeSet id="Malawi-20211130122009" author="Supriya, Bindu">
         <preConditions onFail="CONTINUE">
             <sqlCheck expectedResult="1">
                 SELECT count(*) from global_property

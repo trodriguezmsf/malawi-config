@@ -10,10 +10,10 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SA, Date record
 
 #Add Text Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SA, Other symptoms","Other symptoms","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SA, Visit type, other","Visit type, other","Text","Misc",false);
 
 #Add Coded Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SA, Visit type","Visit type","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SA, Signs and symptoms","Signs and symptoms","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SA, Fatigue severity of symptom","Fatigue severity","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SA, Sleep disorder severity of symptom","Sleep disorder severity","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SA, Nausea and vomiting severity of symptom","Nausea and vomiting severity","Coded","Misc",false);
@@ -31,23 +31,10 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SA, Dyspareunia
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SA, Other symptoms severity","Other symptoms severity","Coded","Misc",false);
 
 #Add Child Concepts
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Sleep disorder","Sleep disorder","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Moderate","Moderate","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Dyspareunia","Dyspareunia","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Dysuria","Dysuria","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Vaginal odor","Vaginal odor","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Initial visit","Initial visit","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Mild","Mild","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Abnormal vaginal bleeding","Abnormal vaginal bleeding","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Shortness of breath","Shortness of breath","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Mouth sore","Mouth sore","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Vaginal discharge","Vaginal discharge","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"poor appetite","poor appetite","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Urge Incontinence of Urine","Urge Incontinence of Urine","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Fatigue","Fatigue","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Very severe","Very severe","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Severe","Severe","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Return visit type","Return visit type","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Postcoital and contact bleeding","Postcoital and contact bleeding","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Follow-up","Follow-up","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Nausea and vomiting","Nausea and vomiting","N/A","Misc",false);
