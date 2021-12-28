@@ -25,17 +25,21 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Other treat
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Other treatment modality, other","Other treatment modality, other","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Neurological examination","Neurological examination","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Other examination findings","Other examination findings","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Vulva and vagina examination, other","Vulva and vagina examination, other","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Vulva and vagina examination comment","Vulva and vagina examination comment","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Digital vaginal examination","Digital vaginal examination","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Rectal examination, comments","Rectal examination, comments","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Benign, other","Benign, other","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Precancerous lesions, other","Precancerous lesions, other","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Abnormal findings, other","Abnormal findings, other","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Reason for refusal of treatment","Reason for refusal of treatment","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Management plan","Management plan","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Consultation for palliative care, comments","Consultation for palliative care, comments","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Patient support, other","Patient support, other","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Appointment scheduling, note","Appointment scheduling, note","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Diagnosis comments","Diagnosis comments","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Appointment needed, Other","Appointment needed, Other","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Confirmed malignancy diagnosis, other","Confirmed malignancy diagnosis, other","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Topography of tumour (suspected), other female genital organs","Topography of tumour (suspected), other female genital organs","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Topography of tumour (confirmed), other female genital organs","Topography of tumour (confirmed), other female genital organs","Text","Misc",false);
 
 #Add Coded Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Previously received oncology treatment","Previously received oncology treatment","Coded","Misc",false);
@@ -53,14 +57,22 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, ECOG perfor
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Vulva and vagina examination","Vulva and vagina examination","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Digital rectal examination","Digital rectal examination","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Parametrial invasion","Parametrial invasion","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Parametrial invasion, laterality","Parametrial invasion, laterality","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Pelvic side wall invasion","Pelvic side wall invasion","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Pelvic side wall invasion, laterality","Pelvic side wall invasion, laterality","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Procedure performed, Gynaecological Exam","Procedure performed, Gynaecological Exam","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Ultrasound exam","Ultrasound exam","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Clinical diagnosis","Clinical diagnosis","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Confirmed malignancy diagnosis","Confirmed malignancy diagnosis","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Benign","Benign","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Precancerous lesions","Precancerous lesions","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Abnormal findings","Abnormal findings","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Topography of the tumour (confirmed)","Topography of the tumour (confirmed)","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Topography of the tumour (suspected)","Topography of the tumour (suspected)","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Initial FIGO staging for cancer of the vulva","Initial FIGO staging for cancer of the vulva","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Initial FIGO staging for cancer of the vagina","Initial FIGO staging for cancer of the vagina","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Initial FIGO staging for cancer of the cervix","Initial FIGO staging for cancer of the cervix","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Initial FIGO staging for cancer of the uterus","Initial FIGO staging for cancer of the uterus","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Initial FIGO staging for cancer of the ovary","Initial FIGO staging for cancer of the ovary","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Clinical FIGO staging for cancer of the vulva","Clinical FIGO staging for cancer of the vulva","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Clinical FIGO staging for cancer of the vagina","Clinical FIGO staging for cancer of the vagina","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC, Clinical FIGO staging for cancer of the cervix","Clinical FIGO staging for cancer of the cervix","Coded","Misc",false);
@@ -89,19 +101,16 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Pipelle","Pipel
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Chemotherapy","Chemotherapy","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NYHA I","NYHA I","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"LEEP","LEEP","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Malignant neoplasm","Malignant neoplasm","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"TVH","TVH","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Total vaginal hysterectomy","Total vaginal hysterectomy","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Ascites","Ascites","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Wheeze","Wheeze","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Counselling","Counselling","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Pap smear","Pap smear","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Lymph node involvement","Lymph node involvement","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Cervix Uteri","Cervix Uteri","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Cervical conization","Cervical conization","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Crackle","Crackle","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"0","0","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Radical hysterectomy","Radical hysterectomy","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Carcinomatosis","Carcinomatosis","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Scars","Scars","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Oncosurgery","Oncosurgery","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Vulva","Vulva","N/A","Misc",false);
@@ -122,7 +131,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Inguinal Lymph 
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3","3","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Kaposi sarcoma","Kaposi sarcoma","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Condyloma Acuminatum of the Cervix","Condyloma Acuminatum of the Cervix","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"TAH","TAH","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Total abdominal hysterectomy","Total abdominal hysterectomy","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Arrhythmia","Arrhythmia","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Adenosquamous carcinoma","Adenosquamous carcinoma","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Consultation for palliative care","Consultation for palliative care","N/A","Misc",false);
@@ -146,7 +155,6 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Squamous cell c
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"STI","STI","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"NYHA III","NYHA III","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Thermocoagulation","Thermocoagulation","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Metastasis","Metastasis","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Suspected malignancy","Suspected malignancy","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CIN I","CIN I","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Do not attempt to resuscitate","Do not attempt to resuscitate","N/A","Misc",false);
@@ -170,6 +178,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IIIC","IIIC","N
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC3","IC3","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IC1","IC1","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IIIA1","IIIA1","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Precancerous lesions","Precancerous lesions","N/A","Misc",false);
 
 #Add Help Text to Concepts
 INSERT INTO concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)

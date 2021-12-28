@@ -13,10 +13,10 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Other reaso
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Comments","Comments","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Neurological exam","Neurological exam","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Other","Other","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Vulva and vagina examination, other","Vulva and vagina examination, other","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Vulva and vagina examination comment","Vulva and vagina examination comment","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Digital vaginal examination","Digital vaginal examination","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Diagnosis comments","Diagnosis comments","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Benign, other","Benign, other","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Precancerous lesions, other","Precancerous lesions, other","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Abnormal findings, other","Abnormal findings, other","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Treatment phase, other","Treatment phase, other","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Other findings","Other findings","Text","Misc",false);
@@ -27,6 +27,10 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Patient con
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Consultation for palliative care, comments","Consultation for palliative care, comments","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Patient support, other","Patient support, other","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Appointment scheduling, note","Appointment scheduling, note","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Appointment needed, Other","Appointment needed, Other","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Confirmed malignancy diagnosis, other","Confirmed malignancy diagnosis, other","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Topography of tumour (suspected), other female genital organs","Topography of tumour (suspected), other female genital organs","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Topography of tumour (confirmed), other female genital organs","Topography of tumour (confirmed), other female genital organs","Text","Misc",false);
 
 #Add Coded Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Reason for visit","Reason for visit","Coded","Misc",false);
@@ -44,16 +48,24 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Vulva and v
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Procedure performed, Gynaecological Exam","Procedure performed, Gynaecological Exam","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Digital rectal examination","Digital rectal examination","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Parametrial invasion","Parametrial invasion","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Parametrial invasion, laterality","Parametrial invasion, laterality","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Pelvic side wall invasion","Pelvic side wall invasion","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Pelvic side wall invasion, laterality","Pelvic side wall invasion, laterality","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Clinical diagnosis","Clinical diagnosis","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Confirmed malignancy diagnosis","Confirmed malignancy diagnosis","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Topography of the tumour (confirmed)","Topography of the tumour (confirmed)","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Topography of the tumour (suspected)","Topography of the tumour (suspected)","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Initial FIGO staging for cancer of the vulva","Initial FIGO staging for cancer of the vulva","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Initial FIGO staging for cancer of the vagina","Initial FIGO staging for cancer of the vagina","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Initial FIGO staging for cancer of the cervix","Initial FIGO staging for cancer of the cervix","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Initial FIGO staging for cancer of the uterus","Initial FIGO staging for cancer of the uterus","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Initial FIGO staging for cancer of the ovary","Initial FIGO staging for cancer of the ovary","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Clinical FIGO staging for cancer of the vulva","Clinical FIGO staging for cancer of the vulva","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Clinical FIGO staging for cancer of the vagina","Clinical FIGO staging for cancer of the vagina","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Clinical FIGO staging for cancer of the cervix","Clinical FIGO staging for cancer of the cervix","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Clinical FIGO staging for cancer of the uterus","Clinical FIGO staging for cancer of the uterus","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Clinical FIGO staging for cancer of the ovary","Clinical FIGO staging for cancer of the ovary","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Benign","Benign","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Precancerous lesions","Precancerous lesions","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Abnormal findings","Abnormal findings","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Treatment phase","Treatment phase","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"SC, Ultrasound exam","Ultrasound exam","Coded","Misc",false);
@@ -86,6 +98,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"2 years","2 yea
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Treatment","Treatment","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Declined","Declined","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"6 months","6 months","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3 months","3 months","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Postoperative state","Postoperative state","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Metastatically recurrent tumour","Metastatically recurrent tumour","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Accepted","Accepted","N/A","Misc",false);
