@@ -525,5 +525,31 @@
             call CREATE_REFERENCE_MAPPING_MSFOCP("LP, Time for removal of tampon","MSFF386");
         </sql>
     </changeSet>
+    <changeSet id="MALAWI_CONFIG_202112281310" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("CINII", "CINIII")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "LP, LEEP Indication");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to LP, LEEP Indication</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "LP, LEEP Indication" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child5_concept_id = 0;
+            set @child6_concept_id = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="CIN II" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child6_concept_id from concept_name where name ="CIN III" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+            call add_concept_answer(@concept_id, @child6_concept_id, 6);
+        </sql>
+    </changeSet>
 
 </databaseChangeLog>
