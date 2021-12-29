@@ -1047,4 +1047,307 @@
         </sql>
     </changeSet>
 
+    <changeSet id="MALAWI_CONFIG_20211229094856123" author="Venky">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Balaka DHO", "Mbera HC", "Makhetha HC", "Malamulo Clinic", "Mdeka HC", "QECH", "Zingwangwa HC", "Mulambe Mission Hospital", "Mwaiwathu Private Hospital", "Blantyre Adventist Hospital", "Chileka HC", "Mlambe Mission Hospital", "Mpemba HC", "Bangwe HC", "Chichiri prison", "Limbe HC", "Ndirande HC", "South Lunzu", "Makata HC", "Soche Maternity", "Mbayani HC", "Chirimba HC", "Chabvala HC", "Chikowa HC", "Chimembe HC", "Dziwe HC", "Lirangwe HC", "Lundu HC", "Madziabango HC", "Namikoko HC", "Pensulo HC", "Mpingo Maternity", "St Vincent HC", "Kadidi HC", "Chikwawa DHO", "Ngabu HC", "St Montfort Mission Hospital", "Chitera HC", "Nguludi HC", "Boma DHO", "Milepa HC", "Namadzi HC", "Namitambo HC", "Thumbwe HC", "Malavi HC", "Chimwawa HC", "Bilal HC", "Mauwa HC", "Nkalo HC", "PIM HC", "Mbulumbudzi HC", "Ndunde HC", "Kachere HC", "Mua Mission", "Bwaila Fistula Care Hospital", "Kamuzu Central Hospital", "Umoyo Clinic", "Liwonde", "Machinga DHO", "Nyambi HC", "Makanjira HC", "Mangochi DHO", "Monkeybay Rural Hospital", "Malindi Mission Hospital", "Mulibwanji Mission Hospital", "Katuli Clinic", "Mulanje DHO", "Mulanje Mission Hospital", "Mwanza DHO", "Lisungwi Hospital", "Nsanje DHO", "Trinity Mission Hospital", "Ntaja HC", "Ntcheu DHO", "Chiteketsa HC", "Holly Familly Hospital", "Migowi HC", "Nkhulambe Clinic", "Nkhwayi HC", "Phalombe DHO", "Salima DHO", "Malamulo Adventist Hospital", "Matiya HC", "Pilimiti HC", "Zomba Central Hospita", "St Luke's Mission Hospita")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "PH, MOH health facility name");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to PH, MOH health facility name</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "PH, MOH health facility name" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            set @child6_concept_id = 0;
+            set @child7_concept_id = 0;
+            set @child8_concept_id = 0;
+            set @child9_concept_id = 0;
+            set @child10_concept_id = 0;
+            set @child11_concept_id = 0;
+            set @child12_concept_id = 0;
+            set @child13_concept_id = 0;
+            set @child14_concept_id = 0;
+            set @child15_concept_id = 0;
+            set @child16_concept_id = 0;
+            set @child17_concept_id = 0;
+            set @child18_concept_id = 0;
+            set @child19_concept_id = 0;
+            set @child20_concept_id = 0;
+            set @child21_concept_id = 0;
+            set @child22_concept_id = 0;
+            set @child23_concept_id = 0;
+            set @child24_concept_id = 0;
+            set @child25_concept_id = 0;
+            set @child26_concept_id = 0;
+            set @child27_concept_id = 0;
+            set @child28_concept_id = 0;
+            set @child29_concept_id = 0;
+            set @child30_concept_id = 0;
+            set @child31_concept_id = 0;
+            set @child32_concept_id = 0;
+            set @child33_concept_id = 0;
+            set @child34_concept_id = 0;
+            set @child35_concept_id = 0;
+            set @child36_concept_id = 0;
+            set @child37_concept_id = 0;
+            set @child38_concept_id = 0;
+            set @child39_concept_id = 0;
+            set @child40_concept_id = 0;
+            set @child41_concept_id = 0;
+            set @child42_concept_id = 0;
+            set @child43_concept_id = 0;
+            set @child44_concept_id = 0;
+            set @child45_concept_id = 0;
+            set @child46_concept_id = 0;
+            set @child47_concept_id = 0;
+            set @child48_concept_id = 0;
+            set @child49_concept_id = 0;
+            set @child50_concept_id = 0;
+            set @child51_concept_id = 0;
+            set @child52_concept_id = 0;
+            set @child53_concept_id = 0;
+            set @child54_concept_id = 0;
+            set @child55_concept_id = 0;
+            set @child56_concept_id = 0;
+            set @child57_concept_id = 0;
+            set @child58_concept_id = 0;
+            set @child59_concept_id = 0;
+            set @child60_concept_id = 0;
+            set @child61_concept_id = 0;
+            set @child62_concept_id = 0;
+            set @child63_concept_id = 0;
+            set @child64_concept_id = 0;
+            set @child65_concept_id = 0;
+            set @child66_concept_id = 0;
+            set @child67_concept_id = 0;
+            set @child68_concept_id = 0;
+            set @child69_concept_id = 0;
+            set @child70_concept_id = 0;
+            set @child71_concept_id = 0;
+            set @child72_concept_id = 0;
+            set @child73_concept_id = 0;
+            set @child74_concept_id = 0;
+            set @child75_concept_id = 0;
+            set @child76_concept_id = 0;
+            set @child77_concept_id = 0;
+            set @child78_concept_id = 0;
+            set @child79_concept_id = 0;
+            set @child80_concept_id = 0;
+            set @child81_concept_id = 0;
+            set @child82_concept_id = 0;
+            set @child83_concept_id = 0;
+            set @child84_concept_id = 0;
+            set @child85_concept_id = 0;
+            set @child86_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Balaka DHO" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Mbera HC" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Makhetha HC" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Malamulo Clinic" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Mdeka HC" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child6_concept_id from concept_name where name ="QECH" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child7_concept_id from concept_name where name ="Zingwangwa HC" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child8_concept_id from concept_name where name ="Mulambe Mission Hospital" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child9_concept_id from concept_name where name ="Mwaiwathu Private Hospital" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child10_concept_id from concept_name where name ="Blantyre Adventist Hospital" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child11_concept_id from concept_name where name ="Chileka HC" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child12_concept_id from concept_name where name ="Mlambe Mission Hospital" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child13_concept_id from concept_name where name ="Mpemba HC" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child14_concept_id from concept_name where name ="Bangwe HC" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child15_concept_id from concept_name where name ="Chichiri prison" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child16_concept_id from concept_name where name ="Limbe HC" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child17_concept_id from concept_name where name ="Ndirande HC" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child18_concept_id from concept_name where name ="South Lunzu" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child19_concept_id from concept_name where name ="Makata HC" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child20_concept_id from concept_name where name ="Soche Maternity" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child21_concept_id from concept_name where name ="Mbayani HC" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child22_concept_id from concept_name where name ="Chirimba HC" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child23_concept_id from concept_name where name ="Chabvala HC" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child24_concept_id from concept_name where name ="Chikowa HC" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child25_concept_id from concept_name where name ="Chimembe HC" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child26_concept_id from concept_name where name ="Dziwe HC" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child27_concept_id from concept_name where name ="Lirangwe HC" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child28_concept_id from concept_name where name ="Lundu HC" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child29_concept_id from concept_name where name ="Madziabango HC" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child30_concept_id from concept_name where name ="Namikoko HC" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child31_concept_id from concept_name where name ="Pensulo HC" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child32_concept_id from concept_name where name ="Mpingo Maternity" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child33_concept_id from concept_name where name ="St Vincent HC" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child34_concept_id from concept_name where name ="Kadidi HC" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child35_concept_id from concept_name where name ="Chikwawa DHO" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child36_concept_id from concept_name where name ="Ngabu HC" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child37_concept_id from concept_name where name ="St Montfort Mission Hospital" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child38_concept_id from concept_name where name ="Chitera HC" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child39_concept_id from concept_name where name ="Nguludi HC" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child40_concept_id from concept_name where name ="Boma DHO" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child41_concept_id from concept_name where name ="Milepa HC" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child42_concept_id from concept_name where name ="Namadzi HC" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child43_concept_id from concept_name where name ="Namitambo HC" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child44_concept_id from concept_name where name ="Thumbwe HC" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child45_concept_id from concept_name where name ="Malavi HC" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child46_concept_id from concept_name where name ="Chimwawa HC" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child47_concept_id from concept_name where name ="Bilal HC" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child48_concept_id from concept_name where name ="Mauwa HC" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child49_concept_id from concept_name where name ="Nkalo HC" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child50_concept_id from concept_name where name ="PIM HC" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child51_concept_id from concept_name where name ="Mbulumbudzi HC" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child52_concept_id from concept_name where name ="Ndunde HC" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child53_concept_id from concept_name where name ="Kachere HC" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child54_concept_id from concept_name where name ="Mua Mission" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child55_concept_id from concept_name where name ="Bwaila Fistula Care Hospital" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child56_concept_id from concept_name where name ="Kamuzu Central Hospital" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child57_concept_id from concept_name where name ="Umoyo Clinic" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child58_concept_id from concept_name where name ="Liwonde" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child59_concept_id from concept_name where name ="Machinga DHO" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child60_concept_id from concept_name where name ="Nyambi HC" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child61_concept_id from concept_name where name ="Makanjira HC" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child62_concept_id from concept_name where name ="Mangochi DHO" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child63_concept_id from concept_name where name ="Monkeybay Rural Hospital" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child64_concept_id from concept_name where name ="Malindi Mission Hospital" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child65_concept_id from concept_name where name ="Mulibwanji Mission Hospital" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child66_concept_id from concept_name where name ="Katuli Clinic" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child67_concept_id from concept_name where name ="Mulanje DHO" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child68_concept_id from concept_name where name ="Mulanje Mission Hospital" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child69_concept_id from concept_name where name ="Mwanza DHO" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child70_concept_id from concept_name where name ="Lisungwi Hospital" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child71_concept_id from concept_name where name ="Nsanje DHO" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child72_concept_id from concept_name where name ="Trinity Mission Hospital" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child73_concept_id from concept_name where name ="Ntaja HC" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child74_concept_id from concept_name where name ="Ntcheu DHO" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child75_concept_id from concept_name where name ="Chiteketsa HC" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child76_concept_id from concept_name where name ="Holly Familly Hospital" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child77_concept_id from concept_name where name ="Migowi HC" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child78_concept_id from concept_name where name ="Nkhulambe Clinic" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child79_concept_id from concept_name where name ="Nkhwayi HC" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child80_concept_id from concept_name where name ="Phalombe DHO" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child81_concept_id from concept_name where name ="Salima DHO" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child82_concept_id from concept_name where name ="Malamulo Adventist Hospital" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child83_concept_id from concept_name where name ="Matiya HC" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child84_concept_id from concept_name where name ="Pilimiti HC" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child85_concept_id from concept_name where name ="Zomba Central Hospita" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child86_concept_id from concept_name where name ="St Luke's Mission Hospita" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+            call add_concept_answer(@concept_id, @child6_concept_id, 6);
+            call add_concept_answer(@concept_id, @child7_concept_id, 7);
+            call add_concept_answer(@concept_id, @child8_concept_id, 8);
+            call add_concept_answer(@concept_id, @child9_concept_id, 9);
+            call add_concept_answer(@concept_id, @child10_concept_id, 10);
+            call add_concept_answer(@concept_id, @child11_concept_id, 11);
+            call add_concept_answer(@concept_id, @child12_concept_id, 12);
+            call add_concept_answer(@concept_id, @child13_concept_id, 13);
+            call add_concept_answer(@concept_id, @child14_concept_id, 14);
+            call add_concept_answer(@concept_id, @child15_concept_id, 15);
+            call add_concept_answer(@concept_id, @child16_concept_id, 16);
+            call add_concept_answer(@concept_id, @child17_concept_id, 17);
+            call add_concept_answer(@concept_id, @child18_concept_id, 18);
+            call add_concept_answer(@concept_id, @child19_concept_id, 19);
+            call add_concept_answer(@concept_id, @child20_concept_id, 20);
+            call add_concept_answer(@concept_id, @child21_concept_id, 21);
+            call add_concept_answer(@concept_id, @child22_concept_id, 22);
+            call add_concept_answer(@concept_id, @child23_concept_id, 23);
+            call add_concept_answer(@concept_id, @child24_concept_id, 24);
+            call add_concept_answer(@concept_id, @child25_concept_id, 25);
+            call add_concept_answer(@concept_id, @child26_concept_id, 26);
+            call add_concept_answer(@concept_id, @child27_concept_id, 27);
+            call add_concept_answer(@concept_id, @child28_concept_id, 28);
+            call add_concept_answer(@concept_id, @child29_concept_id, 29);
+            call add_concept_answer(@concept_id, @child30_concept_id, 30);
+            call add_concept_answer(@concept_id, @child31_concept_id, 31);
+            call add_concept_answer(@concept_id, @child32_concept_id, 32);
+            call add_concept_answer(@concept_id, @child33_concept_id, 33);
+            call add_concept_answer(@concept_id, @child34_concept_id, 34);
+            call add_concept_answer(@concept_id, @child35_concept_id, 35);
+            call add_concept_answer(@concept_id, @child36_concept_id, 36);
+            call add_concept_answer(@concept_id, @child37_concept_id, 37);
+            call add_concept_answer(@concept_id, @child38_concept_id, 38);
+            call add_concept_answer(@concept_id, @child39_concept_id, 39);
+            call add_concept_answer(@concept_id, @child40_concept_id, 40);
+            call add_concept_answer(@concept_id, @child41_concept_id, 41);
+            call add_concept_answer(@concept_id, @child42_concept_id, 42);
+            call add_concept_answer(@concept_id, @child43_concept_id, 43);
+            call add_concept_answer(@concept_id, @child44_concept_id, 44);
+            call add_concept_answer(@concept_id, @child45_concept_id, 45);
+            call add_concept_answer(@concept_id, @child46_concept_id, 46);
+            call add_concept_answer(@concept_id, @child47_concept_id, 47);
+            call add_concept_answer(@concept_id, @child48_concept_id, 48);
+            call add_concept_answer(@concept_id, @child49_concept_id, 49);
+            call add_concept_answer(@concept_id, @child50_concept_id, 50);
+            call add_concept_answer(@concept_id, @child51_concept_id, 51);
+            call add_concept_answer(@concept_id, @child52_concept_id, 52);
+            call add_concept_answer(@concept_id, @child53_concept_id, 53);
+            call add_concept_answer(@concept_id, @child54_concept_id, 54);
+            call add_concept_answer(@concept_id, @child55_concept_id, 55);
+            call add_concept_answer(@concept_id, @child56_concept_id, 56);
+            call add_concept_answer(@concept_id, @child57_concept_id, 57);
+            call add_concept_answer(@concept_id, @child58_concept_id, 58);
+            call add_concept_answer(@concept_id, @child59_concept_id, 59);
+            call add_concept_answer(@concept_id, @child60_concept_id, 60);
+            call add_concept_answer(@concept_id, @child61_concept_id, 61);
+            call add_concept_answer(@concept_id, @child62_concept_id, 62);
+            call add_concept_answer(@concept_id, @child63_concept_id, 63);
+            call add_concept_answer(@concept_id, @child64_concept_id, 64);
+            call add_concept_answer(@concept_id, @child65_concept_id, 65);
+            call add_concept_answer(@concept_id, @child66_concept_id, 66);
+            call add_concept_answer(@concept_id, @child67_concept_id, 67);
+            call add_concept_answer(@concept_id, @child68_concept_id, 68);
+            call add_concept_answer(@concept_id, @child69_concept_id, 69);
+            call add_concept_answer(@concept_id, @child70_concept_id, 70);
+            call add_concept_answer(@concept_id, @child71_concept_id, 71);
+            call add_concept_answer(@concept_id, @child72_concept_id, 72);
+            call add_concept_answer(@concept_id, @child73_concept_id, 73);
+            call add_concept_answer(@concept_id, @child74_concept_id, 74);
+            call add_concept_answer(@concept_id, @child75_concept_id, 75);
+            call add_concept_answer(@concept_id, @child76_concept_id, 76);
+            call add_concept_answer(@concept_id, @child77_concept_id, 77);
+            call add_concept_answer(@concept_id, @child78_concept_id, 78);
+            call add_concept_answer(@concept_id, @child79_concept_id, 79);
+            call add_concept_answer(@concept_id, @child80_concept_id, 80);
+            call add_concept_answer(@concept_id, @child81_concept_id, 81);
+            call add_concept_answer(@concept_id, @child82_concept_id, 82);
+            call add_concept_answer(@concept_id, @child83_concept_id, 83);
+            call add_concept_answer(@concept_id, @child84_concept_id, 84);
+            call add_concept_answer(@concept_id, @child85_concept_id, 85);
+            call add_concept_answer(@concept_id, @child86_concept_id, 86);
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_20211229094856151" author="Venky">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_reference_term
+                where code in
+                ("MSFFF34")
+                and retired = 0
+                and concept_source_id = (
+                select concept_source_id from concept_reference_source where name = "MSFOCP"  and retired =0
+                );
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding MSFOCP codes to concepts</comment>
+        <sql>
+            SELECT concept_source_id INTO @source_id FROM concept_reference_source where name = "MSFOCP";
+
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFFF34",@source_id,uuid(),now());
+
+            call CREATE_REFERENCE_MAPPING_MSFOCP("PH, MOH health facility name","MSFFF34");
+        </sql>
+    </changeSet>
 </databaseChangeLog>
+
