@@ -377,7 +377,6 @@
           "scope":"latest",
           "conceptNames": [
             "SA, Visit type",
-            "SA, Signs and symptoms",
             "SA, Fatigue severity of symptom",
             "SA, Sleep disorder severity of symptom",
             "SA, Nausea and vomiting severity of symptom",
@@ -399,7 +398,6 @@
           "scope":"latest",
           "conceptNames": [
             "SA, Visit type",
-            "SA, Signs and symptoms",
             "SA, Fatigue severity of symptom",
             "SA, Sleep disorder severity of symptom",
             "SA, Nausea and vomiting severity of symptom",

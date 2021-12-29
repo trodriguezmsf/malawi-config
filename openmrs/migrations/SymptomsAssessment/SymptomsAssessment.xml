@@ -637,7 +637,6 @@
             call CREATE_REFERENCE_MAPPING_CEIL("Postcoital and contact bleeding","129452");
             call CREATE_REFERENCE_MAPPING_CEIL("SA, Dysuria severity of symptom","162642");
             call CREATE_REFERENCE_MAPPING_CEIL("Vaginal odor","123386");
-            call CREATE_REFERENCE_MAPPING_CEIL("SA, Signs and symptoms","1727");
             call CREATE_REFERENCE_MAPPING_CEIL("Initial visit","164180");
             call CREATE_REFERENCE_MAPPING_CEIL("Urge Incontinence of Urine","123508");
             call CREATE_REFERENCE_MAPPING_CEIL("SA, Oral lesion severity of symptom","162642");
