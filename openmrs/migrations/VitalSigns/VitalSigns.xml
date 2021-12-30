@@ -236,5 +236,79 @@
             call CREATE_REFERENCE_MAPPING_MSFOCP("VS, Frequency of observation","MSFF101");
         </sql>
     </changeSet>
+    <changeSet id="Malawi-202112290755" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_name where name in ("VS, Location","VS, Location, other") and concept_name_type =
+                'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment> Adding VS,Location, VS,Location other concepts </comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_short_id = 0;
+            set @concept_full_id = 0;
+            set @count = 0;
+            set @uuid = NULL;
 
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"VS, Location","Location","Coded","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"VS, Location, other","Location, other","Text","Misc",false);
+        </sql>
+    </changeSet>
+    <changeSet id="Malawi-202112291255" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_name where name in ("IPD","IPD","OT","4B") and concept_name_type =
+                'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment> Adding IPD, OPD, OT, 4B concepts </comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_short_id = 0;
+            set @concept_full_id = 0;
+            set @count = 0;
+            set @uuid = NULL;
+
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IPD","IPD","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OPD","OPD","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OT","OT","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"4B","4B","N/A","Misc",false);
+        </sql>
+    </changeSet>
+    <changeSet id="Malawi-202112290758" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("IPD", "IPD", "OT", "4B", "Other")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "VS, Location");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to VS, Location</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "VS, Location" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="IPD" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="OPD" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="OT" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="4B" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Other" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+        </sql>
+    </changeSet>
 </databaseChangeLog>
