@@ -595,4 +595,71 @@
         </sql>
     </changeSet>
 
+    <changeSet id="MALAWI_CONFIG_20211231112404020" author="Venky">
+        <comment>Adding Concepts for Laboratory Form version2</comment>
+        <sqlFile path="Laboratory/Laboratory_2.sql"/>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_20211231112404021" author="Venky">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("OPD", "IPD", "OT", "4B", "Other")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "LB, Location");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to LB, Location</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "LB, Location" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="OPD" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="IPD" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="OT" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="4B" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Other" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_20211231112404022" author="Venky">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult = "1">
+            select count(*) from concept_name where name = "LB, Serum glutamic-oxaloacetic transaminase" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment>Restricting range for LB, Serum glutamic-oxaloacetic transaminase concept</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "LB, Serum glutamic-oxaloacetic transaminase" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0;
+            update concept_numeric set hi_absolute=50, low_absolute=0 where concept_id = @concept_id;
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_20211231112404023" author="Venky">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult = "1">
+            select count(*) from concept_name where name = "LB, Serum glutamic-pyruvic transaminase" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment>Restricting range for LB, Serum glutamic-pyruvic transaminase concept</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "LB, Serum glutamic-pyruvic transaminase" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0;
+            update concept_numeric set hi_absolute=37, low_absolute=0 where concept_id = @concept_id;
+        </sql>
+    </changeSet>
+
 </databaseChangeLog>
