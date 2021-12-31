@@ -295,4 +295,18 @@
         </sql>
     </changeSet>
 
+    <changeSet id="MALAWI_CONFIG_20211231110332188" author="Tarun">
+        <comment>Adding Concepts for Colposcopy Form version 3</comment>
+        <sqlFile path="Colposcopy/Colposcopy_3.sql"/>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_20211231110332189" author="Venky">
+        <comment>Adding MSFOCP codes to concepts for form version3</comment>
+        <sql>
+            SELECT concept_source_id INTO @source_id FROM concept_reference_source where name = "MSFOCP";
+            call CREATE_REFERENCE_MAPPING_MSFOCP("CS, Aceto-white areas, Size Num","MSFF56");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("CS, Other lesion, Size Num","MSFF59");
+        </sql>
+    </changeSet>
+
 </databaseChangeLog>
