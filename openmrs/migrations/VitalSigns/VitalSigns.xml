@@ -311,4 +311,28 @@
             call add_concept_answer(@concept_id, @child5_concept_id, 5);
         </sql>
     </changeSet>
+    <changeSet id="MALAWI_CONFIG_202201031543" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult = "1">
+                select count(*) from concept_name where name = "VS, Weight" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment>Add Absolute Low and high values for VS, Weight concept</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "VS, Weight" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0;
+            update concept_numeric set hi_absolute=999.0, low_absolute=1.0 where concept_id = @concept_id;
+        </sql>
+    </changeSet>
+    <changeSet id="MALAWI_CONFIG_202201031544" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult = "1">
+                select count(*) from concept_name where name = "VS, Height" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment>Add Absolute Low and high values for VS, Height concept</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "VS, Height" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0;
+            update concept_numeric set hi_absolute=999.0, low_absolute=-0.1 where concept_id = @concept_id;
+        </sql>
+    </changeSet>
 </databaseChangeLog>
