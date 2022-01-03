@@ -20,13 +20,13 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"LB, Potassium",
 
 #Add Numeric concepts to concept Numeric Table
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "LB, White blood cell" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),8.86,NULL,NULL,3.39,NULL,NULL,"x10^3/µl ",1,1);
+VALUES ((select concept_id from concept_name where name = "LB, White blood cell" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,8.86,NULL,NULL,3.39,"x10^3/µl ",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "LB, Platelet" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),450,NULL,NULL,150,NULL,NULL,"x10^3/µl ",1,1);
+VALUES ((select concept_id from concept_name where name = "LB, Platelet" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,450,NULL,NULL,150,"x10^3/µl ",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "LB, Neutrophil" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),71.4,NULL,NULL,40.2,NULL,NULL,"%",1,1);
+VALUES ((select concept_id from concept_name where name = "LB, Neutrophil" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,71.4,NULL,NULL,40.2,"%",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "LB, Potassium" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),5,NULL,NULL,3.5,NULL,NULL,"mmol/L",1,1);
+VALUES ((select concept_id from concept_name where name = "LB, Potassium" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,5,NULL,NULL,3.5,"mmol/L",1,1);
 
 
 #Add Help Text to Concepts
