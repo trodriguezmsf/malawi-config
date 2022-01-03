@@ -1434,7 +1434,7 @@
         <comment>Restrict decimals for PH, Number of previous caesarean sections concept</comment>
         <sql>
             select concept_id into @concept_id from concept_name where name = "PH, Number of previous caesarean sections" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0;
-            update concept_numeric set precise=0, display_precision=0 where concept_id = @concept_id;
+            update concept_numeric set precise=0, display_precision=0, low_absolute=-0.1 where concept_id = @concept_id;
         </sql>
     </changeSet>
 
@@ -1447,7 +1447,7 @@
         <comment>Restrict decimals for PH, Number of vaginal deliveries concept</comment>
         <sql>
             select concept_id into @concept_id from concept_name where name = "PH, Number of vaginal deliveries" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0;
-            update concept_numeric set precise=0, display_precision=0 where concept_id = @concept_id;
+            update concept_numeric set precise=0, display_precision=0, low_absolute=-0.1 where concept_id = @concept_id;
         </sql>
     </changeSet>
 
@@ -1460,7 +1460,7 @@
         <comment>Restrict decimals for PH, Gravida concept</comment>
         <sql>
             select concept_id into @concept_id from concept_name where name = "PH, Gravida" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0;
-            update concept_numeric set precise=0, display_precision=0 where concept_id = @concept_id;
+            update concept_numeric set precise=0, display_precision=0, low_absolute=-0.1 where concept_id = @concept_id;
         </sql>
     </changeSet>
 
@@ -1473,7 +1473,7 @@
         <comment>Restrict decimals for PH, Total number of living children concept</comment>
         <sql>
             select concept_id into @concept_id from concept_name where name = "PH, Total number of living children" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0;
-            update concept_numeric set precise=0, display_precision=0 where concept_id = @concept_id;
+            update concept_numeric set precise=0, display_precision=0, low_absolute=-0.1 where concept_id = @concept_id;
         </sql>
     </changeSet>
 
