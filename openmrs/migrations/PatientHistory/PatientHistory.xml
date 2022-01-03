@@ -1477,5 +1477,31 @@
         </sql>
     </changeSet>
 
+    <changeSet id="MALAWI_CONFIG_20211231094856154" author="Venky">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult = "1">
+            select count(*) from concept_name where name = "PH, Number of tobacco cigarettes smoked per day" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment>Restrict decimals for PH, Number of tobacco cigarettes smoked per day concept</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "PH, Number of tobacco cigarettes smoked per day" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0;
+            update concept_numeric set low_absolute=-0.0000000001 where concept_id = @concept_id;
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_20211231094856155" author="Venky">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult = "1">
+            select count(*) from concept_name where name = "PH, Litres of alcohol consumed per day" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment>Restrict decimals for PH, Litres of alcohol consumed per day concept</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "PH, Litres of alcohol consumed per day" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0;
+            update concept_numeric set low_absolute=-0.0000000001 where concept_id = @concept_id;
+        </sql>
+    </changeSet>
+
 </databaseChangeLog>
 
