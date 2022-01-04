@@ -194,7 +194,7 @@
     },
     {
       "name": "Age Group Procedure",
-      "sourceFilePath": "classpath:procedureSql/ageGroupProc.sql"
+      "sourceFilePath": "file:/var/www/bahmni_config/bahmni-mart/ageGroupProc.sql"
     }
   ],
   "views": [
