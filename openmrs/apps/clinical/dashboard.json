@@ -336,8 +336,8 @@
           }
         }
       },
-      "LEEP&Conization": {
-        "translationKey": "CLINICAL_SUMMARY_LEEP&CONIZATION",
+      "LEEP and Conization": {
+        "translationKey": "CLINICAL_SUMMARY_LEEP_AND_CONIZATION",
         "isObservation": true,
         "displayOrder": 12,
         "dashboardConfig": {
