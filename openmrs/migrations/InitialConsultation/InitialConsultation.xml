@@ -1715,6 +1715,7 @@
             call CREATE_REFERENCE_MAPPING_CEIL("IC, Reason for referral","1887");
             call CREATE_REFERENCE_MAPPING_CEIL("Pap smear","885");
             call CREATE_REFERENCE_MAPPING_CEIL("IC, Precancerous lesions","164808");
+            call CREATE_REFERENCE_MAPPING_CEIL("Precancerous lesions","164808");
             call CREATE_REFERENCE_MAPPING_CEIL("Scars","127146");
             call CREATE_REFERENCE_MAPPING_CEIL("Virchow's Node","123092");
             call CREATE_REFERENCE_MAPPING_CEIL("Total vaginal hysterectomy","166965");
@@ -1746,7 +1747,6 @@
             call CREATE_REFERENCE_MAPPING_CEIL("Colposcopy","1607050");
             call CREATE_REFERENCE_MAPPING_CEIL("Dyspnoea","122496");
             call CREATE_REFERENCE_MAPPING_CEIL("IC, Uterine cervix diameter in cm","160704");
-            call CREATE_REFERENCE_MAPPING_CEIL("IC, Clinical FIGO staging","160786");
             call CREATE_REFERENCE_MAPPING_CEIL("IC, Initial FIGO staging for cancer of the vulva","160786");
             call CREATE_REFERENCE_MAPPING_CEIL("IC, Initial FIGO staging for cancer of the vagina","160786");
             call CREATE_REFERENCE_MAPPING_CEIL("IC, Initial FIGO staging for cancer of the cervix","160786");

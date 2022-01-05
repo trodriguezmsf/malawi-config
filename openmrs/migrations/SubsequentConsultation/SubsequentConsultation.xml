@@ -1275,30 +1275,18 @@
             set @child4_concept_id = 0;
             set @child5_concept_id = 0;
             set @child6_concept_id = 0;
-            set @child7_concept_id = 0;
-            set @child8_concept_id = 0;
-            set @child9_concept_id = 0;
-            set @child10_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Cervicitis" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Condyloma acuminata" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="CIN II" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="CIN III" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child5_concept_id from concept_name where name ="CIN I" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child6_concept_id from concept_name where name ="HSIL" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child7_concept_id from concept_name where name ="LSIL" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child8_concept_id from concept_name where name ="Schistosomiasis" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child9_concept_id from concept_name where name ="STI" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child10_concept_id from concept_name where name ="Other" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="CIN I" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="CIN II" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="CIN III" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="HSIL" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="LSIL" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child6_concept_id from concept_name where name ="Other" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
             call add_concept_answer(@concept_id, @child4_concept_id, 4);
             call add_concept_answer(@concept_id, @child5_concept_id, 5);
             call add_concept_answer(@concept_id, @child6_concept_id, 6);
-            call add_concept_answer(@concept_id, @child7_concept_id, 7);
-            call add_concept_answer(@concept_id, @child8_concept_id, 8);
-            call add_concept_answer(@concept_id, @child9_concept_id, 9);
-            call add_concept_answer(@concept_id, @child10_concept_id, 10);
         </sql>
     </changeSet>
 
@@ -1748,6 +1736,16 @@
             call CREATE_REFERENCE_MAPPING_CEIL("Worsening","163055");
             call CREATE_REFERENCE_MAPPING_CEIL("Kaposi's sarcoma","507");
             call CREATE_REFERENCE_MAPPING_CEIL("SC, Precancerous lesions","164808");
+            call CREATE_REFERENCE_MAPPING_CEIL("SC, Initial FIGO staging for cancer of the vulva","160786");
+            call CREATE_REFERENCE_MAPPING_CEIL("SC, Initial FIGO staging for cancer of the vagina","160786");
+            call CREATE_REFERENCE_MAPPING_CEIL("SC, Initial FIGO staging for cancer of the cervix","160786");
+            call CREATE_REFERENCE_MAPPING_CEIL("SC, Initial FIGO staging for cancer of the uterus","160786");
+            call CREATE_REFERENCE_MAPPING_CEIL("SC, Initial FIGO staging for cancer of the ovary","160786");
+            call CREATE_REFERENCE_MAPPING_CEIL("SC, Clinical FIGO staging for cancer of the vulva","160786");
+            call CREATE_REFERENCE_MAPPING_CEIL("SC, Clinical FIGO staging for cancer of the vagina","160786");
+            call CREATE_REFERENCE_MAPPING_CEIL("SC, Clinical FIGO staging for cancer of the cervix","160786");
+            call CREATE_REFERENCE_MAPPING_CEIL("SC, Clinical FIGO staging for cancer of the uterus","160786");
+            call CREATE_REFERENCE_MAPPING_CEIL("SC, Clinical FIGO staging for cancer of the ovary","160786");
         </sql>
     </changeSet>
 
