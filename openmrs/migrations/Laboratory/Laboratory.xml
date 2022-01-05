@@ -645,7 +645,7 @@
         <comment>Restricting range for LB, Serum glutamic-oxaloacetic transaminase concept</comment>
         <sql>
             select concept_id into @concept_id from concept_name where name = "LB, Serum glutamic-oxaloacetic transaminase" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0;
-            update concept_numeric set hi_normal=50, low_normal=0 where concept_id = @concept_id;
+            update concept_numeric set hi_normal=50, low_normal=0, low_absolute=-0.0000000001  where concept_id = @concept_id;
         </sql>
     </changeSet>
 
@@ -658,7 +658,7 @@
         <comment>Restricting range for LB, Serum glutamic-pyruvic transaminase concept</comment>
         <sql>
             select concept_id into @concept_id from concept_name where name = "LB, Serum glutamic-pyruvic transaminase" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0;
-            update concept_numeric set hi_normal=37, low_normal=0 where concept_id = @concept_id;
+            update concept_numeric set hi_normal=37, low_normal=0, low_absolute=-0.0000000001 where concept_id = @concept_id;
         </sql>
     </changeSet>
 
