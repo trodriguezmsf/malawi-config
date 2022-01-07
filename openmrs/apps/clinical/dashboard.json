@@ -62,7 +62,8 @@
             "PH, Past medical history diagnosis",
             "PH, HPV status",
             "PH, Histopathology/ Last histopathology exam result",
-            "PH, History of allergy"
+            "PH, History of allergy",
+            "PH, Mastercard ID"
           ]
         },
         "expandedViewConfig": {

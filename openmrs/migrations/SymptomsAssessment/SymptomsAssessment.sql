@@ -36,5 +36,4 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Initial visit",
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Mild","Mild","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Very severe","Very severe","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Severe","Severe","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Return visit type","Return visit type","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Follow-up","Follow-up","N/A","Misc",false);

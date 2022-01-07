@@ -20,7 +20,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Initial visit", "Follow-up", "Return visit type", "Other")
+                ("Initial visit", "Follow-up", "Other")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "SA, Visit type");
@@ -33,15 +33,12 @@
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
             set @child3_concept_id = 0;
-            set @child4_concept_id = 0;
             select concept_id into @child1_concept_id from concept_name where name ="Initial visit" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child2_concept_id from concept_name where name ="Follow-up" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Return visit type" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Other" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Other" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
-            call add_concept_answer(@concept_id, @child4_concept_id, 4);
         </sql>
     </changeSet>
 
@@ -653,7 +650,6 @@
             call CREATE_REFERENCE_MAPPING_CEIL("Moderate","1499");
             call CREATE_REFERENCE_MAPPING_CEIL("SA, Urge incontinence of urine severity of symptom","162642");
             call CREATE_REFERENCE_MAPPING_CEIL("SA, Vaginal odor severity of symptom","162642");
-            call CREATE_REFERENCE_MAPPING_CEIL("Return visit type","160530");
             call CREATE_REFERENCE_MAPPING_CEIL("SA, Fatigue severity of symptom","162642");
             call CREATE_REFERENCE_MAPPING_CEIL("SA, Date recorded","162869");
             call CREATE_REFERENCE_MAPPING_CEIL("SA, Nausea and vomiting severity of symptom","162642");

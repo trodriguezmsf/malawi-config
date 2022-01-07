@@ -1503,5 +1503,18 @@
         </sql>
     </changeSet>
 
+    <changeSet id="MALAWI_CONFIG_20211231094856156" author="Venky">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult = "1">
+            select count(*) from concept_name where name = "PH, Last CD4 count" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment>Restrict Negative values for PH, Last CD4 count concept</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "PH, Last CD4 count" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0;
+            update concept_numeric set low_absolute=-0.0000000001 where concept_id = @concept_id;
+        </sql>
+    </changeSet>
+
 </databaseChangeLog>
 
