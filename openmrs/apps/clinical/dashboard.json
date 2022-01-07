@@ -502,7 +502,7 @@
                 "VS, Respiratory rate"
               ],
               "xAxisConcept": "observationDateTime",
-              "numberOfVisits": 1
+              "numberOfVisits": 7
             },
             "displayOrder": 1
           },
@@ -514,7 +514,7 @@
                 "VS, Arterial blood oxygen saturation"
               ],
               "xAxisConcept": "observationDateTime",
-              "numberOfVisits": 1
+              "numberOfVisits": 7
             },
             "displayOrder": 2
           },
@@ -526,7 +526,7 @@
                 "VS, Pulse"
               ],
               "xAxisConcept": "observationDateTime",
-              "numberOfVisits": 1
+              "numberOfVisits": 7
             },
             "displayOrder": 3
           },
@@ -539,7 +539,7 @@
                 "VS, Diastolic Blood Pressure"
               ],
               "xAxisConcept": "observationDateTime",
-              "numberOfVisits": 1
+              "numberOfVisits": 7
             },
             "displayOrder": 4
           },
@@ -551,7 +551,7 @@
                 "VS, Temperature"
               ],
               "xAxisConcept": "observationDateTime",
-              "numberOfVisits": 1
+              "numberOfVisits": 7
             },
             "displayOrder": 5
           },
@@ -563,7 +563,7 @@
                 "VS, Weight"
               ],
               "xAxisConcept": "observationDateTime",
-              "numberOfVisits": 1
+              "numberOfVisits": 7
             },
             "displayOrder": 6
           },
@@ -575,7 +575,7 @@
                 "VS, Body mass index"
               ],
               "xAxisConcept": "observationDateTime",
-              "numberOfVisits": 1
+              "numberOfVisits": 7
             },
             "displayOrder": 7
           }
