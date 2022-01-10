@@ -10,8 +10,6 @@ VALUES ('emrapi.sqlSearch.activePrograms', "select patientIdentifier.identifier 
        DATE_FORMAT(programstate.date_created, '%d %b %Y')     as 'Date of Registration',
        Oncogynae.oncogynaeName                                as 'Oncogynae Program State',
        Palliative.palliativeName                              as 'Palliative Program State',
-       bednumber.bed_number                                   as 'Bed Number',
-       'Admit/Transfer'                                       as 'Bed Management',
        concat('', programstate.uuid)                          as uuid
 from patient_program patientprogram
     #Block to fetch the values for 'Oncogynae program state' column
