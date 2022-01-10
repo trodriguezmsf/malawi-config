@@ -39,7 +39,7 @@
       "Patient History": {
         "translationKey": "CLINICALSUMMARY_PATIENT_HISTORY",
         "isObservation": true,
-        "displayOrder": 3,
+        "displayOrder": 8,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
@@ -107,7 +107,7 @@
       "Vital Signs": {
         "translationKey": "CLINICALSUMMARY_VITAL_SIGNS",
         "isObservation": true,
-        "displayOrder": 5,
+        "displayOrder": 10,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
@@ -158,7 +158,7 @@
       },
       "validationForms-2.0": {
         "type": "formsV2",
-        "displayOrder": 7,
+        "displayOrder": 15,
         "dashboardConfig": {
           "maximumNoOfVisits": 5
         },
@@ -178,7 +178,7 @@
       "Initial Gynecological Consultation": {
         "translationKey": "CLINICAL_SUMMARY_INITIAL_CONSULTATION",
         "isObservation": true,
-        "displayOrder": 8,
+        "displayOrder": 3,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
@@ -245,7 +245,7 @@
       "Subsequent Gynecological Consultation": {
         "translationKey": "CLINICAL_SUMMARY_SUBSEQUENT_CONSULTATION",
         "isObservation": true,
-        "displayOrder": 9,
+        "displayOrder": 5,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
@@ -316,7 +316,7 @@
       "Colposcopy": {
         "translationKey": "CLINICAL_SUMMARY_COLPOSCOPY",
         "isObservation": true,
-        "displayOrder": 10,
+        "displayOrder": 9,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
@@ -372,7 +372,7 @@
       "LEEP and Conization": {
         "translationKey": "CLINICAL_SUMMARY_LEEP_AND_CONIZATION",
         "isObservation": true,
-        "displayOrder": 12,
+        "displayOrder": 7,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
@@ -456,7 +456,7 @@
       "Laboratory": {
         "translationKey": "CLINICAL_SUMMARY_LABORATORY",
         "isObservation": true,
-        "displayOrder": 14,
+        "displayOrder": 12,
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
