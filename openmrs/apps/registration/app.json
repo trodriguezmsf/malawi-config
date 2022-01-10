@@ -187,7 +187,16 @@
                 "PEC, Emergency Contact, comments": {"pattern" : "^.{1,50}$", "errorMessage" : "Should not exceed 50 characters"},
                 "Patient Contact Type 2, Patient Contact, comments": {"pattern" : "^.{1,50}$", "errorMessage" : "Should not exceed 50 characters"},
                 "Patient Contact Type 1, Patient Contact, comments": {"pattern" : "^.{1,50}$", "errorMessage" : "Should not exceed 50 characters"},
-                "Spoken Language Other": {"pattern" : "^.{1,50}$", "errorMessage" : "Should not exceed 50 characters"}
+                "Spoken Language Other": {"pattern" : "^.{1,50}$", "errorMessage" : "Should not exceed 50 characters"},
+                "address1": {"pattern" : "^.{1,250}$", "errorMessage" : "Should not exceed 250 characters"},
+                "address2": {"pattern" : "^.{1,250}$", "errorMessage" : "Should not exceed 250 characters"},
+                "address3": {"pattern" : "^.{1,250}$", "errorMessage" : "Should not exceed 250 characters"},
+                "address4": {"pattern" : "^.{1,250}$", "errorMessage" : "Should not exceed 250 characters"},
+                "address5": {"pattern" : "^.{0,250}$", "errorMessage" : "Should not exceed 250 characters"},
+                "address6": {"pattern" : "^.{0,250}$", "errorMessage" : "Should not exceed 250 characters"},
+                "cityVillage": {"pattern" : "^.{1,250}$", "errorMessage" : "Should not exceed 250 characters"},
+                "countyDistrict": {"pattern" : "^.{0,250}$", "errorMessage" : "Should not exceed 250 characters"},
+                "country": {"pattern" : "^.{0,250}$", "errorMessage" : "Should not exceed 250 characters"}
             },
                 "patientSearchResults": {
                     "address": {

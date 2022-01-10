@@ -31,14 +31,5 @@
   "REGISTRATION_TITLE_ADDITIONAL_CONTACT_TYPE2": "Patient Contact Type 2",
   "REGISTRATION_TITLE_PRIMARY_EMERGENCY_CONTACT": "Primary  Emergency Contact",
   "REGISTRATION_TITLE_SECONDARY_EMERGENCY_CONTACT": "Secondary Emergency Contact",
-  "REGISTRATION_TITLE_CVHPC": "Community Volunteer/Healthcare Professional Contact",
-  "REGISTRATION_HOUSE_NUMBER_STREET_TEXT_ERROR_KEY": "House number, street should not exceed 50 characters",
-  "REGISTRATION_VILLAGE_HEADMAN_TEXT_ERROR_KEY": "Village Headman should not exceed 250 characters",
-  "REGISTRATION_NEAREST_HEALTH_FACILITY_TO_HOME_TEXT_ERROR_KEY": "Nearest health facility to home should not exceed 250 characters",
-  "REGISTRATION_VILLAGE_NEIGHBORHOOD_TEXT_ERROR_KEY": "Village/Neighborhood should not exceed 250 characters",
-  "REGISTRATION_ADDRESS_DESCRIPTION_TEXT_ERROR_KEY": "Address description should not exceed 250 characters",
-  "REGISTRATION_TRADITIONAL_AUTHORITY_OR_TOWN_TEXT_ERROR_KEY": "Traditional Authority/Town should not exceed 250 characters",
-  "REGISTRATION_COUNTRY_TEXT_ERROR_KEY": "Country should not exceed 250 characters",
-  "REGISTRATION_REGION_TEXT_ERROR_KEY": "Region should not exceed 250 characters",
-  "REGISTRATION_DISTRICT_TEXT_ERROR_KEY": "District should not exceed 250 characters"
+  "REGISTRATION_TITLE_CVHPC": "Community Volunteer/Healthcare Professional Contact"
 }
