@@ -37,6 +37,8 @@
   "REGISTRATION_NEAREST_HEALTH_FACILITY_TO_HOME_TEXT_ERROR_KEY": "Nearest health facility to home should not exceed 250 characters",
   "REGISTRATION_VILLAGE_NEIGHBORHOOD_TEXT_ERROR_KEY": "Village/Neighborhood should not exceed 250 characters",
   "REGISTRATION_ADDRESS_DESCRIPTION_TEXT_ERROR_KEY": "Address description should not exceed 250 characters",
-  "REGISTRATION_TRADITIONAL_AUTHORITY_OR_TOWN_TEXT_ERROR_KEY": "Traditional Authority/Town should not exceed 250 characters"
-
+  "REGISTRATION_TRADITIONAL_AUTHORITY_OR_TOWN_TEXT_ERROR_KEY": "Traditional Authority/Town should not exceed 250 characters",
+  "REGISTRATION_COUNTRY_TEXT_ERROR_KEY": "Country should not exceed 250 characters",
+  "REGISTRATION_REGION_TEXT_ERROR_KEY": "Region should not exceed 250 characters",
+  "REGISTRATION_DISTRICT_TEXT_ERROR_KEY": "District should not exceed 250 characters"
 }

@@ -52,5 +52,23 @@ Bahmni.Registration.customValidator = {
             return value && value.length <= 250;
         },
         errorMessage: "REGISTRATION_TRADITIONAL_AUTHORITY_OR_TOWN_TEXT_ERROR_KEY"
+    },
+    "address.address1": {
+        method: function (name, value, personAttributeDetails) {
+            return value && value.length <= 250;
+        },
+        errorMessage: "REGISTRATION_COUNTRY_TEXT_ERROR_KEY"
+    },
+    "address.address2": {
+        method: function (name, value, personAttributeDetails) {
+            return value && value.length <= 250;
+        },
+        errorMessage: "REGISTRATION_REGION_TEXT_ERROR_KEY"
+    },
+    "address.address3": {
+        method: function (name, value, personAttributeDetails) {
+            return value && value.length <= 250;
+        },
+        errorMessage: "REGISTRATION_DISTRICT_TEXT_ERROR_KEY"
     }
 };
