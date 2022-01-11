@@ -792,4 +792,14 @@
             <where>property = 'atomfeed.publish.eventsForPatientProgramStateChange'</where>
         </update>
     </changeSet>
+    <changeSet id="MALAWI-202201111246" author="Supriya, Tarun">
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM global_property WHERE property='emrapi.sqlSearch.activePrograms';
+            </sqlCheck>
+        </preConditions>
+        <comment>Removed bed management related information in program queues</comment>
+        <sqlFile path="ProgramQueues/activeProgramsQueue_v1.sql"/>
+    </changeSet>
+
 </databaseChangeLog>
