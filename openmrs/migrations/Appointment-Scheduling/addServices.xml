@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="MALAWI_CONFIG_20221602123334" author="Supriya">
+        <comment>Create add services Procedure</comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS add_new_service_and_service_type;
+        </sql>
+        <sqlFile splitStatements="false" path="Appointment-Scheduling/addServiceAndServiceType.sql"/>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_20221602123530" author="Supriya" context="Adding services to Appointment Scheduling">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from appointment_service where name IN
+                ("Gynaecology","Palliative Care","Psychosocial support","Therapeutic Patient Education");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new services to Appointment Scheduling</comment>
+        <sql>
+            call add_new_service_and_service_type("Gynaecology",NULL,"8:00:00","16:00:00",NULL,NULL,"OPD","Initial gynaecology consultation",60);
+            call add_new_service_and_service_type("Gynaecology",NULL,"8:00:00","16:00:00",NULL,NULL,"OPD","Subsequent gynaecology consultation",30);
+            call add_new_service_and_service_type("Gynaecology",NULL,"8:00:00","16:00:00",NULL,NULL,"OPD","Nurse initial consultation",20);
+            call add_new_service_and_service_type("Gynaecology",NULL,"8:00:00","16:00:00",NULL,NULL,"OPD","Nurse subsequent consultation",10);
+            call add_new_service_and_service_type("Palliative Care",NULL,"8:00:00","16:00:00",NULL,NULL,"OPD","Nurse consultation",20);
+            call add_new_service_and_service_type("Palliative Care",NULL,"8:00:00","16:00:00",NULL,NULL,"OPD","Doctor assessment",40);
+            call add_new_service_and_service_type("Psychosocial support",NULL,"8:00:00","16:00:00",NULL,NULL,"OPD","Medical social assessment",30);
+            call add_new_service_and_service_type("Psychosocial support",NULL,"8:00:00","16:00:00",NULL,NULL,"OPD","Counselling",30);
+            call add_new_service_and_service_type("Psychosocial support",NULL,"8:00:00","16:00:00",NULL,NULL,"OPD","Group session",60);
+            call add_new_service_and_service_type("Therapeutic Patient Education",NULL,"8:00:00","16:00:00",NULL,NULL,"OPD","TPE session",10);
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

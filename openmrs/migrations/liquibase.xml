@@ -803,4 +803,5 @@
     </changeSet>
     <include file="PreTreatmentMDT/PreTreatmentMDT.xml"/>
     <include file="Appointment-Scheduling/addProviders.xml"/>
+    <include file="Appointment-Scheduling/addServices.xml"/>
 </databaseChangeLog>
