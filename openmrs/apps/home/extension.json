@@ -19,6 +19,16 @@
     "order": 2,
     "requiredPrivilege": "app:clinical"
   },
+  "appointmentSchedulingV2": {
+    "id": "bahmni.appointment.scheduling",
+    "extensionPointId": "org.bahmni.home.dashboard",
+    "type": "link",
+    "translationKey": "MODULE_LABEL_APPOINTMENT_SCHEDULING_V2_KEY",
+    "url": "/appointments-v2",
+    "icon": "fa fa-calendar",
+    "order": 3,
+    "requiredPrivilege": "app:appointments"
+  },
   "implementerInterface": {
     "id": "bahmni.implementer.interface",
     "extensionPointId": "org.bahmni.home.dashboard",
