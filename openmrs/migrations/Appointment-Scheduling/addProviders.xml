@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="MALAWI_CONFIG_20220114185434" author="Supriya">
+        <comment>Add Create Provider Procedure</comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS create_provider;
+        </sql>
+        <sqlFile splitStatements="false" path="utils/CreateProvider.sql"/>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_20220114193434" author="Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from users where username IN
+                ("Doctor Gynaecology","Nurse Gynaecology","Doctor Palliative Care","Nurse Palliative Care","Counselor PSA","Social worker PSA","Social worker TPE");
+            </sqlCheck>
+        </preConditions>
+        <comment>Add Providers in Appointment Scheduling</comment>
+        <sql>
+            call create_provider('M','Doctor','Gynaecology','doctor_gynaecology');
+            call create_provider('F','Nurse','Gynaecology','nurse_gynaecology');
+            call create_provider('M','Doctor','Palliative Care','doctor_palliative_care');
+            call create_provider('M','Nurse','Palliative Care','nurse_palliative_care');
+            call create_provider('M','Counselor','PSA','counselor_psa');
+            call create_provider('F','Social worker','PSA','social_worker_psa');
+            call create_provider('F','Social worker','TPE','social_worker_tpe');
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

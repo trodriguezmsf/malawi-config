@@ -802,5 +802,5 @@
         <sqlFile path="ProgramQueues/activeProgramsQueue_v1.sql"/>
     </changeSet>
     <include file="PreTreatmentMDT/PreTreatmentMDT.xml"/>
-
+    <include file="Appointment-Scheduling/addProviders.xml"/>
 </databaseChangeLog>
