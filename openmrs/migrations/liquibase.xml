@@ -801,5 +801,6 @@
         <comment>Removed bed management related information in program queues</comment>
         <sqlFile path="ProgramQueues/activeProgramsQueue_v1.sql"/>
     </changeSet>
+    <include file="PreTreatmentMDT/PreTreatmentMDT.xml"/>
 
 </databaseChangeLog>
