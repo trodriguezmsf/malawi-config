@@ -485,7 +485,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Total vaginal hysterectomy", "Radical vaginal hysterectomy", "Wide local excision of vulva", "Total radical vulvectomy", "Radical Local vulvectomy", "Inguinal lymph node dissection", "Bilateral salpingectomy", "Bilateral salpingo-oophorectomy", "Staging laparotomy", "Radical trachelectomy", "Other")
+                ("Total vaginal hysterectomy", "Radical vaginal hysterectomy", "Wide local excision of vulva", "Total radical vulvectomy", "Radical Local vulvectomy", "Inguinal lymph node dissection", "Bilateral salpingectomy", "Bilateral salpingo-oophorectomy", "Staging laparotomy", "Radical trachelectomy", "Other", "Total abdominal hysterectomy", "Radical abdominal hysterectomy")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "PTMDT, Surgical procedure type");
@@ -506,17 +506,21 @@
             set @child9_concept_id = 0;
             set @child10_concept_id = 0;
             set @child11_concept_id = 0;
+            set @child12_concept_id = 0;
+            set @child13_concept_id = 0;
             select concept_id into @child1_concept_id from concept_name where name ="Total vaginal hysterectomy" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child2_concept_id from concept_name where name ="Radical vaginal hysterectomy" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Wide local excision of vulva" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Total radical vulvectomy" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child5_concept_id from concept_name where name ="Radical Local vulvectomy" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child6_concept_id from concept_name where name ="Inguinal lymph node dissection" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child7_concept_id from concept_name where name ="Bilateral salpingectomy" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child8_concept_id from concept_name where name ="Bilateral salpingo-oophorectomy" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child9_concept_id from concept_name where name ="Staging laparotomy" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child10_concept_id from concept_name where name ="Radical trachelectomy" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child11_concept_id from concept_name where name ="Other" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Total abdominal hysterectomy" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Radical abdominal hysterectomy" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Wide local excision of vulva" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child6_concept_id from concept_name where name ="Total radical vulvectomy" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child7_concept_id from concept_name where name ="Radical Local vulvectomy" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child8_concept_id from concept_name where name ="Inguinal lymph node dissection" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child9_concept_id from concept_name where name ="Bilateral salpingectomy" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child10_concept_id from concept_name where name ="Bilateral salpingo-oophorectomy" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child11_concept_id from concept_name where name ="Staging laparotomy" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child12_concept_id from concept_name where name ="Radical trachelectomy" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child13_concept_id from concept_name where name ="Other" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -528,6 +532,8 @@
             call add_concept_answer(@concept_id, @child9_concept_id, 9);
             call add_concept_answer(@concept_id, @child10_concept_id, 10);
             call add_concept_answer(@concept_id, @child11_concept_id, 11);
+            call add_concept_answer(@concept_id, @child12_concept_id, 12);
+            call add_concept_answer(@concept_id, @child13_concept_id, 13);
         </sql>
     </changeSet>
 
@@ -638,7 +644,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Neoadjuvant Chemotherapy", "Adjuvant chemotherapy", "Palliative chemotherapy")
+                ("Neoadjuvant Chemotherapy (NAC)", "Adjuvant chemotherapy", "Palliative chemotherapy")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "PTMDT, Type of Chemotherapy");
@@ -651,7 +657,7 @@
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
             set @child3_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Neoadjuvant Chemotherapy" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Neoadjuvant Chemotherapy (NAC)" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child2_concept_id from concept_name where name ="Adjuvant chemotherapy" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child3_concept_id from concept_name where name ="Palliative chemotherapy" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
@@ -758,7 +764,7 @@
             <sqlCheck expectedResult="0">
                 select count(*) from concept_reference_term
                 where code in
-                ("145805","166917","166884","166720","81410","160590","162805","166907","166938","166886","164768","166920","76550","166721); Total abdominal hysterectom","145808","166900","166906","166922","72876","166937","117152","166889","166923","166919","145809","166908","166925","120146","116995","164051","166966","166888","166924","165094","112992","166992","166887","161896","166921","166885","166901","NAC","73457")
+                ("145805","166917","166884","166720","81410","160590","162805","166907","166938","166886","164768","166920","76550","166721); Total abdominal hysterectom","145808","166900","166906","166922","72876","166937","117152","166889","166923","166919","145809","166908","166925","120146","116995","164051","166966","166888","166924","165094","112992","166992","166887","161896","166921","166885","166901","73457","166918")
                 and retired = 0
                 and concept_source_id = (
                 select concept_source_id from concept_reference_source where name = "CEIL"  and retired =0
@@ -812,6 +818,7 @@
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166901",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"NAC",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"73457",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166918",@source_id,uuid(),now());
             call CREATE_REFERENCE_MAPPING_CEIL("IC2","166907");
             call CREATE_REFERENCE_MAPPING_CEIL("Wide local excision of vulva","166921");
             call CREATE_REFERENCE_MAPPING_CEIL("IIB","160776");
@@ -819,7 +826,9 @@
             call CREATE_REFERENCE_MAPPING_CEIL("PTMDT, Referred to palliative care","166938");
             call CREATE_REFERENCE_MAPPING_CEIL("Conservative surgery","166992");
             call CREATE_REFERENCE_MAPPING_CEIL("IC1","166906");
-            call CREATE_REFERENCE_MAPPING_CEIL("Radical vaginal hysterectomy","166721); Total abdominal hysterectom");
+            call CREATE_REFERENCE_MAPPING_CEIL("Total abdominal hysterectomy","161830");
+            call CREATE_REFERENCE_MAPPING_CEIL("Radical abdominal hysterectomy","161831");
+            call CREATE_REFERENCE_MAPPING_CEIL("Radical vaginal hysterectomy","166721");
             call CREATE_REFERENCE_MAPPING_CEIL("Type A","166884");
             call CREATE_REFERENCE_MAPPING_CEIL("PTMDT, Surgical procedure type","159619");
             call CREATE_REFERENCE_MAPPING_CEIL("IC3","166908");
@@ -867,7 +876,7 @@
             call CREATE_REFERENCE_MAPPING_CEIL("Staging laparotomy","166924");
             call CREATE_REFERENCE_MAPPING_CEIL("PTMDT, Agreed FIGO staging for cancer of the ovary","160786");
             call CREATE_REFERENCE_MAPPING_CEIL("PTMDT, Agreed FIGO staging for cancer of the vulva","160786");
-            call CREATE_REFERENCE_MAPPING_CEIL("Neoadjuvant Chemotherapy","NAC");
+            call CREATE_REFERENCE_MAPPING_CEIL("Neoadjuvant Chemotherapy (NAC)","166918");
             call CREATE_REFERENCE_MAPPING_CEIL("PTMDT, Referred to radiation therapy","161174");
             call CREATE_REFERENCE_MAPPING_CEIL("Type B1","166885");
             call CREATE_REFERENCE_MAPPING_CEIL("Carboplatin","72876");

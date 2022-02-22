@@ -42,6 +42,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Paclitaxel","Pa
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Type B2","Type B2","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Bilateral salpingo-oophorectomy","Bilateral salpingo-oophorectomy","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Radical vaginal hysterectomy","Radical vaginal hysterectomy","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Radical abdominal hysterectomy","Radical abdominal hysterectomy","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Adjuvant chemotherapy","Adjuvant chemotherapy","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Surgical procedure","Surgical procedure","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Conservative surgery","Conservative surgery","N/A","Misc",false);
@@ -52,7 +53,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Type B1","Type 
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Type C1","Type C1","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"5-FU","5-FU","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Total radical vulvectomy","Total radical vulvectomy","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Neoadjuvant Chemotherapy","Neoadjuvant Chemotherapy","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Neoadjuvant Chemotherapy (NAC)","Neoadjuvant Chemotherapy (NAC)","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Type A","Type A","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Wide local excision of vulva","Wide local excision of vulva","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Radical Local vulvectomy","Radical Local vulvectomy","N/A","Misc",false);

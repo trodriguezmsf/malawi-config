@@ -171,7 +171,8 @@
           "Symptoms Assessment",
           "Ultrasound",
           "Initial Consultation",
-          "Subsequent Consultation"
+          "Subsequent Consultation",
+          "Pre Treatment MDT"
         ],
         "translationKey": "DASHBOARD_TITLE_EDIT_FORMS"
       },
