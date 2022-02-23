@@ -42,7 +42,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Provoking f
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Current pain score, Initial","Current pain score","Numeric","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Maximum pain score, Initial","Maximum pain score","Numeric","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Minimum pain score, Initial","Minimum pain score","Numeric","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, DN4 Score","DN4 Score","Numeric","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, DN4 Score","DN4 Score","Numeric","Computed",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Score at rest","Score at rest","Numeric","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Score on exam","Score on exam","Numeric","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Current pain score, Follow up","Current pain score","Numeric","Misc",false);
@@ -51,23 +51,23 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Minimum pai
 
 #Add Numeric concepts to concept Numeric Table
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "PA, Current pain score, Initial" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),5,NULL,NULL,0,NULL,NULL,"",0,0);
+VALUES ((select concept_id from concept_name where name = "PA, Current pain score, Initial" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),5,NULL,NULL,-0.1,NULL,NULL,"",0,0);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "PA, Maximum pain score, Initial" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),5,NULL,NULL,0,NULL,NULL,"",0,0);
+VALUES ((select concept_id from concept_name where name = "PA, Maximum pain score, Initial" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),5,NULL,NULL,-0.1,NULL,NULL,"",0,0);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "PA, Minimum pain score, Initial" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),5,NULL,NULL,0,NULL,NULL,"",0,0);
+VALUES ((select concept_id from concept_name where name = "PA, Minimum pain score, Initial" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),5,NULL,NULL,-0.1,NULL,NULL,"",0,0);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
 VALUES ((select concept_id from concept_name where name = "PA, DN4 Score" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",0,0);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "PA, Score at rest" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),5,NULL,NULL,0,NULL,NULL,"",0,0);
+VALUES ((select concept_id from concept_name where name = "PA, Score at rest" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),5,NULL,NULL,-0.1,NULL,NULL,"",0,0);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "PA, Score on exam" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),5,NULL,NULL,0,NULL,NULL,"",0,0);
+VALUES ((select concept_id from concept_name where name = "PA, Score on exam" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),5,NULL,NULL,-0.1,NULL,NULL,"",0,0);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "PA, Current pain score, Follow up" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),5,NULL,NULL,0,NULL,NULL,"",0,0);
+VALUES ((select concept_id from concept_name where name = "PA, Current pain score, Follow up" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),5,NULL,NULL,-0.1,NULL,NULL,"",0,0);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "PA, Maximum pain score, Follow up" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),5,NULL,NULL,0,NULL,NULL,"",0,0);
+VALUES ((select concept_id from concept_name where name = "PA, Maximum pain score, Follow up" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),5,NULL,NULL,-0.1,NULL,NULL,"",0,0);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "PA, Minimum pain score, Follow up" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),5,NULL,NULL,0,NULL,NULL,"",0,0);
+VALUES ((select concept_id from concept_name where name = "PA, Minimum pain score, Follow up" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),5,NULL,NULL,-0.1,NULL,NULL,"",0,0);
 
 #Add Child Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Initial","Initial","N/A","Misc",false);
