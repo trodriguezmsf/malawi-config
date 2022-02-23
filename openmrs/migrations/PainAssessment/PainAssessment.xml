@@ -1,0 +1,645 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="Malawi_CONFIG_20220221115828580" author="Venky">
+        <comment>Adding Concepts for PainAssessment Form</comment>
+        <sqlFile path="PainAssessment/PainAssessment.sql"/>
+    </changeSet>
+
+    <changeSet id="Malawi_CONFIG_20220221115829084" author="Venky">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Initial", "Follow up")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "PA, Type of assessment");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to PA, Type of assessment</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "PA, Type of assessment" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Initial" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Follow up" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="Malawi_CONFIG_20220221115829433" author="Venky">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Acute", "Chronic")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "PA, Type of pain");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to PA, Type of pain</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "PA, Type of pain" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Acute" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Chronic" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="Malawi_CONFIG_20220221115832080" author="Venky">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Pelvis", "Abdomen", "Lower back", "Hip", "Gluteal region", "Thigh", "Knee", "Lower leg", "Ankle", "Foot", "Toe", "Femur", "Iliac", "Other")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "PA, Site of pain");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to PA, Site of pain</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "PA, Site of pain" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            set @child6_concept_id = 0;
+            set @child7_concept_id = 0;
+            set @child8_concept_id = 0;
+            set @child9_concept_id = 0;
+            set @child10_concept_id = 0;
+            set @child11_concept_id = 0;
+            set @child12_concept_id = 0;
+            set @child13_concept_id = 0;
+            set @child14_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Pelvis" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Abdomen" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Lower back" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Hip" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Gluteal region" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child6_concept_id from concept_name where name ="Thigh" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child7_concept_id from concept_name where name ="Knee" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child8_concept_id from concept_name where name ="Lower leg" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child9_concept_id from concept_name where name ="Ankle" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child10_concept_id from concept_name where name ="Foot" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child11_concept_id from concept_name where name ="Toe" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child12_concept_id from concept_name where name ="Femur" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child13_concept_id from concept_name where name ="Iliac" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child14_concept_id from concept_name where name ="Other" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+            call add_concept_answer(@concept_id, @child6_concept_id, 6);
+            call add_concept_answer(@concept_id, @child7_concept_id, 7);
+            call add_concept_answer(@concept_id, @child8_concept_id, 8);
+            call add_concept_answer(@concept_id, @child9_concept_id, 9);
+            call add_concept_answer(@concept_id, @child10_concept_id, 10);
+            call add_concept_answer(@concept_id, @child11_concept_id, 11);
+            call add_concept_answer(@concept_id, @child12_concept_id, 12);
+            call add_concept_answer(@concept_id, @child13_concept_id, 13);
+            call add_concept_answer(@concept_id, @child14_concept_id, 14);
+        </sql>
+    </changeSet>
+
+    <changeSet id="Malawi_CONFIG_20220221115832765" author="Venky">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Visual Analogue Scale", "Algoplus Scale", "Numerical Rating Scale", "Verbal Rating Scale")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "PA, Pain scale, Initial");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to PA, Pain scale, Initial</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "PA, Pain scale, Initial" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Visual Analogue Scale" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Algoplus Scale" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Numerical Rating Scale" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Verbal Rating Scale" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="Malawi_CONFIG_20220221115833308" author="Venky">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Background pain", "Breakthrough pain", "Background and breakthrough pain")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "PA, Pain course");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to PA, Pain course</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "PA, Pain course" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Background pain" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Breakthrough pain" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Background and breakthrough pain" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+        </sql>
+    </changeSet>
+
+    <changeSet id="Malawi_CONFIG_20220221115834002" author="Venky">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Inflammatory", "Mechanical", "Unknown")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "PA, 24 hour pattern");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to PA, 24 hour pattern</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "PA, 24 hour pattern" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Inflammatory" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Mechanical" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Unknown" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+        </sql>
+    </changeSet>
+
+    <changeSet id="Malawi_CONFIG_20220221115835703" author="Venky">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Burning", "Painful cold", "Electric shocks", "Tingling", "Pins and needles", "Numbness", "Itching", "Touch hypoesthesia", "Pinprick hypoesthesia", "Light brushing")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "PA, Neuropathic pain evaluation questionnaire (DN4)");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to PA, Neuropathic pain evaluation questionnaire (DN4)</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "PA, Neuropathic pain evaluation questionnaire (DN4)" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            set @child6_concept_id = 0;
+            set @child7_concept_id = 0;
+            set @child8_concept_id = 0;
+            set @child9_concept_id = 0;
+            set @child10_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Burning" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Painful cold" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Electric shocks" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Tingling" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Pins and needles" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child6_concept_id from concept_name where name ="Numbness" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child7_concept_id from concept_name where name ="Itching" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child8_concept_id from concept_name where name ="Touch hypoesthesia" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child9_concept_id from concept_name where name ="Pinprick hypoesthesia" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child10_concept_id from concept_name where name ="Light brushing" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+            call add_concept_answer(@concept_id, @child6_concept_id, 6);
+            call add_concept_answer(@concept_id, @child7_concept_id, 7);
+            call add_concept_answer(@concept_id, @child8_concept_id, 8);
+            call add_concept_answer(@concept_id, @child9_concept_id, 9);
+            call add_concept_answer(@concept_id, @child10_concept_id, 10);
+        </sql>
+    </changeSet>
+
+    <changeSet id="Malawi_CONFIG_20220221115836055" author="Venky">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Nociceptive", "Neuropathic")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "PA, Characteristics of pain");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to PA, Characteristics of pain</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "PA, Characteristics of pain" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Nociceptive" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Neuropathic" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="Malawi_CONFIG_20220221115836755" author="Venky">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Yes", "No")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "PA, Was medication for breakthrough pain provided?");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to PA, Was medication for breakthrough pain provided?</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "PA, Was medication for breakthrough pain provided?" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Yes" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="No" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="Malawi_CONFIG_20220221115837274" author="Venky">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Physical and social functioning", "Sleep disorder", "Mood disorder")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "PA, Impact");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to PA, Impact</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "PA, Impact" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Physical and social functioning" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Sleep disorder" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Mood disorder" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+        </sql>
+    </changeSet>
+
+    <changeSet id="Malawi_CONFIG_20220221115837654" author="Venky">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Patient Health Questionnaire", "McGill pain questionnaire")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "PA, Further assessment");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to PA, Further assessment</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "PA, Further assessment" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Patient Health Questionnaire" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="McGill pain questionnaire" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="Malawi_CONFIG_20220221115838504" author="Venky">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Facial expression", "Look", "Complaints", "Body position", "Atypical behaviour")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "PA, Algoplus pain assessment");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to PA, Algoplus pain assessment</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "PA, Algoplus pain assessment" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Facial expression" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Look" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Complaints" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Body position" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Atypical behaviour" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+        </sql>
+    </changeSet>
+
+    <changeSet id="Malawi_CONFIG_20220221115839183" author="Venky">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Visual Analogue Scale", "Algoplus Scale", "Numerical Rating Scale", "Verbal Rating Scale")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "PA, Pain scale, Follow up");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to PA, Pain scale, Follow up</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "PA, Pain scale, Follow up" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Visual Analogue Scale" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Algoplus Scale" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Numerical Rating Scale" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Verbal Rating Scale" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="Malawi_CONFIG_20220221115839196" author="Venky">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_reference_term
+                where code in
+                ("120593","166860","166936","166875","166933","130182","110598","166299","131038","166245","1869","136455","133082","162084","166892 ","PHQ-4","166849","166842","166935","115690","166243","166930","166340","166891","132650","162080","166288","146625","166082","166890","166876","NRS","166168","VRS","166934","166852","163077","non typical","166880","166844","166226","166879","160286","166850","166932","VAS","164387","166161","162081","166342","166323","166587")
+                and retired = 0
+                and concept_source_id = (
+                select concept_source_id from concept_reference_source where name = "CEIL"  and retired =0
+                );
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding CEIL codes to concepts</comment>
+        <sql>
+            SELECT concept_source_id INTO @source_id FROM concept_reference_source where name = "CEIL";
+
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"120593",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166860",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166936",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166875",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166933",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"130182",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"110598",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166299",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"131038",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166245",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1869",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"136455",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"133082",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"162084",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166892 ",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"PHQ-4",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166849",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166842",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166935",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"115690",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166243",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166930",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166340",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166891",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"132650",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"162080",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166288",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"146625",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166082",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166890",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166876",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"NRS",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166168",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"VRS",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166934",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166852",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"163077",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"non typical",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166880",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166844",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166226",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166879",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"160286",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166850",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166932",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"VAS",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"164387",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166161",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"162081",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166342",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166323",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166587",@source_id,uuid(),now());
+            call CREATE_REFERENCE_MAPPING_CEIL("PA, Onset of pain","1869");
+            call CREATE_REFERENCE_MAPPING_CEIL("Breakthrough pain","160286");
+            call CREATE_REFERENCE_MAPPING_CEIL("PA, Site of pain, other","166852");
+            call CREATE_REFERENCE_MAPPING_CEIL("PA, Response to medication","166082");
+            call CREATE_REFERENCE_MAPPING_CEIL("Sleep disorder","112930");
+            call CREATE_REFERENCE_MAPPING_CEIL("Gluteal region","166243");
+            call CREATE_REFERENCE_MAPPING_CEIL("PA, Score at rest","166082");
+            call CREATE_REFERENCE_MAPPING_CEIL("Pelvis","166323");
+            call CREATE_REFERENCE_MAPPING_CEIL("Lower back","166340");
+            call CREATE_REFERENCE_MAPPING_CEIL("Complaints","166934");
+            call CREATE_REFERENCE_MAPPING_CEIL("Hip","166245");
+            call CREATE_REFERENCE_MAPPING_CEIL("Toe","166288");
+            call CREATE_REFERENCE_MAPPING_CEIL("Touch hypoesthesia","166844");
+            call CREATE_REFERENCE_MAPPING_CEIL("Electric shocks","166890");
+            call CREATE_REFERENCE_MAPPING_CEIL("Abdomen","1808");
+            call CREATE_REFERENCE_MAPPING_CEIL("Facial expression","166932");
+            call CREATE_REFERENCE_MAPPING_CEIL("PA, DN4 Score","166587");
+            call CREATE_REFERENCE_MAPPING_CEIL("Patient Health Questionnaire","PHQ-4");
+            call CREATE_REFERENCE_MAPPING_CEIL("Nociceptive","166930");
+            call CREATE_REFERENCE_MAPPING_CEIL("Unknown","non typical");
+            call CREATE_REFERENCE_MAPPING_CEIL("PA, Current pain score, Initial","166082");
+            call CREATE_REFERENCE_MAPPING_CEIL("PA, Current pain score, Follow up","166082");
+            call CREATE_REFERENCE_MAPPING_CEIL("Numerical Rating Scale","NRS");
+            call CREATE_REFERENCE_MAPPING_CEIL("Follow up","162081");
+            call CREATE_REFERENCE_MAPPING_CEIL("PA, Site of pain","166852");
+            call CREATE_REFERENCE_MAPPING_CEIL("PA, Minimum pain score, Initial","166082");
+            call CREATE_REFERENCE_MAPPING_CEIL("PA, Minimum pain score, Follow up","166082");
+            call CREATE_REFERENCE_MAPPING_CEIL("Chronic","120593");
+            call CREATE_REFERENCE_MAPPING_CEIL("Foot","164387");
+            call CREATE_REFERENCE_MAPPING_CEIL("Burning","146625");
+            call CREATE_REFERENCE_MAPPING_CEIL("Painful cold","166842");
+            call CREATE_REFERENCE_MAPPING_CEIL("PA, Algoplus pain assessment","166935");
+            call CREATE_REFERENCE_MAPPING_CEIL("PA, Date and time recorded","162869");
+            call CREATE_REFERENCE_MAPPING_CEIL("Mechanical","166849");
+            call CREATE_REFERENCE_MAPPING_CEIL("Femur","131038");
+            call CREATE_REFERENCE_MAPPING_CEIL("PA, Type of assessment","162084");
+            call CREATE_REFERENCE_MAPPING_CEIL("Iliac","166226");
+            call CREATE_REFERENCE_MAPPING_CEIL("Knee","166168");
+            call CREATE_REFERENCE_MAPPING_CEIL("Look","166933");
+            call CREATE_REFERENCE_MAPPING_CEIL("Inflammatory","166850");
+            call CREATE_REFERENCE_MAPPING_CEIL("Ankle","166161");
+            call CREATE_REFERENCE_MAPPING_CEIL("Algoplus Scale","166880");
+            call CREATE_REFERENCE_MAPPING_CEIL("Visual Analogue Scale","VAS");
+            call CREATE_REFERENCE_MAPPING_CEIL("Neuropathic","133082");
+            call CREATE_REFERENCE_MAPPING_CEIL("Verbal Rating Scale","VRS");
+            call CREATE_REFERENCE_MAPPING_CEIL("PA, Type of pain","110598");
+            call CREATE_REFERENCE_MAPPING_CEIL("PA, Neuropathic pain evaluation questionnaire (DN4)","166891");
+            call CREATE_REFERENCE_MAPPING_CEIL("Acute","1869");
+            call CREATE_REFERENCE_MAPPING_CEIL("PA, Score on exam","166082");
+            call CREATE_REFERENCE_MAPPING_CEIL("Pinprick hypoesthesia","166876");
+            call CREATE_REFERENCE_MAPPING_CEIL("PA, Comments","161011");
+            call CREATE_REFERENCE_MAPPING_CEIL("Itching","136455");
+            call CREATE_REFERENCE_MAPPING_CEIL("Light brushing","166875");
+            call CREATE_REFERENCE_MAPPING_CEIL("Atypical behaviour","166936");
+            call CREATE_REFERENCE_MAPPING_CEIL("Lower leg","166342");
+            call CREATE_REFERENCE_MAPPING_CEIL("Tingling","166892 ");
+            call CREATE_REFERENCE_MAPPING_CEIL("Mood disorder","115690");
+            call CREATE_REFERENCE_MAPPING_CEIL("PA, Maximum pain score, Initial","166082");
+            call CREATE_REFERENCE_MAPPING_CEIL("PA, Maximum pain score, Follow up","166082");
+            call CREATE_REFERENCE_MAPPING_CEIL("Body position","166860");
+            call CREATE_REFERENCE_MAPPING_CEIL("PA, Pain description and management plan","163077");
+            call CREATE_REFERENCE_MAPPING_CEIL("Numbness","132650");
+            call CREATE_REFERENCE_MAPPING_CEIL("Initial","162080");
+            call CREATE_REFERENCE_MAPPING_CEIL("PA, Pain scale, Initial","166879");
+            call CREATE_REFERENCE_MAPPING_CEIL("PA, Pain scale, Follow up","166879");
+            call CREATE_REFERENCE_MAPPING_CEIL("Pins and needles","130182");
+            call CREATE_REFERENCE_MAPPING_CEIL("Thigh","166299");
+        </sql>
+    </changeSet>
+
+    <changeSet id="Malawi_CONFIG_20220221115839207" author="Venky">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_reference_term
+                where code in
+                ("MSFF394","MSFF387","MSFF389","MSFF398","MSFF391","MSFF388","MSFF393","MSFF402","MSFF396","MSFF392","MSFF400","MSFF397","MSFF401","MSFF395","MSFF390")
+                and retired = 0
+                and concept_source_id = (
+                select concept_source_id from concept_reference_source where name = "MSFOCP"  and retired =0
+                );
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding MSFOCP codes to concepts</comment>
+        <sql>
+            SELECT concept_source_id INTO @source_id FROM concept_reference_source where name = "MSFOCP";
+
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF394",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF387",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF389",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF398",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF391",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF388",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF393",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF402",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF396",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF392",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF400",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF397",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF401",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF395",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF390",@source_id,uuid(),now());
+            call CREATE_REFERENCE_MAPPING_MSFOCP("McGill pain questionnaire","MSFF398");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("PA, Further assessment","MSFF398");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("PA, Mood disorder comment","MSFF397");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("PA, Radiating/referred pain sites","MSFF401");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("PA, Characteristics of pain","MSFF392");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("PA, Impact","MSFF402");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("PA, Sleep disorder comment","MSFF396");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("PA, Presumed cause","MSFF387");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Physical and social functioning","MSFF395");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("PA, 24 hour pattern","MSFF391");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("PA, Alleviating Factors","MSFF394");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Background and breakthrough pain","MSFF389");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("PA, Provoking factors","MSFF400");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Background pain","MSFF388");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("PA, Pain course","MSFF390");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("PA, Aggravating Factors","MSFF393");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("PA, Physical and social functioning comment","MSFF395");
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
