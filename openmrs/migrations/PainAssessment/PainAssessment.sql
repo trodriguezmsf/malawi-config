@@ -88,7 +88,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Ankle","Ankle",
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Light brushing","Light brushing","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Pins and needles","Pins and needles","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Follow up","Follow up","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Verbal Rating Scale","Verbal Rating Scale","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Verbal Rating Scale (VRS)","Verbal Rating Scale (VRS)","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"McGill pain questionnaire","McGill pain questionnaire","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Neuropathic","Neuropathic","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Facial expression","Facial expression","N/A","Misc",false);
@@ -104,13 +104,13 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Physical and so
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Hip","Hip","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Thigh","Thigh","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Lower back","Lower back","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Visual Analogue Scale","Visual Analogue Scale","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Visual Analogue Scale (VAS)","Visual Analogue Scale (VAS)","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Numbness","Numbness","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Sleep disorder","Sleep disorder","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Electric shocks","Electric shocks","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Knee","Knee","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Toe","Toe","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Numerical Rating Scale","Numerical Rating Scale","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Numerical Rating Scale (NRS)","Numerical Rating Scale (NRS)","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Chronic","Chronic","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Iliac","Iliac","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Complaints","Complaints","N/A","Misc",false);

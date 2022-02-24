@@ -137,7 +137,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Visual Analogue Scale", "Algoplus Scale", "Numerical Rating Scale", "Verbal Rating Scale")
+                ("Visual Analogue Scale (VAS)", "Algoplus Scale", "Numerical Rating Scale (NRS)", "Verbal Rating Scale (VRS)")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "PA, Pain scale, Initial");
@@ -151,10 +151,10 @@
             set @child2_concept_id = 0;
             set @child3_concept_id = 0;
             set @child4_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Visual Analogue Scale" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Visual Analogue Scale (VAS)" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child2_concept_id from concept_name where name ="Algoplus Scale" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Numerical Rating Scale" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Verbal Rating Scale" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Numerical Rating Scale (NRS)" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Verbal Rating Scale (VRS)" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -428,7 +428,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Visual Analogue Scale", "Algoplus Scale", "Numerical Rating Scale", "Verbal Rating Scale")
+                ("Visual Analogue Scale (VAS)", "Algoplus Scale", "Numerical Rating Scale (NRS)", "Verbal Rating Scale (VRS)")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "PA, Pain scale, Follow up");
@@ -442,10 +442,10 @@
             set @child2_concept_id = 0;
             set @child3_concept_id = 0;
             set @child4_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Visual Analogue Scale" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Visual Analogue Scale (VAS)" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child2_concept_id from concept_name where name ="Algoplus Scale" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Numerical Rating Scale" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Verbal Rating Scale" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Numerical Rating Scale (NRS)" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Verbal Rating Scale (VRS)" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -458,7 +458,7 @@
             <sqlCheck expectedResult="0">
                 select count(*) from concept_reference_term
                 where code in
-                ("120593","166860","166936","166875","166933","130182","110598","166299","131038","166245","1869","136455","133082","162084","166892 ","PHQ-4","166849","166842","166935","115690","166243","166930","166340","166891","132650","162080","166288","146625","166082","166890","166876","NRS","166168","VRS","166934","166852","163077","non typical","166880","166844","166226","166879","160286","166850","166932","VAS","164387","166161","162081","166342","166323","166587")
+                ("120593","166860","166936","166875","166933","130182","110598","166299","131038","166245","1869","136455","133082","162084","166892 ","PHQ-4","166849","166842","166935","115690","166243","166930","166340","166891","132650","162080","166288","146625","166082","166890","166876","NRS","166168","VRS","166934","166852","163077","non typical","166880","166844","166226","166879","160286","166850","166932","VAS","164387","166161","162081","166342","166323","166587","166589","166882","166883")
                 and retired = 0
                 and concept_source_id = (
                 select concept_source_id from concept_reference_source where name = "CEIL"  and retired =0
@@ -521,6 +521,9 @@
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166342",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166323",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166587",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166589",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166882",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166883",@source_id,uuid(),now());
             call CREATE_REFERENCE_MAPPING_CEIL("PA, Onset of pain","1869");
             call CREATE_REFERENCE_MAPPING_CEIL("Breakthrough pain","160286");
             call CREATE_REFERENCE_MAPPING_CEIL("PA, Site of pain, other","166852");
@@ -543,7 +546,7 @@
             call CREATE_REFERENCE_MAPPING_CEIL("Unknown","non typical");
             call CREATE_REFERENCE_MAPPING_CEIL("PA, Current pain score, Initial","166082");
             call CREATE_REFERENCE_MAPPING_CEIL("PA, Current pain score, Follow up","166082");
-            call CREATE_REFERENCE_MAPPING_CEIL("Numerical Rating Scale","NRS");
+            call CREATE_REFERENCE_MAPPING_CEIL("Numerical Rating Scale (NRS)","166882");
             call CREATE_REFERENCE_MAPPING_CEIL("Follow up","162081");
             call CREATE_REFERENCE_MAPPING_CEIL("PA, Site of pain","166852");
             call CREATE_REFERENCE_MAPPING_CEIL("PA, Minimum pain score, Initial","166082");
@@ -563,9 +566,9 @@
             call CREATE_REFERENCE_MAPPING_CEIL("Inflammatory","166850");
             call CREATE_REFERENCE_MAPPING_CEIL("Ankle","166161");
             call CREATE_REFERENCE_MAPPING_CEIL("Algoplus Scale","166880");
-            call CREATE_REFERENCE_MAPPING_CEIL("Visual Analogue Scale","VAS");
+            call CREATE_REFERENCE_MAPPING_CEIL("Visual Analogue Scale (VAS)","166589");
             call CREATE_REFERENCE_MAPPING_CEIL("Neuropathic","133082");
-            call CREATE_REFERENCE_MAPPING_CEIL("Verbal Rating Scale","VRS");
+            call CREATE_REFERENCE_MAPPING_CEIL("Verbal Rating Scale (VRS)","166883");
             call CREATE_REFERENCE_MAPPING_CEIL("PA, Type of pain","110598");
             call CREATE_REFERENCE_MAPPING_CEIL("PA, Neuropathic pain evaluation questionnaire (DN4)","166891");
             call CREATE_REFERENCE_MAPPING_CEIL("Acute","1869");
