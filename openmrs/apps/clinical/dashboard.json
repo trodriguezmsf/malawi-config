@@ -172,7 +172,9 @@
           "Ultrasound",
           "Initial Consultation",
           "Subsequent Consultation",
-          "Pre Treatment MDT"
+          "Pre Treatment MDT",
+          "Pain Assessment",
+          "Palliative Care Assessment"
         ],
         "translationKey": "DASHBOARD_TITLE_EDIT_FORMS"
       },
