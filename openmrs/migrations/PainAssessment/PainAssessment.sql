@@ -79,7 +79,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Mood disorder",
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Background pain","Background pain","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Lower leg","Lower leg","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Gluteal region","Gluteal region","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Patient Health Questionnaire","Patient Health Questionnaire","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Patient Health Questionnaire (PHQ-4)","Patient Health Questionnaire (PHQ-4)","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Pinprick hypoesthesia","Pinprick hypoesthesia","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Tingling","Tingling","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Atypical behaviour","Atypical behaviour","N/A","Misc",false);
@@ -118,6 +118,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Background and 
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Breakthrough pain","Breakthrough pain","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Acute","Acute","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Touch hypoesthesia","Touch hypoesthesia","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Unknown (non typical)","Unknown (non typical)","N/A","Misc",false);
 
 #Add Help Text to Concepts
 INSERT INTO concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)
