@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="MALAWI_CONFIG_20220224131512155" author="Tarun">
+        <comment>Adding Concepts for PostOperativeMDT Form</comment>
+        <sqlFile path="PostOperativeMDT/PostOperativeMDT.sql"/>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_20220224131512572" author="Tarun">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Satisfactory", "Unsatisfactory")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "POMDT, Surgery outcome");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to POMDT, Surgery outcome</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "POMDT, Surgery outcome" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Satisfactory" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Unsatisfactory" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_20220224131513391" author="Tarun">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("3 months", "6 months", "12 months")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "POMDT, Follow-up visit");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to POMDT, Follow-up visit</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "POMDT, Follow-up visit" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="3 months" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="6 months" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="12 months" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_20220224131515141" author="Tarun">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Surgical procedure", "Radiation therapy", "Chemotherapy", "Palliative care")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "POMDT, Proposed management plan");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to POMDT, Proposed management plan</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "POMDT, Proposed management plan" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Surgical procedure" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Radiation therapy" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Chemotherapy" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Palliative care" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_20220224131519554" author="Tarun">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Total vaginal hysterectomy", "Radical vaginal hysterectomy", "Total abdominal hysterectomy", "Radical abdominal hysterectomy", "Wide local excision of vulva", "Total radical vulvectomy", "Radical Local vulvectomy", "Inguinal lymph node dissection", "Bilateral salpingectomy", "Bilateral salpingo-oophorectomy", "Staging laparotomy", "Radical trachelectomy", "Other")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "POMDT, Surgical procedure type");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to POMDT, Surgical procedure type</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "POMDT, Surgical procedure type" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            set @child6_concept_id = 0;
+            set @child7_concept_id = 0;
+            set @child8_concept_id = 0;
+            set @child9_concept_id = 0;
+            set @child10_concept_id = 0;
+            set @child11_concept_id = 0;
+            set @child12_concept_id = 0;
+            set @child13_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Total vaginal hysterectomy" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Radical vaginal hysterectomy" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Total abdominal hysterectomy" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Radical abdominal hysterectomy" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Wide local excision of vulva" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child6_concept_id from concept_name where name ="Total radical vulvectomy" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child7_concept_id from concept_name where name ="Radical Local vulvectomy" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child8_concept_id from concept_name where name ="Inguinal lymph node dissection" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child9_concept_id from concept_name where name ="Bilateral salpingectomy" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child10_concept_id from concept_name where name ="Bilateral salpingo-oophorectomy" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child11_concept_id from concept_name where name ="Staging laparotomy" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child12_concept_id from concept_name where name ="Radical trachelectomy" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child13_concept_id from concept_name where name ="Other" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+            call add_concept_answer(@concept_id, @child6_concept_id, 6);
+            call add_concept_answer(@concept_id, @child7_concept_id, 7);
+            call add_concept_answer(@concept_id, @child8_concept_id, 8);
+            call add_concept_answer(@concept_id, @child9_concept_id, 9);
+            call add_concept_answer(@concept_id, @child10_concept_id, 10);
+            call add_concept_answer(@concept_id, @child11_concept_id, 11);
+            call add_concept_answer(@concept_id, @child12_concept_id, 12);
+            call add_concept_answer(@concept_id, @child13_concept_id, 13);
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_20220224131521037" author="Tarun">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Type A", "Type B1", "Type B2", "Type C1", "Type C2")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "POMDT, Q-M classification on the right side");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to POMDT, Q-M classification on the right side</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "POMDT, Q-M classification on the right side" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Type A" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Type B1" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Type B2" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Type C1" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Type C2" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_20220224131523146" author="Tarun">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Type A", "Type B1", "Type B2", "Type C1", "Type C2")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "POMDT, Q-M classification on the left side");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to POMDT, Q-M classification on the left side</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "POMDT, Q-M classification on the left side" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Type A" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Type B1" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Type B2" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Type C1" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Type C2" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_20220224131523961" author="Tarun">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Neoadjuvant Chemotherapy (NAC)", "Adjuvant chemotherapy", "Palliative chemotherapy")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "POMDT, Type of Chemotherapy");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to POMDT, Type of Chemotherapy</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "POMDT, Type of Chemotherapy" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Neoadjuvant Chemotherapy (NAC)" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Adjuvant chemotherapy" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Palliative chemotherapy" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_20220224131524969" author="Tarun">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Yes", "No", "Not applicable")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "POMDT, Should palliative chemotherapy be considered?");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to POMDT, Should palliative chemotherapy be considered?</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "POMDT, Should palliative chemotherapy be considered?" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Yes" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="No" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Not applicable" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_20220224131526392" author="Tarun">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Cisplatin", "Carboplatin", "Paclitaxel", "5-fu", "Other")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "POMDT, Chemotherapy regimen");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to POMDT, Chemotherapy regimen</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "POMDT, Chemotherapy regimen" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Cisplatin" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Carboplatin" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Paclitaxel" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="5-fu" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Other" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_20220224131527046" author="Tarun">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Yes", "No")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "POMDT, Referred to radiation therapy");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to POMDT, Referred to radiation therapy</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "POMDT, Referred to radiation therapy" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Yes" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="No" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_20220224131527685" author="Tarun">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Yes", "No")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "POMDT, Referred to palliative care");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to POMDT, Referred to palliative care</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "POMDT, Referred to palliative care" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Yes" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="No" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_20220224131527695" author="Tarun">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_reference_term
+                where code in
+                ("166721","160720","160718","160721")
+                and retired = 0
+                and concept_source_id = (
+                select concept_source_id from concept_reference_source where name = "CEIL"  and retired =0
+                );
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding CEIL codes to concepts</comment>
+        <sql>
+            SELECT concept_source_id INTO @source_id FROM concept_reference_source where name = "CEIL";
+
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166721",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"160720",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"160718",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"160721",@source_id,uuid(),now());
+            call CREATE_REFERENCE_MAPPING_CEIL("POMDT, Q-M classification on the right side","166889");
+            call CREATE_REFERENCE_MAPPING_CEIL("POMDT, Other management plan","163104");
+            call CREATE_REFERENCE_MAPPING_CEIL("POMDT, Referred to palliative care","166938");
+            call CREATE_REFERENCE_MAPPING_CEIL("POMDT, Referred to radiation therapy","161174");
+            call CREATE_REFERENCE_MAPPING_CEIL("POMDT, Surgical procedure type","159619");
+            call CREATE_REFERENCE_MAPPING_CEIL("POMDT, Date recorded","162869");
+            call CREATE_REFERENCE_MAPPING_CEIL("POMDT, Chemotherapy regimen","163073");
+            call CREATE_REFERENCE_MAPPING_CEIL("POMDT, Type of Chemotherapy","166925");
+            call CREATE_REFERENCE_MAPPING_CEIL("POMDT, Other type of  surgical procedure","166635");
+            call CREATE_REFERENCE_MAPPING_CEIL("Satisfactory","160718");
+            call CREATE_REFERENCE_MAPPING_CEIL("Unsatisfactory","160720");
+            call CREATE_REFERENCE_MAPPING_CEIL("POMDT, Surgery outcome","160721");
+            call CREATE_REFERENCE_MAPPING_CEIL("POMDT, Proposed management plan","166937");
+            call CREATE_REFERENCE_MAPPING_CEIL("POMDT, Comments","161011");
+            call CREATE_REFERENCE_MAPPING_CEIL("POMDT, Q-M classification on the left side","166889");
+            call CREATE_REFERENCE_MAPPING_CEIL("Radical vaginal hysterectomy","166721");
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_20220224131527708" author="Tarun">
+        <comment>Adding MSFOCP codes to concepts</comment>
+        <sql>
+            SELECT concept_source_id INTO @source_id FROM concept_reference_source where name = "MSFOCP";
+
+            call CREATE_REFERENCE_MAPPING_MSFOCP("6 months","MSFF371");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("3 months","MSFF276");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("12 months","MSFF372");
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

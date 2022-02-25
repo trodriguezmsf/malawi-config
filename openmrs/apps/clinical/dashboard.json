@@ -174,7 +174,8 @@
           "Subsequent Consultation",
           "Pre Treatment MDT",
           "Pain Assessment",
-          "Palliative Care Assessment"
+          "Palliative Care Assessment",
+          "Post Operative MDT"
         ],
         "translationKey": "DASHBOARD_TITLE_EDIT_FORMS"
       },

@@ -806,4 +806,5 @@
     <include file="Appointment-Scheduling/addServices.xml"/>
     <include file="PainAssessment/PainAssessment.xml"/>
     <include file="PalliativeCareAssessment/PalliativeCareAssessment.xml"/>
+    <include file="PostOperativeMDT/PostOperativeMDT.xml"/>
 </databaseChangeLog>
