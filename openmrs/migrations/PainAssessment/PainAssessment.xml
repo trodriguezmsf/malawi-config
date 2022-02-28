@@ -637,7 +637,7 @@
             call CREATE_REFERENCE_MAPPING_MSFOCP("PA, Pain course","MSFF390");
             call CREATE_REFERENCE_MAPPING_MSFOCP("PA, Aggravating Factors","MSFF393");
             call CREATE_REFERENCE_MAPPING_MSFOCP("PA, Physical and social functioning comment","MSFF395");
-            call CREATE_REFERENCE_MAPPING_CEIL("Patient Health Questionnaire (PHQ-4)","MSFF96");
+            call CREATE_REFERENCE_MAPPING_MSFOCP("Patient Health Questionnaire (PHQ-4)","MSFF96");
         </sql>
     </changeSet>
 
