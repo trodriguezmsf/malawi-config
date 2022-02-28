@@ -807,4 +807,18 @@
     <include file="PainAssessment/PainAssessment.xml"/>
     <include file="PalliativeCareAssessment/PalliativeCareAssessment.xml"/>
     <include file="PostOperativeMDT/PostOperativeMDT.xml"/>
+    <changeSet id="Malawi-202202281135" author="Supriya">
+        <preConditions>
+            <sqlCheck expectedResult="0">
+                select count(*) from location_tag_map where location_tag_id = (select location_tag_id from location_tag where name="Appointment Location")
+                AND location_id = (select location_id from location where name="OPD");
+            </sqlCheck>
+        </preConditions>
+        <comment>Add OPD To Appointment location</comment>
+        <sql>
+            SELECT location_id INTO @locationID FROM location WHERE name = 'OPD' and description = 'OPD Login Location';
+            SELECT location_tag_id INTO @location_tagID FROM location_tag WHERE name = 'Appointment Location' AND description = 'When a user user creates a appointment service and chooses a location, they may only choose one with this tag';
+            INSERT INTO location_tag_map(location_id, location_tag_id) VALUES(@locationID, @location_tagID);
+        </sql>
+    </changeSet>
 </databaseChangeLog>
