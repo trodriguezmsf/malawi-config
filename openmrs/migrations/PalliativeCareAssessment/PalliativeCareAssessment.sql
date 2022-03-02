@@ -64,7 +64,7 @@ VALUES ((select concept_id from concept_name where name = "PCA, GSC Score" and c
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
 VALUES ((select concept_id from concept_name where name = "PCA, Bedside Oral Exam (BOE) score" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0),NULL,NULL,NULL,-0.0000000001,NULL,NULL,"",0,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "PCA, Norton score" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
+VALUES ((select concept_id from concept_name where name = "PCA, Norton score" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0),NULL,NULL,NULL,-0.0000000001,NULL,NULL,"",1,1);
 
 #Add Child Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Pressure ulcer stage 4","Pressure ulcer stage 4","N/A","Misc",false);
@@ -90,7 +90,6 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Dry","Dry","N/A
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Pressure ulcer stage 1","Pressure ulcer stage 1","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3=Nearly every day","3=Nearly every day","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Patient came alone","Patient came alone","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Unknow","Unknow","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Grade 1","Grade 1","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Outpatient department","Outpatient department","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Home-based care","Home-based care","N/A","Misc",false);

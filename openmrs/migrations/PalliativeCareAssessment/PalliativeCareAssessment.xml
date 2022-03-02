@@ -545,7 +545,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Pressure ulcer stage 1", "pressure ulcer stage 2", "Pressure ulcer stage 3", "Pressure ulcer stage 4", "Unknow")
+                ("Pressure ulcer stage 1", "pressure ulcer stage 2", "Pressure ulcer stage 3", "Pressure ulcer stage 4", "Unknown")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "PCA, Bed sore grade");
@@ -564,7 +564,7 @@
             select concept_id into @child2_concept_id from concept_name where name ="pressure ulcer stage 2" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child3_concept_id from concept_name where name ="Pressure ulcer stage 3" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child4_concept_id from concept_name where name ="Pressure ulcer stage 4" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child5_concept_id from concept_name where name ="Unknow" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Unknown" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -779,7 +779,6 @@
             call CREATE_REFERENCE_MAPPING_CEIL("PCA, Problems list","161602");
             call CREATE_REFERENCE_MAPPING_CEIL("Grade 2","166988");
             call CREATE_REFERENCE_MAPPING_CEIL("PCA, Date of next appointment","5096");
-            call CREATE_REFERENCE_MAPPING_CEIL("Unknow","1067");
             call CREATE_REFERENCE_MAPPING_CEIL("PCA, Guardian understands disease and prognosis of the patient","167022");
             call CREATE_REFERENCE_MAPPING_CEIL("Inpatient department","5485");
             call CREATE_REFERENCE_MAPPING_CEIL("Psychosocial Counselling","5490");
