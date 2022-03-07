@@ -21,7 +21,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Was medicat
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Impact","Impact","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Further assessment","Further assessment","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Algoplus pain assessment","Algoplus pain assessment","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Pain scale, Follow up","Pain scale, Follow uple","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Pain scale, Follow up","Pain scale, Follow up","Coded","Misc",false);
 
 #Add Text Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Onset of pain","Onset of pain","Text","Misc",false);
