@@ -12,7 +12,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Date and ti
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Type of assessment","Type of assessment","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Type of pain","Type of pain","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Site of pain","Site of pain","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Pain scale, Initial","Pain scale","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Pain scale, Initial","Pain scale, Initial","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Pain course","Pain course","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, 24 hour pattern","24 hour pattern","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Neuropathic pain evaluation questionnaire (DN4)","Neuropathic pain evaluation questionnaire (DN4)","Coded","Misc",false);
@@ -21,7 +21,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Was medicat
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Impact","Impact","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Further assessment","Further assessment","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Algoplus pain assessment","Algoplus pain assessment","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Pain scale, Follow up","Pain scale","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Pain scale, Follow up","Pain scale, Follow uple","Coded","Misc",false);
 
 #Add Text Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Onset of pain","Onset of pain","Text","Misc",false);
@@ -39,15 +39,15 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Mood disord
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Provoking factors","Provoking factors","Text","Misc",false);
 
 #Add Numeric Concepts
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Current pain score, Initial","Current pain score","Numeric","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Maximum pain score, Initial","Maximum pain score","Numeric","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Minimum pain score, Initial","Minimum pain score","Numeric","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Current pain score, Initial","Current pain score, Initial","Numeric","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Maximum pain score, Initial","Maximum pain score, Initial","Numeric","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Minimum pain score, Initial","Minimum pain score, Initial","Numeric","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, DN4 Score","DN4 Score","Numeric","Computed",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Score at rest","Score at rest","Numeric","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Score on exam","Score on exam","Numeric","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Current pain score, Follow up","Current pain score","Numeric","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Maximum pain score, Follow up","Maximum pain score","Numeric","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Minimum pain score, Follow up","Minimum pain score","Numeric","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Current pain score, Follow up","Current pain score, Follow up","Numeric","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Maximum pain score, Follow up","Maximum pain score, Follow up","Numeric","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Minimum pain score, Follow up","Minimum pain score, Follow up","Numeric","Misc",false);
 
 #Add Numeric concepts to concept Numeric Table
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
