@@ -821,4 +821,18 @@
             INSERT INTO location_tag_map(location_id, location_tag_id) VALUES(@locationID, @location_tagID);
         </sql>
     </changeSet>
+    <changeSet id="MALAWI-20220211123" author="Venky">
+        <comment>procedure add_new_concept to allow shortname as null</comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS add_new_concept;
+        </sql>
+        <sqlFile splitStatements="false" path="utils/AddNewConcept_v1.sql"/>
+    </changeSet>
+    <changeSet id="MALAWI-20220211124" author="venky">
+        <comment>MOBN-860 | Adding a new procedure to add new drugs</comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS add_new_drug;
+        </sql>
+        <sqlFile splitStatements="false" path="drugs/AddNewDrug.sql"/>
+    </changeSet>
 </databaseChangeLog>

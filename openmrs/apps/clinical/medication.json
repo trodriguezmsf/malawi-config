@@ -1,103 +1,105 @@
 {
-  "commonConfig": {
-  },
   "tabConfig": {
     "allMedicationTabConfig": {
-      "orderSet": {
-        "calculateDoseOnlyOnCurrentVisitValues": false
-      },
       "inputOptionsConfig": {
-        "defaultDurationUnit": "Day(s)",
-        "hideOrderSet" : false,
-        "defaultInstructions": "As directed",
-        "frequencyDefaultDurationUnitsMap": [
-          {
-            "minFrequency": "1/7",
-            "maxFrequency": 5,
-            "defaultDurationUnit": "Day(s)"
-          },
-          {
-            "minFrequency": "1/30",
-            "maxFrequency": "1/7",
-            "defaultDurationUnit": "Week(s)"
-          },
-          {
-            "minFrequency": null,
-            "maxFrequency": "1/30",
-            "defaultDurationUnit": "Month(s)"
-          }
+        "hiddenFields": [
+          "dosingInstructions",
+          "quantity",
+          "quantityUnits"
         ],
+        "defaultDurationUnit": "Day(s)",
+        "defaultInstructions": "As directed",
+        "hideOrderSet": true,
         "drugFormDefaults": {
-          "Ayurvedic": {
-            "doseUnits": "Teaspoon",
-            "route": "Oral"
+          "Aerosol": {
+            "route": "Nasogastric"
           },
           "Capsule": {
-            "doseUnits": "Capsule(s)",
             "route": "Oral"
           },
           "Cream": {
             "route": "Topical"
           },
-          "Drops": {
-            "doseUnits": "Drop",
-            "route": "Topical"
+          "Ear drops": {
+            "route": "Ears"
           },
-          "Food Supplement": {
-            "doseUnits": "Unit(s)",
-            "route": "Oral"
+          "Eye drops": {
+            "route": "Eyes"
+          },
+          "Eye gel": {
+            "route": "Eyes"
+          },
+          "Eye ointment": {
+            "route": "Eyes"
+          },
+          "Eye/Nose drops": {
+            "route": "Eyes/Nasogastric"
           },
           "Gel": {
             "route": "Topical"
           },
-          "Granule": {
-            "doseUnits": "Unit(s)",
-            "route": "Oral"
-          },
-          "Inhaler": {
-            "doseUnits": "Puff(s)",
-            "route": "Inhalation"
-          },
-          "Injection": {
-            "doseUnits": "mg",
+          "Infusion": {
             "route": "Intravenous"
           },
-          "Jelly": {
-            "route": "Topical"
-          },
-          "Liquid": {
-            "doseUnits": "ml",
-            "route": "Oral"
+          "Injection": {
+            "route": "Intravenous"
           },
           "Lotion": {
+            "route": "Topical"
+          },
+          "Lubricating jelly": {
             "route": "Topical"
           },
           "Ointment": {
             "route": "Topical"
           },
-          "Pessary": {
-            "doseUnits": "Unit(s)",
-            "route": "Per Vaginal"
+          "Oral solution": {
+            "route": "Oral"
+          },
+          "Oral suspension": {
+            "route": "Oral"
+          },
+          "Pencil": {
+            "route": "Topical"
           },
           "Powder": {
-            "doseUnits": "mg",
+            "route": "Oral"
+          },
+          "Shampoo/Lotion": {
             "route": "Topical"
           },
           "Solution": {
-            "doseUnits": "ml",
             "route": "Topical"
           },
-          "Spray": {
-            "doseUnits": "Puff(s)",
-            "route": "Nasal"
+          "Suppository": {
+            "route": "Rectal"
           },
           "Syrup": {
-            "doseUnits": "ml",
             "route": "Oral"
           },
           "Tablet": {
-            "doseUnits": "Tablet(s)",
             "route": "Oral"
+          },
+          "Topical": {
+            "route": "Topical"
+          },
+          "Topical powder": {
+            "route": "Topical"
+          },
+          "Turbuhaler": {
+            "route": "Oral"
+          },
+          "Vaccine": {
+            "route": "Intramuscular"
+          },
+          "Vaccin": {
+            "route": "Intramuscular"
+          },
+          "Vaginal tablet": {
+            "route": "Vaginal"
+          },
+          "Soap": {
+            "route": "Topical"
           }
         }
       }
