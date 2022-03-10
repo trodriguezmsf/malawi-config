@@ -835,4 +835,5 @@
         </sql>
         <sqlFile splitStatements="false" path="drugs/AddNewDrug.sql"/>
     </changeSet>
+    <include file="BereavementForm/BereavementForm.xml"/>
 </databaseChangeLog>

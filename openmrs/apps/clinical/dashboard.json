@@ -175,7 +175,8 @@
           "Pre Treatment MDT",
           "Pain Assessment",
           "Palliative Care Assessment",
-          "Post Operative MDT"
+          "Post Operative MDT",
+          "Bereavement Form"
         ],
         "translationKey": "DASHBOARD_TITLE_EDIT_FORMS"
       },
