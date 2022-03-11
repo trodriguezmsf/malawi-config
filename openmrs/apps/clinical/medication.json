@@ -12,10 +12,12 @@
         "hideOrderSet": true,
         "drugFormDefaults": {
           "Aerosol": {
-            "route": "Nasogastric"
+            "route": "Nasogastric",
+            "doseUnits": "puff"
           },
           "Capsule": {
-            "route": "Oral"
+            "route": "Oral",
+            "Capsule": "mg"
           },
           "Cream": {
             "route": "Topical"
@@ -54,7 +56,8 @@
             "route": "Topical"
           },
           "Oral solution": {
-            "route": "Oral"
+            "route": "Oral",
+            "doseUnits":"mg/ml"
           },
           "Oral suspension": {
             "route": "Oral"
@@ -63,7 +66,8 @@
             "route": "Topical"
           },
           "Powder": {
-            "route": "Oral"
+            "route": "Oral",
+            "doseUnits":"mg"
           },
           "Shampoo/Lotion": {
             "route": "Topical"
@@ -78,7 +82,8 @@
             "route": "Oral"
           },
           "Tablet": {
-            "route": "Oral"
+            "route": "Oral",
+            "doseUnits":"mg"
           },
           "Topical": {
             "route": "Topical"
@@ -100,6 +105,18 @@
           },
           "Soap": {
             "route": "Topical"
+          },
+          "Ovule": {
+            "doseUnits": "mg"
+          },
+          "Patch": {
+            "doseUnits": "mg"
+          },
+          "Jelly": {
+            "doseUnits": "Application"
+          },
+          "Oinment": {
+            "doseUnits": "Application"
           }
         }
       }

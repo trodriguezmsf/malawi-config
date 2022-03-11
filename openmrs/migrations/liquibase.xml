@@ -836,4 +836,653 @@
         <sqlFile splitStatements="false" path="drugs/AddNewDrug.sql"/>
     </changeSet>
     <include file="BereavementForm/BereavementForm.xml"/>
+    <changeSet id="MALAWI-20220211125" author="venky">
+        <comment>Adding new drugs</comment>
+        <sql>
+            set @locale = "en";
+            # Add new drug (drug_name, drug_strength, dosage_form_name, locale)
+            CALL add_new_drug("CLOTRIMAZOLE", "CLOTRIMAZOLE 500mg  vaginal tab. + applicator", "500mg", "Ovule", @locale);
+            CALL add_new_drug("FENTANYL", "FENTANYL 2,1 μg 12mg/h, transdermal patch", "2,1 mg", "Patch", @locale);
+            CALL add_new_drug("FENTANYL", "FENTANYL 4,2 μg 25mg/h, transdermal patch", "4,2 mg", "Patch", @locale);
+            CALL add_new_drug("LIDOCAINE", "LIDOCAINE 2% Jelly", "2%", "Jelly", @locale);
+            CALL add_new_drug("PODOPHYLLOTOXIN", "PODOPHYLLOTOXIN 0.50% 3.5ml, + 30 applicator tips", "0.50%", "Bottle", @locale);
+            CALL add_new_drug("ZINC OXIDE", "ZINC OXIDE 10% 100 g tube ointment", "10%", "Oinment", @locale);
+            CALL add_new_drug("DEXTROSE (GLUCOSE)", "DEXTROSE (GLUCOSE) 10%  500ml, flex. bag, PVC free", "10%", "Infusion", @locale);
+            CALL add_new_drug("DEXTROSE (GLUCOSE)", "DEXTROSE (GLUCOSE) 5% 1l, flex. bag, PVC free", "5%", "Infusion", @locale);
+            CALL add_new_drug("DEXTROSE (GLUCOSE)", "DEXTROSE (GLUCOSE) 5% 250ml, flex. bag, PVC free", "5%", "Infusion", @locale);
+            CALL add_new_drug("DEXTROSE (GLUCOSE)", "DEXTROSE (GLUCOSE) 5% 500ml, flex. bag, PVC free", "5%", "Infusion", @locale);
+            CALL add_new_drug("MODIFIED FLUID GELATIN/POLYGELIN", "MODIFIED FLUID GELATIN/POLYGELIN 500ml semi-rigid bt, PVC free", "500ml", "Infusion", @locale);
+            CALL add_new_drug("RINGER lactate", "RINGER lactate  1l, flex. bag, PVC free", "--", "Infusion", @locale);
+            CALL add_new_drug("RINGER lactate", "RINGER lactate  500 ml, flex. bag, PVC free", "--", "Infusion", @locale);
+            CALL add_new_drug("SODIUM chloride", "SODIUM chloride 0.90% 100ml, flex. bag, PVC free", "0.90%", "Infusion", @locale);
+            CALL add_new_drug("SODIUM chloride", "SODIUM chloride 0.90% 1l, flex. bag, PVC free", "0.90%", "Infusion", @locale);
+            CALL add_new_drug("SODIUM chloride", "SODIUM chloride 0.90% 250ml, flex. bag, PVC free", "0.90%", "Infusion", @locale);
+            CALL add_new_drug("SODIUM chloride", "SODIUM chloride 0.90% 500ml, flex. bag, PVC free", "0.90%", "Infusion", @locale);
+            CALL add_new_drug("AMIODARONE hydrochloride", "AMIODARONE hydrochloride 50mg/ml Ampoule", "50mg/ml", "Injection", @locale);
+            CALL add_new_drug("AMOXICILLIN + CLAVULANIC acid", "AMOXICILLIN + CLAVULANIC acid 1g + 200mg Powder", "1g + 200mg", "Infusion", @locale);
+            CALL add_new_drug("ARTESUNATE +NaHCO3 +NaCl", "ARTESUNATE +NaHCO3 +NaCl 120mg + 5%+2ml+0.9% 10ml powder vial", "120mg + 5%+2ml+0.9%", "Injection", @locale);
+            CALL add_new_drug("ATRACURIUM besilate", "ATRACURIUM besilate 10mg/ml Injection", "10mg/ml", "Injection", @locale);
+            CALL add_new_drug("ATROPINE sulfate", "ATROPINE sulfate 1mg/ml Injection", "1mg/ml", "Injection", @locale);
+            CALL add_new_drug("BUPIVACAINE HCl, hyperbaric/spinal", "BUPIVACAINE HCl, hyperbaric/spinal eq. 5mg/ml base 4 ml ampoule", "eq. 5mg/ml base", "Injection", @locale);
+            CALL add_new_drug("CALCIUM GLUCONATE", "CALCIUM GLUCONATE 100mg/ml 10ml ampoule", "100mg/ml", "Injection", @locale);
+            CALL add_new_drug("CEFAZOLIN", "CEFAZOLIN 1g powder vial", "1g", "Injection", @locale);
+            CALL add_new_drug("CEFTRIAXONE sodium + lidocaine Intramuscular", "CEFTRIAXONE sodium + lidocaine Intramuscular eq. 250 mg base powder vial", "eq. 250 mg base", "Injection", @locale);
+            CALL add_new_drug("CEFTRIAXONE sodium", "CEFTRIAXONE sodium eq. 1 g base powder vial", "eq. 1 g base", "Injection", @locale);
+            CALL add_new_drug("CHLORPROMAZINE", "CHLORPROMAZINE 25mg/ml ampoule", "25mg/ml", "Injection", @locale);
+            CALL add_new_drug("CIPROFLOXACIN salt", "CIPROFLOXACIN salt eq. 2mg/ml base 100ml, bag/bot PVC free", "eq. 2mg/ml base", "Infusion", @locale);
+            CALL add_new_drug("CLINDAMYCIN phosphate", "CLINDAMYCIN phosphate eq. 150mg base/ml 2ml ampoule", "eq. 150mg base/ml", "Injection", @locale);
+            CALL add_new_drug("CLOXACILLIN sodium", "CLOXACILLIN sodium eq. 500mg base powder", "eq. 500mg base", "Injection", @locale);
+            CALL add_new_drug("DEXAMETHASONE phosphate", "DEXAMETHASONE phosphate 4mg/ml 1ml ampoule", "4mg/ml", "Injection", @locale);
+            CALL add_new_drug("DIAZEPAM", "DIAZEPAM 5mg/ml 2ml ampoule", "5mg/ml", "Injection", @locale);
+            CALL add_new_drug("DICLOFENAC sodium", "DICLOFENAC sodium 25mg/ml 3ml ampoule", "25mg/ml", "Injection", @locale);
+            CALL add_new_drug("DIGOXIN", "DIGOXIN 0.25mg/ml 2 ml ampoule", "0.25mg/ml", "Infusion", @locale);
+            CALL add_new_drug("DILTIAZEM hydrochloride", "DILTIAZEM hydrochloride 25mg powder vial", "25mg", "Injection", @locale);
+            CALL add_new_drug("DOPAMINE hydrochloride", "DOPAMINE hydrochloride 40mg/ml 5 ml ampoule", "40mg/ml", "Injection", @locale);
+            CALL add_new_drug("EPHEDRINE hydrochloride", "EPHEDRINE hydrochloride 30mg/ml 1 ml ampoule", "30mg/ml", "Injection", @locale);
+            CALL add_new_drug("EPINEPHRINE (adrenaline) tartrate", "EPINEPHRINE (adrenaline) tartrate eq. 1mg/ml base 1 ml ampoule", "eq. 1mg/ml base", "Injection", @locale);
+            CALL add_new_drug("EPOETIN ALFA", "EPOETIN ALFA 10 000 IU/ml 1ml, graduated syringe", "10 000 IU/ml", "Filled syringe", @locale);
+            CALL add_new_drug("FENTANYL citrate", "FENTANYL citrate eq. 0.05mg/ml base 2 ml ampoule", "eq. 0.05mg/ml base", "Ampoule", @locale);
+            CALL add_new_drug("FERRIC carboxymaltose", "FERRIC carboxymaltose eq. 50mg/ml iron 2 ml ampoule", "eq. 50mg/ml iron", "Injection", @locale);
+            CALL add_new_drug("FILGRASTIM", "FILGRASTIM 30 MUI/0.5ml Filled syringe", "30 MUI/0.5ml", "Filled syringe", @locale);
+            CALL add_new_drug("FLUMAZENIL", "FLUMAZENIL 0.1mg/ml 10 ml ampoule", "0.1mg/ml", "Injection", @locale);
+            CALL add_new_drug("FUROSEMIDE", "FUROSEMIDE 10mg/ml 2 ml ampoule", "10mg/ml", "Ampoule", @locale);
+            CALL add_new_drug("GENTAMICIN sulfate", "GENTAMICIN sulfate eq. 40mg/ml 2 ml ampoule", "eq. 40mg/ml", "Injection", @locale);
+            CALL add_new_drug("GLUCOSE hypertonic", "GLUCOSE hypertonic 50% 50 ml vial", "50%", "Injection", @locale);
+            CALL add_new_drug("GLYCOPYRRONIUM bromide", "GLYCOPYRRONIUM bromide 0.2mg/ml 1 ml ampoule", "0.2mg/ml", "Injection", @locale);
+            CALL add_new_drug("HALOPERIDOL", "HALOPERIDOL 5mg/ml 1 ml ampoule", "5mg/ml", "Injection", @locale);
+            CALL add_new_drug("HEPARIN SODIUM", "HEPARIN SODIUM 5000 IU/ml 5 ml ampoule", "5000 IU/ml", "Solution", @locale);
+            CALL add_new_drug("HYDRALAZINE hydrochloride", "HYDRALAZINE hydrochloride 20mg Powder ampoule", "20mg", "Powder", @locale);
+            CALL add_new_drug("HYDROCORTISONE sodium succinate", "HYDROCORTISONE sodium succinate eq. 100 mg base Powder", "eq. 100 mg base", "Powder", @locale);
+            CALL add_new_drug("HYOSCINE BUTYLBROMIDE (scopolamine butylbrom)", "HYOSCINE BUTYLBROMIDE (scopolamine butylbrom) 20mg/1ml Ampoule", "20mg/1ml", "Ampoule", @locale);
+            CALL add_new_drug("INSULIN HUMAN, RAPID", "INSULIN HUMAN, RAPID 100 IU/ml 10ml, vial N", "100 IU/ml", "Injection", @locale);
+            CALL add_new_drug("ISOSORBIDE DINITRATE", "ISOSORBIDE DINITRATE 1mg/ml 10 ml ampoule", "1mg/ml", "Infusion", @locale);
+            CALL add_new_drug("KETAMINE hydrochloride", "KETAMINE hydrochloride eq. 50mg/ml base 5 ml ampoule", "eq. 50mg/ml base", "Ampoule", @locale);
+            CALL add_new_drug("LABETALOL hydrochloride", "LABETALOL hydrochloride 5mg/ml 20 ml ampoule", "5mg/ml", "Infusion", @locale);
+            CALL add_new_drug("LEVOBUPIVACAINE hydrochloride", "LEVOBUPIVACAINE hydrochloride eq. 5mg/ml base 10 ml ampoule", "eq. 5mg/ml base", "Infusion", @locale);
+            CALL add_new_drug("LIDOCAINE + EPINEPHRINE", "LIDOCAINE + EPINEPHRINE 2% + 1/80 000 1,8 ml cartridge", "2% + 1/80 000", "Injection", @locale);
+            CALL add_new_drug("LIDOCAINE hydrochloride", "LIDOCAINE hydrochloride 1% 10 ml ampoule", "1%", "Injection", @locale);
+            CALL add_new_drug("LIPID emulsion", "LIPID emulsion 20% 250ml, flex. bag, PVC free", "20%", "Infusion", @locale);
+            CALL add_new_drug("MAGNESIUM sulfate", "MAGNESIUM sulfate 0.5g/ml 10 ml ampoule", "0.5g/ml", "Ampoule", @locale);
+            CALL add_new_drug("MEROPENEM", "MEROPENEM 500mg powder vial", "500mg", "Injection", @locale);
+            CALL add_new_drug("METRONIDAZOLE", "METRONIDAZOLE 5mg/ml 100ml, bag/bottle PVC free", "5mg/ml", "Injection", @locale);
+            CALL add_new_drug("METOCLOPRAMIDE hydrochloride", "METOCLOPRAMIDE hydrochloride 5mg/ml 2 ml ampoule", "5mg/ml", "Ampoule", @locale);
+            CALL add_new_drug("MIDAZOLAM", "MIDAZOLAM 1mg/ml 5 ml ampoule", "1mg/ml", "Ampoule", @locale);
+            CALL add_new_drug("MORPHINE hydrochloride", "MORPHINE hydrochloride 10mg/ml 1 ml ampoule", "10mg/ml", "Ampoule", @locale);
+            CALL add_new_drug("NADROPARIN calcium", "NADROPARIN calcium 3800 IU/0.4ml Filled syringe", "3800 IU/0.4ml", "Filled syringe", @locale);
+            CALL add_new_drug("NALOXONE hydrochloride", "NALOXONE hydrochloride 0.4mg/ml 1 ml ampoule", "0.4mg/ml", "Ampoule", @locale);
+            CALL add_new_drug("NEOSTIGMINE methylsulfate", "NEOSTIGMINE methylsulfate 2.5mg/ml 1 ml ampoule", "2.5mg/ml", "Ampoule", @locale);
+            CALL add_new_drug("NICARDIPINE hydrochloride", "NICARDIPINE hydrochloride 1mg/ml 10 ml ampoule", "1mg/ml", "Injection", @locale);
+            CALL add_new_drug("OMEPRAZOLE sodium", "OMEPRAZOLE sodium eq. 40 mg base powder vial", "eq. 40 mg base", "Injection", @locale);
+            CALL add_new_drug("ONDANSETRON hydrochloride", "ONDANSETRON hydrochloride eq. 2mg/ml base 2 ml ampoule", "eq. 2mg/ml base", "Ampoule", @locale);
+            CALL add_new_drug("PARACETAMOL (acetaminophen)", "PARACETAMOL (acetaminophen) 10mg/ml 100ml, flex.bag PVC free", "10mg/ml", "Infusion", @locale);
+            CALL add_new_drug("PARACETAMOL (acetaminophen)", "PARACETAMOL (acetaminophen) 10mg/ml 50ml bottle", "10mg/ml", "Injection", @locale);
+            CALL add_new_drug("BENZATHINE BENZYLPENICILLIN", "BENZATHINE BENZYLPENICILLIN 2.4miu powder vial + solvent", "2.4miu", "Injection", @locale);
+            CALL add_new_drug("PHENYLEPHRINE hydrochloride", "PHENYLEPHRINE hydrochloride eq. 0.05 mg base/ml 10 ml ampoule", "eq. 0.05 mg base/ml", "Infusion", @locale);
+            CALL add_new_drug("PIPERACILLIN + TAZOBACTAM", "PIPERACILLIN + TAZOBACTAM 4g + 500mg powder vial", "4g + 500mg", "Infusion", @locale);
+            CALL add_new_drug("POTASSIUM chloride", "POTASSIUM chloride 1.34mmol/ml (10%) 10 ml ampoule", "1.34mmol/ml (10%)", "Infusion", @locale);
+            CALL add_new_drug("POTASSIUM chloride", "POTASSIUM chloride  2mmol/ml (15%) 10 ml ampoule", " 2mmol/ml (15%)", "Infusion", @locale);
+            CALL add_new_drug("PROMETHAZINE hydrochloride", "PROMETHAZINE hydrochloride eq. 25mg/ml base 2 ml ampoule", "eq. 25mg/ml base", "Injection", @locale);
+            CALL add_new_drug("PROPOFOL", "PROPOFOL 10mg/ml 20 ml ampoule", "10mg/ml", "Infusion", @locale);
+            CALL add_new_drug("PROTAMINE sulfate", "PROTAMINE sulfate 10mg/ml 5 ml ampoule", "10mg/ml", "Injection", @locale);
+            CALL add_new_drug("SODIUM BICARBONATE", "SODIUM BICARBONATE 8.40% 1mEq/ml, 20ml, amp.", "8.40%", "Injection", @locale);
+            CALL add_new_drug("SODIUM BICARBONATE", "SODIUM BICARBONATE 5.00% 1ml ampoule", "5.00%", "", @locale);
+            CALL add_new_drug("SODIUM chloride", "SODIUM chloride 0.90% 10 ml ampoule", "0.90%", "Infusion", @locale);
+            CALL add_new_drug("SODIUM chloride", "SODIUM chloride 0.90% 5 ml ampoule", "0.90%", "", @locale);
+            CALL add_new_drug("SUXAMETHONIUM chloride", "SUXAMETHONIUM chloride 50mg/ml 2 ml ampoule", "50mg/ml", "Ampoule", @locale);
+            CALL add_new_drug("THIOPENTAL sodium", "THIOPENTAL sodium 500mg powder vial", "500mg", "Injection", @locale);
+            CALL add_new_drug("TRAMADOL hydrochloride", "TRAMADOL hydrochloride 50mg/ml 2 ml ampoule", "50mg/ml", "Ampoule", @locale);
+            CALL add_new_drug("TRANEXAMIC acid", "TRANEXAMIC acid 100mg/ml 5 ml ampoule", "100mg/ml", "Injection", @locale);
+            CALL add_new_drug("ACICLOVIR", "ACICLOVIR 800mg Tablet", "800mg", "Tablet", @locale);
+            CALL add_new_drug("ACETYLSALICYLIC acid (aspirin)", "ACETYLSALICYLIC acid (aspirin) 75mg Tablet", "75mg", "Tablet", @locale);
+            CALL add_new_drug("ALUMINIUM hydroxide + MAGNESIUM hydrox.", "ALUMINIUM hydroxide + MAGNESIUM hydrox. 400mg + 400mg Tablet", "400mg + 400mg", "Tablet", @locale);
+            CALL add_new_drug("AMITRIPTYLINE hydrochloride", "AMITRIPTYLINE hydrochloride 25mg Tablet", "25mg", "Tablet", @locale);
+            CALL add_new_drug("AMLODIPINE", "AMLODIPINE 5mg Tablet", "5mg", "Tablet", @locale);
+            CALL add_new_drug("AMOXICILLIN + CLAVULANIC acid", "AMOXICILLIN + CLAVULANIC acid 500mg + 125mg Tablet", "500mg + 125mg", "Tablet", @locale);
+            CALL add_new_drug("AMOXICILLIN + CLAVULANIC acid", "AMOXICILLIN + CLAVULANIC acid 875 + 125mg Tablet", "875 + 125mg", "Tablet", @locale);
+            CALL add_new_drug("AMOXICILLIN", "AMOXICILLIN 500mg Tablet", "500mg", "Tablet", @locale);
+            CALL add_new_drug("ARTHEMETER + LUMEFRANTINE", "ARTHEMETER + LUMEFRANTINE 20 mg + 120 mg Tablet", "20 mg + 120 mg", "Tablet", @locale);
+            CALL add_new_drug("ASCORBIC acid (vitamin C), 250mg, chewable tab.", "ASCORBIC acid (vitamin C), 250mg, chewable tab. 250mg Tablet", "250mg", "Tablet", @locale);
+            CALL add_new_drug("AZITHROMYCIN", "AZITHROMYCIN 250mg Tablet", "250mg", "Tablet", @locale);
+            CALL add_new_drug("BISACODYL", "BISACODYL 5mg Tablet", "5mg", "Tablet", @locale);
+            CALL add_new_drug("BISOPROLOL fumarate", "BISOPROLOL fumarate 2.5mg Tablet", "2.5mg", "Tablet", @locale);
+            CALL add_new_drug("CARBAMAZEPINE", "CARBAMAZEPINE 200mg Tablet", "200mg", "Tablet", @locale);
+            CALL add_new_drug("CEFIXIME", "CEFIXIME 200mg Tablet", "200mg", "Tablet", @locale);
+            CALL add_new_drug("CHLORPROMAZINE hydrochloride", "CHLORPROMAZINE hydrochloride eq. 25 mg base Tablet", "eq. 25 mg base", "Tablet", @locale);
+            CALL add_new_drug("CIPROFLOXACIN hydrochloride", "CIPROFLOXACIN hydrochloride eq. 500 mg base Tablet", "eq. 500 mg base", "Tablet", @locale);
+            CALL add_new_drug("CLINDAMYCIN hydrochloride", "CLINDAMYCIN hydrochloride eq. 300mg base Capsule", "eq. 300mg base", "Capsule", @locale);
+            CALL add_new_drug("CLOXACILLIN sodium", "CLOXACILLIN sodium eq. 250 mg base Capsule", "eq. 250 mg base", "Capsule", @locale);
+            CALL add_new_drug("CLOXACILLIN sodium", "CLOXACILLIN sodium eq. 500 mg base Capsule", "eq. 500 mg base", "Capsule", @locale);
+            CALL add_new_drug("CODEINE phosphate", "CODEINE phosphate 30mg Tablet", "30mg", "Tablet", @locale);
+            CALL add_new_drug("DIAZEPAM", "DIAZEPAM 5mg Tablet", "5mg", "Tablet", @locale);
+            CALL add_new_drug("DIGOXIN", "DIGOXIN 0.25mg Tablet", "0.25mg", "Tablet", @locale);
+            CALL add_new_drug("DOXYCYCLINE salt", "DOXYCYCLINE salt eq. 100 mg base Tablet", "eq. 100 mg base", "Tablet", @locale);
+            CALL add_new_drug("ENALAPRIL maleate", "ENALAPRIL maleate 5mg Tablet", "5mg", "Tablet", @locale);
+            CALL add_new_drug("ERYTHROMYCIN stearate", "ERYTHROMYCIN stearate eq. 250 mg base Tablet", "eq. 250 mg base", "Tablet", @locale);
+            CALL add_new_drug("ERYTHROMYCIN stearate", "ERYTHROMYCIN stearate eq. 500 mg base Tablet", "eq. 500 mg base", "Tablet", @locale);
+            CALL add_new_drug("FERROUS salt + FOLIC acid", "FERROUS salt + FOLIC acid eq. 60 mg + 0.4mg Tablet", "eq. 60 mg + 0.4mg", "Tablet", @locale);
+            CALL add_new_drug("FLUCONAZOLE", "FLUCONAZOLE 200mg Capsule", "200mg", "Capsule", @locale);
+            CALL add_new_drug("FOLIC acid", "FOLIC acid 5mg Tablet", "5mg", "Tablet", @locale);
+            CALL add_new_drug("FOSFOMYCIN trometamol", "FOSFOMYCIN trometamol eq. 3 g base Sachet", "eq. 3 g base", "Sachet", @locale);
+            CALL add_new_drug("FUROSEMIDE", "FUROSEMIDE 40mg Tablet", "40mg", "Tablet", @locale);
+            CALL add_new_drug("GABAPENTIN", "GABAPENTIN 100mg Capsule", "100mg", "Capsule", @locale);
+            CALL add_new_drug("GABAPENTIN", "GABAPENTIN 300mg Capsule", "300mg", "Capsule", @locale);
+            CALL add_new_drug("HALOPERIDOL", "HALOPERIDOL 2mg/ml Oral solution", "2mg/ml", "Oral solution", @locale);
+            CALL add_new_drug("HYDROCHLOROTHIAZIDE", "HYDROCHLOROTHIAZIDE 25mg Tablet", "25mg", "Tablet", @locale);
+            CALL add_new_drug("HYOSCINE BUTYLBROMIDE (scopolamine butylbromide)", "HYOSCINE BUTYLBROMIDE (scopolamine butylbromide) 10mg Tablet", "10mg", "Tablet", @locale);
+            CALL add_new_drug("IBUPROFEN", "IBUPROFEN 400mg Tablet", "400mg", "Tablet", @locale);
+            CALL add_new_drug("ISOSORBIDE DINITRATE", "ISOSORBIDE DINITRATE 5mg Tablet", "5mg", "Tablet", @locale);
+            CALL add_new_drug("ISOFLURANE", "ISOFLURANE 250 ml Bottle", "250 ml", "Bottle", @locale);
+            CALL add_new_drug("LABETALOL hydrochloride", "LABETALOL hydrochloride 200mg Tablet", "200mg", "Tablet", @locale);
+            CALL add_new_drug("LACTULOSE", "LACTULOSE 3.1mg/5ml Oral solution", "3.1mg/5ml", "Solution", @locale);
+            CALL add_new_drug("LEVOFLOXACIN", "LEVOFLOXACIN 500mg Tablet, Blister Oral", "500mg", "Tablet", @locale);
+            CALL add_new_drug("LEVOFLOXACIN", "LEVOFLOXACIN 500mg Tablet", "500mg", "Tablet", @locale);
+            CALL add_new_drug("LOPERAMIDE hydrochloride", "LOPERAMIDE hydrochloride 2mg Capsule", "2mg", "Capsule", @locale);
+            CALL add_new_drug("LOPERAMIDE hydrochloride", "LOPERAMIDE hydrochloride 2mg Tablet", "2mg", "Tablet", @locale);
+            CALL add_new_drug("METFORMIN hydrochloride", "METFORMIN hydrochloride 500mg Tablet", "500mg", "Tablet", @locale);
+            CALL add_new_drug("METRONIDAZOLE", "METRONIDAZOLE 500mg Tablet", "500mg", "Tablet", @locale);
+            CALL add_new_drug("METOCLOPRAMIDE hydrochloride anhydrous", "METOCLOPRAMIDE hydrochloride anhydrous 10mg Tablet", "10mg", "Tablet", @locale);
+            CALL add_new_drug("MORPHINE sulfate", "MORPHINE sulfate 10mg Capsule", "10mg", "Capsule", @locale);
+            CALL add_new_drug("MORPHINE sulfate", "MORPHINE sulfate 10mg/5ml Oral solution", "10mg/5ml", "Solution", @locale);
+            CALL add_new_drug("MORPHINE sulfate", "MORPHINE sulfate 10mg Tablet", "10mg", "Tablet", @locale);
+            CALL add_new_drug("MORPHINE sulfate", "MORPHINE sulfate 30mg Capsule", "30mg", "Capsule", @locale);
+            CALL add_new_drug("NIFEDIPINE", "NIFEDIPINE 10mg Tablet", "10mg", "Tablet", @locale);
+            CALL add_new_drug("NYSTATIN", "NYSTATIN 100,000 IU/ml Oral drops", "100,000 IU/ml", "Drops", @locale);
+            CALL add_new_drug("OMEPRAZOLE", "OMEPRAZOLE 20mg Capsule", "20mg", "Capsule", @locale);
+            CALL add_new_drug("ORAL REHYDRATION SALTS (ORS)", "ORAL REHYDRATION SALTS (ORS) 20.5g/1l Sachet", "20.5g/1l", "Sachet", @locale);
+            CALL add_new_drug("PARACETAMOL (acetaminophen)", "PARACETAMOL (acetaminophen) 500mg Tablet", "500mg", "Tablet", @locale);
+            CALL add_new_drug("PRAZIQUANTEL", "PRAZIQUANTEL 600mg Tablet", "600mg", "Tablet", @locale);
+            CALL add_new_drug("PREDNISOLONE", "PREDNISOLONE 20mg Tablet", "20mg", "Tablet", @locale);
+            CALL add_new_drug("PREDNISOLONE", "PREDNISOLONE 5mg Tablet", "5mg", "Tablet", @locale);
+            CALL add_new_drug("PROMETHAZINE hydrochloride", "PROMETHAZINE hydrochloride eq. 25 mg base Tablet", "eq. 25 mg base", "Tablet", @locale);
+            CALL add_new_drug("SALBUTAMOL sulfate", "SALBUTAMOL sulfate eq. 0.1mg base/puff Aerosol", "eq. 0.1mg base/puff", "Aerosol", @locale);
+            CALL add_new_drug("SPIRONOLACTONE", "SPIRONOLACTONE 25mg Tablet", "25mg", "Tablet", @locale);
+            CALL add_new_drug("TRAMADOL hydrochloride", "TRAMADOL hydrochloride 100mg/ml/40 drops Oral drops", "100mg/ml/40 drops", "Drops", @locale);
+            CALL add_new_drug("TRAMADOL hydrochloride", "TRAMADOL hydrochloride 50mg Capsule", "50mg", "Capsule", @locale);
+            CALL add_new_drug("TRANEXAMIC acid", "TRANEXAMIC acid 500mg Tablet", "500mg", "Tablet", @locale);
+            CALL add_new_drug("AMPICILLIN, 500mg", "AMPICILLIN, 500mg 500mg powder vial", "500mg", "Injection", @locale);
+            CALL add_new_drug("PARACETAMOL (acetaminophen)", "PARACETAMOL (acetaminophen) 10mg/ml 50ml, flex.bag PVC free", "10mg/ml", "Infusion", @locale);
+            CALL add_new_drug("PHENYTOIN sodium", "PHENYTOIN sodium 50mg/ml 5 ml ampoule", "50mg/ml", "Infusion", @locale);
+            CALL add_new_drug("PHYTOMENADIONE (vitamin K1)", "PHYTOMENADIONE (vitamin K1) 10mg/ml (2mg/0,2ml) 0,2 ml ampoule", "10mg/ml (2mg/0,2ml)", "Injection", @locale);
+            CALL add_new_drug("ARTESUNATE +NaHCO3+NaCl", "ARTESUNATE +NaHCO3+NaCl 60 mg + 5% + 1 ml + 0,9% 5 ml powder vial", "60 mg + 5% + 1 ml + 0,9%", "Injection", @locale);
+            CALL add_new_drug("BISOPROLOL fumarate", "BISOPROLOL fumarate 10mg Tablet", "10mg", "Tablet", @locale);
+            CALL add_new_drug("CIMETIDINE", "CIMETIDINE 200mg Tablet", "200mg", "Tablet", @locale);
+            CALL add_new_drug("GABAPENTIN", "GABAPENTIN 400mg Capsule", "400mg", "Capsule", @locale);
+            CALL add_new_drug("GLIBENCLAMIDE", "GLIBENCLAMIDE 5mg Tablet", "5mg", "Tablet", @locale);
+            CALL add_new_drug("MICONAZOLE", "MICONAZOLE 2% 80 g tube", "2%", "Gel", @locale);
+            CALL add_new_drug("VALPROATE SODIUM", "VALPROATE SODIUM 200mg Tablet", "200mg", "Tablet", @locale);
+            CALL add_new_drug("ZINC sulfate", "ZINC sulfate eq. 20 mg Tablet", "eq. 20 mg", "Tablet", @locale);
+            CALL add_new_drug("BECLOMETASONE dipropionate", "BECLOMETASONE dipropionate 0.10mg/puff Aerosol", "0.10mg/puff", "Aerosol", @locale);
+            CALL add_new_drug("BIPERIDEN hydrochloride", "BIPERIDEN hydrochloride 2mg Tablet", "2mg", "Tablet", @locale);
+            CALL add_new_drug("METRONIDAZOLE", "METRONIDAZOLE 250mg Tablet", "250mg", "Tablet", @locale);
+            CALL add_new_drug("METHYLDOPA", "METHYLDOPA 250mg Tablet", "250mg", "Tablet", @locale);
+        </sql>
+    </changeSet>
+    <changeSet id="MALAWI-20220211126" author="Venky">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_name where name in ("Application", "mg/ml", "gram", "IU/ml", "g/ml", "g/mg", "mmol/ml", "g/l", "puff") and concept_name_type =
+                'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment>creating dosing units </comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_short_id = 0;
+            set @concept_full_id = 0;
+            set @count = 0;
+            set @uuid = NULL;
+
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Application","Application","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"mg/ml","mg/ml","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"gram","gram","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IU/ml","IU/ml","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"g/ml","g/ml","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"g/mg","g/mg","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"mmol/ml","mmol/ml","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"g/l","g/l","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"puff","puff","N/A","Misc",false);
+        </sql>
+    </changeSet>
+    <changeSet id="MALAWI-20220211127" author="venky" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_set where concept_id in (select concept_id from concept_name where name in ("Application", "mg/ml", "gram", "IU/ml", "g/ml", "g/mg", "mmol/ml", "g/l", "puff") and concept_name_type = "FULLY_SPECIFIED") AND concept_set =(SELECT concept_id  from concept_name where name= 'Dosing Units' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding µg to dosing units </comment>
+        <sql>
+            SELECT concept_id INTO @concept_set  from concept_name where name= 'Dosing Units' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id1 FROM concept_name WHERE name = 'Application' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id2 FROM concept_name WHERE name = 'mg/ml' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id3 FROM concept_name WHERE name = 'gram' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id4 FROM concept_name WHERE name = 'IU/ml' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id5 FROM concept_name WHERE name = 'g/ml' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id6 FROM concept_name WHERE name = 'g/mg' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id7 FROM concept_name WHERE name = 'mmol/ml' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id8 FROM concept_name WHERE name = 'g/l' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id9 FROM concept_name WHERE name = 'puff' AND concept_name_type="FULLY_SPECIFIED";
+
+            INSERT INTO concept_set(concept_id,concept_set,creator,date_created,uuid) VALUES (@concept_id1,@concept_set,8,now(),uuid());
+            INSERT INTO concept_set(concept_id,concept_set,creator,date_created,uuid) VALUES (@concept_id2,@concept_set,8,now(),uuid());
+            INSERT INTO concept_set(concept_id,concept_set,creator,date_created,uuid) VALUES (@concept_id3,@concept_set,8,now(),uuid());
+            INSERT INTO concept_set(concept_id,concept_set,creator,date_created,uuid) VALUES (@concept_id4,@concept_set,8,now(),uuid());
+            INSERT INTO concept_set(concept_id,concept_set,creator,date_created,uuid) VALUES (@concept_id5,@concept_set,8,now(),uuid());
+            INSERT INTO concept_set(concept_id,concept_set,creator,date_created,uuid) VALUES (@concept_id6,@concept_set,8,now(),uuid());
+            INSERT INTO concept_set(concept_id,concept_set,creator,date_created,uuid) VALUES (@concept_id7,@concept_set,8,now(),uuid());
+            INSERT INTO concept_set(concept_id,concept_set,creator,date_created,uuid) VALUES (@concept_id8,@concept_set,8,now(),uuid());
+            INSERT INTO concept_set(concept_id,concept_set,creator,date_created,uuid) VALUES (@concept_id9,@concept_set,8,now(),uuid());
+        </sql>
+    </changeSet>
+        <changeSet id="MALAWI-20220211128" author="Venky">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_name where name in ("Subcutaneous", "Spinal", "Vaginal") and concept_name_type =
+                'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment>creating routes </comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_short_id = 0;
+            set @concept_full_id = 0;
+            set @count = 0;
+            set @uuid = NULL;
+
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Subcutaneous","Subcutaneous","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Spinal","Spinal","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Vaginal","Vaginal","N/A","Misc",false);
+        </sql>
+    </changeSet>
+        <changeSet id="MALAWI-20220211129" author="venky" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_set where concept_id in (select concept_id from concept_name where name in ("Subcutaneous", "Spinal", "Vaginal") and concept_name_type = "FULLY_SPECIFIED") AND concept_set =(SELECT concept_id  from concept_name where name= 'Drug Routes' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new routes to Drug routes </comment>
+        <sql>
+            SELECT concept_id INTO @concept_set  from concept_name where name= 'Drug routes' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id1 FROM concept_name WHERE name = 'Subcutaneous' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id2 FROM concept_name WHERE name = 'Spinal' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id3 FROM concept_name WHERE name = 'Vaginal' AND concept_name_type="FULLY_SPECIFIED";
+
+            INSERT INTO concept_set(concept_id,concept_set,creator,date_created,uuid) VALUES (@concept_id1,@concept_set,8,now(),uuid());
+            INSERT INTO concept_set(concept_id,concept_set,creator,date_created,uuid) VALUES (@concept_id2,@concept_set,8,now(),uuid());
+            INSERT INTO concept_set(concept_id,concept_set,creator,date_created,uuid) VALUES (@concept_id3,@concept_set,8,now(),uuid());
+        </sql>
+    </changeSet>
+    <changeSet id="MALAWI-20220211138" author="Venky">
+        <comment>Adding a procedure to create a concept reference mapping</comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS CREATE_REFERENCE_MAPPING_MSF_INTERNAL;
+        </sql>
+        <sqlFile splitStatements="false" path="utils/CreateReferenceMappingMsfInternal.sql"/>
+    </changeSet>
+    <changeSet id="MALAWI-20220211139" author="Venky">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="171">
+                SELECT
+                COUNT(*)
+                FROM drug d
+                WHERE name IN ("TRIMAZOLE 500mg  vaginal tab. + applicator", "FENTANYL 2,1 μg 12mg/h, transdermal patch", "FENTANYL 4,2 μg 25mg/h, transdermal patch", "LIDOCAINE 2% Jelly", "PODOPHYLLOTOXIN 0.50% 3.5ml, + 30 applicator tips", "ZINC OXIDE 10% 100 g tube ointment", "DEXTROSE (GLUCOSE) 10%  500ml, flex. bag, PVC free", "DEXTROSE (GLUCOSE) 5% 1l, flex. bag, PVC free", "DEXTROSE (GLUCOSE) 5% 250ml, flex. bag, PVC free", "DEXTROSE (GLUCOSE) 5% 500ml, flex. bag, PVC free", "MODIFIED FLUID GELATIN/POLYGELIN 500ml semi-rigid bt, PVC free", "RINGER lactate  1l, flex. bag, PVC free", "RINGER lactate  500 ml, flex. bag, PVC free", "SODIUM chloride 0.90% 100ml, flex. bag, PVC free", "SODIUM chloride 0.90% 1l, flex. bag, PVC free", "SODIUM chloride 0.90% 250ml, flex. bag, PVC free", "SODIUM chloride 0.90% 500ml, flex. bag, PVC free", "AMIODARONE hydrochloride 50mg/ml Ampoule", "AMOXICILLIN + CLAVULANIC acid 1g + 200mg Powder", "ARTESUNATE +NaHCO3 +NaCl 120mg + 5%+2ml+0.9% 10ml powder vial", "ATRACURIUM besilate 10mg/ml Injection", "ATROPINE sulfate 1mg/ml Injection", "BUPIVACAINE HCl, hyperbaric/spinal eq. 5mg/ml base 4 ml ampoule", "CALCIUM GLUCONATE 100mg/ml 10ml ampoule", "CEFAZOLIN 1g powder vial", "CEFTRIAXONE sodium + lidocaine Intramuscular eq. 250 mg base powder vial", "CEFTRIAXONE sodium eq. 1 g base powder vial", "CHLORPROMAZINE 25mg/ml ampoule", "CIPROFLOXACIN salt eq. 2mg/ml base 100ml, bag/bot PVC free", "CLINDAMYCIN phosphate eq. 150mg base/ml 2ml ampoule", "CLOXACILLIN sodium eq. 500mg base powder", "DEXAMETHASONE phosphate 4mg/ml 1ml ampoule", "DIAZEPAM 5mg/ml 2ml ampoule", "DICLOFENAC sodium 25mg/ml 3ml ampoule", "DIGOXIN 0.25mg/ml 2 ml ampoule", "DILTIAZEM hydrochloride 25mg powder vial", "DOPAMINE hydrochloride 40mg/ml 5 ml ampoule", "EPHEDRINE hydrochloride 30mg/ml 1 ml ampoule", "EPINEPHRINE (adrenaline) tartrate eq. 1mg/ml base 1 ml ampoule", "EPOETIN ALFA 10 000 IU/ml 1ml, graduated syringe", "FENTANYL citrate eq. 0.05mg/ml base 2 ml ampoule", "FERRIC carboxymaltose eq. 50mg/ml iron 2 ml ampoule", "FILGRASTIM 30 MUI/0.5ml Filled syringe", "FLUMAZENIL 0.1mg/ml 10 ml ampoule", "FUROSEMIDE 10mg/ml 2 ml ampoule", "GENTAMICIN sulfate eq. 40mg/ml 2 ml ampoule", "GLUCOSE hypertonic 50% 50 ml vial", "GLYCOPYRRONIUM bromide 0.2mg/ml 1 ml ampoule", "HALOPERIDOL 5mg/ml 1 ml ampoule", "HEPARIN SODIUM 5000 IU/ml 5 ml ampoule", "HYDRALAZINE hydrochloride 20mg Powder ampoule", "HYDROCORTISONE sodium succinate eq. 100 mg base Powder", "HYOSCINE BUTYLBROMIDE (scopolamine butylbrom) 20mg/1ml Ampoule", "INSULIN HUMAN, RAPID 100 IU/ml 10ml, vial N", "ISOSORBIDE DINITRATE 1mg/ml 10 ml ampoule", "KETAMINE hydrochloride eq. 50mg/ml base 5 ml ampoule", "LABETALOL hydrochloride 5mg/ml 20 ml ampoule", "LEVOBUPIVACAINE hydrochloride eq. 5mg/ml base 10 ml ampoule", "LIDOCAINE + EPINEPHRINE 2% + 1/80 000 1,8 ml cartridge", "LIDOCAINE hydrochloride 1% 10 ml ampoule", "LIPID emulsion 20% 250ml, flex. bag, PVC free", "MAGNESIUM sulfate 0.5g/ml 10 ml ampoule", "MEROPENEM 500mg powder vial", "METRONIDAZOLE 5mg/ml 100ml, bag/bottle PVC free", "METOCLOPRAMIDE hydrochloride 5mg/ml 2 ml ampoule", "MIDAZOLAM 1mg/ml 5 ml ampoule", "MORPHINE hydrochloride 10mg/ml 1 ml ampoule", "NADROPARIN calcium 3800 IU/0.4ml Filled syringe", "NALOXONE hydrochloride 0.4mg/ml 1 ml ampoule", "NEOSTIGMINE methylsulfate 2.5mg/ml 1 ml ampoule", "NICARDIPINE hydrochloride 1mg/ml 10 ml ampoule", "OMEPRAZOLE sodium eq. 40 mg base powder vial", "ONDANSETRON hydrochloride eq. 2mg/ml base 2 ml ampoule", "PARACETAMOL (acetaminophen) 10mg/ml 100ml, flex.bag PVC free", "PARACETAMOL (acetaminophen) 10mg/ml 50ml bottle", "BENZATHINE BENZYLPENICILLIN 2.4miu powder vial + solvent", "PHENYLEPHRINE hydrochloride eq. 0.05 mg base/ml 10 ml ampoule", "PIPERACILLIN + TAZOBACTAM 4g + 500mg powder vial", "POTASSIUM chloride 1.34mmol/ml (10%) 10 ml ampoule", "POTASSIUM chloride  2mmol/ml (15%) 10 ml ampoule", "PROMETHAZINE hydrochloride eq. 25mg/ml base 2 ml ampoule", "PROPOFOL 10mg/ml 20 ml ampoule", "PROTAMINE sulfate 10mg/ml 5 ml ampoule", "SODIUM BICARBONATE 8.40% 1mEq/ml, 20ml, amp.", "SODIUM chloride 0.90% 10 ml ampoule", "SUXAMETHONIUM chloride 50mg/ml 2 ml ampoule", "THIOPENTAL sodium 500mg powder vial", "TRAMADOL hydrochloride 50mg/ml 2 ml ampoule", "TRANEXAMIC acid 100mg/ml 5 ml ampoule", "ACICLOVIR 800mg Tablet", "ACETYLSALICYLIC acid (aspirin) 75mg Tablet", "ALUMINIUM hydroxide + MAGNESIUM hydrox. 400mg + 400mg Tablet", "AMITRIPTYLINE hydrochloride 25mg Tablet", "AMLODIPINE 5mg Tablet", "AMOXICILLIN + CLAVULANIC acid 500mg + 125mg Tablet", "AMOXICILLIN + CLAVULANIC acid 875 + 125mg Tablet", "AMOXICILLIN 500mg Tablet", "ARTHEMETER + LUMEFRANTINE 20 mg + 120 mg Tablet", "ASCORBIC acid (vitamin C), 250mg, chewable tab. 250mg Tablet", "AZITHROMYCIN 250mg Tablet", "BISACODYL 5mg Tablet", "BISOPROLOL fumarate 2.5mg Tablet", "CARBAMAZEPINE 200mg Tablet", "CEFIXIME 200mg Tablet", "CHLORPROMAZINE hydrochloride eq. 25 mg base Tablet", "CIPROFLOXACIN hydrochloride eq. 500 mg base Tablet", "CLINDAMYCIN hydrochloride eq. 300mg base Capsule", "CLOXACILLIN sodium eq. 250 mg base Capsule", "CLOXACILLIN sodium eq. 500 mg base Capsule", "CODEINE phosphate 30mg Tablet", "DIAZEPAM 5mg Tablet", "DIGOXIN 0.25mg Tablet", "DOXYCYCLINE salt eq. 100 mg base Tablet", "ENALAPRIL maleate 5mg Tablet", "ERYTHROMYCIN stearate eq. 250 mg base Tablet", "ERYTHROMYCIN stearate eq. 500 mg base Tablet", "FERROUS salt + FOLIC acid eq. 60 mg + 0.4mg Tablet", "FLUCONAZOLE 200mg Capsule", "FOLIC acid 5mg Tablet", "FOSFOMYCIN trometamol eq. 3 g base Sachet", "FUROSEMIDE 40mg Tablet", "GABAPENTIN 100mg Capsule", "GABAPENTIN 300mg Capsule", "HALOPERIDOL 2mg/ml Oral solution", "HYDROCHLOROTHIAZIDE 25mg Tablet", "HYOSCINE BUTYLBROMIDE (scopolamine butylbromide) 10mg Tablet", "IBUPROFEN 400mg Tablet", "ISOSORBIDE DINITRATE 5mg Tablet", "ISOFLURANE 250 ml Bottle", "LABETALOL hydrochloride 200mg Tablet", "LACTULOSE 3.1mg/5ml Oral solution", "LEVOFLOXACIN 500mg Tablet", "LOPERAMIDE hydrochloride 2mg Capsule", "LOPERAMIDE hydrochloride 2mg Tablet", "METFORMIN hydrochloride 500mg Tablet", "METRONIDAZOLE 500mg Tablet", "METOCLOPRAMIDE hydrochloride anhydrous 10mg Tablet", "MORPHINE sulfate 10mg Capsule", "MORPHINE sulfate 10mg/5ml Oral solution", "MORPHINE sulfate 10mg Tablet", "MORPHINE sulfate 30mg Capsule", "NIFEDIPINE 10mg Tablet", "NYSTATIN 100,000 IU/ml Oral drops", "OMEPRAZOLE 20mg Capsule", "ORAL REHYDRATION SALTS (ORS) 20.5g/1l Sachet", "PARACETAMOL (acetaminophen) 500mg Tablet", "PRAZIQUANTEL 600mg Tablet", "PREDNISOLONE 20mg Tablet", "PREDNISOLONE 5mg Tablet", "PROMETHAZINE hydrochloride eq. 25 mg base Tablet", "SALBUTAMOL sulfate eq. 0.1mg base/puff Aerosol", "SPIRONOLACTONE 25mg Tablet", "TRAMADOL hydrochloride 100mg/ml/40 drops Oral drops", "TRAMADOL hydrochloride 50mg Capsule", "TRANEXAMIC acid 500mg Tablet", "AMPICILLIN, 500mg 500mg powder vial", "PARACETAMOL (acetaminophen) 10mg/ml 50ml, flex.bag PVC free", "PHENYTOIN sodium 50mg/ml 5 ml ampoule", "PHYTOMENADIONE (vitamin K1) 10mg/ml (2mg/0,2ml) 0,2 ml ampoule", "ARTESUNATE +NaHCO3+NaCl 60 mg + 5% + 1 ml + 0,9% 5 ml powder vial", "BISOPROLOL fumarate 10mg Tablet", "CIMETIDINE 200mg Tablet", "GABAPENTIN 400mg Capsule", "GLIBENCLAMIDE 5mg Tablet", "LEVOFLOXACIN 500mg Tablet", "LEVOFLOXACIN 500mg Tablet, Blister Oral", "MICONAZOLE 2% 80 g tube", "VALPROATE SODIUM 200mg Tablet", "ZINC sulfate eq. 20 mg Tablet", "BECLOMETASONE dipropionate 0.10mg/puff Aerosol", "BIPERIDEN hydrochloride 2mg Tablet", "METRONIDAZOLE 250mg Tablet", "METHYLDOPA 250mg Tablet");
+            </sqlCheck>
+            <sqlCheck expectedResult="0">
+              SELECT
+                COUNT(*)
+                FROM concept_reference_term crt
+                WHERE code IN ("DEXTCLOT5T-", "DEXTFENT2TP", "DEXTFENT4TP", "DEXTLIDO2J3", "DEXTPODO5S3", "DEXTYINO1O1", "DINFDEXT1FBF5", "DINFDEXT5FBF1", "DINFDEXT5FBF2", "DINFDEXT5FBF5", "DINFPLAS1SRF5", "DINFRINL1FBF1", "DINFRINL1FBF5", "DINFSODC9FBF0", "DINFSODC9FBF1", "DINFSODC9FBF2", "DINFSODC9FBF5", "DINJAMIO1A-", "DINJAMOC1V2", "DINJARTS1V-", "DINJATRB2A-", "DINJATRO1A-", "DINJBUPI2A-", "DINJCALG1A-", "DINJCEFA1V-", "DINJCEFL2V-", "DINJCEFT1V-", "DINJCHLM5A-", "DINJCIPR2BF", "DINJCLIN3A-", "DINJCLOX5VV", "DINJDEXA4A-", "DINJDIAZ1A-", "DINJDICL7A-", "DINJDIGO5A-", "DINJDILT2V-", "DINJDOPA2A-", "DINJEPHE3A-", "DINJEPIN1AV", "DINJEPOA1S-", "DINJFENT1A-", "DINJFERC1A-", "DINJFILG3S-", "DINJFLUM1A-", "DINJFURO2A-", "DINJGENT8A-", "DINJGLUC5V5", "DINJGLYC2A-", "DINJHALP5A-", "DINJHEPA2A-", "DINJHYDA2A-", "DINJHYDR1V-", "DINJHYOS2A-", "DINJINSHR1VN", "DINJISOB1A-", "DINJKETA2A-", "DINJLABE1A-", "DINJLEVB5A-", "DINJLIDE2C1", "DINJLIDO1A1", "DINJLIPE2FBF2", "DINJMAGS5A-", "DINJMERO5V-", "DINJMETN5BF", "DINJMETO1A-", "DINJMIDA5A-", "DINJMORP1A-", "DINJNADR4S-", "DINJNALO4A-", "DINJNEOS2A-", "DINJNICA1A-", "DINJOMEP4V-", "DINJONDA4A-", "DINJPARA1FBF", "DINJPARA5B-", "DINJPENB2VS", "DINJPHEE5A-", "DINJPITA45V", "DINJPOTC1A-", "DINJPOTC2A1", "DINJPROM5A-", "DINJPROP2AE", "DINJPROT5A-", "DINJSODB8A2", "DINJSODC9AP1", "DINJSUXC1A-", "DINJTHIO5V-", "DINJTRAM1A-", "DINJTRAN5A-", "DORAACIV8T-", "DORAACSA7TG", "DORAALUM44TC", "DORAAMIT2T-", "DORAAMLO5T-", "DORAAMOC5T1", "DORAAMOC81T", "DORAAMOX5T-", "DORAARLU4T1", "DORAASCA2TC", "DORAAZIT2T-", "DORABISA5T-", "DORABISO2TB", "DORACARB2T-", "DORACEFI2T-", "DORACHLM2T-", "DORACIPR5T-", "DORACLIN3C-", "DORACLOX2C-", "DORACLOX5C-", "DORACODE3T-", "DORADIAZ5T-", "DORADIGO2T-", "DORADOXY1T-", "DORAENAL5T-", "DORAERYT2T-", "DORAERYT5T-", "DORAFERF14T", "DORAFLUC2C-", "DORAFOLA5T-", "DORAFOSF3S-", "DORAFURO4T-", "DORAGABA1C-", "DORAGABA3C-", "DORAHALP1S2", "DORAHYDO2T-", "DORAHYOS1T-", "DORAIBUP4T-", "DORAISOB5T-", "DORAISOF2L-", "DORALABE2T-", "DORALACT1S-", "DORALEFX5T1", "DORALOPE2C-", "DORALOPE2T-", "DORAMETF5T-", "DORAMETN5T-", "DORAMETO1T-", "DORAMORP1CS", "DORAMORP1S-", "DORAMORP1T-", "DORAMORP3CS", "DORANIFE1TI", "DORANYST1S-", "DORAOMEP2CG", "DORAORSA2S-", "DORAPARA5T-", "DORAPRAZ6TB", "DORAPRED2TOD", "DORAPRED5T-", "DORAPROM2T-", "DORASALB2SF", "DORASPIR2T-", "DORATRAM1S-", "DORATRAM5C-", "DORATRAN5T-", "DINJAMPI5V-", "DINJPARA5FBF", "DINJPHEY2V-", "DINJPHYT2AN", "DINJARTS6V-", "DORABISO1TB4", "DORACIME2TE", "DORAGABA4C-", "DORAGLIB5TB", "DORALEFX5T-", "DORAMICO2J8", "DORAVALP2TG", "DORAYINS2T-", "DORABECL1SF", "DORABIPE2T-", "DORAMETN2T-", "DORAMETY2T-");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding codes to specific concepts</comment>
+        <sql>
+            SELECT concept_source_id INTO @source_id FROM concept_reference_source where name = 'MSF-INTERNAL';
+
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DEXTCLOT5T-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DEXTFENT2TP",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DEXTFENT4TP",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DEXTLIDO2J3",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DEXTPODO5S3",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DEXTYINO1O1",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINFDEXT1FBF5",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINFDEXT5FBF1",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINFDEXT5FBF2",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINFDEXT5FBF5",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINFPLAS1SRF5",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINFRINL1FBF1",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINFRINL1FBF5",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINFSODC9FBF0",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINFSODC9FBF1",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINFSODC9FBF2",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINFSODC9FBF5",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJAMIO1A-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJAMOC1V2",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJARTS1V-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJATRB2A-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJATRO1A-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJBUPI2A-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJCALG1A-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJCEFA1V-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJCEFL2V-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJCEFT1V-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJCHLM5A-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJCIPR2BF",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJCLIN3A-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJCLOX5VV",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJDEXA4A-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJDIAZ1A-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJDICL7A-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJDIGO5A-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJDILT2V-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJDOPA2A-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJEPHE3A-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJEPIN1AV",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJEPOA1S-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJFENT1A-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJFERC1A-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJFILG3S-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJFLUM1A-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJFURO2A-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJGENT8A-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJGLUC5V5",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJGLYC2A-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJHALP5A-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJHEPA2A-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJHYDA2A-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJHYDR1V-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJHYOS2A-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJINSHR1VN",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJISOB1A-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJKETA2A-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJLABE1A-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJLEVB5A-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJLIDE2C1",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJLIDO1A1",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJLIPE2FBF2",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJMAGS5A-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJMERO5V-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJMETN5BF",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJMETO1A-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJMIDA5A-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJMORP1A-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJNADR4S-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJNALO4A-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJNEOS2A-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJNICA1A-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJOMEP4V-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJONDA4A-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJPARA1FBF",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJPARA5B-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJPENB2VS",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJPHEE5A-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJPITA45V",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJPOTC1A-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJPOTC2A1",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJPROM5A-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJPROP2AE",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJPROT5A-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJSODB8A2",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJSODC9AP1",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJSUXC1A-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJTHIO5V-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJTRAM1A-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJTRAN5A-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORAACIV8T-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORAACSA7TG",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORAALUM44TC",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORAAMIT2T-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORAAMLO5T-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORAAMOC5T1",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORAAMOC81T",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORAAMOX5T-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORAARLU4T1",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORAASCA2TC",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORAAZIT2T-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORABISA5T-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORABISO2TB",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORACARB2T-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORACEFI2T-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORACHLM2T-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORACIPR5T-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORACLIN3C-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORACLOX2C-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORACLOX5C-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORACODE3T-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORADIAZ5T-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORADIGO2T-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORADOXY1T-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORAENAL5T-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORAERYT2T-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORAERYT5T-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORAFERF14T",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORAFLUC2C-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORAFOLA5T-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORAFOSF3S-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORAFURO4T-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORAGABA1C-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORAGABA3C-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORAHALP1S2",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORAHYDO2T-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORAHYOS1T-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORAIBUP4T-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORAISOB5T-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORAISOF2L-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORALABE2T-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORALACT1S-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORALEFX5T1",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORALOPE2C-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORALOPE2T-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORAMETF5T-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORAMETN5T-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORAMETO1T-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORAMORP1CS",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORAMORP1S-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORAMORP1T-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORAMORP3CS",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORANIFE1TI",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORANYST1S-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORAOMEP2CG",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORAORSA2S-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORAPARA5T-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORAPRAZ6TB",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORAPRED2TOD",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORAPRED5T-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORAPROM2T-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORASALB2SF",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORASPIR2T-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORATRAM1S-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORATRAM5C-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORATRAN5T-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJAMPI5V-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJPARA5FBF",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJPHEY2V-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJPHYT2AN",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DINJARTS6V-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORABISO1TB4",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORACIME2TE",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORAGABA4C-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORAGLIB5TB",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORALEFX5T-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORAMICO2J8",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORAVALP2TG",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORAYINS2T-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORABECL1SF",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORABIPE2T-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORAMETN2T-",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES  (4,"DORAMETY2T-",@source_id,uuid(),now());
+
+            call create_reference_mapping_msf_internal("TRIMAZOLE 500mg  vaginal tab. + applicator", "DEXTCLOT5T-");
+            call create_reference_mapping_msf_internal("FENTANYL 2,1 μg 12mg/h, transdermal patch", "DEXTFENT2TP");
+            call create_reference_mapping_msf_internal("FENTANYL 4,2 μg 25mg/h, transdermal patch", "DEXTFENT4TP");
+            call create_reference_mapping_msf_internal("LIDOCAINE 2% Jelly", "DEXTLIDO2J3");
+            call create_reference_mapping_msf_internal("PODOPHYLLOTOXIN 0.50% 3.5ml, + 30 applicator tips", "DEXTPODO5S3");
+            call create_reference_mapping_msf_internal("ZINC OXIDE 10% 100 g tube ointment", "DEXTYINO1O1");
+            call create_reference_mapping_msf_internal("DEXTROSE (GLUCOSE) 10%  500ml, flex. bag, PVC free", "DINFDEXT1FBF5");
+            call create_reference_mapping_msf_internal("DEXTROSE (GLUCOSE) 5% 1l, flex. bag, PVC free", "DINFDEXT5FBF1");
+            call create_reference_mapping_msf_internal("DEXTROSE (GLUCOSE) 5% 250ml, flex. bag, PVC free", "DINFDEXT5FBF2");
+            call create_reference_mapping_msf_internal("DEXTROSE (GLUCOSE) 5% 500ml, flex. bag, PVC free", "DINFDEXT5FBF5");
+            call create_reference_mapping_msf_internal("MODIFIED FLUID GELATIN/POLYGELIN 500ml semi-rigid bt, PVC free", "DINFPLAS1SRF5");
+            call create_reference_mapping_msf_internal("RINGER lactate  1l, flex. bag, PVC free", "DINFRINL1FBF1");
+            call create_reference_mapping_msf_internal("RINGER lactate  500 ml, flex. bag, PVC free", "DINFRINL1FBF5");
+            call create_reference_mapping_msf_internal("SODIUM chloride 0.90% 100ml, flex. bag, PVC free", "DINFSODC9FBF0");
+            call create_reference_mapping_msf_internal("SODIUM chloride 0.90% 1l, flex. bag, PVC free", "DINFSODC9FBF1");
+            call create_reference_mapping_msf_internal("SODIUM chloride 0.90% 250ml, flex. bag, PVC free", "DINFSODC9FBF2");
+            call create_reference_mapping_msf_internal("SODIUM chloride 0.90% 500ml, flex. bag, PVC free", "DINFSODC9FBF5");
+            call create_reference_mapping_msf_internal("AMIODARONE hydrochloride 50mg/ml Ampoule", "DINJAMIO1A-");
+            call create_reference_mapping_msf_internal("AMOXICILLIN + CLAVULANIC acid 1g + 200mg Powder", "DINJAMOC1V2");
+            call create_reference_mapping_msf_internal("ARTESUNATE +NaHCO3 +NaCl 120mg + 5%+2ml+0.9% 10ml powder vial", "DINJARTS1V-");
+            call create_reference_mapping_msf_internal("ATRACURIUM besilate 10mg/ml Injection", "DINJATRB2A-");
+            call create_reference_mapping_msf_internal("ATROPINE sulfate 1mg/ml Injection", "DINJATRO1A-");
+            call create_reference_mapping_msf_internal("BUPIVACAINE HCl, hyperbaric/spinal eq. 5mg/ml base 4 ml ampoule", "DINJBUPI2A-");
+            call create_reference_mapping_msf_internal("CALCIUM GLUCONATE 100mg/ml 10ml ampoule", "DINJCALG1A-");
+            call create_reference_mapping_msf_internal("CEFAZOLIN 1g powder vial", "DINJCEFA1V-");
+            call create_reference_mapping_msf_internal("CEFTRIAXONE sodium + lidocaine Intramuscular eq. 250 mg base powder vial", "DINJCEFL2V-");
+            call create_reference_mapping_msf_internal("CEFTRIAXONE sodium eq. 1 g base powder vial", "DINJCEFT1V-");
+            call create_reference_mapping_msf_internal("CHLORPROMAZINE 25mg/ml ampoule", "DINJCHLM5A-");
+            call create_reference_mapping_msf_internal("CIPROFLOXACIN salt eq. 2mg/ml base 100ml, bag/bot PVC free", "DINJCIPR2BF");
+            call create_reference_mapping_msf_internal("CLINDAMYCIN phosphate eq. 150mg base/ml 2ml ampoule", "DINJCLIN3A-");
+            call create_reference_mapping_msf_internal("CLOXACILLIN sodium eq. 500mg base powder", "DINJCLOX5VV");
+            call create_reference_mapping_msf_internal("DEXAMETHASONE phosphate 4mg/ml 1ml ampoule", "DINJDEXA4A-");
+            call create_reference_mapping_msf_internal("DIAZEPAM 5mg/ml 2ml ampoule", "DINJDIAZ1A-");
+            call create_reference_mapping_msf_internal("DICLOFENAC sodium 25mg/ml 3ml ampoule", "DINJDICL7A-");
+            call create_reference_mapping_msf_internal("DIGOXIN 0.25mg/ml 2 ml ampoule", "DINJDIGO5A-");
+            call create_reference_mapping_msf_internal("DILTIAZEM hydrochloride 25mg powder vial", "DINJDILT2V-");
+            call create_reference_mapping_msf_internal("DOPAMINE hydrochloride 40mg/ml 5 ml ampoule", "DINJDOPA2A-");
+            call create_reference_mapping_msf_internal("EPHEDRINE hydrochloride 30mg/ml 1 ml ampoule", "DINJEPHE3A-");
+            call create_reference_mapping_msf_internal("EPINEPHRINE (adrenaline) tartrate eq. 1mg/ml base 1 ml ampoule", "DINJEPIN1AV");
+            call create_reference_mapping_msf_internal("EPOETIN ALFA 10 000 IU/ml 1ml, graduated syringe", "DINJEPOA1S-");
+            call create_reference_mapping_msf_internal("FENTANYL citrate eq. 0.05mg/ml base 2 ml ampoule", "DINJFENT1A-");
+            call create_reference_mapping_msf_internal("FERRIC carboxymaltose eq. 50mg/ml iron 2 ml ampoule", "DINJFERC1A-");
+            call create_reference_mapping_msf_internal("FILGRASTIM 30 MUI/0.5ml Filled syringe", "DINJFILG3S-");
+            call create_reference_mapping_msf_internal("FLUMAZENIL 0.1mg/ml 10 ml ampoule", "DINJFLUM1A-");
+            call create_reference_mapping_msf_internal("FUROSEMIDE 10mg/ml 2 ml ampoule", "DINJFURO2A-");
+            call create_reference_mapping_msf_internal("GENTAMICIN sulfate eq. 40mg/ml 2 ml ampoule", "DINJGENT8A-");
+            call create_reference_mapping_msf_internal("GLUCOSE hypertonic 50% 50 ml vial", "DINJGLUC5V5");
+            call create_reference_mapping_msf_internal("GLYCOPYRRONIUM bromide 0.2mg/ml 1 ml ampoule", "DINJGLYC2A-");
+            call create_reference_mapping_msf_internal("HALOPERIDOL 5mg/ml 1 ml ampoule", "DINJHALP5A-");
+            call create_reference_mapping_msf_internal("HEPARIN SODIUM 5000 IU/ml 5 ml ampoule", "DINJHEPA2A-");
+            call create_reference_mapping_msf_internal("HYDRALAZINE hydrochloride 20mg Powder ampoule", "DINJHYDA2A-");
+            call create_reference_mapping_msf_internal("HYDROCORTISONE sodium succinate eq. 100 mg base Powder", "DINJHYDR1V-");
+            call create_reference_mapping_msf_internal("HYOSCINE BUTYLBROMIDE (scopolamine butylbrom) 20mg/1ml Ampoule", "DINJHYOS2A-");
+            call create_reference_mapping_msf_internal("INSULIN HUMAN, RAPID 100 IU/ml 10ml, vial N", "DINJINSHR1VN");
+            call create_reference_mapping_msf_internal("ISOSORBIDE DINITRATE 1mg/ml 10 ml ampoule", "DINJISOB1A-");
+            call create_reference_mapping_msf_internal("KETAMINE hydrochloride eq. 50mg/ml base 5 ml ampoule", "DINJKETA2A-");
+            call create_reference_mapping_msf_internal("LABETALOL hydrochloride 5mg/ml 20 ml ampoule", "DINJLABE1A-");
+            call create_reference_mapping_msf_internal("LEVOBUPIVACAINE hydrochloride eq. 5mg/ml base 10 ml ampoule", "DINJLEVB5A-");
+            call create_reference_mapping_msf_internal("LIDOCAINE + EPINEPHRINE 2% + 1/80 000 1,8 ml cartridge", "DINJLIDE2C1");
+            call create_reference_mapping_msf_internal("LIDOCAINE hydrochloride 1% 10 ml ampoule", "DINJLIDO1A1");
+            call create_reference_mapping_msf_internal("LIPID emulsion 20% 250ml, flex. bag, PVC free", "DINJLIPE2FBF2");
+            call create_reference_mapping_msf_internal("MAGNESIUM sulfate 0.5g/ml 10 ml ampoule", "DINJMAGS5A-");
+            call create_reference_mapping_msf_internal("MEROPENEM 500mg powder vial", "DINJMERO5V-");
+            call create_reference_mapping_msf_internal("METRONIDAZOLE 5mg/ml 100ml, bag/bottle PVC free", "DINJMETN5BF");
+            call create_reference_mapping_msf_internal("METOCLOPRAMIDE hydrochloride 5mg/ml 2 ml ampoule", "DINJMETO1A-");
+            call create_reference_mapping_msf_internal("MIDAZOLAM 1mg/ml 5 ml ampoule", "DINJMIDA5A-");
+            call create_reference_mapping_msf_internal("MORPHINE hydrochloride 10mg/ml 1 ml ampoule", "DINJMORP1A-");
+            call create_reference_mapping_msf_internal("NADROPARIN calcium 3800 IU/0.4ml Filled syringe", "DINJNADR4S-");
+            call create_reference_mapping_msf_internal("NALOXONE hydrochloride 0.4mg/ml 1 ml ampoule", "DINJNALO4A-");
+            call create_reference_mapping_msf_internal("NEOSTIGMINE methylsulfate 2.5mg/ml 1 ml ampoule", "DINJNEOS2A-");
+            call create_reference_mapping_msf_internal("NICARDIPINE hydrochloride 1mg/ml 10 ml ampoule", "DINJNICA1A-");
+            call create_reference_mapping_msf_internal("OMEPRAZOLE sodium eq. 40 mg base powder vial", "DINJOMEP4V-");
+            call create_reference_mapping_msf_internal("ONDANSETRON hydrochloride eq. 2mg/ml base 2 ml ampoule", "DINJONDA4A-");
+            call create_reference_mapping_msf_internal("PARACETAMOL (acetaminophen) 10mg/ml 100ml, flex.bag PVC free", "DINJPARA1FBF");
+            call create_reference_mapping_msf_internal("PARACETAMOL (acetaminophen) 10mg/ml 50ml bottle", "DINJPARA5B-");
+            call create_reference_mapping_msf_internal("BENZATHINE BENZYLPENICILLIN 2.4miu powder vial + solvent", "DINJPENB2VS");
+            call create_reference_mapping_msf_internal("PHENYLEPHRINE hydrochloride eq. 0.05 mg base/ml 10 ml ampoule", "DINJPHEE5A-");
+            call create_reference_mapping_msf_internal("PIPERACILLIN + TAZOBACTAM 4g + 500mg powder vial", "DINJPITA45V");
+            call create_reference_mapping_msf_internal("POTASSIUM chloride 1.34mmol/ml (10%) 10 ml ampoule", "DINJPOTC1A-");
+            call create_reference_mapping_msf_internal("POTASSIUM chloride  2mmol/ml (15%) 10 ml ampoule", "DINJPOTC2A1");
+            call create_reference_mapping_msf_internal("PROMETHAZINE hydrochloride eq. 25mg/ml base 2 ml ampoule", "DINJPROM5A-");
+            call create_reference_mapping_msf_internal("PROPOFOL 10mg/ml 20 ml ampoule", "DINJPROP2AE");
+            call create_reference_mapping_msf_internal("PROTAMINE sulfate 10mg/ml 5 ml ampoule", "DINJPROT5A-");
+            call create_reference_mapping_msf_internal("SODIUM BICARBONATE 8.40% 1mEq/ml, 20ml, amp.", "DINJSODB8A2");
+            call create_reference_mapping_msf_internal("SODIUM chloride 0.90% 10 ml ampoule", "DINJSODC9AP1");
+            call create_reference_mapping_msf_internal("SUXAMETHONIUM chloride 50mg/ml 2 ml ampoule", "DINJSUXC1A-");
+            call create_reference_mapping_msf_internal("THIOPENTAL sodium 500mg powder vial", "DINJTHIO5V-");
+            call create_reference_mapping_msf_internal("TRAMADOL hydrochloride 50mg/ml 2 ml ampoule", "DINJTRAM1A-");
+            call create_reference_mapping_msf_internal("TRANEXAMIC acid 100mg/ml 5 ml ampoule", "DINJTRAN5A-");
+            call create_reference_mapping_msf_internal("ACICLOVIR 800mg Tablet", "DORAACIV8T-");
+            call create_reference_mapping_msf_internal("ACETYLSALICYLIC acid (aspirin) 75mg Tablet", "DORAACSA7TG");
+            call create_reference_mapping_msf_internal("ALUMINIUM hydroxide + MAGNESIUM hydrox. 400mg + 400mg Tablet", "DORAALUM44TC");
+            call create_reference_mapping_msf_internal("AMITRIPTYLINE hydrochloride 25mg Tablet", "DORAAMIT2T-");
+            call create_reference_mapping_msf_internal("AMLODIPINE 5mg Tablet", "DORAAMLO5T-");
+            call create_reference_mapping_msf_internal("AMOXICILLIN + CLAVULANIC acid 500mg + 125mg Tablet", "DORAAMOC5T1");
+            call create_reference_mapping_msf_internal("AMOXICILLIN + CLAVULANIC acid 875 + 125mg Tablet", "DORAAMOC81T");
+            call create_reference_mapping_msf_internal("AMOXICILLIN 500mg Tablet", "DORAAMOX5T-");
+            call create_reference_mapping_msf_internal("ARTHEMETER + LUMEFRANTINE 20 mg + 120 mg Tablet", "DORAARLU4T1");
+            call create_reference_mapping_msf_internal("ASCORBIC acid (vitamin C), 250mg, chewable tab. 250mg Tablet", "DORAASCA2TC");
+            call create_reference_mapping_msf_internal("AZITHROMYCIN 250mg Tablet", "DORAAZIT2T-");
+            call create_reference_mapping_msf_internal("BISACODYL 5mg Tablet", "DORABISA5T-");
+            call create_reference_mapping_msf_internal("BISOPROLOL fumarate 2.5mg Tablet", "DORABISO2TB");
+            call create_reference_mapping_msf_internal("CARBAMAZEPINE 200mg Tablet", "DORACARB2T-");
+            call create_reference_mapping_msf_internal("CEFIXIME 200mg Tablet", "DORACEFI2T-");
+            call create_reference_mapping_msf_internal("CHLORPROMAZINE hydrochloride eq. 25 mg base Tablet", "DORACHLM2T-");
+            call create_reference_mapping_msf_internal("CIPROFLOXACIN hydrochloride eq. 500 mg base Tablet", "DORACIPR5T-");
+            call create_reference_mapping_msf_internal("CLINDAMYCIN hydrochloride eq. 300mg base Capsule", "DORACLIN3C-");
+            call create_reference_mapping_msf_internal("CLOXACILLIN sodium eq. 250 mg base Capsule", "DORACLOX2C-");
+            call create_reference_mapping_msf_internal("CLOXACILLIN sodium eq. 500 mg base Capsule", "DORACLOX5C-");
+            call create_reference_mapping_msf_internal("CODEINE phosphate 30mg Tablet", "DORACODE3T-");
+            call create_reference_mapping_msf_internal("DIAZEPAM 5mg Tablet", "DORADIAZ5T-");
+            call create_reference_mapping_msf_internal("DIGOXIN 0.25mg Tablet", "DORADIGO2T-");
+            call create_reference_mapping_msf_internal("DOXYCYCLINE salt eq. 100 mg base Tablet", "DORADOXY1T-");
+            call create_reference_mapping_msf_internal("ENALAPRIL maleate 5mg Tablet", "DORAENAL5T-");
+            call create_reference_mapping_msf_internal("ERYTHROMYCIN stearate eq. 250 mg base Tablet", "DORAERYT2T-");
+            call create_reference_mapping_msf_internal("ERYTHROMYCIN stearate eq. 500 mg base Tablet", "DORAERYT5T-");
+            call create_reference_mapping_msf_internal("FERROUS salt + FOLIC acid eq. 60 mg + 0.4mg Tablet", "DORAFERF14T");
+            call create_reference_mapping_msf_internal("FLUCONAZOLE 200mg Capsule", "DORAFLUC2C-");
+            call create_reference_mapping_msf_internal("FOLIC acid 5mg Tablet", "DORAFOLA5T-");
+            call create_reference_mapping_msf_internal("FOSFOMYCIN trometamol eq. 3 g base Sachet", "DORAFOSF3S-");
+            call create_reference_mapping_msf_internal("FUROSEMIDE 40mg Tablet", "DORAFURO4T-");
+            call create_reference_mapping_msf_internal("GABAPENTIN 100mg Capsule", "DORAGABA1C-");
+            call create_reference_mapping_msf_internal("GABAPENTIN 300mg Capsule", "DORAGABA3C-");
+            call create_reference_mapping_msf_internal("HALOPERIDOL 2mg/ml Oral solution", "DORAHALP1S2");
+            call create_reference_mapping_msf_internal("HYDROCHLOROTHIAZIDE 25mg Tablet", "DORAHYDO2T-");
+            call create_reference_mapping_msf_internal("HYOSCINE BUTYLBROMIDE (scopolamine butylbromide) 10mg Tablet", "DORAHYOS1T-");
+            call create_reference_mapping_msf_internal("IBUPROFEN 400mg Tablet", "DORAIBUP4T-");
+            call create_reference_mapping_msf_internal("ISOSORBIDE DINITRATE 5mg Tablet", "DORAISOB5T-");
+            call create_reference_mapping_msf_internal("ISOFLURANE 250 ml Bottle", "DORAISOF2L-");
+            call create_reference_mapping_msf_internal("LABETALOL hydrochloride 200mg Tablet", "DORALABE2T-");
+            call create_reference_mapping_msf_internal("LACTULOSE 3.1mg/5ml Oral solution", "DORALACT1S-");
+            call create_reference_mapping_msf_internal("LEVOFLOXACIN 500mg Tablet, Blister Oral", "DORALEFX5T1");
+            call create_reference_mapping_msf_internal("LOPERAMIDE hydrochloride 2mg Capsule", "DORALOPE2C-");
+            call create_reference_mapping_msf_internal("LOPERAMIDE hydrochloride 2mg Tablet", "DORALOPE2T-");
+            call create_reference_mapping_msf_internal("METFORMIN hydrochloride 500mg Tablet", "DORAMETF5T-");
+            call create_reference_mapping_msf_internal("METRONIDAZOLE 500mg Tablet", "DORAMETN5T-");
+            call create_reference_mapping_msf_internal("METOCLOPRAMIDE hydrochloride anhydrous 10mg Tablet", "DORAMETO1T-");
+            call create_reference_mapping_msf_internal("MORPHINE sulfate 10mg Capsule", "DORAMORP1CS");
+            call create_reference_mapping_msf_internal("MORPHINE sulfate 10mg/5ml Oral solution", "DORAMORP1S-");
+            call create_reference_mapping_msf_internal("MORPHINE sulfate 10mg Tablet", "DORAMORP1T-");
+            call create_reference_mapping_msf_internal("MORPHINE sulfate 30mg Capsule", "DORAMORP3CS");
+            call create_reference_mapping_msf_internal("NIFEDIPINE 10mg Tablet", "DORANIFE1TI");
+            call create_reference_mapping_msf_internal("NYSTATIN 100,000 IU/ml Oral drops", "DORANYST1S-");
+            call create_reference_mapping_msf_internal("OMEPRAZOLE 20mg Capsule", "DORAOMEP2CG");
+            call create_reference_mapping_msf_internal("ORAL REHYDRATION SALTS (ORS) 20.5g/1l Sachet", "DORAORSA2S-");
+            call create_reference_mapping_msf_internal("PARACETAMOL (acetaminophen) 500mg Tablet", "DORAPARA5T-");
+            call create_reference_mapping_msf_internal("PRAZIQUANTEL 600mg Tablet", "DORAPRAZ6TB");
+            call create_reference_mapping_msf_internal("PREDNISOLONE 20mg Tablet", "DORAPRED2TOD");
+            call create_reference_mapping_msf_internal("PREDNISOLONE 5mg Tablet", "DORAPRED5T-");
+            call create_reference_mapping_msf_internal("PROMETHAZINE hydrochloride eq. 25 mg base Tablet", "DORAPROM2T-");
+            call create_reference_mapping_msf_internal("SALBUTAMOL sulfate eq. 0.1mg base/puff Aerosol", "DORASALB2SF");
+            call create_reference_mapping_msf_internal("SPIRONOLACTONE 25mg Tablet", "DORASPIR2T-");
+            call create_reference_mapping_msf_internal("TRAMADOL hydrochloride 100mg/ml/40 drops Oral drops", "DORATRAM1S-");
+            call create_reference_mapping_msf_internal("TRAMADOL hydrochloride 50mg Capsule", "DORATRAM5C-");
+            call create_reference_mapping_msf_internal("TRANEXAMIC acid 500mg Tablet", "DORATRAN5T-");
+            call create_reference_mapping_msf_internal("AMPICILLIN, 500mg 500mg powder vial", "DINJAMPI5V-");
+            call create_reference_mapping_msf_internal("PARACETAMOL (acetaminophen) 10mg/ml 50ml, flex.bag PVC free", "DINJPARA5FBF");
+            call create_reference_mapping_msf_internal("PHENYTOIN sodium 50mg/ml 5 ml ampoule", "DINJPHEY2V-");
+            call create_reference_mapping_msf_internal("PHYTOMENADIONE (vitamin K1) 10mg/ml (2mg/0,2ml) 0,2 ml ampoule", "DINJPHYT2AN");
+            call create_reference_mapping_msf_internal("ARTESUNATE +NaHCO3+NaCl 60 mg + 5% + 1 ml + 0,9% 5 ml powder vial", "DINJARTS6V-");
+            call create_reference_mapping_msf_internal("BISOPROLOL fumarate 10mg Tablet", "DORABISO1TB4");
+            call create_reference_mapping_msf_internal("CIMETIDINE 200mg Tablet", "DORACIME2TE");
+            call create_reference_mapping_msf_internal("GABAPENTIN 400mg Capsule", "DORAGABA4C-");
+            call create_reference_mapping_msf_internal("GLIBENCLAMIDE 5mg Tablet", "DORAGLIB5TB");
+            call create_reference_mapping_msf_internal("LEVOFLOXACIN 500mg Tablet", "DORALEFX5T-");
+            call create_reference_mapping_msf_internal("MICONAZOLE 2% 80 g tube", "DORAMICO2J8");
+            call create_reference_mapping_msf_internal("VALPROATE SODIUM 200mg Tablet", "DORAVALP2TG");
+            call create_reference_mapping_msf_internal("ZINC sulfate eq. 20 mg Tablet", "DORAYINS2T-");
+            call create_reference_mapping_msf_internal("BECLOMETASONE dipropionate 0.10mg/puff Aerosol", "DORABECL1SF");
+            call create_reference_mapping_msf_internal("BIPERIDEN hydrochloride 2mg Tablet", "DORABIPE2T-");
+            call create_reference_mapping_msf_internal("METRONIDAZOLE 250mg Tablet", "DORAMETN2T-");
+            call create_reference_mapping_msf_internal("METHYLDOPA 250mg Tablet", "DORAMETY2T-");
+        </sql>
+    </changeSet>
+
 </databaseChangeLog>
