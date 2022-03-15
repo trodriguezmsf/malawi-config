@@ -1120,7 +1120,7 @@
     </changeSet>
     <changeSet id="MALAWI-20220211139" author="Venky">
         <preConditions onFail="MARK_RAN">
-            <sqlCheck expectedResult="171">
+            <sqlCheck expectedResult="172">
                 SELECT
                 COUNT(*)
                 FROM drug d
