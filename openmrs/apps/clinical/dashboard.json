@@ -585,5 +585,280 @@
             "displayOrder": 7
           }
         }
+      },
+  "MDT": {
+    "translationKey": "DASHBOARD_TAB_MDT_KEY",
+    "maxRecentlyViewedPatients": 10,
+    "sections": {
+      "Pre-treatment MDT": {
+        "translationKey": "DASHBOARD_TITLE_PRE_TREATMENT_MDT",
+        "isObservation": true,
+        "displayOrder": 1,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "conceptNames": [
+            "IC, Clinical diagnosis",
+            "IC, Topography of the tumour (suspected)",
+            "IC, Topography of tumour (suspected), other female genital organs",
+            "IC, Topography of the tumour (confirmed)",
+            "IC, Topography of tumour (confirmed), other female genital organs",
+            "IC, Initial FIGO staging for cancer of the vagina",
+            "IC, Initial FIGO staging for cancer of the uterus",
+            "IC, Initial FIGO staging for cancer of the vulva",
+            "IC, Initial FIGO staging for cancer of the ovary",
+            "IC, Initial FIGO staging for cancer of the cervix",
+            "IC, Clinical FIGO staging for cancer of the cervix",
+            "IC, Clinical FIGO staging for cancer of the uterus",
+            "IC, Clinical FIGO staging for cancer of the ovary",
+            "IC, Clinical FIGO staging for cancer of the vulva",
+            "IC, Clinical FIGO staging for cancer of the vagina",
+            "UR, Ultrasound FIGO staging",
+            "IC, ECOG performance status",
+            "PH, Past medical history diagnosis",
+            "PTMDT, Date recorded",
+            "PTMDT, Clinical diagnosis",
+            "PTMDT, Topography of the tumour",
+            "PTMDT, Agreed FIGO staging for cancer of the cervix",
+            "PTMDT, Agreed FIGO staging for cancer of the uterus",
+            "PTMDT, Agreed FIGO staging for cancer of the ovary",
+            "PTMDT, Agreed FIGO staging for cancer of the vulva",
+            "PTMDT, Agreed FIGO staging for cancer of the vagina",
+            "PTMDT, Proposed management plan",
+            "PTMDT, Should palliative chemotherapy be considered?"
+          ],
+          "pivotTable": {
+          }
+        },
+        "expandedViewConfig": {
+          "numberOfVisits": 6,
+          "conceptNames": [
+            "IC, Clinical diagnosis",
+            "IC, Topography of the tumour (suspected)",
+            "IC, Topography of tumour (suspected), other female genital organs",
+            "IC, Topography of the tumour (confirmed)",
+            "IC, Topography of tumour (confirmed), other female genital organs",
+            "IC, Initial FIGO staging for cancer of the vagina",
+            "IC, Initial FIGO staging for cancer of the uterus",
+            "IC, Initial FIGO staging for cancer of the vulva",
+            "IC, Initial FIGO staging for cancer of the ovary",
+            "IC, Initial FIGO staging for cancer of the cervix",
+            "IC, Clinical FIGO staging for cancer of the cervix",
+            "IC, Clinical FIGO staging for cancer of the uterus",
+            "IC, Clinical FIGO staging for cancer of the ovary",
+            "IC, Clinical FIGO staging for cancer of the vulva",
+            "IC, Clinical FIGO staging for cancer of the vagina",
+            "UR, Ultrasound FIGO staging",
+            "IC, ECOG performance status",
+            "PH, Past medical history diagnosis",
+            "PTMDT, Date recorded",
+            "PTMDT, Clinical diagnosis",
+            "PTMDT, Topography of the tumour",
+            "PTMDT, Agreed FIGO staging for cancer of the cervix",
+            "PTMDT, Agreed FIGO staging for cancer of the uterus",
+            "PTMDT, Agreed FIGO staging for cancer of the ovary",
+            "PTMDT, Agreed FIGO staging for cancer of the vulva",
+            "PTMDT, Agreed FIGO staging for cancer of the vagina",
+            "PTMDT, Proposed management plan",
+            "PTMDT, Should palliative chemotherapy be considered?"
+          ],
+          "isEditable": true,
+          "showDetailsButton": true,
+          "pivotTable": {
+          }
+        }
+      },
+      "Post-operative MDT": {
+        "translationKey": "DASHBOARD_TITLE_POST_OPERATIVE_MDT",
+        "isObservation": true,
+        "displayOrder": 2,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "conceptNames": [
+            "SC, Clinical diagnosis",
+            "SC, Topography of the tumour (suspected)",
+            "SC, Topography of tumour (suspected), other female genital organs",
+            "SC, Topography of the tumour (confirmed)",
+            "SC, Topography of tumour (confirmed), other female genital organs",
+            "SC, Clinical FIGO staging for cancer of the cervix",
+            "SC, Clinical FIGO staging for cancer of the uterus",
+            "SC, Clinical FIGO staging for cancer of the ovary",
+            "SC, Clinical FIGO staging for cancer of the vulva",
+            "SC, Clinical FIGO staging for cancer of the vagina",
+            "SC, ECOG performance status",
+            "PH, Past medical history diagnosis",
+            "POMDT, Date recorded",
+            "POMDT, Surgery outcome",
+            "POMDT, Proposed management plan",
+            "POMDT, Follow-up visit"
+          ],
+          "pivotTable": {
+          }
+        },
+        "expandedViewConfig": {
+          "numberOfVisits": 6,
+          "conceptNames": [
+            "SC, Clinical diagnosis",
+            "SC, Topography of the tumour (suspected)",
+            "SC, Topography of tumour (suspected), other female genital organs",
+            "SC, Topography of the tumour (confirmed)",
+            "SC, Topography of tumour (confirmed), other female genital organs",
+            "SC, Clinical FIGO staging for cancer of the cervix",
+            "SC, Clinical FIGO staging for cancer of the uterus",
+            "SC, Clinical FIGO staging for cancer of the ovary",
+            "SC, Clinical FIGO staging for cancer of the vulva",
+            "SC, Clinical FIGO staging for cancer of the vagina",
+            "SC, ECOG performance status",
+            "PH, Past medical history diagnosis",
+            "POMDT, Date recorded",
+            "POMDT, Surgery outcome",
+            "POMDT, Proposed management plan",
+            "POMDT, Follow-up visit"
+          ],
+          "isEditable": true,
+          "showDetailsButton": true,
+          "pivotTable": {
+          }
+        }
       }
+    }
+  },
+  "Palliative Care": {
+    "translationKey": "DASHBOARD_TAB_PALLIATIVE_CARE_KEY",
+    "maxRecentlyViewedPatients": 10,
+    "sections": {
+      "Palliative Care Assessment": {
+        "translationKey": "DASHBOARD_TITLE_PALLIATIVE_CARE_ASSESSMENT",
+        "isObservation": true,
+        "displayOrder": 1,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "conceptNames": [
+            "PCA, Date recorded",
+            "PCA, Type of visit",
+            "PCA, Location of assessment",
+            "PCA, Attendant",
+            "PCA, WHO Performance status (ECOG)",
+            "PCA, PHQ 4 score",
+            "PCA, Action plan",
+            "PCA, Reason for referral",
+            "PCA, Date of next appointment"
+          ],
+          "pivotTable": {
+          }
+        },
+        "expandedViewConfig": {
+          "numberOfVisits": 6,
+          "conceptNames": [
+            "PCA, Date recorded",
+            "PCA, Type of visit",
+            "PCA, Location of assessment",
+            "PCA, Attendant",
+            "PCA, WHO Performance status (ECOG)",
+            "PCA, PHQ 4 score",
+            "PCA, Action plan",
+            "PCA, Reason for referral",
+            "PCA, Date of next appointment"
+          ],
+          "isEditable": true,
+          "showDetailsButton": true,
+          "pivotTable": {
+          }
+        }
+      },
+      "Bereavement Visit": {
+        "translationKey": "DASHBOARD_TITLE_BEREAVEMENT_VISIT",
+        "isObservation": true,
+        "displayOrder": 2,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "scope":"latest",
+          "conceptNames": [
+            "BF, Date of Death",
+            "BF, Location of Death",
+            "BF, Other location of death",
+            "BF, Date recorded",
+            "BF, Location of meeting",
+            "BF, Attendant",
+            "BF, Type of grief support provided",
+            "BF, Other type of grief support provided"
+          ],
+          "pivotTable": {
+          }
+        },
+        "expandedViewConfig": {
+          "scope":"latest",
+          "conceptNames": [
+            "BF, Date of Death",
+            "BF, Location of Death",
+            "BF, Other location of death",
+            "BF, Date recorded",
+            "BF, Location of meeting",
+            "BF, Attendant",
+            "BF, Type of grief support provided",
+            "BF, Other type of grief support provided"
+          ],
+          "isEditable": true,
+          "showDetailsButton": true,
+          "pivotTable": {
+          }
+        }
+      },
+      "Pain Assessment": {
+        "translationKey": "DASHBOARD_TITLE_PAIN_ASSESSMENT",
+        "isObservation": true,
+        "displayOrder": 3,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "conceptNames": [
+            "PA, Date and time recorded",
+            "PA, Type of pain",
+            "PA, Site of pain",
+            "PA, Site of pain, other",
+            "PA, Current pain score, Initial",
+            "PA, Current pain score, Follow up",
+            "PA, Maximum pain score, Initial",
+            "PA, Maximum pain score, Follow up",
+            "PA, Minimum pain score, Initial",
+            "PA, Minimum pain score, Follow up",
+            "PA, Pain scale, Initial",
+            "PA, Pain scale, Follow up",
+            "PA, Presumed cause",
+            "PA, Pain course",
+            "PA, Characteristics of pain"
+          ],
+          "pivotTable": {
+          }
+        },
+        "expandedViewConfig": {
+          "numberOfVisits": 6,
+          "conceptNames": [
+            "PA, Date and time recorded",
+            "PA, Type of pain",
+            "PA, Site of pain",
+            "PA, Site of pain, other",
+            "PA, Current pain score, Initial",
+            "PA, Current pain score, Follow up",
+            "PA, Maximum pain score, Initial",
+            "PA, Maximum pain score, Follow up",
+            "PA, Minimum pain score, Initial",
+            "PA, Minimum pain score, Follow up",
+            "PA, Pain scale, Initial",
+            "PA, Pain scale, Follow up",
+            "PA, Presumed cause",
+            "PA, Pain course",
+            "PA, Characteristics of pain"
+          ],
+          "isEditable": true,
+          "showDetailsButton": true,
+          "pivotTable": {
+          }
+        }
+      }
+    }
+  }
 }
