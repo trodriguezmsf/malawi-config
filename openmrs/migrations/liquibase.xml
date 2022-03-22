@@ -1484,5 +1484,7 @@
             call CREATE_REFERENCE_MAPPING_MSFOCP("METHYLDOPA 250mg Tablet", "DORAMETY2T-");
         </sql>
     </changeSet>
+    <include file="InitialConsultation/InitialConsultation_2.xml"/>
+    <include file="SubsequentConsultation/SubsequentConsultation_2.xml"/>
 
 </databaseChangeLog>

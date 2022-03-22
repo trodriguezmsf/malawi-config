@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="MALAWI_CONFIG_202203210117" author="Sneha, Tarun">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_name where name="Biopsy" and concept_name_type ='FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment>creating new answer concept for IC, Procedure performed, Gynaecological Exam</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_short_id = 0;
+            set @concept_full_id = 0;
+
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Biopsy","Biopsy","N/A","Misc",false);
+            call CREATE_REFERENCE_MAPPING_CEIL("Biopsy","161826");
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_202203210129" author="Sneha, Tarun">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Biopsy")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "IC, Procedure performed, Gynaecological Exam");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new Answers to IC, Procedure performed, Gynaecological Exam</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "IC, Procedure performed, Gynaecological Exam" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            
+            set @existing_concept_id = 0;
+            set @updated_concept_id = 0;
+
+            select concept_id into @existing_concept_id from concept_name where name ="Biopsy of cervix" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @updated_concept_id from concept_name where name ="Biopsy" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+
+            update concept_answer set answer_concept=@updated_concept_id where answer_concept=@existing_concept_id and concept_id=@concept_id and sort_weight=2;
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
