@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="MALAWI_CONFIG_202203240441" author="Sneha, Tarun">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("South Lunzu" , "Zingwangwa HC")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "PH, MSF VIA centre name");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new Answers to PH, MSF VIA centre name</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "PH, MSF VIA centre name" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="South Lunzu" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Zingwangwa HC" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 10);
+            call add_concept_answer(@concept_id, @child2_concept_id, 11);
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_202203240446" author="Sneha, Tarun">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Other")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "PH, MOH health facility name");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new Answers to PH, MOH health facility name</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "PH, MOH health facility name" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            
+            set @child1_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Other" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+
+            call add_concept_answer(@concept_id, @child1_concept_id, 88);
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

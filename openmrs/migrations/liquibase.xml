@@ -1486,5 +1486,6 @@
     </changeSet>
     <include file="InitialConsultation/InitialConsultation_2.xml"/>
     <include file="SubsequentConsultation/SubsequentConsultation_2.xml"/>
+    <include file="PatientHistory/PatientHistory_4.xml"/>
 
 </databaseChangeLog>
