@@ -7,6 +7,23 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
+    
+    <changeSet id="MALAWI_CONFIG_202203251239" author="Sneha, Tarun">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_name where name="PH, MOH health facility name, Other" and concept_name_type ='FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment>creating new question concept PH, MOH health facility name, Other</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_short_id = 0;
+            set @concept_full_id = 0;
+
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PH, MOH health facility name, Other","MOH health facility name, Other","Text","Misc",false);
+        </sql>
+    </changeSet>
+    
     <changeSet id="MALAWI_CONFIG_202203240441" author="Sneha, Tarun">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
