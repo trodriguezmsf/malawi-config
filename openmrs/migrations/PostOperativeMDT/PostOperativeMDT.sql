@@ -12,6 +12,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"POMDT, Date rec
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"POMDT, Other type of  surgical procedure","Other type of  surgical procedure","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"POMDT, Other management plan","Other management plan","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"POMDT, Comments","Comments","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"POMDT, Other chemotherapy regimen","Other chemotherapy regimen","Text","Misc",false);
 
 #Add Coded Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"POMDT, Surgery outcome","Surgery outcome","Coded","Misc",false);
