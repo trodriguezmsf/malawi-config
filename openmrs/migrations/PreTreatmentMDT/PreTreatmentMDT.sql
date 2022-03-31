@@ -34,11 +34,10 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PTMDT, Precance
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PTMDT, Abnormal findings, other","Abnormal findings, other","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PTMDT, Other type of  surgical procedure","Other type of  surgical procedure","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PTMDT, Comments","Comments","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PTMDT, Other chemotherapy regimen","Other chemotherapy regimen","Text","Misc",false);
 
 #Add Child Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Staging laparotomy","Staging laparotomy","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Cisplatin","Cisplatin","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Paclitaxel","Paclitaxel","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Type B2","Type B2","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Bilateral salpingo-oophorectomy","Bilateral salpingo-oophorectomy","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Radical vaginal hysterectomy","Radical vaginal hysterectomy","N/A","Misc",false);
@@ -51,7 +50,6 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Bilateral salpi
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Examination under anaesthesia","Examination under anaesthesia","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Type B1","Type B1","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Type C1","Type C1","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"5-FU","5-FU","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Total radical vulvectomy","Total radical vulvectomy","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Neoadjuvant Chemotherapy (NAC)","Neoadjuvant Chemotherapy (NAC)","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Type A","Type A","N/A","Misc",false);
@@ -59,6 +57,15 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Wide local exci
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Radical Local vulvectomy","Radical Local vulvectomy","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Condyloma acuminatum","Condyloma acuminatum","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Type C2","Type C2","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Carboplatin","Carboplatin","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Inguinal lymph node dissection","Inguinal lymph node dissection","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Radical trachelectomy","Radical trachelectomy","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"TPF (Carboplatin/Paclitaxel/5FU)","TPF (Carboplatin/Paclitaxel/5FU)","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"TPF (Cisplatin/Paclitaxel/5FU)","TPF (Cisplatin/Paclitaxel/5FU)","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"TPF (Carboplatin/Docetaxel/5FU)","TPF (Carboplatin/Docetaxel/5FU)","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"TPF (Ciplatin/Docetaxel/5FU)","TPF (Ciplatin/Docetaxel/5FU)","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"GC (Carboplatin/Gemcitabin)","GC (Carboplatin/Gemcitabin)","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"TP (Carboplatin/Paclitaxel)","TP (Carboplatin/Paclitaxel)","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"TP (Cisplatin/Paclitaxel)","TP (Cisplatin/Paclitaxel)","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"TP (Carboplatin/Docetaxel)","TP (Carboplatin/Docetaxel)","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"TP (Cisplatin/Docetaxel)","TP (Cisplatin/Docetaxel)","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"TIP (Paclitaxel/ Ifosfamide/Cisplatin)","TIP (Paclitaxel/ Ifosfamide/Cisplatin)","N/A","Misc",false);

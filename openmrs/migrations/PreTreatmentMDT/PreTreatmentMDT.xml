@@ -704,7 +704,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Cisplatin", "Carboplatin", "Paclitaxel", "5-FU", "Other")
+                ("TPF (Carboplatin/Paclitaxel/5FU)", "TPF (Cisplatin/Paclitaxel/5FU)", "TPF (Carboplatin/Docetaxel/5FU)", "TPF (Ciplatin/Docetaxel/5FU)", "GC (Carboplatin/Gemcitabin)", "TP (Carboplatin/Paclitaxel)", "TP (Cisplatin/Paclitaxel)", "TP (Carboplatin/Docetaxel)", "TP (Cisplatin/Docetaxel)", "TIP (Paclitaxel/ Ifosfamide/Cisplatin)", "Other")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "PTMDT, Chemotherapy regimen");
@@ -719,16 +719,34 @@
             set @child3_concept_id = 0;
             set @child4_concept_id = 0;
             set @child5_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Cisplatin" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Carboplatin" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Paclitaxel" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="5-FU" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child5_concept_id from concept_name where name ="Other" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            set @child6_concept_id = 0;
+            set @child7_concept_id = 0;
+            set @child8_concept_id = 0;
+            set @child9_concept_id = 0;
+            set @child10_concept_id = 0;
+            set @child11_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="TPF (Carboplatin/Paclitaxel/5FU)" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="TPF (Cisplatin/Paclitaxel/5FU)" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="TPF (Carboplatin/Docetaxel/5FU)" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="TPF (Ciplatin/Docetaxel/5FU)" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="GC (Carboplatin/Gemcitabin)" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child6_concept_id from concept_name where name ="TP (Carboplatin/Paclitaxel)" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child7_concept_id from concept_name where name ="TP (Cisplatin/Paclitaxel)" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child8_concept_id from concept_name where name ="TP (Carboplatin/Docetaxel)" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child9_concept_id from concept_name where name ="TP (Cisplatin/Docetaxel)" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child10_concept_id from concept_name where name ="TIP (Paclitaxel/ Ifosfamide/Cisplatin)" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child11_concept_id from concept_name where name ="Other" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
             call add_concept_answer(@concept_id, @child4_concept_id, 4);
             call add_concept_answer(@concept_id, @child5_concept_id, 5);
+            call add_concept_answer(@concept_id, @child6_concept_id, 6);
+            call add_concept_answer(@concept_id, @child7_concept_id, 7);
+            call add_concept_answer(@concept_id, @child8_concept_id, 8);
+            call add_concept_answer(@concept_id, @child9_concept_id, 9);
+            call add_concept_answer(@concept_id, @child10_concept_id, 10);
+            call add_concept_answer(@concept_id, @child11_concept_id, 11);
         </sql>
     </changeSet>
 
@@ -764,7 +782,8 @@
             <sqlCheck expectedResult="0">
                 select count(*) from concept_reference_term
                 where code in
-                ("145805","166917","166884","166720","81410","160590","162805","166907","166938","166886","164768","166920","76550","166721); Total abdominal hysterectom","145808","166900","166906","166922","72876","166937","117152","166889","166923","166919","145809","166908","166925","120146","116995","164051","166966","166888","166924","165094","112992","166992","166887","161896","166921","166885","166901","73457","166918")
+            
+                ("145805","166917","166884","166720","160590","162805","166907","166938","166886","164768","166920","166721); Total abdominal hysterectom","145808","166900","166906","166922","166937","117152","166889","166923","166919","145809","166908","166925","120146","116995","164051","166966","166888","166924","165094","112992","166992","166887","161896","166921","166885","166901","166918","163072")
                 and retired = 0
                 and concept_source_id = (
                 select concept_source_id from concept_reference_source where name = "CEIL"  and retired =0
@@ -779,7 +798,6 @@
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166917",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166884",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166720",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"81410",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"160590",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"162805",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166907",@source_id,uuid(),now());
@@ -787,13 +805,11 @@
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166886",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"164768",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166920",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"76550",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166721); Total abdominal hysterectom",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"145808",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166900",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166906",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166922",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"72876",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166937",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"117152",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166889",@source_id,uuid(),now());
@@ -817,8 +833,8 @@
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166885",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166901",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"NAC",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"73457",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166918",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"163072",@source_id,uuid(),now());
             call CREATE_REFERENCE_MAPPING_CEIL("IC2","166907");
             call CREATE_REFERENCE_MAPPING_CEIL("Wide local excision of vulva","166921");
             call CREATE_REFERENCE_MAPPING_CEIL("IIB","160776");
@@ -834,7 +850,6 @@
             call CREATE_REFERENCE_MAPPING_CEIL("IC3","166908");
             call CREATE_REFERENCE_MAPPING_CEIL("PTMDT, Abnormal findings","1116");
             call CREATE_REFERENCE_MAPPING_CEIL("PTMDT, Proposed management plan","166937");
-            call CREATE_REFERENCE_MAPPING_CEIL("Cisplatin","73457");
             call CREATE_REFERENCE_MAPPING_CEIL("PTMDT, Comments","161011");
             call CREATE_REFERENCE_MAPPING_CEIL("PTMDT, Clinical diagnosis","164398");
             call CREATE_REFERENCE_MAPPING_CEIL("PTMDT, Q-M classification on the left side","166889");
@@ -842,14 +857,12 @@
             call CREATE_REFERENCE_MAPPING_CEIL("CIN I","145809");
             call CREATE_REFERENCE_MAPPING_CEIL("Examination under anaesthesia","164051");
             call CREATE_REFERENCE_MAPPING_CEIL("PTMDT, Other type of  surgical procedure","166635");
-            call CREATE_REFERENCE_MAPPING_CEIL("Paclitaxel","81410");
             call CREATE_REFERENCE_MAPPING_CEIL("PTMDT, Agreed FIGO staging for cancer of the cervix","160786");
             call CREATE_REFERENCE_MAPPING_CEIL("PTMDT, Topography of the tumour","160590");
             call CREATE_REFERENCE_MAPPING_CEIL("Type B2","166886");
             call CREATE_REFERENCE_MAPPING_CEIL("Confirmed malignancy","166778");
             call CREATE_REFERENCE_MAPPING_CEIL("Condyloma acuminatum","120146");
             call CREATE_REFERENCE_MAPPING_CEIL("Type C1","166887");
-            call CREATE_REFERENCE_MAPPING_CEIL("5-FU","76550");
             call CREATE_REFERENCE_MAPPING_CEIL("PTMDT, Agreed FIGO staging for cancer of the uterus","160786");
             call CREATE_REFERENCE_MAPPING_CEIL("PTMDT, Conservative surgery type","159619");
             call CREATE_REFERENCE_MAPPING_CEIL("HSIL","145805");
@@ -879,10 +892,10 @@
             call CREATE_REFERENCE_MAPPING_CEIL("Neoadjuvant Chemotherapy (NAC)","166918");
             call CREATE_REFERENCE_MAPPING_CEIL("PTMDT, Referred to radiation therapy","161174");
             call CREATE_REFERENCE_MAPPING_CEIL("Type B1","166885");
-            call CREATE_REFERENCE_MAPPING_CEIL("Carboplatin","72876");
             call CREATE_REFERENCE_MAPPING_CEIL("Inguinal lymph node dissection","166922");
             call CREATE_REFERENCE_MAPPING_CEIL("STI","112992");
             call CREATE_REFERENCE_MAPPING_CEIL("Total radical vulvectomy","166966");
+            call CREATE_REFERENCE_MAPPING_CEIL("TP (Cisplatin/Paclitaxel)","163072");
         </sql>
     </changeSet>
 
