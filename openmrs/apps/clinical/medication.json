@@ -5,7 +5,8 @@
         "hiddenFields": [
           "dosingInstructions",
           "quantity",
-          "quantityUnits"
+          "quantityUnits",
+          "sos"
         ],
         "defaultDurationUnit": "Day(s)",
         "defaultInstructions": "As directed",
