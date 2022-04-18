@@ -77,12 +77,12 @@
                 ("Pelvis", "Abdomen", "Lower back", "Hip", "Gluteal region", "Thigh", "Knee", "Lower leg", "Ankle", "Foot", "Toe", "Femur", "Iliac", "Other")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
-                cn.concept_id IN (select concept_id from concept_name where name = "PA, Site of pain");
+                cn.concept_id IN (select concept_id from concept_name where name = "PA, Site of main pain");
             </sqlCheck>
         </preConditions>
-        <comment>Adding Answers to PA, Site of pain</comment>
+        <comment>Adding Answers to PA, Site of main pain</comment>
         <sql>
-            select concept_id into @concept_id from concept_name where name = "PA, Site of pain" and
+            select concept_id into @concept_id from concept_name where name = "PA, Site of main pain" and
             concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
@@ -137,28 +137,22 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Visual Analogue Scale (VAS)", "Algoplus Scale", "Numerical Rating Scale (NRS)", "Verbal Rating Scale (VRS)")
+                ("Algoplus Scale", "Numerical Rating Scale (NRS)")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
-                cn.concept_id IN (select concept_id from concept_name where name = "PA, Pain scale, Initial");
+                cn.concept_id IN (select concept_id from concept_name where name = "PA, Initial pain scale");
             </sqlCheck>
         </preConditions>
-        <comment>Adding Answers to PA, Pain scale, Initial</comment>
+        <comment>Adding Answers to PA, Initial pain scale</comment>
         <sql>
-            select concept_id into @concept_id from concept_name where name = "PA, Pain scale, Initial" and
+            select concept_id into @concept_id from concept_name where name = "PA, Initial pain scale" and
             concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
-            set @child3_concept_id = 0;
-            set @child4_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Visual Analogue Scale (VAS)" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Algoplus Scale" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Numerical Rating Scale (NRS)" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Verbal Rating Scale (VRS)" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Algoplus Scale" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Numerical Rating Scale (NRS)" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
-            call add_concept_answer(@concept_id, @child3_concept_id, 3);
-            call add_concept_answer(@concept_id, @child4_concept_id, 4);
         </sql>
     </changeSet>
 
@@ -311,12 +305,12 @@
                 ("Yes", "No")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
-                cn.concept_id IN (select concept_id from concept_name where name = "PA, Was medication for breakthrough pain provided?");
+                cn.concept_id IN (select concept_id from concept_name where name = "PA, Was medication for breakthrough pain taken?");
             </sqlCheck>
         </preConditions>
-        <comment>Adding Answers to PA, Was medication for breakthrough pain provided?</comment>
+        <comment>Adding Answers to PA, Was medication for breakthrough pain taken?</comment>
         <sql>
-            select concept_id into @concept_id from concept_name where name = "PA, Was medication for breakthrough pain provided?" and
+            select concept_id into @concept_id from concept_name where name = "PA, Was medication for breakthrough pain taken?" and
             concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
@@ -428,7 +422,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Visual Analogue Scale (VAS)", "Algoplus Scale", "Numerical Rating Scale (NRS)", "Verbal Rating Scale (VRS)")
+                ("Algoplus Scale", "Numerical Rating Scale (NRS)")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "PA, Pain scale, Follow up");
@@ -440,16 +434,10 @@
             concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
-            set @child3_concept_id = 0;
-            set @child4_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Visual Analogue Scale (VAS)" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Algoplus Scale" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Numerical Rating Scale (NRS)" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Verbal Rating Scale (VRS)" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Algoplus Scale" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Numerical Rating Scale (NRS)" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
-            call add_concept_answer(@concept_id, @child3_concept_id, 3);
-            call add_concept_answer(@concept_id, @child4_concept_id, 4);
         </sql>
     </changeSet>
 
@@ -458,7 +446,7 @@
             <sqlCheck expectedResult="0">
                 select count(*) from concept_reference_term
                 where code in
-                ("120593","166860","166936","166875","166933","130182","110598","166299","131038","166245","1869","136455","133082","162084","166892","166849","166842","166935","115690","166243","166930","166340","166891","132650","162080","166288","146625","166082","166890","166876","166168","166934","166852","163077","166880","166844","166226","166879","160286","166850","166932","164387","166161","162081","166342","166323","166587","166589","166882","166883")
+                ("120593","166860","166936","166875","166933","130182","110598","166299","131038","166245","1869","136455","133082","162084","166892","166849","166842","166935","115690","166243","166930","166340","166891","132650","162080","166288","146625","166082","166890","166876","166168","166934","166852","166880","166844","166226","166879","160286","166850","166932","164387","166161","162081","166342","166323","166587","166882")
                 and retired = 0
                 and concept_source_id = (
                 select concept_source_id from concept_reference_source where name = "CEIL"  and retired =0
@@ -502,7 +490,6 @@
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166168",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166934",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166852",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"163077",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166880",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166844",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166226",@source_id,uuid(),now());
@@ -516,9 +503,7 @@
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166342",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166323",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166587",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166589",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166882",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166883",@source_id,uuid(),now());
             call CREATE_REFERENCE_MAPPING_CEIL("PA, Onset of pain","1869");
             call CREATE_REFERENCE_MAPPING_CEIL("Breakthrough pain","160286");
             call CREATE_REFERENCE_MAPPING_CEIL("PA, Site of pain, other","166852");
@@ -560,9 +545,7 @@
             call CREATE_REFERENCE_MAPPING_CEIL("Inflammatory","166850");
             call CREATE_REFERENCE_MAPPING_CEIL("Ankle","166161");
             call CREATE_REFERENCE_MAPPING_CEIL("Algoplus Scale","166880");
-            call CREATE_REFERENCE_MAPPING_CEIL("Visual Analogue Scale (VAS)","166589");
             call CREATE_REFERENCE_MAPPING_CEIL("Neuropathic","133082");
-            call CREATE_REFERENCE_MAPPING_CEIL("Verbal Rating Scale (VRS)","166883");
             call CREATE_REFERENCE_MAPPING_CEIL("PA, Type of pain","110598");
             call CREATE_REFERENCE_MAPPING_CEIL("PA, Neuropathic pain evaluation questionnaire (DN4)","166891");
             call CREATE_REFERENCE_MAPPING_CEIL("Acute","1869");
@@ -578,7 +561,6 @@
             call CREATE_REFERENCE_MAPPING_CEIL("PA, Maximum pain score, Initial","166082");
             call CREATE_REFERENCE_MAPPING_CEIL("PA, Maximum pain score, Follow up","166082");
             call CREATE_REFERENCE_MAPPING_CEIL("Body position","166860");
-            call CREATE_REFERENCE_MAPPING_CEIL("PA, Pain description and management plan","163077");
             call CREATE_REFERENCE_MAPPING_CEIL("Numbness","132650");
             call CREATE_REFERENCE_MAPPING_CEIL("Initial","162080");
             call CREATE_REFERENCE_MAPPING_CEIL("PA, Pain scale, Initial","166879");
@@ -593,7 +575,7 @@
             <sqlCheck expectedResult="0">
                 select count(*) from concept_reference_term
                 where code in
-                ("MSFF394","MSFF387","MSFF389","MSFF398","MSFF391","MSFF388","MSFF393","MSFF402","MSFF396","MSFF392","MSFF400","MSFF397","MSFF401","MSFF395","MSFF390","MSFF96")
+                ("MSFF394","MSFF387","MSFF389","MSFF398","MSFF391","MSFF388","MSFF393","MSFF402","MSFF396","MSFF392","MSFF400","MSFF397","MSFF395","MSFF390","MSFF96")
                 and retired = 0
                 and concept_source_id = (
                 select concept_source_id from concept_reference_source where name = "MSFOCP"  and retired =0
@@ -616,14 +598,12 @@
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF392",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF400",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF397",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF401",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF395",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF390",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"MSFF96",@source_id,uuid(),now());
             call CREATE_REFERENCE_MAPPING_MSFOCP("McGill pain questionnaire","MSFF398");
             call CREATE_REFERENCE_MAPPING_MSFOCP("PA, Further assessment","MSFF398");
             call CREATE_REFERENCE_MAPPING_MSFOCP("PA, Mood disorder comment","MSFF397");
-            call CREATE_REFERENCE_MAPPING_MSFOCP("PA, Radiating/referred pain sites","MSFF401");
             call CREATE_REFERENCE_MAPPING_MSFOCP("PA, Characteristics of pain","MSFF392");
             call CREATE_REFERENCE_MAPPING_MSFOCP("PA, Impact","MSFF402");
             call CREATE_REFERENCE_MAPPING_MSFOCP("PA, Sleep disorder comment","MSFF396");

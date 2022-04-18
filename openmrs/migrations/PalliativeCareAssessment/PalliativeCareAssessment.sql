@@ -14,19 +14,25 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PCA, Name of gu
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PCA, Name of attendant","Name of attendant","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PCA, Comment related to patient disease understanding","Comment related to patient disease understanding","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PCA, Comment related to guardian disease understanding","Comment related to guardian disease understanding","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PCA, Rectal examination comment","Rectal examination comment","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PCA, Rectal exam findings comment","Rectal exam findings comment","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PCA, Cardiac examination","Cardiac examination","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PCA, Respiratory system examination","Respiratory system examination","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PCA, Oedema comment","Oedema comment","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PCA, Bed sore comment","Bed sore comment","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PCA, Other skin disorder","Other skin disorder","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PCA, Comment related to physical examination","Comment related to physical examination","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PCA, Comment related to patient social and spiritual issues","Comment related to patient social and spiritual issues","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PCA, Problems list","Problems list","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PCA, Action plan","Action plan","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PCA, Patient education and information","Patient education and information","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PCA, Patient education and information for next session","Patient education and information for next session","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PCA, Other reason for referral","Other reason for referral","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PCA, Location of next appointment, other","Location of next appointment, other","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PCA, Other location of assessment","Other location of assessment","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PCA, Main complain","Main complain","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PCA, Urogenital exam findings comment","Urogenital exam findings comment","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PCA, Recto-abdominal findings comment","Recto-abdominal findings comment","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PCA, Oral examination comment","Oral examination comment","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PCA, Laboratory test comment","Laboratory test comment","Text","Misc",false);
 
 #Add Coded Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PCA, Type of visit","Type of visit","Coded","Misc",false);
@@ -42,12 +48,12 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PCA, Feeling do
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PCA, Mental health status","Mental health status","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PCA, Urogenital exam findings","Urogenital exam findings","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PCA, Grade of Ascites","Grade of Ascites","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PCA, Rectal exam findings","Rectal exam findings","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PCA, Oral examination","Oral examination","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PCA, Is the patient suffering from faecal impaction?","Is the patient suffering from faecal impaction?","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PCA, Oral disorder","Oral disorder","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PCA, Skin disorder","Skin disorder","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PCA, Bed sore grade","Bed sore grade","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PCA, Reason for referral","Reason for referral","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PCA, 48 hour phone follow-up","48 hour phone follow-up","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PCA, Close follow-up","Close follow-up","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PCA, Location of next appointment","Location of next appointment","Coded","Misc",false);
 
 #Add Numeric Concepts
@@ -95,8 +101,8 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Outpatient depa
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Home-based care","Home-based care","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Pallor","Pallor","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Oedema","Oedema","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Faecal impaction","Faecal impaction","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Rectovesical Fistula","Rectovesical Fistula","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Palliative Care follow-up (MoH, NGO)","Palliative Care follow-up (MoH, NGO)","N/A","Misc",false);
 
 #Add Help Text to Concepts
 INSERT INTO concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)
@@ -119,5 +125,5 @@ INSERT INTO concept_description (concept_id,description,locale,creator,date_crea
 VALUES ((select concept_id from concept_name where name = "PCA, Norton score" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0),
 "<10 very high risk; 10-14 high risk; 15-18 medium risk; >18 low risk","en",1,now(),NULL,NULL,uuid());
 INSERT INTO concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)
-VALUES ((select concept_id from concept_name where name = "PCA, Comment related to physical examination" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0),
+VALUES ((select concept_id from concept_name where name = "PCA, Comment related to patient social and spiritual issues" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0),
 "If patient is facing social, spiritual or sexual issues, specify here","en",1,now(),NULL,NULL,uuid());

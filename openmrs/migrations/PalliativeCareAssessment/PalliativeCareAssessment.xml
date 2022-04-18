@@ -410,7 +410,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Grade 1", "Grade 2", "Grade 3")
+                ("None", "Grade 1", "Grade 2", "Grade 3")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "PCA, Grade of Ascites");
@@ -423,12 +423,15 @@
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
             set @child3_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Grade 1" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Grade 2" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Grade 3" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            set @child4_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="None" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Grade 1" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Grade 2" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Grade 3" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
         </sql>
     </changeSet>
 
@@ -440,25 +443,22 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Normal", "Faecal impaction", "Other")
+                ("Yes", "No")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
-                cn.concept_id IN (select concept_id from concept_name where name = "PCA, Rectal exam findings");
+                cn.concept_id IN (select concept_id from concept_name where name = "PCA, Is the patient suffering from faecal impaction?");
             </sqlCheck>
         </preConditions>
-        <comment>Adding Answers to PCA, Rectal exam findings</comment>
+        <comment>Adding Answers to PCA, Is the patient suffering from faecal impaction?</comment>
         <sql>
-            select concept_id into @concept_id from concept_name where name = "PCA, Rectal exam findings" and
+            select concept_id into @concept_id from concept_name where name = "PCA, Is the patient suffering from faecal impaction?" and
             concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
-            set @child3_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Normal" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="Faecal impaction" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Other" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Yes" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="No" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
-            call add_concept_answer(@concept_id, @child3_concept_id, 3);
         </sql>
     </changeSet>
 
@@ -473,12 +473,12 @@
                 ("Normal", "Dry", "Thrush", "Mucositis")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
-                cn.concept_id IN (select concept_id from concept_name where name = "PCA, Oral examination");
+                cn.concept_id IN (select concept_id from concept_name where name = "PCA, Oral disorder");
             </sqlCheck>
         </preConditions>
-        <comment>Adding Answers to PCA, Oral examination</comment>
+        <comment>Adding Answers to PCA, Oral disorder</comment>
         <sql>
-            select concept_id into @concept_id from concept_name where name = "PCA, Oral examination" and
+            select concept_id into @concept_id from concept_name where name = "PCA, Oral disorder" and
             concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
@@ -581,7 +581,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Patient support", "Psychosocial Counselling", "Gynaecological consultation", "Laboratory tests", "Other")
+                ("Patient support", "Psychosocial Counselling", "Gynaecological consultation", "Laboratory tests", "Palliative Care follow-up (MoH, NGO)", "Other")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "PCA, Reason for referral");
@@ -596,16 +596,19 @@
             set @child3_concept_id = 0;
             set @child4_concept_id = 0;
             set @child5_concept_id = 0;
+            set @child6_concept_id = 0;
             select concept_id into @child1_concept_id from concept_name where name ="Patient support" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child2_concept_id from concept_name where name ="Psychosocial Counselling" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child3_concept_id from concept_name where name ="Gynaecological consultation" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child4_concept_id from concept_name where name ="Laboratory tests" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child5_concept_id from concept_name where name ="Other" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Palliative Care follow-up (MoH, NGO)" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child6_concept_id from concept_name where name ="Other" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
             call add_concept_answer(@concept_id, @child4_concept_id, 4);
             call add_concept_answer(@concept_id, @child5_concept_id, 5);
+            call add_concept_answer(@concept_id, @child6_concept_id, 6);
         </sql>
     </changeSet>
 
@@ -620,12 +623,12 @@
                 ("Yes", "No")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
-                cn.concept_id IN (select concept_id from concept_name where name = "PCA, 48 hour phone follow-up");
+                cn.concept_id IN (select concept_id from concept_name where name = "PCA, Close follow-up");
             </sqlCheck>
         </preConditions>
-        <comment>Adding Answers to PCA, 48 hour phone follow-up</comment>
+        <comment>Adding Answers to PCA, Close follow-up</comment>
         <sql>
-            select concept_id into @concept_id from concept_name where name = "PCA, 48 hour phone follow-up" and
+            select concept_id into @concept_id from concept_name where name = "PCA, Close follow-up" and
             concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;

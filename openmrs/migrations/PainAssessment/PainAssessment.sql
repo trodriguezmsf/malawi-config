@@ -11,13 +11,13 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Date and ti
 #Add Coded Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Type of assessment","Type of assessment","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Type of pain","Type of pain","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Site of pain","Site of pain","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Pain scale, Initial","Pain scale, Initial","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Site of main pain","Site of main pain","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Initial pain scale","Initial pain scale","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Pain course","Pain course","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, 24 hour pattern","24 hour pattern","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Neuropathic pain evaluation questionnaire (DN4)","Neuropathic pain evaluation questionnaire (DN4)","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Characteristics of pain","Characteristics of pain","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Was medication for breakthrough pain provided?","Was medication for breakthrough pain provided?","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Was medication for breakthrough pain taken?","Was medication for breakthrough pain taken?","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Impact","Impact","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Further assessment","Further assessment","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Algoplus pain assessment","Algoplus pain assessment","Coded","Misc",false);
@@ -28,8 +28,6 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Onset of pa
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Site of pain, other","Site of pain, other","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Presumed cause","Presumed cause","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Comments","Comments","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Radiating/referred pain sites","Radiating/referred pain sites","Text","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Pain description and management plan","Pain description and management plan","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Aggravating Factors","Aggravating Factors","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Alleviating Factors","Alleviating Factors","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Response to medication","Response to medication","Text","Misc",false);
@@ -46,8 +44,6 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, DN4 Score",
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Score at rest","Score at rest","Numeric","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Score on exam","Score on exam","Numeric","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Current pain score, Follow up","Current pain score, Follow up","Numeric","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Maximum pain score, Follow up","Maximum pain score, Follow up","Numeric","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PA, Minimum pain score, Follow up","Minimum pain score, Follow up","Numeric","Misc",false);
 
 #Add Numeric concepts to concept Numeric Table
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
@@ -64,10 +60,6 @@ INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_ab
 VALUES ((select concept_id from concept_name where name = "PA, Score on exam" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),5,NULL,NULL,-0.1,NULL,NULL,"",0,0);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
 VALUES ((select concept_id from concept_name where name = "PA, Current pain score, Follow up" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),5,NULL,NULL,-0.1,NULL,NULL,"",0,0);
-INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "PA, Maximum pain score, Follow up" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),5,NULL,NULL,-0.1,NULL,NULL,"",0,0);
-INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "PA, Minimum pain score, Follow up" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),5,NULL,NULL,-0.1,NULL,NULL,"",0,0);
 
 #Add Child Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Initial","Initial","N/A","Misc",false);
@@ -88,7 +80,6 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Ankle","Ankle",
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Light brushing","Light brushing","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Pins and needles","Pins and needles","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Follow up","Follow up","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Verbal Rating Scale (VRS)","Verbal Rating Scale (VRS)","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"McGill pain questionnaire","McGill pain questionnaire","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Neuropathic","Neuropathic","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Facial expression","Facial expression","N/A","Misc",false);
@@ -104,7 +95,6 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Physical and so
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Hip","Hip","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Thigh","Thigh","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Lower back","Lower back","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Visual Analogue Scale (VAS)","Visual Analogue Scale (VAS)","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Numbness","Numbness","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Sleep disorder","Sleep disorder","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Electric shocks","Electric shocks","N/A","Misc",false);
