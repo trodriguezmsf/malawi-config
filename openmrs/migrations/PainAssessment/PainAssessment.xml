@@ -527,7 +527,7 @@
             call CREATE_REFERENCE_MAPPING_CEIL("PA, Current pain score, Follow up","166082");
             call CREATE_REFERENCE_MAPPING_CEIL("Numerical Rating Scale (NRS)","166882");
             call CREATE_REFERENCE_MAPPING_CEIL("Follow up","162081");
-            call CREATE_REFERENCE_MAPPING_CEIL("PA, Site of pain","166852");
+            call CREATE_REFERENCE_MAPPING_CEIL("PA, Site of main pain","166852");
             call CREATE_REFERENCE_MAPPING_CEIL("PA, Minimum pain score, Initial","166082");
             call CREATE_REFERENCE_MAPPING_CEIL("PA, Minimum pain score, Follow up","166082");
             call CREATE_REFERENCE_MAPPING_CEIL("Chronic","120593");
@@ -563,7 +563,7 @@
             call CREATE_REFERENCE_MAPPING_CEIL("Body position","166860");
             call CREATE_REFERENCE_MAPPING_CEIL("Numbness","132650");
             call CREATE_REFERENCE_MAPPING_CEIL("Initial","162080");
-            call CREATE_REFERENCE_MAPPING_CEIL("PA, Pain scale, Initial","166879");
+            call CREATE_REFERENCE_MAPPING_CEIL("PA, Initial pain scale","166879");
             call CREATE_REFERENCE_MAPPING_CEIL("PA, Pain scale, Follow up","166879");
             call CREATE_REFERENCE_MAPPING_CEIL("Pins and needles","130182");
             call CREATE_REFERENCE_MAPPING_CEIL("Thigh","166299");

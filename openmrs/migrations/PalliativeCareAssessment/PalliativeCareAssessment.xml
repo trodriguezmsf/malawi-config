@@ -748,16 +748,16 @@
             call CREATE_REFERENCE_MAPPING_CEIL("PCA, Bedside Oral Exam (BOE) score","166986");
             call CREATE_REFERENCE_MAPPING_CEIL("PCA, Not being able to stop or control worrying","167005");
             call CREATE_REFERENCE_MAPPING_CEIL("Faecal impaction","118302");
-            call CREATE_REFERENCE_MAPPING_CEIL("PCA, Oral examination","160628");
+            call CREATE_REFERENCE_MAPPING_CEIL("PCA, Oral disorder","160628");
             call CREATE_REFERENCE_MAPPING_CEIL("PCA, Norton score","166998");
             call CREATE_REFERENCE_MAPPING_CEIL("PCA, Little interest or pleasure in doing things","167006");
             call CREATE_REFERENCE_MAPPING_CEIL("PCA, Date recorded","162869");
             call CREATE_REFERENCE_MAPPING_CEIL("PCA, WHO Performance status (ECOG)","160379");
             call CREATE_REFERENCE_MAPPING_CEIL("Phone","166997");
-            call CREATE_REFERENCE_MAPPING_CEIL("PCA, Comment related to physical examination","161011");
+            call CREATE_REFERENCE_MAPPING_CEIL("PCA, Comment related to patient social and spiritual issues","161011");
             call CREATE_REFERENCE_MAPPING_CEIL("Delirium","119574");
             call CREATE_REFERENCE_MAPPING_CEIL("PCA, Rectal examination comment","161011");
-            call CREATE_REFERENCE_MAPPING_CEIL("PCA, 48 hour phone follow-up","166997");
+            call CREATE_REFERENCE_MAPPING_CEIL("PCA, Close follow-up","166997");
             call CREATE_REFERENCE_MAPPING_CEIL("Retention of urine","127579");
             call CREATE_REFERENCE_MAPPING_CEIL("PCA, Reason for referral","1887");
             call CREATE_REFERENCE_MAPPING_CEIL("Dry","156095");
@@ -771,7 +771,7 @@
             call CREATE_REFERENCE_MAPPING_CEIL("Home-based care","161359");
             call CREATE_REFERENCE_MAPPING_CEIL("PCA, Other reason for referral","164359");
             call CREATE_REFERENCE_MAPPING_CEIL("PCA, GSC Score","160347");
-            call CREATE_REFERENCE_MAPPING_CEIL("PCA, Rectal exam findings","163746");
+            call CREATE_REFERENCE_MAPPING_CEIL("PCA, Is the patient suffering from faecal impaction?","163746");
             call CREATE_REFERENCE_MAPPING_CEIL("Thrush","5334");
             call CREATE_REFERENCE_MAPPING_CEIL("0=Not at all","1670215");
             call CREATE_REFERENCE_MAPPING_CEIL("Pallor","5245");
