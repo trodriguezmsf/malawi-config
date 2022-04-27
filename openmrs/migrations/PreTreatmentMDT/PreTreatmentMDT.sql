@@ -35,6 +35,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PTMDT, Abnormal
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PTMDT, Other type of  surgical procedure","Other type of  surgical procedure","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PTMDT, Comments","Comments","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PTMDT, Other chemotherapy regimen","Other chemotherapy regimen","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PTMDT, Other management plan","Other management plan","Text","Misc",false);
 
 #Add Child Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Staging laparotomy","Staging laparotomy","N/A","Misc",false);

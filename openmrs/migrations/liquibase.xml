@@ -806,7 +806,7 @@
     <include file="Appointment-Scheduling/addServices.xml"/>
     <include file="PainAssessment/PainAssessment.xml"/>
     <include file="PalliativeCareAssessment/PalliativeCareAssessment.xml"/>
-    <include file="PostOperativeMDT/PostOperativeMDT.xml"/>
+    <include file="PostTreatmentMDT/PostTreatmentMDT.xml"/>
     <changeSet id="Malawi-202202281135" author="Supriya">
         <preConditions>
             <sqlCheck expectedResult="0">

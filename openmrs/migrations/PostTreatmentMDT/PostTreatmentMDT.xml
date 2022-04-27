@@ -8,8 +8,8 @@
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
     <changeSet id="MALAWI_CONFIG_20220224131512155" author="Tarun">
-        <comment>Adding Concepts for PostOperativeMDT Form</comment>
-        <sqlFile path="PostOperativeMDT/PostOperativeMDT.sql"/>
+        <comment>Adding Concepts for PostTreatmentMDT Form</comment>
+        <sqlFile path="PostTreatmentMDT/PostTreatmentMDT.sql"/>
     </changeSet>
 
     <changeSet id="MALAWI_CONFIG_20220224131512572" author="Tarun">
@@ -23,12 +23,12 @@
                 ("Satisfactory", "Unsatisfactory")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
-                cn.concept_id IN (select concept_id from concept_name where name = "POMDT, Surgery outcome");
+                cn.concept_id IN (select concept_id from concept_name where name = "POMDT, Treatment outcome");
             </sqlCheck>
         </preConditions>
-        <comment>Adding Answers to POMDT, Surgery outcome</comment>
+        <comment>Adding Answers to POMDT, Treatment outcome</comment>
         <sql>
-            select concept_id into @concept_id from concept_name where name = "POMDT, Surgery outcome" and
+            select concept_id into @concept_id from concept_name where name = "POMDT, Treatment outcome" and
             concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
@@ -47,7 +47,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("3 months", "6 months", "12 months")
+                ("6 weeks", "3 months", "6 months", "12 months", "Other")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "POMDT, Follow-up visit");
@@ -60,12 +60,18 @@
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
             set @child3_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="3 months" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="6 months" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="12 months" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="6 weeks" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="3 months" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="6 months" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="12 months" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Other" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
         </sql>
     </changeSet>
 
