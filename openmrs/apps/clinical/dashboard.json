@@ -616,8 +616,8 @@
             "UR, Ultrasound FIGO staging",
             "IC, ECOG performance status",
             "PH, Past medical history diagnosis",
+            "PH, Result of HIV test",
             "PTMDT, Date recorded",
-            "PTMDT, Clinical diagnosis",
             "PTMDT, Topography of the tumour",
             "PTMDT, Agreed FIGO staging for cancer of the cervix",
             "PTMDT, Agreed FIGO staging for cancer of the uterus",
@@ -625,6 +625,9 @@
             "PTMDT, Agreed FIGO staging for cancer of the vulva",
             "PTMDT, Agreed FIGO staging for cancer of the vagina",
             "PTMDT, Proposed management plan",
+            "PTMDT, Type of Chemotherapy",
+            "PTMDT, Chemotherapy regimen",
+            "PTMDT, Surgical procedure type",
             "PTMDT, Should palliative chemotherapy be considered?"
           ],
           "pivotTable": {
@@ -651,8 +654,8 @@
             "UR, Ultrasound FIGO staging",
             "IC, ECOG performance status",
             "PH, Past medical history diagnosis",
+            "PH, Result of HIV test",
             "PTMDT, Date recorded",
-            "PTMDT, Clinical diagnosis",
             "PTMDT, Topography of the tumour",
             "PTMDT, Agreed FIGO staging for cancer of the cervix",
             "PTMDT, Agreed FIGO staging for cancer of the uterus",
@@ -660,6 +663,9 @@
             "PTMDT, Agreed FIGO staging for cancer of the vulva",
             "PTMDT, Agreed FIGO staging for cancer of the vagina",
             "PTMDT, Proposed management plan",
+            "PTMDT, Type of Chemotherapy",
+            "PTMDT, Chemotherapy regimen",
+            "PTMDT, Surgical procedure type",
             "PTMDT, Should palliative chemotherapy be considered?"
           ],
           "isEditable": true,
@@ -668,8 +674,8 @@
           }
         }
       },
-      "Post-operative MDT": {
-        "translationKey": "DASHBOARD_TITLE_POST_OPERATIVE_MDT",
+      "Post-treatment MDT": {
+        "translationKey": "DASHBOARD_TITLE_POST_TREATMENT_MDT",
         "isObservation": true,
         "displayOrder": 2,
         "dashboardConfig": {
@@ -688,10 +694,13 @@
             "SC, Clinical FIGO staging for cancer of the vagina",
             "SC, ECOG performance status",
             "PH, Past medical history diagnosis",
+            "PH, Result of HIV test",
             "POMDT, Date recorded",
-            "POMDT, Surgery outcome",
+            "POMDT, Treatment outcome",
             "POMDT, Proposed management plan",
-            "POMDT, Follow-up visit"
+            "POMDT, Follow-up visit",
+            "POMDT, Chemotherapy regimen",
+            "POMDT, Should palliative chemotherapy be considered?"
           ],
           "pivotTable": {
           }
@@ -711,10 +720,13 @@
             "SC, Clinical FIGO staging for cancer of the vagina",
             "SC, ECOG performance status",
             "PH, Past medical history diagnosis",
+            "PH, Result of HIV test",
             "POMDT, Date recorded",
-            "POMDT, Surgery outcome",
+            "POMDT, Treatment outcome",
             "POMDT, Proposed management plan",
-            "POMDT, Follow-up visit"
+            "POMDT, Follow-up visit",
+            "POMDT, Chemotherapy regimen",
+            "POMDT, Should palliative chemotherapy be considered?"
           ],
           "isEditable": true,
           "showDetailsButton": true,
