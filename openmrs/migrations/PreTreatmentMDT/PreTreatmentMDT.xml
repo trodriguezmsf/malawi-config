@@ -777,13 +777,12 @@
         </sql>
     </changeSet>
 
-    <changeSet id="Malawi_CONFIG_20220217015537425" author="Venky">
+    <changeSet id="Malawi_CONFIG_20220429015537425" author="Venky">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
                 select count(*) from concept_reference_term
                 where code in
-            
-                ("145805","166917","166884","166720","160590","162805","166907","166938","166886","164768","166920","166721); Total abdominal hysterectom","145808","166900","166906","166922","166937","117152","166889","166923","166919","145809","166908","166925","120146","116995","164051","166966","166888","166924","165094","112992","166992","166887","161896","166921","166885","166901","166918","163072")
+                ("145805","166917","166884","166720","160590","162805","166907","166938","166886","164768","166920","145808","166900","166906","166922","166937","117152","166889","166923","166919","145809","166908","166925","120146","116995","164051","166966","166888","166924","165094","112992","166992","166887","161896","166921","166885","166901","166918","163072")
                 and retired = 0
                 and concept_source_id = (
                 select concept_source_id from concept_reference_source where name = "CEIL"  and retired =0
@@ -805,7 +804,6 @@
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166886",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"164768",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166920",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166721); Total abdominal hysterectom",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"145808",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166900",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166906",@source_id,uuid(),now());
@@ -896,6 +894,7 @@
             call CREATE_REFERENCE_MAPPING_CEIL("STI","112992");
             call CREATE_REFERENCE_MAPPING_CEIL("Total radical vulvectomy","166966");
             call CREATE_REFERENCE_MAPPING_CEIL("TP (Cisplatin/Paclitaxel)","163072");
+            call CREATE_REFERENCE_MAPPING_CEIL("PTMDT, Other management plan","163104");
         </sql>
     </changeSet>
 
