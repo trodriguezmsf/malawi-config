@@ -113,5 +113,6 @@
   "CLINICAL_SUMMARY_INITIAL_CONSULTATION" : "Initial Gynecological Consultation",
   "CLINICAL_SUMMARY_SUBSEQUENT_CONSULTATION" : "Subsequent Gynecological Consultation",
   "PATIENT_BED_MANAGEMENT_PAGE_KEY":"Patient Bed Management",
-  "PATIENT_IPD_DASHBOARD_KEY":"Patient IPD Dashboard"
+  "PATIENT_IPD_DASHBOARD_KEY":"Patient IPD Dashboard",
+  "MEDICATION_LABEL_START_DATE": "Start date"
 }

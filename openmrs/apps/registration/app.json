@@ -45,7 +45,7 @@
             "patientInformation": {
                 "Additional Information": {
                     "title": "Additional  Information",
-                    "tranlsationkey": "REGISTRATION_TITLE_ADDITIONAL_PATIENT",
+                    "translationKey": "REGISTRATION_TITLE_ADDITIONAL_PATIENT",
                     "attributes": [
                         "nickName",
                         "familyOrClanName",

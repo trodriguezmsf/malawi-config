@@ -1487,5 +1487,13 @@
     <include file="InitialConsultation/InitialConsultation_2.xml"/>
     <include file="SubsequentConsultation/SubsequentConsultation_2.xml"/>
     <include file="PatientHistory/PatientHistory_4.xml"/>
+    <changeSet id="MALAWI-202206141025" author="Supriya">
+        <comment>Add BISOPROLOL fumarate 200 mg drug</comment>
+        <sql>
+            set @locale = "en";
+            # Add new drug (drug_name, drug_strength, dosage_form_name, locale)
+            CALL add_new_drug("BISOPROLOL fumarate 200mg Tablet", "10mg", "Tablet", @locale);
+        </sql>
+    </changeSet>
 
 </databaseChangeLog>
