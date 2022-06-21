@@ -1495,5 +1495,5 @@
             CALL add_new_drug("BISOPROLOL fumarate 200mg Tablet", "10mg", "Tablet", @locale);
         </sql>
     </changeSet>
-
+    <include file="MedicalSocialAssessment/medicalSocialAssessment.xml"/>
 </databaseChangeLog>
