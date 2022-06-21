@@ -9,7 +9,7 @@
 
     <changeSet id="Malawi_CONFIG_20220621022734416" author="Venky">
         <comment>Adding Concepts for medicalSocialAssessment Form</comment>
-        <sqlFile path="medicalSocialAssessment/medicalSocialAssessment.sql"/>
+        <sqlFile path="MedicalSocialAssessment/medicalSocialAssessment.sql"/>
     </changeSet>
 
     <changeSet id="Malawi_CONFIG_20220621022735380" author="Venky">
