@@ -560,7 +560,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Psychiatric care", "Legal aid", "Sexual and gender based violence", "Social Welfare NGO", "Other medical facility", "Other")
+                ("Psychiatric care", "Legal aid", "Sexual and gender based violence (SGBV) services", "Social Welfare NGO", "Other medical facility", "Other")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "MSA, Referral outside MSF");
@@ -578,7 +578,7 @@
             set @child6_concept_id = 0;
             select concept_id into @child1_concept_id from concept_name where name ="Psychiatric care" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child2_concept_id from concept_name where name ="Legal aid" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Sexual and gender based violence" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Sexual and gender based violence (SGBV) services" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child4_concept_id from concept_name where name ="Social Welfare NGO" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child5_concept_id from concept_name where name ="Other medical facility" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child6_concept_id from concept_name where name ="Other" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
@@ -596,7 +596,7 @@
             <sqlCheck expectedResult="0">
                 select count(*) from concept_reference_term
                 where code in
-                ("163468","1763","167049","166832","159473","159673","159675","1560","166576","164352","159676","164438","159785","167060","SGBV) service","159674","1713","167134","1540","167079","1712","167059","5675","135703","167061","163354","163123","159477","167048","159740","165591","162571","1538","167050","165095")
+                ("163468","1763","167049","166832","159473","159673","159675","1560","166576","164352","159676","164438","159785","167060","159674","1713","167134","1540","167079","1712","167059","5675","135703","167061","163354","163123","159477","167048","159740","165591","162571","1538","167050","165095")
                 and retired = 0
                 and concept_source_id = (
                 select concept_source_id from concept_reference_source where name = "CEIL"  and retired =0
@@ -621,7 +621,6 @@
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"164438",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"159785",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"167060",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"SGBV) service",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"159674",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1713",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"167134",@source_id,uuid(),now());
@@ -689,7 +688,6 @@
             call CREATE_REFERENCE_MAPPING_CEIL("MSA, Follow-up planned","167079");
             call CREATE_REFERENCE_MAPPING_CEIL("Vegetable seller","159675");
             call CREATE_REFERENCE_MAPPING_CEIL("MSA, Number of other dependents","164352");
-            call CREATE_REFERENCE_MAPPING_CEIL("Sexual and gender based violence","SGBV) service");
             call CREATE_REFERENCE_MAPPING_CEIL("Stable accommodation","167049");
             call CREATE_REFERENCE_MAPPING_CEIL("MSA, Other key figures in the household","1560");
             call CREATE_REFERENCE_MAPPING_CEIL("MSA, Feeling nervous, anxious or on edge","167003");

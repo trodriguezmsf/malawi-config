@@ -92,7 +92,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Employee","Empl
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"0= Not at all","0= Not at all","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"MSF OPD","MSF OPD","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Land ownership","Land ownership","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Sexual and gender based violence","Sexual and gender based violence","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Sexual and gender based violence (SGBV) services","Sexual and gender based violence (SGBV) services","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Husband","Husband","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Vegetable seller","Vegetable seller","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Therapeutic patient education","Therapeutic patient education","N/A","Misc",false);
