@@ -177,7 +177,8 @@
           "Palliative Care Assessment",
           "Post Treatment MDT",
           "Bereavement Form",
-          "Medical Social Assessment"
+          "Medical Social Assessment",
+          "Intake for Psychological Assessment"
         ],
         "translationKey": "DASHBOARD_TITLE_EDIT_FORMS"
       },

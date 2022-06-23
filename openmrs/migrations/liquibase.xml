@@ -1496,4 +1496,5 @@
         </sql>
     </changeSet>
     <include file="MedicalSocialAssessment/medicalSocialAssessment.xml"/>
+    <include file="IntakeForPsychologicalAssess/IntakeForPsychologicalAssess.xml"/>
 </databaseChangeLog>
