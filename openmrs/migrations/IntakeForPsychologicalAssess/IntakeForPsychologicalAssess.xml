@@ -593,7 +593,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("1.Normal", "2.Bordeline mentally ill", "3.Midly ill", "4.Moderately ill", "5.Markedly ill", "6.Severely ill", "7.Among the most extremely ill", "")
+                ("1=Normal", "2=Bordeline mentally ill", "3=Midly ill", "4=Moderately ill", "5=Markedly ill", "6=Severely ill", "7=Among the most extremely ill", "")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "IPA, CGI-severity score");
@@ -610,13 +610,13 @@
             set @child5_concept_id = 0;
             set @child6_concept_id = 0;
             set @child7_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="1.Normal" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="2.Bordeline mentally ill" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="3.Midly ill" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="4.Moderately ill" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child5_concept_id from concept_name where name ="5.Markedly ill" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child6_concept_id from concept_name where name ="6.Severely ill" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child7_concept_id from concept_name where name ="7.Among the most extremely ill" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="1=Normal" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="2=Bordeline mentally ill" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="3=Midly ill" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="4=Moderately ill" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="5=Markedly ill" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child6_concept_id from concept_name where name ="6=Severely ill" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child7_concept_id from concept_name where name ="7=Among the most extremely ill" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -624,30 +624,6 @@
             call add_concept_answer(@concept_id, @child5_concept_id, 5);
             call add_concept_answer(@concept_id, @child6_concept_id, 6);
             call add_concept_answer(@concept_id, @child7_concept_id, 7);
-        </sql>
-    </changeSet>
-
-    <changeSet id="Malawi_CONFIG_20220622051129844" author="Venky">
-        <preConditions onFail="MARK_RAN">
-            <sqlCheck expectedResult="0">
-                select count(*) from concept_answer ca
-                join
-                concept_name cn
-                on ca.concept_id = cn.concept_id
-                where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("1 to 5")
-                and concept_name_type = "FULLY_SPECIFIED")
-                AND
-                cn.concept_id IN (select concept_id from concept_name where name = "IPA, Suffering scale");
-            </sqlCheck>
-        </preConditions>
-        <comment>Adding Answers to IPA, Suffering scale</comment>
-        <sql>
-            select concept_id into @concept_id from concept_name where name = "IPA, Suffering scale" and
-            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
-            set @child1_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="1 to 5" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            call add_concept_answer(@concept_id, @child1_concept_id, 1);
         </sql>
     </changeSet>
 

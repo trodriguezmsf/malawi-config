@@ -27,7 +27,6 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IPA, Did you ha
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IPA, Have you been bothered by unpleasant thoughts, worries or ideas?","Have you been bothered by unpleasant thoughts, worries or ideas?","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IPA, Have you felt sad or nervous?","Have you felt sad or nervous?","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IPA, CGI-severity score","CGI-severity score","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IPA, Suffering scale","Suffering scale","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IPA, Patient's main syndrome","Patient's main syndrome","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IPA, Coping mechanism","Coping mechanism","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IPA, Follow-up planned","Follow-up planned","Coded","Misc",false);
@@ -48,11 +47,14 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IPA, Other refe
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IPA, Important patient information to share with the medical team","Important patient information to share with the medical team","Text","Misc",false);
 
 #Add Numeric Concepts
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IPA, MHOS score","MHOS score","Numeric","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IPA, MHOS score","MHOS score","Numeric","Computed",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IPA, Suffering scale","Suffering scale","Numeric","Misc",false);
 
 #Add Numeric concepts to concept Numeric Table
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
 VALUES ((select concept_id from concept_name where name = "IPA, MHOS score" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
+INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
+VALUES ((select concept_id from concept_name where name = "IPA, Suffering scale" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),5,NULL,NULL,1,NULL,NULL,"",1,1);
 
 #Add Child Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Cancer","Cancer","N/A","Misc",false);
@@ -60,11 +62,10 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Hobbies","Hobbi
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Extreme poverty/Financial crisis","Extreme poverty/Financial crisis","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Impact of the treatment on the physical integrity","Impact of the treatment on the physical integrity","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3=Some","3=Some","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"1 to 5","1 to 5","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Social condition","Social condition","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Social worker","Social worker","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Fear of death","Fear of death","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"6.Severely ill","6.Severely ill","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"6=Severely ill","6=Severely ill","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Relatives support","Relatives support","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Neurocognitive problem","Neurocognitive problem","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"4=Fair amount","4=Fair amount","N/A","Misc",false);
@@ -78,9 +79,9 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Social exclusio
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Traditional/religious healer","Traditional/religious healer","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Friends support","Friends support","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Direct witness of violence","Direct witness of violence","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"4.Moderately ill","4.Moderately ill","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"4=Moderately ill","4=Moderately ill","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"House destroyed","House destroyed","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"2.Bordeline mentally ill","2.Bordeline mentally ill","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"2=Bordeline mentally ill","2=Bordeline mentally ill","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Close relative with medical disease","Close relative with medical disease","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Patient suffering from a previous Mental Health disorder","Patient suffering from a previous Mental Health disorder","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Neglect","Neglect","N/A","Misc",false);
@@ -92,17 +93,17 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Psychosis","Psy
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Victim of sexual violence","Victim of sexual violence","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Husband support","Husband support","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Community support","Community support","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3.Midly ill","3.Midly ill","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3=Midly ill","3=Midly ill","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Support from other patients","Support from other patients","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Direct victim of violence","Direct victim of violence","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"1.Normal","1.Normal","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"1=Normal","1=Normal","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Loss or excessive social role","Loss or excessive social role","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"2=A little","2=A little","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Siblings support","Siblings support","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Relational Condition","Relational Condition","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"5.Markedly ill","5.Markedly ill","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"5=Markedly ill","5=Markedly ill","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Spouse conflict as a result of cancer condition","Spouse conflict as a result of cancer condition","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"7.Among the most extremely ill","7.Among the most extremely ill","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"7=Among the most extremely ill","7=Among the most extremely ill","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Close relative detained/died/missed/injured","Close relative detained/died/missed/injured","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Children support","Children support","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Intra-family related problem","Intra-family related problem","N/A","Misc",false);
