@@ -1498,4 +1498,5 @@
     <include file="MedicalSocialAssessment/medicalSocialAssessment.xml"/>
     <include file="IntakeForPsychologicalAssess/IntakeForPsychologicalAssess.xml"/>
     <include file="FollowUpForm/FollowUpForm.xml"/>
+    <include file="DischargeForm/DischargeForm.xml"/>
 </databaseChangeLog>

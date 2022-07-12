@@ -179,7 +179,8 @@
           "Bereavement Form",
           "Medical Social Assessment",
           "Intake for Psychological Assessment",
-          "PSA Follow up"
+          "PSA Follow up",
+          "PSA Discharge"
         ],
         "translationKey": "DASHBOARD_TITLE_EDIT_FORMS"
       },
