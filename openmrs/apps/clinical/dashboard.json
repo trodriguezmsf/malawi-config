@@ -180,7 +180,8 @@
           "Medical Social Assessment",
           "Intake for Psychological Assessment",
           "PSA Follow up",
-          "PSA Discharge"
+          "PSA Discharge",
+          "Chemotherapy Clinical Assessment and Treatment"
         ],
         "translationKey": "DASHBOARD_TITLE_EDIT_FORMS"
       },
