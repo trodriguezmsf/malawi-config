@@ -181,7 +181,8 @@
           "Intake for Psychological Assessment",
           "PSA Follow up",
           "PSA Discharge",
-          "Chemotherapy Clinical Assessment and Treatment"
+          "Chemotherapy Clinical Assessment and Treatment",
+          "Chemotherapy Baseline Assessment"
         ],
         "translationKey": "DASHBOARD_TITLE_EDIT_FORMS"
       },

@@ -1500,4 +1500,5 @@
     <include file="FollowUpForm/FollowUpForm.xml"/>
     <include file="DischargeForm/DischargeForm.xml"/>
     <include file="ChemotherapyClinicalAssessmentTreatment/ChemotherapyClinicalAssessmentTreatment.xml"/>
+    <include file="ChemotherapyBaselineAssessment/ChemotherapyBaselineAssessment.xml"/>
 </databaseChangeLog>
