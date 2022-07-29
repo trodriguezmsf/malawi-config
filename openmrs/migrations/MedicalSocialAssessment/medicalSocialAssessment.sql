@@ -43,12 +43,13 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"MSA, Directions
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"MSA, Reason for referral","Reason for referral","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"MSA, Other referral outside MSF","Other referral outside MSF","Text","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"MSA, Important patient information to share with the medical team","Important patient information to share with the medical team","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"MSA, Age of children","Age of children","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"MSA, Age of dependent","Age of dependent","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"MSA, Patient other living condition","Patient other living condition","Text","Misc",false);
 
 #Add Numeric Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"MSA, Number of dependent children","Number of dependent children","Numeric","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"MSA, Age of children","Age of children","Numeric","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"MSA, Number of other dependents","Number of other dependents","Numeric","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"MSA, Age of dependent","Age of dependent","Numeric","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"MSA, Number of meals per day","Number of meals per day","Numeric","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"MSA, PHQ 4 score","PHQ 4 score","Numeric","Computed",false);
 
@@ -56,11 +57,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"MSA, PHQ 4 scor
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
 VALUES ((select concept_id from concept_name where name = "MSA, Number of dependent children" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,-0.0000000001,NULL,NULL,"",0,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "MSA, Age of children" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,-0.0000000001,NULL,NULL,"",1,1);
-INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
 VALUES ((select concept_id from concept_name where name = "MSA, Number of other dependents" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,-0.0000000001,NULL,NULL,"",0,1);
-INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "MSA, Age of dependent" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,-0.0000000001,NULL,NULL,"",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
 VALUES ((select concept_id from concept_name where name = "MSA, Number of meals per day" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,-0.0000000001,NULL,NULL,"",0,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)

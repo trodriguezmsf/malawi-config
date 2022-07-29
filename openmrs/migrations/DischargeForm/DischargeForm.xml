@@ -20,7 +20,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Discharged", "Lost to follow-up", "Died Deceased", "Transferred", "Other")
+                ("Discharged", "Lost to follow-up", "Deceased", "Transferred", "Other")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "DF, Discharge status");
@@ -37,7 +37,7 @@
             set @child5_concept_id = 0;
             select concept_id into @child1_concept_id from concept_name where name ="Discharged" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child2_concept_id from concept_name where name ="Lost to follow-up" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="Died Deceased" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Deceased" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child4_concept_id from concept_name where name ="Transferred" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child5_concept_id from concept_name where name ="Other" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
@@ -513,7 +513,7 @@
             call CREATE_REFERENCE_MAPPING_CEIL("DF, Other monitoring and screening tools used","167140");
             call CREATE_REFERENCE_MAPPING_CEIL("DF, Reason for lost to follow up","161206");
             call CREATE_REFERENCE_MAPPING_CEIL("Lost to follow-up","5240");
-            call CREATE_REFERENCE_MAPPING_CEIL("Died Deceased","159");
+            call CREATE_REFERENCE_MAPPING_CEIL("Deceased","159");
             call CREATE_REFERENCE_MAPPING_CEIL("DF, Important patient information to share with the medical team","165095");
             call CREATE_REFERENCE_MAPPING_CEIL("1=Not at all","1670215");
             call CREATE_REFERENCE_MAPPING_CEIL("Worsening of symptoms","163055");

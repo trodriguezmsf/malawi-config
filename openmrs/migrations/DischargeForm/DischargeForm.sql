@@ -39,7 +39,7 @@ VALUES ((select concept_id from concept_name where name = "DF, MHOS score" and c
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Discharged","Discharged","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"End of psychological care","End of psychological care","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"No change","No change","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Died Deceased","Died Deceased","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Deceased","Deceased","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Patient moved","Patient moved","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Patient improved","Patient improved","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"1=Not at all","1=Not at all","N/A","Misc",false);

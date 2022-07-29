@@ -758,7 +758,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("OPD", "Phone support", "Home visit", "Unknown")
+                ("OPD", "Phone support", "Home visit", "Unknown","IPD")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "IPA, Format of consultation");
@@ -772,14 +772,17 @@
             set @child2_concept_id = 0;
             set @child3_concept_id = 0;
             set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
             select concept_id into @child1_concept_id from concept_name where name ="OPD" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child2_concept_id from concept_name where name ="Phone support" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child3_concept_id from concept_name where name ="Home visit" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child4_concept_id from concept_name where name ="Unknown" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="IPD" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
             call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
         </sql>
     </changeSet>
 
@@ -791,7 +794,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Psychosocial Counselling", "Therapeutic patient education", "Gynaecological consultation", "IPD", "Consultation for palliative care", "Home visit")
+                ("Psychosocial Counselling", "Therapeutic patient education", "Gynaecological consultation", "IPD", "Consultation for palliative care", "Other")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "IPA, MSF Referral");
@@ -812,7 +815,7 @@
             select concept_id into @child3_concept_id from concept_name where name ="Gynaecological consultation" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child4_concept_id from concept_name where name ="IPD" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child5_concept_id from concept_name where name ="Consultation for palliative care" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child6_concept_id from concept_name where name ="Home visit" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child6_concept_id from concept_name where name ="Other" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -916,6 +919,8 @@
             call CREATE_REFERENCE_MAPPING_CEIL("Neurocognitive problem","167078");
             call CREATE_REFERENCE_MAPPING_CEIL("Traditional/religious healer","1821");
             call CREATE_REFERENCE_MAPPING_CEIL("House destroyed","167130");
+            call CREATE_REFERENCE_MAPPING_CEIL("IPD","167050");
+            call CREATE_REFERENCE_MAPPING_CEIL("Other","5622");
         </sql>
     </changeSet>
 
