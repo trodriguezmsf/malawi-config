@@ -94,6 +94,162 @@
           }
         }
       },
+      "Medical Social Assessment": {
+        "translationKey": "CLINICALSUMMARY_MEDICAL_SOCIAL_ASSESSMENT",
+        "isObservation": true,
+        "displayOrder": 14,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "scope":"latest",
+          "conceptNames": [
+            "MSA, Date recorded",
+            "MSA, Session location",
+            "MSA, Relationship to head of household",
+            "MSA, Number of dependent children",
+            "MSA, PHQ 4 score",
+            "MSA, Next appointment date",
+            "MSA, Format of consultation",
+            "MSA, MSF Referral"
+          ]
+        },
+        "expandedViewConfig": {
+          "scope":"latest",
+          "conceptNames": [
+            "MSA, Date recorded",
+            "MSA, Session location",
+            "MSA, Relationship to head of household",
+            "MSA, Number of dependent children",
+            "MSA, PHQ 4 score",
+            "MSA, Next appointment date",
+            "MSA, Format of consultation",
+            "MSA, MSF Referral"
+          ],
+          "isEditable": true,
+          "showDetailsButton": true,
+          "pivotTable": {
+          }
+        }
+      },
+      "Intake for Psychological Assessment": {
+        "translationKey": "CLINICALSUMMARY_INTAKE_FOR_PSYCHOLOGICAL_ASSESSMENT",
+        "isObservation": true,
+        "displayOrder": 15,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "scope":"latest",
+          "conceptNames": [
+            "IPA, Date recorded",
+            "IPA, Session Location",
+            "IPA, Treatment phase",
+            "IPA, MHOS score",
+            "IPA, CGI-severity score",
+            "IPA, Suffering scale",
+            "IPA, Patient's main syndrome",
+            "IPA, Coping mechanism",
+            "IPA, Next appointment",
+            "IPA, Format of consultation",
+            "IPA, MSF Referral"
+          ]
+        },
+        "expandedViewConfig": {
+          "scope":"latest",
+          "conceptNames": [
+            "IPA, Date recorded",
+            "IPA, Session Location",
+            "IPA, Treatment phase",
+            "IPA, MHOS score",
+            "IPA, CGI-severity score",
+            "IPA, Suffering scale",
+            "IPA, Patient's main syndrome",
+            "IPA, Coping mechanism",
+            "IPA, Next appointment",
+            "IPA, Format of consultation",
+            "IPA, MSF Referral"
+          ],
+          "isEditable": true,
+          "showDetailsButton": true,
+          "pivotTable": {
+          }
+        }
+      },
+      "PSA Follow up": {
+        "translationKey": "CLINICALSUMMARY_FOLLOW_UP",
+        "isObservation": true,
+        "displayOrder": 16,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "scope":"latest",
+          "conceptNames": [
+            "FUF, Date recorded",
+            "FUF, Session number",
+            "FUF, Type of session",
+            "FUF, Session Location",
+            "FUF, MHOS score",
+            "FUF, Follow-up CGI-severity score",
+            "FUF, Psychotherapeutic tools used",
+            "FUF, Next appointment",
+            "FUF, Format of consultation",
+            "FUF, MSF Referral"
+          ]
+        },
+        "expandedViewConfig": {
+          "scope":"latest",
+          "conceptNames": [
+            "FUF, Date recorded",
+            "FUF, Session number",
+            "FUF, Type of session",
+            "FUF, Session Location",
+            "FUF, MHOS score",
+            "FUF, Follow-up CGI-severity score",
+            "FUF, Psychotherapeutic tools used",
+            "FUF, Next appointment",
+            "FUF, Format of consultation",
+            "FUF, MSF Referral"
+          ],
+          "isEditable": true,
+          "showDetailsButton": true,
+          "pivotTable": {
+          }
+        }
+      },
+      "PSA Discharge": {
+        "translationKey": "CLINICALSUMMARY_DISCHARGE",
+        "isObservation": true,
+        "displayOrder": 17,
+        "dashboardConfig": {
+          "showDetailsButton": true,
+          "isEditable": true,
+          "scope":"latest",
+          "conceptNames": [
+            "DF, Date of discharge",
+            "DF, Session Location",
+            "DF, Reason for discharge",
+            "DF, MHOS score",
+            "DF, CGI-severity score at discharge",
+            "DF, CGI-improvement score at discharge",
+            "DF, CGI-I outcome"
+          ]
+        },
+        "expandedViewConfig": {
+          "scope":"latest",
+          "conceptNames": [
+            "DF, Date of discharge",
+            "DF, Session Location",
+            "DF, Reason for discharge",
+            "DF, MHOS score",
+            "DF, CGI-severity score at discharge",
+            "DF, CGI-improvement score at discharge",
+            "DF, CGI-I outcome"
+          ],
+          "isEditable": true,
+          "showDetailsButton": true,
+          "pivotTable": {
+          }
+        }
+      },
       "visits": {
         "translationKey": "DASHBOARD_TITLE_VISITS_KEY",
         "type": "visits",
@@ -158,7 +314,7 @@
       },
       "validationForms-2.0": {
         "type": "formsV2",
-        "displayOrder": 15,
+        "displayOrder":18,
         "dashboardConfig": {
           "maximumNoOfVisits": 5
         },
@@ -873,6 +1029,99 @@
           "showDetailsButton": true,
           "pivotTable": {
           }
+        }
+      }
+    }
+  },
+  "Vital Signs And Lab": {
+    "displayByDefault": false,
+    "translationKey": "DASHBOARD_TAB_VITALS_SIGNS_AND_LAB_KEY",
+    "maxRecentlyViewedPatients": 1,
+    "sections": {
+      "Vital Signs FlowSheet": {
+        "title": "Vitals Flowsheet",
+        "type": "flowSheet",
+        "dashboardConfig": {
+          "numberOfEncounters": "5",
+          "groupBy": "encounters",
+          "obsConcepts": [
+            "VS, Level of consciousness",
+            "VS, Respiratory rate",
+            "VS, Arterial blood oxygen saturation",
+            "VS, Pulse",
+            "VS, Systolic blood pressure",
+            "VS, Diastolic blood pressure",
+            "VS, Temperature",
+            "VS, Total urine output",
+            "VS, Bowel continence status",
+            "VS, Appearance of stool",
+            "VS, Flatulence"
+          ]
+        },
+        "expandedViewConfig": {
+          "numberOfEncounters": "10",
+          "groupBy": "encounters",
+          "obsConcepts": [
+            "VS, Level of consciousness",
+            "VS, Respiratory rate",
+            "VS, Arterial blood oxygen saturation",
+            "VS, Pulse",
+            "VS, Systolic blood pressure",
+            "VS, Diastolic blood pressure",
+            "VS, Temperature",
+            "VS, Total urine output",
+            "VS, Bowel continence status",
+            "VS, Appearance of stool",
+            "VS, Flatulence"
+          ]
+        }
+      },
+      "Lab FlowSheet": {
+        "title": "Laboratory Flowsheet",
+        "type": "flowSheet",
+        "dashboardConfig": {
+          "numberOfEncounters": "5",
+          "groupBy": "encounters",
+          "obsConcepts": [
+            "LB, Haemoglobin",
+            "LB, Serum creatinine",
+            "LB, Fasting blood glucose measurement",
+            "LB, White blood cell",
+            "LB, Platelet",
+            "LB, Potassium",
+            "LB, Serum glutamic-oxaloacetic transaminase",
+            "LB, Serum glutamic-pyruvic transaminase",
+            "LB, Creatinine clearance test",
+            "LB, Serum sodium",
+            "LB, Serum albumin",
+            "LB, Blood culture result",
+            "LB, Blood typing",
+            "LB, HIV enzyme immunoassay, qualitative",
+            "LB, CD4 count",
+            "LB, HIV viral load"
+          ]
+        },
+        "expandedViewConfig": {
+          "numberOfEncounters": "10",
+          "groupBy": "encounters",
+          "obsConcepts": [
+            "LB, Haemoglobin",
+            "LB, Serum creatinine",
+            "LB, Fasting blood glucose measurement",
+            "LB, White blood cell",
+            "LB, Platelet",
+            "LB, Potassium",
+            "LB, Serum glutamic-oxaloacetic transaminase",
+            "LB, Serum glutamic-pyruvic transaminase",
+            "LB, Creatinine clearance test",
+            "LB, Serum sodium",
+            "LB, Serum albumin",
+            "LB, Blood culture result",
+            "LB, Blood typing",
+            "LB, HIV enzyme immunoassay, qualitative",
+            "LB, CD4 count",
+            "LB, HIV viral load"
+          ]
         }
       }
     }
