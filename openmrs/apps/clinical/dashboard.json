@@ -226,6 +226,7 @@
           "conceptNames": [
             "DF, Date of discharge",
             "DF, Session Location",
+            "DF, Discharge status",
             "DF, Reason for discharge",
             "DF, MHOS score",
             "DF, CGI-severity score at discharge",
@@ -238,6 +239,7 @@
           "conceptNames": [
             "DF, Date of discharge",
             "DF, Session Location",
+            "DF, Discharge status",
             "DF, Reason for discharge",
             "DF, MHOS score",
             "DF, CGI-severity score at discharge",
