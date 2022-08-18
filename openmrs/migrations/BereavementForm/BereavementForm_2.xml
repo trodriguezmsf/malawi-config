@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+  <changeSet id="MALAWI_CONFIG_20220811185819190" author="Kiruthiga">
+    <comment>Adding Concepts for BereavementForm Form</comment>
+    <sqlFile path="BereavementForm/BereavementForm_2.sql"/>
+  </changeSet>
+
+  <changeSet id="MALAWI_CONFIG_20220811185819191" author="Kiruthiga, Shobana">
+    <preConditions onFail="MARK_RAN">
+      <sqlCheck expectedResult = "0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="BF, Type of grief support provided" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'None' AND concept_name_type="FULLY_SPECIFIED");
+      </sqlCheck>
+    </preConditions>
+    <comment>Adding New answer None to BF, Type of grief support provided name</comment>
+    <sql>
+            SELECT concept_id INTO @conceptcoded FROM concept_name WHERE name ="BF, Type of grief support provided" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID1 FROM concept_name WHERE name ="None" AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,sort_weight,date_created,uuid) VALUES (@conceptcoded,@conceptID1,27,4,now(),uuid());
+    </sql>
+  </changeSet>
+
+  <changeSet id="MALAWI_CONFIG_20220811185819192" author="Kiruthiga, Shobana">
+    <comment> Reorderof BF, Type of grief support provided</comment>
+    <sql>
+            set @parent_concept = "BF, Type of grief support provided";
+            call reorder_concept_answer(@parent_concept, "None", 1);
+            call reorder_concept_answer(@parent_concept, "Social support", 2);
+            call reorder_concept_answer(@parent_concept, "Psychosocial Counselling", 3);
+            call reorder_concept_answer(@parent_concept, "Other", 4);
+    </sql>
+  </changeSet>
+
+   <changeSet id="MALAWI_CONFIG_20220811185819195" author="Kiruthiga, Shobana">
+    <preConditions onFail="MARK_RAN">
+      <sqlCheck expectedResult = "0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="BF, Reason for referral" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'None' AND concept_name_type="FULLY_SPECIFIED");
+      </sqlCheck>
+    </preConditions>
+    <comment>Adding New answer None to BF, Reason for referral</comment>
+    <sql>
+            SELECT concept_id INTO @conceptcoded FROM concept_name WHERE name ="BF, Reason for referral" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID1 FROM concept_name WHERE name ="None" AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,sort_weight,date_created,uuid) VALUES (@conceptcoded,@conceptID1,27,4,now(),uuid());
+    </sql>
+  </changeSet>
+
+  <changeSet id="MALAWI_CONFIG_20220811185819196" author="Kiruthiga, Shobana">
+    <comment> Reorderof BF, Reason for referral</comment>
+    <sql>
+            set @parent_concept = "BF, Reason for referral";
+            call reorder_concept_answer(@parent_concept, "None", 1);
+            call reorder_concept_answer(@parent_concept, "Social support", 2);
+            call reorder_concept_answer(@parent_concept, "Psychosocial Counselling", 3);
+            call reorder_concept_answer(@parent_concept, "Other", 4);
+    </sql>
+  </changeSet>
+
+</databaseChangeLog>
