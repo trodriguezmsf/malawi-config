@@ -1501,8 +1501,10 @@
     <include file="DischargeForm/DischargeForm.xml"/>
     <include file="ChemotherapyClinicalAssessmentTreatment/ChemotherapyClinicalAssessmentTreatment.xml"/>
     <include file="ChemotherapyBaselineAssessment/ChemotherapyBaselineAssessment.xml"/>
-     <include file="utils/ReorderConceptAnswer.sql"/>
+    <include file="utils/ReorderConceptAnswer.sql"/>
     <include file="BereavementForm/BereavementForm_2.xml"/>
     <include file="PreTreatmentMDT/PreTreatmentMDT_2.xml"/>
     <include file="PalliativeCareAssessment/PalliativeCareAssessment_2.xml"/>
+    <include file="VitalSigns/VitalSigns_2.xml"/>
+    <include file="PostTreatmentMDT/FollowUpMDT.xml"/>
 </databaseChangeLog>

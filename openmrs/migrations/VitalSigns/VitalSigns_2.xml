@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="MALAWI_CONFIG_20220819094421311" author="Kiruthiga, Shobana">
+        <comment>Adding Concepts for VitalSigns Form</comment>
+        <sqlFile path="VitalSigns/VitalSigns_2.sql"/>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_20220819094421312" author="Kiruthiga, Shobana">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult = "1">
+            select count(*) from concept_name where name = "VS, Frequency of observation" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment>Updating unit for VS, Frequency of observation concept</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "VS, Frequency of observation" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0;
+            update concept_numeric set units=NULL where concept_id = @concept_id;
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_20220819094421317" author="Kiruthiga, Shobana">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_reference_term
+                where code in
+                ("166082")
+                and retired = 0
+                and concept_source_id = (
+                select concept_source_id from concept_reference_source where name = "CEIL"  and retired =0
+                );
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding CEIL codes to concepts</comment>
+        <sql>
+            SELECT concept_source_id INTO @source_id FROM concept_reference_source where name = "CEIL";
+
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"166082",@source_id,uuid(),now());
+            call CREATE_REFERENCE_MAPPING_CEIL("VS, Pain score","166082");
+        </sql>
+    </changeSet>
+</databaseChangeLog>

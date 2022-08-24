@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+  <changeSet id="MALAWI_CONFIG_20220819094421311" author="Kiruthiga, Shobana">
+        <comment>Adding Concepts for VitalSigns Form</comment>
+        <sqlFile path="PostTreatmentMDT/FollowUpMDT.sql"/>
+  </changeSet>
+
+  <changeSet id="MALAWI_CONFIG_20220819185819194" author="Kiruthiga, Shobana">
+    <preConditions onFail="MARK_RAN">
+      <sqlCheck expectedResult = "0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="POMDT, Proposed management plan" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'None' AND concept_name_type="FULLY_SPECIFIED");
+      </sqlCheck>
+    </preConditions>
+    <comment>Adding New answer None to POMDT, Proposed management plan</comment>
+    <sql>
+            SELECT concept_id INTO @conceptcoded FROM concept_name WHERE name ="POMDT, Proposed management plan" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID1 FROM concept_name WHERE name ="Other" AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,sort_weight,date_created,uuid) VALUES (@conceptcoded,@conceptID1,27,5,now(),uuid());
+    </sql>
+  </changeSet>
+
+  <changeSet id="MALAWI_CONFIG_20220819185819193" author="Kiruthiga, Shobana">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) from concept_name where name ="POMDT, Proposed management plan" and concept_name_type ="FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>Updating POMDT, Proposed management plan to POMDT, Other proposed management plan</comment>
+        <sql>
+             UPDATE concept_name set name ="POMDT, Other proposed management plan" where name ="POMDT, Other management plan" and concept_name_type ="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptid FROM concept_name WHERE name ="POMDT, Other proposed management plan" AND concept_name_type ="FULLY_SPECIFIED";
+            UPDATE concept_name SET name = "Other proposed management plan" WHERE concept_id = @conceptid AND concept_name_type ="SHORT";
+
+        </sql>
+    </changeSet>
+
+     <changeSet id="MALAWI_CONFIG_20220819185819195" author="Kiruthiga, Shobana">
+    <preConditions onFail="MARK_RAN">
+      <sqlCheck expectedResult = "0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="POMDT, Follow-up visit" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'None' AND concept_name_type="FULLY_SPECIFIED");
+      </sqlCheck>
+    </preConditions>
+    <comment>Adding New answer None to POMDT, Follow-up visit</comment>
+    <sql>
+            SELECT concept_id INTO @conceptcoded FROM concept_name WHERE name ="POMDT, Follow-up visit" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID1 FROM concept_name WHERE name ="4 weeks" AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,sort_weight,date_created,uuid) VALUES (@conceptcoded,@conceptID1,27,1,now(),uuid());
+    </sql>
+  </changeSet>
+
+   <changeSet id="MALAWI_CONFIG_20220822185819295" author="Kiruthiga, Shobana" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM concept_answer WHERE answer_concept=(SELECT concept_id FROM concept_name WHERE name ="6 weeks" AND concept_name_type="FULLY_SPECIFIED") AND concept_id=(SELECT concept_id FROM concept_name WHERE name ="POMDT, Follow-up visit");
+            </sqlCheck>
+        </preConditions>
+        <comment>Deleting answer concepts from POMDT, Follow-up visit </comment>
+        <sql>
+            SELECT concept_id INTO @concept_id1 FROM concept_name WHERE name ="6 weeks" AND concept_name_type="FULLY_SPECIFIED";
+            delete from concept_answer where answer_concept=@concept_id1 and concept_id=(SELECT concept_id FROM concept_name WHERE name ="POMDT, Follow-up visit");
+             SELECT concept_id INTO @concept_id1 FROM concept_name WHERE name ="Other" AND concept_name_type="FULLY_SPECIFIED";
+            delete from concept_answer where answer_concept=@concept_id1 and concept_id=(SELECT concept_id FROM concept_name WHERE name ="POMDT, Follow-up visit");
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_20220822185819288" author="Kiruthiga, Shobana">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("4 weeks", "3 months", "6 months", "12 months")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "POMDT, Follow-up visit");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to POMDT, Follow-up visit</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "POMDT, Follow-up visit" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="4 weeks" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="3 months" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="6 months" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="12 months" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
