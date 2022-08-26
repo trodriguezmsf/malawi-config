@@ -1044,7 +1044,6 @@
         "title": "Vitals Flowsheet",
         "type": "flowSheet",
         "dashboardConfig": {
-          "numberOfEncounters": "5",
           "groupBy": "encounters",
           "obsConcepts": [
             "VS, Level of consciousness",
@@ -1061,7 +1060,6 @@
           ]
         },
         "expandedViewConfig": {
-          "numberOfEncounters": "10",
           "groupBy": "encounters",
           "obsConcepts": [
             "VS, Level of consciousness",
@@ -1082,7 +1080,6 @@
         "title": "Laboratory Flowsheet",
         "type": "flowSheet",
         "dashboardConfig": {
-          "numberOfEncounters": "5",
           "groupBy": "encounters",
           "obsConcepts": [
             "LB, Haemoglobin",
@@ -1104,7 +1101,6 @@
           ]
         },
         "expandedViewConfig": {
-          "numberOfEncounters": "10",
           "groupBy": "encounters",
           "obsConcepts": [
             "LB, Haemoglobin",
