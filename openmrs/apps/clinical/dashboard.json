@@ -181,7 +181,7 @@
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
-          "scope":"latest",
+          "numberOfEncounters": 6,
           "conceptNames": [
             "FUF, Date recorded",
             "FUF, Session number",
@@ -196,7 +196,7 @@
           ]
         },
         "expandedViewConfig": {
-          "scope":"latest",
+          "numberOfEncounters": 6,
           "conceptNames": [
             "FUF, Date recorded",
             "FUF, Session number",
