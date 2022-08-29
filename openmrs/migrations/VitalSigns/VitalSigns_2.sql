@@ -12,6 +12,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"VS, Drainage ou
 
 #Add Text Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"VS, Comment","Comment","Text","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"VS, Frequency of the observation","Frequency of observation","Text","Misc",false);
 
 #Add Numeric concepts to concept Numeric Table
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
