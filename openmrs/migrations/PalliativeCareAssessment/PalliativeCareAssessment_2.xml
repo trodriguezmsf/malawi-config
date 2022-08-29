@@ -131,9 +131,9 @@
         </sql>
     </changeSet>
 
-     <changeSet id="MALAWI_CONFIG_20220819094421317" author="Kiruthiga, Shobana">
+     <changeSet id="MALAWI_CONFIG_20220819094421318" author="Kiruthiga, Shobana">
         <preConditions onFail="MARK_RAN">
-            <sqlCheck expectedResult="0">
+            <sqlCheck expectedResult="1">
                 select count(*) from concept_reference_term
                 where code in
                 ("166705","162724")

@@ -70,7 +70,7 @@
 
     <changeSet id="MALAWI_CONFIG_20220822185819288" author="Kiruthiga, Shobana">
         <preConditions onFail="MARK_RAN">
-            <sqlCheck expectedResult="0">
+            <sqlCheck expectedResult="8">
                 select count(*) from concept_answer ca
                 join
                 concept_name cn
