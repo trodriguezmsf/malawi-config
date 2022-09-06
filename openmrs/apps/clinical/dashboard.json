@@ -948,7 +948,7 @@
             "PCA, Referred to MOH/NGO",
             "PCA, Referred to MoH/NGO, Other",
             "PCA, Other reason for referral",
-            "PCA, Date of next appointment"
+            "PCA, Next appointment"
           ],
           "pivotTable": {
           }
@@ -967,7 +967,7 @@
             "PCA, Referred to MOH/NGO",
             "PCA, Referred to MoH/NGO, Other",
             "PCA, Other reason for referral",
-            "PCA, Date of next appointment"
+            "PCA, Next appointment"
           ],
           "isEditable": true,
           "showDetailsButton": true,
