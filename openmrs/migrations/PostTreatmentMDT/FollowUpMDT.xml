@@ -24,13 +24,13 @@
     </sql>
   </changeSet>
 
-  <changeSet id="MALAWI_CONFIG_20220819185819193" author="Kiruthiga, Shobana">
+  <changeSet id="MALAWI_CONFIG_20220907185819193" author="Kiruthiga, Shobana">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="1">
-                SELECT count(*) from concept_name where name ="POMDT, Proposed management plan" and concept_name_type ="FULLY_SPECIFIED";
+                SELECT count(*) from concept_name where name ="POMDT, Other management plan" and concept_name_type ="FULLY_SPECIFIED";
             </sqlCheck>
         </preConditions>
-        <comment>Updating POMDT, Proposed management plan to POMDT, Other proposed management plan</comment>
+        <comment>Updating POMDT, Other management plan to POMDT, Other proposed management plan</comment>
         <sql>
              UPDATE concept_name set name ="POMDT, Other proposed management plan" where name ="POMDT, Other management plan" and concept_name_type ="FULLY_SPECIFIED";
             SELECT concept_id INTO @conceptid FROM concept_name WHERE name ="POMDT, Other proposed management plan" AND concept_name_type ="FULLY_SPECIFIED";
