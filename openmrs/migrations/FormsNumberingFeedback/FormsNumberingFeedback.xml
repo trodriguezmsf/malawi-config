@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="Malawi_CONFIG_20220908115639508" author="Tarun, Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from form where name="01 Patient History";
+            </sqlCheck>
+        </preConditions>
+        <comment>Add form number to patient history form</comment>
+        <sql>
+            update form set name="01 Patient History" where name="Patient History";
+            update form_resource set name="01 Patient History" where name="Patient History";
+            update form_resource set name="01 Patient History_FormName_Translation" where name="Patient History_FormName_Translation";
+            update obs set form_namespace_and_path=concat('Bahmni^01 ', substring(form_namespace_and_path,8)) where form_namespace_and_path like 'Bahmni^Patient History%';
+        </sql>
+    </changeSet>
+
+    <changeSet id="Malawi_CONFIG_20220908115639519" author="Tarun, Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from form where name="02 Vital Signs";
+            </sqlCheck>
+        </preConditions>
+        <comment>Add form number to vital signs form</comment>
+        <sql>
+            update form set name="02 Vital Signs" where name="Vital Signs";
+            update form_resource set name="02 Vital Signs" where name="Vital Signs";
+            update form_resource set name="02 Vital Signs_FormName_Translation" where name="Vital Signs_FormName_Translation";
+            update obs set form_namespace_and_path=concat('Bahmni^02 ', substring(form_namespace_and_path,8)) where form_namespace_and_path like 'Bahmni^Vital Signs%';
+        </sql>
+    </changeSet>
+
+    <changeSet id="Malawi_CONFIG_20220908115639527" author="Tarun, Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from form where name="03 Laboratory";
+            </sqlCheck>
+        </preConditions>
+        <comment>Add form number to laboratory form</comment>
+        <sql>
+            update form set name="03 Laboratory" where name="Laboratory";
+            update form_resource set name="03 Laboratory" where name="Laboratory";
+            update form_resource set name="03 Laboratory_FormName_Translation" where name="Laboratory_FormName_Translation";
+            update obs set form_namespace_and_path=concat('Bahmni^03 ', substring(form_namespace_and_path,8)) where form_namespace_and_path like 'Bahmni^Laboratory%';
+        </sql>
+    </changeSet>
+
+    <changeSet id="Malawi_CONFIG_20220908115639534" author="Tarun, Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from form where name="04 Symptoms Assessment";
+            </sqlCheck>
+        </preConditions>
+        <comment>Add form number to symptoms assessment form</comment>
+        <sql>
+            update form set name="04 Symptoms Assessment" where name="Symptoms Assessment";
+            update form_resource set name="04 Symptoms Assessment" where name="Symptoms Assessment";
+            update form_resource set name="04 Symptoms Assessment_FormName_Translation" where name="Symptoms Assessment_FormName_Translation";
+            update obs set form_namespace_and_path=concat('Bahmni^04 ', substring(form_namespace_and_path,8)) where form_namespace_and_path like 'Bahmni^Symptoms Assessment%';
+        </sql>
+    </changeSet>
+
+    <changeSet id="Malawi_CONFIG_20220908115639547" author="Tarun, Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from form where name="05 Initial Consultation";
+            </sqlCheck>
+        </preConditions>
+        <comment>Add form number to initial consultation form</comment>
+        <sql>
+            update form set name="05 Initial Consultation" where name="Initial Consultation";
+            update form_resource set name="05 Initial Consultation" where name="Initial Consultation";
+            update form_resource set name="05 Initial Consultation_FormName_Translation" where name="Initial Consultation_FormName_Translation";
+            update obs set form_namespace_and_path=concat('Bahmni^05 ', substring(form_namespace_and_path,8)) where form_namespace_and_path like 'Bahmni^Initial Consultation%';
+        </sql>
+    </changeSet>
+
+    <changeSet id="Malawi_CONFIG_20220908115639552" author="Tarun, Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from form where name="06 Ultrasound";
+            </sqlCheck>
+        </preConditions>
+        <comment>Add form number to ultrasound form</comment>
+        <sql>
+            update form set name="06 Ultrasound" where name="Ultrasound";
+            update form_resource set name="06 Ultrasound" where name="Ultrasound";
+            update form_resource set name="06 Ultrasound_FormName_Translation" where name="Ultrasound_FormName_Translation";
+            update obs set form_namespace_and_path=concat('Bahmni^06 ', substring(form_namespace_and_path,8)) where form_namespace_and_path like 'Bahmni^Ultrasound%';
+        </sql>
+    </changeSet>
+
+    <changeSet id="Malawi_CONFIG_20220908115639557" author="Tarun, Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from form where name="07 Subsequent Consultation";
+            </sqlCheck>
+        </preConditions>
+        <comment>Add form number to subsequent consultation form</comment>
+        <sql>
+            update form set name="07 Subsequent Consultation" where name="Subsequent Consultation";
+            update form_resource set name="07 Subsequent Consultation" where name="Subsequent Consultation";
+            update form_resource set name="07 Subsequent Consultation_FormName_Translation" where name="Subsequent Consultation_FormName_Translation";
+            update obs set form_namespace_and_path=concat('Bahmni^07 ', substring(form_namespace_and_path,8)) where form_namespace_and_path like 'Bahmni^Subsequent Consultation%';
+        </sql>
+    </changeSet>
+
+    <changeSet id="Malawi_CONFIG_20220908115639564" author="Tarun, Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from form where name="08 Colposcopy";
+            </sqlCheck>
+        </preConditions>
+        <comment>Add form number to colposcopy form</comment>
+        <sql>
+            update form set name="08 Colposcopy" where name="Colposcopy";
+            update form_resource set name="08 Colposcopy" where name="Colposcopy";
+            update form_resource set name="08 Colposcopy_FormName_Translation" where name="Colposcopy_FormName_Translation";
+            update obs set form_namespace_and_path=concat('Bahmni^08 ', substring(form_namespace_and_path,8)) where form_namespace_and_path like 'Bahmni^Colposcopy%';
+        </sql>
+    </changeSet>
+
+    <changeSet id="Malawi_CONFIG_20220908115639569" author="Tarun, Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from form where name="09 LEEP and Conization";
+            </sqlCheck>
+        </preConditions>
+        <comment>Add form number to leep and conization form</comment>
+        <sql>
+            update form set name="09 LEEP and Conization" where name="LEEP and Conization";
+            update form_resource set name="09 LEEP and Conization" where name="LEEP and Conization";
+            update form_resource set name="09 LEEP and Conization_FormName_Translation" where name="LEEP and Conization_FormName_Translation";
+            update obs set form_namespace_and_path=concat('Bahmni^09 ', substring(form_namespace_and_path,8)) where form_namespace_and_path like 'Bahmni^LEEP and Conization%';
+        </sql>
+    </changeSet>
+
+    <changeSet id="Malawi_CONFIG_20220908115639573" author="Tarun, Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from form where name="10 Pre Treatment MDT";
+            </sqlCheck>
+        </preConditions>
+        <comment>Add form number to pre treatment mdt form</comment>
+        <sql>
+            update form set name="10 Pre Treatment MDT" where name="Pre Treatment MDT";
+            update form_resource set name="10 Pre Treatment MDT" where name="Pre Treatment MDT";
+            update form_resource set name="10 Pre Treatment MDT_FormName_Translation" where name="Pre Treatment MDT_FormName_Translation";
+            update obs set form_namespace_and_path=concat('Bahmni^10 ', substring(form_namespace_and_path,8)) where form_namespace_and_path like 'Bahmni^Pre Treatment MDT%';
+        </sql>
+    </changeSet>
+
+    <changeSet id="Malawi_CONFIG_20220908115639576" author="Tarun, Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from form where name="11 Post Treatment MDT";
+            </sqlCheck>
+        </preConditions>
+        <comment>Add form number to post treatment mdt form</comment>
+        <sql>
+            update form set name="11 Follow up MDT" where name="Post Treatment MDT";
+            update form_resource set name="11 Follow up MDT" where name="Post Treatment MDT";
+            update form_resource set name="11 Follow up MDT_FormName_Translation" where name="Post Treatment MDT_FormName_Translation";
+            update obs set form_namespace_and_path=concat('Bahmni^11 Follow up MDT', substring(form_namespace_and_path,26)) where form_namespace_and_path like 'Bahmni^Post Treatment MDT%';
+        </sql>
+    </changeSet>
+
+    <changeSet id="Malawi_CONFIG_20220908115639581" author="Tarun, Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from form where name="12 Palliative Care Assessment";
+            </sqlCheck>
+        </preConditions>
+        <comment>Add form number to palliative care assessment form</comment>
+        <sql>
+            update form set name="12 Palliative Care Assessment" where name="Palliative Care Assessment";
+            update form_resource set name="12 Palliative Care Assessment" where name="Palliative Care Assessment";
+            update form_resource set name="12 Palliative Care Assessment_FormName_Translation" where name="Palliative Care Assessment_FormName_Translation";
+            update obs set form_namespace_and_path=concat('Bahmni^12 ', substring(form_namespace_and_path,8)) where form_namespace_and_path like 'Bahmni^Palliative Care Assessment%';
+        </sql>
+    </changeSet>
+
+    <changeSet id="Malawi_CONFIG_20220908115639588" author="Tarun, Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from form where name="13 Pain Assessment";
+            </sqlCheck>
+        </preConditions>
+        <comment>Add form number to pain assessment form</comment>
+        <sql>
+            update form set name="13 Pain Assessment" where name="Pain Assessment";
+            update form_resource set name="13 Pain Assessment" where name="Pain Assessment";
+            update form_resource set name="13 Pain Assessment_FormName_Translation" where name="Pain Assessment_FormName_Translation";
+            update obs set form_namespace_and_path=concat('Bahmni^13 ', substring(form_namespace_and_path,8)) where form_namespace_and_path like 'Bahmni^Pain Assessment%';
+        </sql>
+    </changeSet>
+
+    <changeSet id="Malawi_CONFIG_20220908115639593" author="Tarun, Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from form where name="14 Bereavement Form";
+            </sqlCheck>
+        </preConditions>
+        <comment>Add form number to bereavement form</comment>
+        <sql>
+            update form set name="14 Bereavement Form" where name="Bereavement Form";
+            update form_resource set name="14 Bereavement Form" where name="Bereavement Form";
+            update form_resource set name="14 Bereavement Form_FormName_Translation" where name="Bereavement Form_FormName_Translation";
+            update obs set form_namespace_and_path=concat('Bahmni^14 ', substring(form_namespace_and_path,8)) where form_namespace_and_path like 'Bahmni^Bereavement Form%';
+        </sql>
+    </changeSet>
+
+    <changeSet id="Malawi_CONFIG_20220908115639597" author="Tarun, Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from form where name="15 Medical Social Assessment";
+            </sqlCheck>
+        </preConditions>
+        <comment>Add form number to medical social assessment form</comment>
+        <sql>
+            update form set name="15 Medical Social Assessment" where name="Medical Social Assessment";
+            update form_resource set name="15 Medical Social Assessment" where name="Medical Social Assessment";
+            update form_resource set name="15 Medical Social Assessment_FormName_Translation" where name="Medical Social Assessment_FormName_Translation";
+            update obs set form_namespace_and_path=concat('Bahmni^15 ', substring(form_namespace_and_path,8)) where form_namespace_and_path like 'Bahmni^Medical Social Assessment%';
+        </sql>
+    </changeSet>
+
+    <changeSet id="Malawi_CONFIG_20220908115639599" author="Tarun, Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from form where name="16 Intake for Psychological Assessment";
+            </sqlCheck>
+        </preConditions>
+        <comment>Add form number to intake for psychological assessment</comment>
+        <sql>
+            update form set name="16 Intake for Psychological Assessment" where name="Intake for Psychological Assessment";
+            update form_resource set name="16 Intake for Psychological Assessment" where name="Intake for Psychological Assessment";
+            update form_resource set name="16 Intake for Psychological Assessment_FormName_Translation" where name="Intake for Psychological Assessment_FormName_Translation";
+            update obs set form_namespace_and_path=concat('Bahmni^16 ', substring(form_namespace_and_path,8)) where form_namespace_and_path like 'Bahmni^Intake for Psychological Assessment%';
+        </sql>
+    </changeSet>
+
+    <changeSet id="Malawi_CONFIG_20220908115639602" author="Tarun, Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from form where name="17 PSA Follow up";
+            </sqlCheck>
+        </preConditions>
+        <comment>Add form number to psa follow up</comment>
+        <sql>
+            update form set name="17 PSA Follow up" where name="PSA Follow up";
+            update form_resource set name="17 PSA Follow up" where name="PSA Follow up";
+            update form_resource set name="17 PSA Follow up_FormName_Translation" where name="PSA Follow up_FormName_Translation";
+            update obs set form_namespace_and_path=concat('Bahmni^17 ', substring(form_namespace_and_path,8)) where form_namespace_and_path like 'Bahmni^PSA Follow up%';
+        </sql>
+    </changeSet>
+
+    <changeSet id="Malawi_CONFIG_20220908115639613" author="Tarun, Supriya">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from form where name="18 PSA Discharge";
+            </sqlCheck>
+        </preConditions>
+        <comment>Add form number to psa discharge</comment>
+        <sql>
+            update form set name="18 PSA Discharge" where name="PSA Discharge";
+            update form_resource set name="18 PSA Discharge" where name="PSA Discharge";
+            update form_resource set name="18 PSA Discharge_FormName_Translation" where name="PSA Discharge_FormName_Translation";
+            update obs set form_namespace_and_path=concat('Bahmni^18 ', substring(form_namespace_and_path,8)) where form_namespace_and_path like 'Bahmni^PSA Discharge%';
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

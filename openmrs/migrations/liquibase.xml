@@ -1507,4 +1507,5 @@
     <include file="PalliativeCareAssessment/PalliativeCareAssessment_2.xml"/>
     <include file="VitalSigns/VitalSigns_2.xml"/>
     <include file="PostTreatmentMDT/FollowUpMDT.xml"/>
+    <include file="FormsNumberingFeedback/FormsNumberingFeedback.xml"/>
 </databaseChangeLog>
