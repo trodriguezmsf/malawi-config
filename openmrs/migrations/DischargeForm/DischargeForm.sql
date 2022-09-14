@@ -18,22 +18,22 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"DF, Discharge s
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"DF, Reason for discharge","Reason for discharge","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"DF, Reason for lost to follow up","Reason for lost to follow up","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"DF, Session Location","Session Location","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"DF, Did you have problem performing daily activities, such as cooking, bathing, or chores outside the household?","Did you have problem performing daily activities, such as cooking, bathing, or chores outside the household?","Coded","Misc",false);
+call add_concept(@concept_id,@concept_sd,@concept_full_id,"DF, CGI-improvement score at discharge","CGI-improvement score at discharge","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"DF, CGI-I outcome","CGI-I outcome","Coded","Misc",false);
+
+#Add Numeric Conceptshort_id,@concept_full_id,"DF, Did you have problem performing daily activities, such as cooking, bathing, or chores outside the household?","Did you have problem performing daily activities, such as cooking, bathing, or chores outside the household?","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"DF, Did you have problems getting along with family or friends?","Did you have problems getting along with family or friends?","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"DF, Did you have any problems sleeping, such as sleeping too much or not enough?","Did you have any problems sleeping, such as sleeping too much or not enough?","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"DF, Have you been bothered by unpleasant thoughts, worries or ideas?","Have you been bothered by unpleasant thoughts, worries or ideas?","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"DF, Have you felt sad or nervous?","Have you felt sad or nervous?","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"DF, Have you been suffering?","Have you been suffering?","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"DF, CGI-severity score at discharge","CGI-severity score at discharge","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"DF, CGI-improvement score at discharge","CGI-improvement score at discharge","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"DF, CGI-I outcome","CGI-I outcome","Coded","Misc",false);
-
-#Add Numeric Concepts
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"DF, MHOS score","MHOS score","Numeric","Computed",false);
+call add_concept(@concept_id,@concept_short_i
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"DF, MHOS score at discharge","MHOS score at discharge","Numeric","Computed",false);
 
 #Add Numeric concepts to concept Numeric Table
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "DF, MHOS score" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
+VALUES ((select concept_id from concept_name where name = "DF, MHOS score at discharge" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
 
 #Add Child Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Discharged","Discharged","N/A","Misc",false);
