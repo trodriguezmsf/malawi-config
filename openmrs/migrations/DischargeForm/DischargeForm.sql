@@ -29,11 +29,12 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"DF, CGI-improve
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"DF, CGI-I outcome","CGI-I outcome","Coded","Misc",false);
 
 #Add Numeric Concepts
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"DF, MHOS score","MHOS score","Numeric","Computed",false);
+
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"DF, MHOS score at discharge","MHOS score at discharge","Numeric","Computed",false);
 
 #Add Numeric concepts to concept Numeric Table
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "DF, MHOS score" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
+VALUES ((select concept_id from concept_name where name = "DF, MHOS score at discharge" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
 
 #Add Child Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Discharged","Discharged","N/A","Misc",false);
