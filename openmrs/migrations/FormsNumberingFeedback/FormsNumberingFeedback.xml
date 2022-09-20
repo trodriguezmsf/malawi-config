@@ -19,6 +19,9 @@
             update form_resource set name="01 Patient History" where name="Patient History";
             update form_resource set name="01 Patient History_FormName_Translation" where name="Patient History_FormName_Translation";
             update obs set form_namespace_and_path=concat('Bahmni^01 ', substring(form_namespace_and_path,8)) where form_namespace_and_path like 'Bahmni^Patient History%';
+            set @latest_form_id = 0;
+            select MAX(form_id) into @latest_form_id from form_resource where name='01 Patient History';
+            insert into form_resource(form_id, name, value_reference, datatype, datatype_config, uuid) values(@latest_form_id, '01 Patient History_FormName_Translation', '[{"display":"1.Patient History","locale":"en"}]', 'org.bahmni.customdatatype.datatype.FormNameTranslationDatatype', '[{"display":"1.Patient History","locale":"en"}]', uuid());
         </sql>
     </changeSet>
 
@@ -49,6 +52,9 @@
             update form_resource set name="03 Laboratory" where name="Laboratory";
             update form_resource set name="03 Laboratory_FormName_Translation" where name="Laboratory_FormName_Translation";
             update obs set form_namespace_and_path=concat('Bahmni^03 ', substring(form_namespace_and_path,8)) where form_namespace_and_path like 'Bahmni^Laboratory%';
+            set @latest_form_id = 0;
+            select MAX(form_id) into @latest_form_id from form_resource where name='03 Laboratory';
+            insert into form_resource(form_id, name, value_reference, datatype, datatype_config, uuid) values(@latest_form_id, '03 Laboratory_FormName_Translation', '[{"display":"3.Laboratory","locale":"en"}]', 'org.bahmni.customdatatype.datatype.FormNameTranslationDatatype', '[{"display":"3.Laboratory","locale":"en"}]', uuid());
         </sql>
     </changeSet>
 
@@ -64,6 +70,7 @@
             update form_resource set name="04 Symptoms Assessment" where name="Symptoms Assessment";
             update form_resource set name="04 Symptoms Assessment_FormName_Translation" where name="Symptoms Assessment_FormName_Translation";
             update obs set form_namespace_and_path=concat('Bahmni^04 ', substring(form_namespace_and_path,8)) where form_namespace_and_path like 'Bahmni^Symptoms Assessment%';
+            update form_resource set value_reference='[{"display":"4.Symptoms Assessment","locale":"en"}]', datatype_config='[{"display":"4.Symptoms Assessment","locale":"en"}]' where name='04 Symptoms Assessment_FormName_Translation';
         </sql>
     </changeSet>
 
@@ -94,6 +101,9 @@
             update form_resource set name="06 Ultrasound" where name="Ultrasound";
             update form_resource set name="06 Ultrasound_FormName_Translation" where name="Ultrasound_FormName_Translation";
             update obs set form_namespace_and_path=concat('Bahmni^06 ', substring(form_namespace_and_path,8)) where form_namespace_and_path like 'Bahmni^Ultrasound%';
+            set @latest_form_id = 0;
+            select MAX(form_id) into @latest_form_id from form_resource where name='06 Ultrasound';
+            insert into form_resource(form_id, name, value_reference, datatype, datatype_config, uuid) values(@latest_form_id, '06 Ultrasound_FormName_Translation', '[{"display":"6.Ultrasound","locale":"en"}]', 'org.bahmni.customdatatype.datatype.FormNameTranslationDatatype', '[{"display":"6.Ultrasound","locale":"en"}]', uuid());
         </sql>
     </changeSet>
 
@@ -124,6 +134,9 @@
             update form_resource set name="08 Colposcopy" where name="Colposcopy";
             update form_resource set name="08 Colposcopy_FormName_Translation" where name="Colposcopy_FormName_Translation";
             update obs set form_namespace_and_path=concat('Bahmni^08 ', substring(form_namespace_and_path,8)) where form_namespace_and_path like 'Bahmni^Colposcopy%';
+            set @latest_form_id = 0;
+            select MAX(form_id) into @latest_form_id from form_resource where name='08 Colposcopy';
+            insert into form_resource(form_id, name, value_reference, datatype, datatype_config, uuid) values(@latest_form_id, '08 Colposcopy_FormName_Translation', '[{"display":"8.Colposcopy","locale":"en"}]', 'org.bahmni.customdatatype.datatype.FormNameTranslationDatatype', '[{"display":"8.Colposcopy","locale":"en"}]', uuid());
         </sql>
     </changeSet>
 
@@ -139,6 +152,9 @@
             update form_resource set name="09 LEEP and Conization" where name="LEEP and Conization";
             update form_resource set name="09 LEEP and Conization_FormName_Translation" where name="LEEP and Conization_FormName_Translation";
             update obs set form_namespace_and_path=concat('Bahmni^09 ', substring(form_namespace_and_path,8)) where form_namespace_and_path like 'Bahmni^LEEP and Conization%';
+            set @latest_form_id = 0;
+            select MAX(form_id) into @latest_form_id from form_resource where name='09 LEEP and Conization';
+            insert into form_resource(form_id, name, value_reference, datatype, datatype_config, uuid) values(@latest_form_id, '09 LEEP and Conization_FormName_Translation', '[{"display":"9.LEEP and Conization","locale":"en"}]', 'org.bahmni.customdatatype.datatype.FormNameTranslationDatatype', '[{"display":"9.LEEP and Conization","locale":"en"}]', uuid());
         </sql>
     </changeSet>
 
@@ -199,6 +215,7 @@
             update form_resource set name="13 Pain Assessment" where name="Pain Assessment";
             update form_resource set name="13 Pain Assessment_FormName_Translation" where name="Pain Assessment_FormName_Translation";
             update obs set form_namespace_and_path=concat('Bahmni^13 ', substring(form_namespace_and_path,8)) where form_namespace_and_path like 'Bahmni^Pain Assessment%';
+            update form_resource set value_reference='[{"display":"13.Pain Assessment","locale":"en"}]', datatype_config='[{"display":"13.Pain Assessment","locale":"en"}]' where name='13 Pain Assessment_FormName_Translation';
         </sql>
     </changeSet>
 
@@ -214,66 +231,6 @@
             update form_resource set name="14 Bereavement Form" where name="Bereavement Form";
             update form_resource set name="14 Bereavement Form_FormName_Translation" where name="Bereavement Form_FormName_Translation";
             update obs set form_namespace_and_path=concat('Bahmni^14 ', substring(form_namespace_and_path,8)) where form_namespace_and_path like 'Bahmni^Bereavement Form%';
-        </sql>
-    </changeSet>
-
-    <changeSet id="Malawi_CONFIG_20220908115639597" author="Tarun, Supriya">
-        <preConditions onFail="MARK_RAN">
-            <sqlCheck expectedResult="0">
-                select count(*) from form where name="15 Medical Social Assessment";
-            </sqlCheck>
-        </preConditions>
-        <comment>Add form number to medical social assessment form</comment>
-        <sql>
-            update form set name="15 Medical Social Assessment" where name="Medical Social Assessment";
-            update form_resource set name="15 Medical Social Assessment" where name="Medical Social Assessment";
-            update form_resource set name="15 Medical Social Assessment_FormName_Translation" where name="Medical Social Assessment_FormName_Translation";
-            update obs set form_namespace_and_path=concat('Bahmni^15 ', substring(form_namespace_and_path,8)) where form_namespace_and_path like 'Bahmni^Medical Social Assessment%';
-        </sql>
-    </changeSet>
-
-    <changeSet id="Malawi_CONFIG_20220908115639599" author="Tarun, Supriya">
-        <preConditions onFail="MARK_RAN">
-            <sqlCheck expectedResult="0">
-                select count(*) from form where name="16 Intake for Psychological Assessment";
-            </sqlCheck>
-        </preConditions>
-        <comment>Add form number to intake for psychological assessment</comment>
-        <sql>
-            update form set name="16 Intake for Psychological Assessment" where name="Intake for Psychological Assessment";
-            update form_resource set name="16 Intake for Psychological Assessment" where name="Intake for Psychological Assessment";
-            update form_resource set name="16 Intake for Psychological Assessment_FormName_Translation" where name="Intake for Psychological Assessment_FormName_Translation";
-            update obs set form_namespace_and_path=concat('Bahmni^16 ', substring(form_namespace_and_path,8)) where form_namespace_and_path like 'Bahmni^Intake for Psychological Assessment%';
-        </sql>
-    </changeSet>
-
-    <changeSet id="Malawi_CONFIG_20220908115639602" author="Tarun, Supriya">
-        <preConditions onFail="MARK_RAN">
-            <sqlCheck expectedResult="0">
-                select count(*) from form where name="17 PSA Follow up";
-            </sqlCheck>
-        </preConditions>
-        <comment>Add form number to psa follow up</comment>
-        <sql>
-            update form set name="17 PSA Follow up" where name="PSA Follow up";
-            update form_resource set name="17 PSA Follow up" where name="PSA Follow up";
-            update form_resource set name="17 PSA Follow up_FormName_Translation" where name="PSA Follow up_FormName_Translation";
-            update obs set form_namespace_and_path=concat('Bahmni^17 ', substring(form_namespace_and_path,8)) where form_namespace_and_path like 'Bahmni^PSA Follow up%';
-        </sql>
-    </changeSet>
-
-    <changeSet id="Malawi_CONFIG_20220908115639613" author="Tarun, Supriya">
-        <preConditions onFail="MARK_RAN">
-            <sqlCheck expectedResult="0">
-                select count(*) from form where name="18 PSA Discharge";
-            </sqlCheck>
-        </preConditions>
-        <comment>Add form number to psa discharge</comment>
-        <sql>
-            update form set name="18 PSA Discharge" where name="PSA Discharge";
-            update form_resource set name="18 PSA Discharge" where name="PSA Discharge";
-            update form_resource set name="18 PSA Discharge_FormName_Translation" where name="PSA Discharge_FormName_Translation";
-            update obs set form_namespace_and_path=concat('Bahmni^18 ', substring(form_namespace_and_path,8)) where form_namespace_and_path like 'Bahmni^PSA Discharge%';
         </sql>
     </changeSet>
 
