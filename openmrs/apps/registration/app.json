@@ -33,6 +33,12 @@
                     "forwardUrl": "/bahmni/home/index.html#/dashboard",
                     "translationKey": "Go to Home Page",
                     "shortcutKey": "c"
+                },
+                {
+                    "visitType": "IPD",
+                    "forwardUrl": "/bahmni/home/index.html#/dashboard",
+                    "translationKey": "Go to Home Page",
+                    "shortcutKey": "c"
                 }
             ],
             "mandatoryPersonAttributes" : [

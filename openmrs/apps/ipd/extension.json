@@ -1,45 +1,32 @@
 {
-  "bahmniAdtPatientsSearchPatientsAdmitted": {
-    "id": "bahmni.adt.patients.search.patientsAdmitted",
+  "bahmniAdtPatientsSearchPatientsAdmittedToSurgicalWard": {
+    "id": "bahmni.ipd.patients.search.patientsAdmittedToSurgicalWard",
     "extensionPointId": "org.bahmni.patient.search",
     "type": "config",
     "extensionParams": {
-      "searchHandler": "emrapi.sqlSearch.admittedPatients",
-      "translationKey": "MODULE_LABEL_ADMITTED_KEY",
-      "forwardUrl": "#/bedManagement/patient/{{patientUuid}}"
-    },
-    "label": "Admitted",
-    "order": 1,
-    "requiredPrivilege": "app:adt"
-  },
-  "bahmniAdtPatientsSearchPatientsToAdmit": {
-    "id": "bahmni.adt.patients.search.patientsToAdmit",
-    "extensionPointId": "org.bahmni.patient.search",
-    "type": "config",
-    "extensionParams": {
-      "searchHandler": "emrapi.sqlSearch.patientsToAdmit",
+      "searchHandler": "emrapi.sqlSearch.patientsAdmittedToSurgicalWard",
       "translationKey": "MODULE_LABEL_ADMITTED_TO_SURGICAL_WARD_KEY",
       "linkColumn": "action",
       "forwardUrl": "#/bedManagement/patient/{{patientUuid}}",
       "searchColumns": ["identifier", "name"]
     },
     "label": "To Admit",
-    "order": 2,
+    "order": 1,
     "requiredPrivilege": "app:adt"
   },
-  "bahmniAdtPatientsSearchPatientsAdmitted": {
-    "id": "bahmni.adt.patients.search.patientsAdmitted",
+  "bahmniAdtPatientsSearchPatientsAdmittedToSupportiveCareWard": {
+    "id": "bahmni.ipd.patients.search.patientsAdmittedToSupportiveCareWard",
     "extensionPointId": "org.bahmni.patient.search",
     "type": "config",
     "extensionParams": {
-      "searchHandler": "emrapi.sqlSearch.admittedPatients",
+      "searchHandler": "emrapi.sqlSearch.patientsAdmittedToSupportiveCareWard",
       "translationKey": "MODULE_LABEL_ADMITTED_TO_SUPPORTIVE_CARE_WARD_KEY",
       "linkColumn": "action",
       "forwardUrl": "#/bedManagement/patient/{{patientUuid}}",
       "searchColumns": ["identifier", "name"]
     },
     "label": "Admitted",
-    "order": 3,
+    "order": 2,
     "requiredPrivilege": "app:adt"
   },
   "bahmniAdtPatientsSearchAllPatients": {
@@ -51,7 +38,7 @@
       "forwardUrl": "#/bedManagement/patient/{{patientUuid}}"
     },
     "label": "All",
-    "order": 4,
+    "order": 3,
     "requiredPrivilege": "app:adt"
   }
 }

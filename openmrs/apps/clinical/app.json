@@ -23,6 +23,13 @@
         "visitUuid"
     ],
     "config": {
+        "diagnosisStatus": "Inactive",
+        "adtNavigationConfig": {
+            "hideGoToIPDButton": false,
+            "forwardUrl": "../bedmanagement/#/patient/{{patientUuid}}/visit/{{visitUuid}}/dashboard",
+            "privilege": "app:adt",
+            "title": "Go to IPD dashboard"
+        },
         "hideConditions": false,
         "enableRadiologyOrderOptions": [
             "Urgent",
