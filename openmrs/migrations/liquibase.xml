@@ -1500,7 +1500,7 @@
     <changeSet id="MALAWI_CONFIG-20221003" author="Kiruthiga,Shobana">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
-                SELECT count(1) from visit_type where name = 'IPD';
+                SELECT count(*) from visit_type where name = 'IPD';
             </sqlCheck>
         </preConditions>
         <comment>Add IPD visit type</comment>
