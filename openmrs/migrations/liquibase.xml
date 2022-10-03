@@ -626,7 +626,7 @@
         </sql>
     </changeSet>
 
-    <changeSet id="MALAWI_CONFIG-070420201530" author="Suraj">
+    <!-- <changeSet id="MALAWI_CONFIG-070420201530" author="Suraj">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
                 SELECT count(*) from visit_type where name = 'IPD';
@@ -636,7 +636,7 @@
         <sql>
             INSERT INTO visit_type(name, description, creator, date_created, retired, uuid) VALUES ('IPD', 'IPD visit', 1, now(), 0, uuid());
         </sql>
-    </changeSet>
+    </changeSet> -->
 
     <changeSet id="MALAWI_CONFIG-080420202140" author="Suraj">
         <comment>Stored Procedure to add reference term</comment>
@@ -1508,4 +1508,16 @@
     <include file="VitalSigns/VitalSigns_2.xml"/>
     <include file="PostTreatmentMDT/FollowUpMDT.xml"/>
     <include file="FormsNumberingFeedback/FormsNumberingFeedback.xml"/>
+
+    <changeSet id="MALAWI_CONFIG-20221003" author="Kiruthiga,Shobana">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from visit_type where name = 'IPD';
+            </sqlCheck>
+        </preConditions>
+        <comment>Add IPD visit type</comment>
+        <sql>
+            INSERT INTO visit_type(name, description, creator, date_created, retired, uuid) VALUES ('IPD', 'IPD visit', 1, now(), 0, uuid());
+        </sql>
+    </changeSet>
 </databaseChangeLog>
