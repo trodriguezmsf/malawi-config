@@ -164,8 +164,8 @@
     <changeSet id="MALAWI_CONFIG-030420201326" author="Suraj" runOnChange="true">
         <comment>Bed management patient listing queues</comment>
         <sqlFile path="BedManagement/patientsAdmitted.sql"/>
-        <sqlFile path="BedManagement/patientsAdmittoSurgicalWard.sql"/>
-        <sqlFile path="BedManagement/patientsAdmittoSupportiveCareWard.sql"/>
+        <sqlFile path="BedManagement/patientsAdmittedtoSurgicalWard.sql"/>
+        <sqlFile path="BedManagement/patientsAdmittedtoSupportiveCareWard.sql"/>
     </changeSet>
 
     <changeSet id="MALAWI-202004100906" author="Sreekalyan">
@@ -207,6 +207,15 @@
             INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@child1_concept_id,@concept_id,1,8,now(),uuid());
             INSERT INTO concept_set (concept_id,concept_set,sort_weight,creator,date_created,uuid) VALUES (@child2_concept_id,@concept_id,1,8,now(),uuid());
         </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG-071020221301" author="Kiruthiga, Shobana" runOnChange="true">
+        <comment>Bed management patient disposition mapping</comment>
+        <sqlFile path="BedManagement/patientsAdmittoSurgicalWard.sql"/>
+        <sqlFile path="BedManagement/patientsAdmittoSupportiveCareWard.sql"/>
+        <sqlFile path="BedManagement/patientsMovementtoSurgicalWard.sql"/>
+        <sqlFile path="BedManagement/patientsMovementtoSupportiveCareWard.sql"/>
+        <sqlFile path="BedManagement/patientsDischarge.sql"/>
     </changeSet>
 
 </databaseChangeLog>

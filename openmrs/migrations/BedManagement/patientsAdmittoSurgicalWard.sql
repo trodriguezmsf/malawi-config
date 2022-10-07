@@ -1,31 +1,47 @@
+DELETE FROM global_property WHERE property = 'emrapi.sqlSearch.patientsAdmittoSurgicalWard';
+SELECT uuid() INTO @uuid;
 INSERT INTO global_property (`property`, `property_value`, `description`, `uuid`)
-VALUES ('emrapi.sqlSearch.patientsAdmittedToSurgicalWard',
-"select distinct
-          concat(pn.given_name,' ', ifnull(pn.family_name,'')) as name,
-          pi.identifier as identifier,
-          concat('',p.uuid) as uuid,
-          concat('',v.uuid) as activeVisitUuid,
-          IF(va.value_reference = 'Admitted', 'true', 'false') as hasBeenAdmitted
-from bed
-         INNER JOIN bed_location_map blm ON blm.bed_id = bed.bed_id AND bed.status ='OCCUPIED'
-         INNER JOIN location l ON l.location_id = blm.location_id AND l.name in ('Surgical Ward') AND l.retired IS FALSE
-         LEFT OUTER JOIN bed_patient_assignment_map bpam ON bpam.bed_id = bed.bed_id AND bpam.date_stopped IS NULL
-         LEFT OUTER JOIN person p ON p.person_id = bpam.patient_id AND p.voided IS FALSE
-         LEFT OUTER JOIN person_name pn ON pn.person_id = p.person_id AND pn.voided IS FALSE
-         LEFT OUTER JOIN patient_identifier pi ON pi.patient_id = p.person_id AND pi.voided IS FALSE
-         LEFT OUTER JOIN visit v ON v.patient_id = pn.person_id and pn.voided = 0
-         LEFT OUTER JOIN visit_attribute va on va.visit_id = v.visit_id and va.attribute_type_id = (
-          select visit_attribute_type_id from visit_attribute_type where name='Admission Status'
-        ) and va.voided = 0
-		# Block to fetch the date of Admission
-         LEFT OUTER JOIN ( SELECT e.patient_id, MAX(e.encounter_datetime) AS admission_datetime FROM encounter e
-                           INNER JOIN encounter_type et ON et.encounter_type_id = e.encounter_type AND et.name = 'ADMISSION' GROUP BY e.patient_id
-                         ) latestAdmissionEncounter ON p.person_id = latestAdmissionEncounter.patient_id
-         # Block to fetch bed tags
-         LEFT OUTER JOIN ( SELECT bpam.patient_id,bd.bed_number,GROUP_CONCAT(DISTINCT bt.name ORDER BY bt.name) AS 'bed_tags' from bed bd
-                            INNER JOIN bed_patient_assignment_map bpam on bd.bed_id = bpam.bed_id and bpam.voided is false
-                            LEFT OUTER JOIN bed_tag_map btm on bd.bed_id = btm.bed_id and btm.voided is false
-                            LEFT OUTER JOIN bed_tag bt on btm.bed_tag_id = bt.bed_tag_id and bt.voided is false WHERE bpam.date_stopped is NULL and bd.voided is false GROUP BY bpam.patient_id
-                         )  BEDINFO ON BEDINFO.patient_id = pi.patient_id
-        GROUP BY pi.identifier
-        ORDER BY bpam.date_started DESC",'Admit to Surgical Ward',uuid());
+VALUES ('emrapi.sqlSearch.patientsAdmittoSurgicalWard',
+"SELECT DISTINCT
+  pi.identifier                                         AS identifier,
+  concat(pn.given_name, ' ', pn.family_name)            AS PATIENT_LISTING_QUEUES_HEADER_NAME,
+  floor(DATEDIFF(CURDATE(), p.birthdate) / 365)         AS age,
+  p.gender                                              AS gender,
+  DATE_FORMAT(o.obs_datetime,'%d %b %Y %h:%i %p')       AS 'Disposition Date',
+  'Admit To Surgical Ward'                                         AS action,
+  concat('', p.uuid)                                    AS uuid,
+  concat('', v.uuid)                                    AS activeVisitUuid
+FROM person p
+  INNER JOIN person_name pn ON p.person_id = pn.person_id AND pn.voided IS FALSE AND p.voided IS FALSE
+  INNER JOIN patient_identifier pi ON p.person_id = pi.patient_id AND pi.voided IS FALSE
+  INNER JOIN patient_identifier_type pit ON pi.identifier_type = pit.patient_identifier_type_id AND pit.retired IS FALSE
+  INNER JOIN visit v ON p.person_id = v.patient_id AND v.voided IS FALSE
+  INNER JOIN ( SELECT
+                    en.patient_id,
+                    max(en.date_created) AS dateCreated
+                FROM encounter en
+                INNER JOIN obs o ON en.encounter_id = o.encounter_id
+                INNER JOIN concept_name cn ON o.concept_id = cn.concept_id AND cn.concept_name_type = 'FULLY_SPECIFIED' AND cn.voided is FALSE AND cn.name = 'Disposition'
+                GROUP BY en.patient_id
+            ) latestEncounterWithDisposition ON v.patient_id = latestEncounterWithDisposition.patient_id
+  INNER JOIN encounter e ON v.visit_id = e.visit_id AND e.date_created = latestEncounterWithDisposition.dateCreated
+                            AND e.patient_id = latestEncounterWithDisposition.patient_id AND e.voided IS FALSE
+  INNER JOIN obs o ON e.encounter_id = o.encounter_id AND o.voided IS FALSE
+  INNER JOIN concept c ON o.value_coded = c.concept_id AND c.retired IS FALSE
+  INNER JOIN concept_name cn ON c.concept_id = cn.concept_id AND cn.voided IS FALSE
+  LEFT JOIN (SELECT
+                    bpam.patient_id,
+                    max(bpam.date_stopped) AS date_stopped
+                FROM bed_patient_assignment_map bpam
+                    WHERE bpam.voided IS FALSE
+                GROUP BY bpam.patient_id) lastDischargeTime ON p.person_id = lastDischargeTime.patient_id
+WHERE v.date_stopped IS NULL AND cn.name = 'Admit to Surgical Ward' AND p.person_id NOT IN (SELECT patient_id
+                                                                                   FROM bed_patient_assignment_map bpam
+                                                                                   WHERE bpam.date_stopped IS NULL
+                                                                                   GROUP BY patient_id)
+                            AND CASE
+                                    WHEN lastDischargeTime.date_stopped IS NOT NULL AND o.date_created > lastDischargeTime.date_stopped THEN 1
+                                    WHEN lastDischargeTime.date_stopped IS NULL THEN 1
+                                END
+GROUP BY pi.identifier
+ORDER BY o.obs_datetime;",'Admit to Surgical Ward',@uuid);
