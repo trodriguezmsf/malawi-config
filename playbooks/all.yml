@@ -9,3 +9,4 @@
     - { role: visit-close-module, tags: visit_close_module }
     - { role: appointment-frontend, tags: appointment-frontend }
     - { role: openmrs-ui-framework, tags: openmrs_ui_framework }
+    - { role: patient-identifier-generator, tags: patient_identifier_generator }
