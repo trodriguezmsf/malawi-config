@@ -8,3 +8,4 @@ emr_api_omod: https://stable.s3.ap-south-1.amazonaws.com/msf-release-2.6.4/emrap
 event_omod: https://stable.s3.ap-south-1.amazonaws.com/msf-release-2.6.4/event-2.8.0-2.1.0.omod
 uiframework: https://stable.s3.ap-south-1.amazonaws.com/msf-release-2.6.4/uiframework-3.19-2.1.0.omod
 visitclosemodule: https://stable.s3.ap-south-1.amazonaws.com/msf-release-2.6.4/visit-close-module-0.93-2.3.1.omod
+patient_identifier_generator: https://stable.s3.ap-south-1.amazonaws.com/msf-release-2.6.4/patientidentifiergenerator-0.1.0-2.0.0.omod
