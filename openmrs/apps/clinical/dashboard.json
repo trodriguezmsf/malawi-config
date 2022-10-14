@@ -427,7 +427,7 @@
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
-          "scope":"latest",
+          "numberOfEncounters": 6,
           "conceptNames": [
             "SC, Reason for visit",
             "SC, Time",
@@ -458,7 +458,7 @@
           ]
         },
         "expandedViewConfig": {
-          "scope":"latest",
+          "numberOfEncounters": 6,
           "conceptNames": [
             "SC, Reason for visit",
             "SC, Time",
@@ -1105,6 +1105,10 @@
         "dashboardConfig": {
           "groupBy": "encounters",
           "obsConcepts": [
+            "VS, Location",
+            "VS, Weight",
+            "VS, Body mass index",
+            "VS, Body surface area",
             "VS, Level of consciousness",
             "VS, Respiratory rate",
             "VS, Arterial blood oxygen saturation",
@@ -1115,7 +1119,9 @@
             "VS, Total urine output",
             "VS, Bowel continence status",
             "VS, Appearance of stool",
-            "VS, Flatulence"
+            "VS, Flatulence",
+            "VS, Pain score",
+            "VS, Drainage output"
           ]
         },
         "expandedViewConfig": {
