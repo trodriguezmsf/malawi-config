@@ -28,11 +28,10 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"POMDT, Post-che
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"POMDT, Post-chemo FIGO staging for cancer of the uterus","Post-chemo FIGO staging for cancer of the uterus","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"POMDT, Post-chemo FIGO staging for cancer of the ovary","Post-chemo FIGO staging for cancer of the ovary","Coded","Misc",false);
 
-
 #Add Child Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Complete response","Complete response","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,">= 30% partial response",">= 30% partial response","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"<= 30% partial response","<= 30% partial response","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,">= 30 percentage partial response",">= 30 percentage partial response","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"<= 30 percentage partial response","<= 30 percentage partial response","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Stable disease","Stable disease","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Progressive disease","Progressive disease","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Surgery","Surgery","N/A","Misc",false);
