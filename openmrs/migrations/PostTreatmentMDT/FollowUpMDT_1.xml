@@ -450,7 +450,7 @@
         </sql>
     </changeSet>
 
-    <changeSet id="MALAWI_CONFIG_2022101813745056" author="Kiruthiga, Shobana">
+    <changeSet id="MALAWI_CONFIG_2022102413745057" author="Kiruthiga, Shobana">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
                 select count(*) from concept_answer ca
@@ -458,7 +458,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Complete response", "&gt;= 30% partial response", "&gt;= 30% partial response", "Stable disease", "Progressive disease" )
+                ("Complete response", "&gt;= 30 percentage partial response", "&lt;= 30 percentage partial response", "Stable disease", "Progressive disease" )
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "POMDT, Chemotherapy response");
@@ -469,13 +469,13 @@
             select concept_id into @concept_id from concept_name where name = "POMDT, Chemotherapy response" and
             concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
-            set @child2_concept_id = 0;
+            set @child2_concept_id = 0; 
             set @child3_concept_id = 0;
             set @child4_concept_id = 0;
             set @child5_concept_id = 0;
             select concept_id into @child1_concept_id from concept_name where name ="Complete response" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="&gt;= 30% partial response" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child3_concept_id from concept_name where name ="&lt;= 30% partial response" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="&gt;= 30 percentage partial response" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="&lt;= 30 percentage partial response" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child4_concept_id from concept_name where name ="Stable disease" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child5_concept_id from concept_name where name ="Progressive disease" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
