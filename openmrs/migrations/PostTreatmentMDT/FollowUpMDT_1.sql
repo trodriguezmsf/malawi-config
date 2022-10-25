@@ -36,6 +36,8 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Stable disease"
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Progressive disease","Progressive disease","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Surgery","Surgery","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Chemotherapy follow up","Chemotherapy follow up","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Follow up visit","Follow up visit","N/A","Misc",false);
+
 
 
 

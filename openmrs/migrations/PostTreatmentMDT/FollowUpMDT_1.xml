@@ -7,7 +7,7 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-    <changeSet id="MALAWI_CONFIG_20221017094421311" author="Kiruthiga, Shobana">
+    <changeSet id="MALAWI_CONFIG_2022101709442190" author="Kiruthiga, Shobana">
         <comment>Adding Concepts for FollowUpMDT form </comment>
         <sqlFile path="PostTreatmentMDT/FollowUpMDT_1.sql"/>
     </changeSet>
@@ -827,6 +827,73 @@
             call CREATE_REFERENCE_MAPPING_CEIL("POMDT, Post-chemo FIGO staging for cancer of the cervix","160786");
             call CREATE_REFERENCE_MAPPING_CEIL("POMDT, Post-chemo FIGO staging for cancer of the uterus","160786");
             call CREATE_REFERENCE_MAPPING_CEIL("POMDT, Post-chemo FIGO staging for cancer of the ovary","160786");
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_202210251858191324" author="Shobana, Kiruthiga" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="5">
+                SELECT count(*) FROM concept_answer WHERE answer_concept IN(SELECT concept_id FROM concept_name WHERE name IN ("Surgical procedure", "Radiation therapy", "Chemotherapy", "Palliative care", "Other") AND concept_name_type="FULLY_SPECIFIED")
+                AND concept_id = (SELECT concept_id FROM concept_name WHERE name ="POMDT, Proposed management plan");
+            </sqlCheck>
+        </preConditions>
+        <comment>Deleting answer concepts from POMDT, Proposed management plan </comment>
+        <sql>
+            SELECT concept_id INTO @concept_id1 FROM concept_name WHERE name ="Surgical procedure" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id2 FROM concept_name WHERE name ="Radiation therapy" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id3 FROM concept_name WHERE name ="Chemotherapy" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id4 FROM concept_name WHERE name ="Palliative care" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id5 FROM concept_name WHERE name ="Other" AND concept_name_type="FULLY_SPECIFIED";
+            delete from concept_answer where answer_concept=@concept_id1 and concept_id=(SELECT concept_id FROM concept_name WHERE name ="POMDT, Proposed management plan");
+            delete from concept_answer where answer_concept=@concept_id2 and concept_id=(SELECT concept_id FROM concept_name WHERE name ="POMDT, Proposed management plan");
+            delete from concept_answer where answer_concept=@concept_id3 and concept_id=(SELECT concept_id FROM concept_name WHERE name ="POMDT, Proposed management plan");
+            delete from concept_answer where answer_concept=@concept_id4 and concept_id=(SELECT concept_id FROM concept_name WHERE name ="POMDT, Proposed management plan");
+            delete from concept_answer where answer_concept=@concept_id5 and concept_id=(SELECT concept_id FROM concept_name WHERE name ="POMDT, Proposed management plan");
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_202210251315123" author="Shobana, Kiruthiga">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Treatment", "Conservative surgery", "Surgical procedure", "Radiation therapy", "Chemotherapy", "Palliative care", "Follow up visit", "Other")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "POMDT, Proposed management plan");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to POMDT, Proposed management plan</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "POMDT, Proposed management plan" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            set @child6_concept_id = 0;
+            set @child7_concept_id = 0;
+            set @child8_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Treatment" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Conservative surgery" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Surgical procedure" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Radiation therapy" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Chemotherapy" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child6_concept_id from concept_name where name ="Palliative care" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child7_concept_id from concept_name where name ="Follow up visit" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child8_concept_id from concept_name where name ="Other" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+            call add_concept_answer(@concept_id, @child6_concept_id, 6);
+            call add_concept_answer(@concept_id, @child7_concept_id, 7);
+            call add_concept_answer(@concept_id, @child8_concept_id, 8);
         </sql>
     </changeSet>
 
