@@ -1510,4 +1510,6 @@
     </changeSet>
 
     <include file="PostTreatmentMDT/FollowUpMDT_1.xml"/>
+    <include file="ChemotherapyBaselineAssessment/ChemotherapyBaselineAssessment_1.xml"/>
+
 </databaseChangeLog>
