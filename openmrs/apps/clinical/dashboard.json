@@ -1094,7 +1094,7 @@
       }
     }
   },
-  "Vital Signs And Lab": {
+  "Vital Signs": {
     "displayByDefault": false,
     "translationKey": "DASHBOARD_TAB_VITALS_SIGNS_AND_LAB_KEY",
     "maxRecentlyViewedPatients": 1,
@@ -1106,12 +1106,16 @@
           "groupBy": "encounters",
           "obsConcepts": [
             "VS, Location",
+            "VS, Frequency of observation",
+            "VS, Height",
             "VS, Weight",
             "VS, Body mass index",
             "VS, Body surface area",
             "VS, Level of consciousness",
             "VS, Respiratory rate",
             "VS, Arterial blood oxygen saturation",
+            "VS, Delivered oxygen flow rate",
+            "VS, Capillary filling time",
             "VS, Pulse",
             "VS, Systolic blood pressure",
             "VS, Diastolic blood pressure",
@@ -1127,9 +1131,17 @@
         "expandedViewConfig": {
           "groupBy": "encounters",
           "obsConcepts": [
+            "VS, Location",
+            "VS, Frequency of observation",
+            "VS, Height",
+            "VS, Weight",
+            "VS, Body mass index",
+            "VS, Body surface area",
             "VS, Level of consciousness",
             "VS, Respiratory rate",
             "VS, Arterial blood oxygen saturation",
+            "VS, Delivered oxygen flow rate",
+            "VS, Capillary filling time",
             "VS, Pulse",
             "VS, Systolic blood pressure",
             "VS, Diastolic blood pressure",
@@ -1137,56 +1149,65 @@
             "VS, Total urine output",
             "VS, Bowel continence status",
             "VS, Appearance of stool",
-            "VS, Flatulence"
-          ]
-        }
-      },
-      "Lab FlowSheet": {
-        "title": "Laboratory Flowsheet",
-        "type": "flowSheet",
-        "dashboardConfig": {
-          "groupBy": "encounters",
-          "obsConcepts": [
-            "LB, Haemoglobin",
-            "LB, Serum creatinine",
-            "LB, Fasting blood glucose measurement",
-            "LB, White blood cell",
-            "LB, Platelet",
-            "LB, Potassium",
-            "LB, Serum glutamic-oxaloacetic transaminase",
-            "LB, Serum glutamic-pyruvic transaminase",
-            "LB, Creatinine clearance test",
-            "LB, Serum sodium",
-            "LB, Serum albumin",
-            "LB, Blood culture result",
-            "LB, Blood typing",
-            "LB, HIV enzyme immunoassay, qualitative",
-            "LB, CD4 count",
-            "LB, HIV viral load"
-          ]
-        },
-        "expandedViewConfig": {
-          "groupBy": "encounters",
-          "obsConcepts": [
-            "LB, Haemoglobin",
-            "LB, Serum creatinine",
-            "LB, Fasting blood glucose measurement",
-            "LB, White blood cell",
-            "LB, Platelet",
-            "LB, Potassium",
-            "LB, Serum glutamic-oxaloacetic transaminase",
-            "LB, Serum glutamic-pyruvic transaminase",
-            "LB, Creatinine clearance test",
-            "LB, Serum sodium",
-            "LB, Serum albumin",
-            "LB, Blood culture result",
-            "LB, Blood typing",
-            "LB, HIV enzyme immunoassay, qualitative",
-            "LB, CD4 count",
-            "LB, HIV viral load"
+            "VS, Flatulence",
+            "VS, Pain score",
+            "VS, Drainage output"
           ]
         }
       }
     }
+  },
+  "Lab": {
+    "displayByDefault": false,
+    "translationKey": "DASHBOARD_TAB_LAB_KEY",
+    "maxRecentlyViewedPatients": 1,
+    "sections": {
+  "Lab FlowSheet": {
+    "title": "Laboratory Flowsheet",
+    "type": "flowSheet",
+    "dashboardConfig": {
+      "groupBy": "encounters",
+      "obsConcepts": [
+        "LB, Haemoglobin",
+        "LB, Serum creatinine",
+        "LB, Fasting blood glucose measurement",
+        "LB, White blood cell",
+        "LB, Platelet",
+        "LB, Potassium",
+        "LB, Serum glutamic-oxaloacetic transaminase",
+        "LB, Serum glutamic-pyruvic transaminase",
+        "LB, Creatinine clearance test",
+        "LB, Serum sodium",
+        "LB, Serum albumin",
+        "LB, Blood culture result",
+        "LB, Blood typing",
+        "LB, HIV enzyme immunoassay, qualitative",
+        "LB, CD4 count",
+        "LB, HIV viral load"
+      ]
+    },
+    "expandedViewConfig": {
+      "groupBy": "encounters",
+      "obsConcepts": [
+        "LB, Haemoglobin",
+        "LB, Serum creatinine",
+        "LB, Fasting blood glucose measurement",
+        "LB, White blood cell",
+        "LB, Platelet",
+        "LB, Potassium",
+        "LB, Serum glutamic-oxaloacetic transaminase",
+        "LB, Serum glutamic-pyruvic transaminase",
+        "LB, Creatinine clearance test",
+        "LB, Serum sodium",
+        "LB, Serum albumin",
+        "LB, Blood culture result",
+        "LB, Blood typing",
+        "LB, HIV enzyme immunoassay, qualitative",
+        "LB, CD4 count",
+        "LB, HIV viral load"
+      ]
+    }
   }
+}
+}
 }
