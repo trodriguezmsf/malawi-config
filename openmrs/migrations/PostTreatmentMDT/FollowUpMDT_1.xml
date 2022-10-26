@@ -747,15 +747,16 @@
         </preConditions>
         <comment>Deleting answer concepts from POMDT, Follow-up visit </comment>
         <sql>
+            set @Followupvisit=(SELECT concept_id FROM concept_name WHERE name ="POMDT, Follow-up visit");
             SELECT concept_id INTO @concept_id1 FROM concept_name WHERE name ="4 weeks" AND concept_name_type="FULLY_SPECIFIED";
             SELECT concept_id INTO @concept_id2 FROM concept_name WHERE name ="3 months" AND concept_name_type="FULLY_SPECIFIED";
             SELECT concept_id INTO @concept_id3 FROM concept_name WHERE name ="6 months" AND concept_name_type="FULLY_SPECIFIED";
             SELECT concept_id INTO @concept_id4 FROM concept_name WHERE name ="12 months" AND concept_name_type="FULLY_SPECIFIED";
             
-            delete from concept_answer where answer_concept=@concept_id1 and concept_id=(SELECT concept_id FROM concept_name WHERE name ="POMDT, Follow-up visit");
-            delete from concept_answer where answer_concept=@concept_id2 and concept_id=(SELECT concept_id FROM concept_name WHERE name ="POMDT, Follow-up visit");
-            delete from concept_answer where answer_concept=@concept_id3 and concept_id=(SELECT concept_id FROM concept_name WHERE name ="POMDT, Follow-up visit");
-            delete from concept_answer where answer_concept=@concept_id4 and concept_id=(SELECT concept_id FROM concept_name WHERE name ="POMDT, Follow-up visit");
+            delete from concept_answer where answer_concept=@concept_id1 and concept_id=@Followupvisit;
+            delete from concept_answer where answer_concept=@concept_id2 and concept_id=@Followupvisit;
+            delete from concept_answer where answer_concept=@concept_id3 and concept_id=@Followupvisit;
+            delete from concept_answer where answer_concept=@concept_id4 and concept_id=@Followupvisit;
         </sql>
     </changeSet>
 
@@ -804,16 +805,17 @@
         </preConditions>
         <comment>Deleting answer concepts from POMDT, Proposed management plan </comment>
         <sql>
+            set @Proposedmanagementplan=(SELECT concept_id FROM concept_name WHERE name ='POMDT, Proposed management plan');
             SELECT concept_id INTO @concept_id1 FROM concept_name WHERE name ="Surgical procedure" AND concept_name_type="FULLY_SPECIFIED";
             SELECT concept_id INTO @concept_id2 FROM concept_name WHERE name ="Radiation therapy" AND concept_name_type="FULLY_SPECIFIED";
             SELECT concept_id INTO @concept_id3 FROM concept_name WHERE name ="Chemotherapy" AND concept_name_type="FULLY_SPECIFIED";
             SELECT concept_id INTO @concept_id4 FROM concept_name WHERE name ="Palliative care" AND concept_name_type="FULLY_SPECIFIED";
             SELECT concept_id INTO @concept_id5 FROM concept_name WHERE name ="Other" AND concept_name_type="FULLY_SPECIFIED";
-            delete from concept_answer where answer_concept=@concept_id1 and concept_id=(SELECT concept_id FROM concept_name WHERE name ="POMDT, Proposed management plan");
-            delete from concept_answer where answer_concept=@concept_id2 and concept_id=(SELECT concept_id FROM concept_name WHERE name ="POMDT, Proposed management plan");
-            delete from concept_answer where answer_concept=@concept_id3 and concept_id=(SELECT concept_id FROM concept_name WHERE name ="POMDT, Proposed management plan");
-            delete from concept_answer where answer_concept=@concept_id4 and concept_id=(SELECT concept_id FROM concept_name WHERE name ="POMDT, Proposed management plan");
-            delete from concept_answer where answer_concept=@concept_id5 and concept_id=(SELECT concept_id FROM concept_name WHERE name ="POMDT, Proposed management plan");
+            delete from concept_answer where answer_concept=@concept_id1 and concept_id=@Proposedmanagementplan;
+            delete from concept_answer where answer_concept=@concept_id2 and concept_id=@Proposedmanagementplan;
+            delete from concept_answer where answer_concept=@concept_id3 and concept_id=@Proposedmanagementplan;
+            delete from concept_answer where answer_concept=@concept_id4 and concept_id=@Proposedmanagementplan;
+            delete from concept_answer where answer_concept=@concept_id5 and concept_id=@Proposedmanagementplan;
         </sql>
     </changeSet>
 

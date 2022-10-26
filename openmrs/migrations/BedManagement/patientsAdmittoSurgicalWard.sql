@@ -1,4 +1,3 @@
-DELETE FROM global_property WHERE property = 'emrapi.sqlSearch.patientsAdmittedToSurgicalWard';
 INSERT INTO global_property (`property`, `property_value`, `description`, `uuid`)
 VALUES ('emrapi.sqlSearch.patientsAdmittedToSurgicalWard',
 "select distinct
