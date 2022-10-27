@@ -1508,4 +1508,7 @@
             INSERT INTO visit_type(name, description, creator, date_created, retired, uuid) VALUES ('IPD', 'IPD visit', 1, now(), 0, uuid());
         </sql>
     </changeSet>
+
+    <include file="PostTreatmentMDT/FollowUpMDT_1.xml"/>
+    
 </databaseChangeLog>
