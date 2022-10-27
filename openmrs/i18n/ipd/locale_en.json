@@ -48,5 +48,7 @@
   "DASHBOARD_PRE_OPERATIVE_ASSESSMENT" : "Surgeon PreOperative Assessment",
   "DASHBOARD_POST_OPERATIVE_ASSESSMENT": "Post Operative Anaesthesia Note",
   "DASHBOARD_COMPLICATIONS": "Complications",
-  "DASHBOARD_OPERATIVE_REPORT": "Operative Report"
+  "DASHBOARD_OPERATIVE_REPORT": "Operative Report",
+  "DASHBOARD_TAB_VITALS_SIGNS_AND_LAB_KEY":"Vital signs",
+  "DASHBOARD_TAB_LAB_KEY":"Laboratory"
 }
