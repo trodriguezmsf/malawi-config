@@ -427,7 +427,7 @@
         "dashboardConfig": {
           "showDetailsButton": true,
           "isEditable": true,
-          "scope":"latest",
+          "numberOfEncounters": 6,
           "conceptNames": [
             "SC, Reason for visit",
             "SC, Time",
@@ -458,7 +458,7 @@
           ]
         },
         "expandedViewConfig": {
-          "scope":"latest",
+          "numberOfEncounters": 6,
           "conceptNames": [
             "SC, Reason for visit",
             "SC, Time",
@@ -1105,9 +1105,15 @@
         "dashboardConfig": {
           "groupBy": "encounters",
           "obsConcepts": [
+            "VS, Location",
+            "VS, Height",
+            "VS, Weight",
+            "VS, Body mass index",
+            "VS, Body surface area",
             "VS, Level of consciousness",
             "VS, Respiratory rate",
             "VS, Arterial blood oxygen saturation",
+            "VS, Capillary filling time",
             "VS, Pulse",
             "VS, Systolic blood pressure",
             "VS, Diastolic blood pressure",
@@ -1115,15 +1121,23 @@
             "VS, Total urine output",
             "VS, Bowel continence status",
             "VS, Appearance of stool",
-            "VS, Flatulence"
+            "VS, Flatulence",
+            "VS, Pain score",
+            "VS, Drainage output"
           ]
         },
         "expandedViewConfig": {
           "groupBy": "encounters",
           "obsConcepts": [
+            "VS, Location",
+            "VS, Height",
+            "VS, Weight",
+            "VS, Body mass index",
+            "VS, Body surface area",
             "VS, Level of consciousness",
             "VS, Respiratory rate",
             "VS, Arterial blood oxygen saturation",
+            "VS, Capillary filling time",
             "VS, Pulse",
             "VS, Systolic blood pressure",
             "VS, Diastolic blood pressure",
@@ -1131,10 +1145,19 @@
             "VS, Total urine output",
             "VS, Bowel continence status",
             "VS, Appearance of stool",
-            "VS, Flatulence"
+            "VS, Flatulence",
+            "VS, Pain score",
+            "VS, Drainage output"
           ]
         }
-      },
+      }
+    }
+  },
+  "Lab": {
+    "displayByDefault": false,
+    "translationKey": "DASHBOARD_TAB_LAB_KEY",
+    "maxRecentlyViewedPatients": 1,
+    "sections": {
       "Lab FlowSheet": {
         "title": "Laboratory Flowsheet",
         "type": "flowSheet",
