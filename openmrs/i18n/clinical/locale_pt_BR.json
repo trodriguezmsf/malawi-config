@@ -63,7 +63,5 @@
   "PATIENT_VISIT_PAGE_KEY":"Pág. Visita de Paciente",
   "HOME_DASHBOARD_KEY":"Início Painel",
   "MEDICATION_CHANGE_DURATION_BUTTON": "Alterar Duração",
-  "DASHBOARD_TITLE_Consultation_KEY": "Anotações da Consulta",
-  "DASHBOARD_TAB_VITALS_SIGNS_AND_LAB_KEY":"sinais vitais",
-  "DASHBOARD_TAB_LAB_KEY":"laboratório"
+  "DASHBOARD_TITLE_Consultation_KEY": "Anotações da Consulta"
 }
