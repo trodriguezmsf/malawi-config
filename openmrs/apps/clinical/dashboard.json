@@ -1106,7 +1106,6 @@
           "groupBy": "encounters",
           "obsConcepts": [
             "VS, Location",
-            "VS, Frequency of observation",
             "VS, Height",
             "VS, Weight",
             "VS, Body mass index",
@@ -1114,7 +1113,6 @@
             "VS, Level of consciousness",
             "VS, Respiratory rate",
             "VS, Arterial blood oxygen saturation",
-            "VS, Delivered oxygen flow rate",
             "VS, Capillary filling time",
             "VS, Pulse",
             "VS, Systolic blood pressure",
@@ -1132,7 +1130,6 @@
           "groupBy": "encounters",
           "obsConcepts": [
             "VS, Location",
-            "VS, Frequency of observation",
             "VS, Height",
             "VS, Weight",
             "VS, Body mass index",
@@ -1140,7 +1137,6 @@
             "VS, Level of consciousness",
             "VS, Respiratory rate",
             "VS, Arterial blood oxygen saturation",
-            "VS, Delivered oxygen flow rate",
             "VS, Capillary filling time",
             "VS, Pulse",
             "VS, Systolic blood pressure",
