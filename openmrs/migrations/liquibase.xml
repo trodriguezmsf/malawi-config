@@ -1511,5 +1511,6 @@
 
     <include file="PostTreatmentMDT/FollowUpMDT_1.xml"/>
     <include file="ChemotherapyBaselineAssessment/ChemotherapyBaselineAssessment_1.xml"/>
-
+    <include file="ChemotherapyClinicalAssessmentTreatment/ChemotherapyClinicalAssessmentTreatment_1.xml"/>
+    
 </databaseChangeLog>
