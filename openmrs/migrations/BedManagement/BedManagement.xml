@@ -168,7 +168,7 @@
         <sqlFile path="BedManagement/patientsAdmittoSupportiveCareWard.sql"/>
     </changeSet>
 
-    <changeSet id="MALAWI-202004100906" author="Sreekalyan">
+    <changeSet id="MALAWI-202004100906" author="Sreekalyan" runOnChange="true">
         <comment>
             Deleting the global property for Bed management list view and adding with new sql query.
         </comment>
