@@ -12,10 +12,10 @@
         <sqlFile path="BedManagement/BedManagement_1.sql"/>
     </changeSet>
 
- <changeSet id="MALAWI_CONFIG_20221027185819299" author="Kiruthiga" >
+ <changeSet id="MALAWI_CONFIG_202210271858192991" author="Kiruthiga" >
         <preConditions onFail="MARK_RAN">
-            <sqlCheck expectedResult="5">
-                SELECT count(*) FROM concept_answer WHERE answer_concept IN(SELECT concept_id FROM concept_name WHERE name IN ("Admit to Surgical Ward", "Admit to Supportive Care Ward", "Movement to Surgical Ward", "Movement to Supportive Care Ward","Discharge")  AND concept_name_type="FULLY_SPECIFIED") 
+            <sqlCheck expectedResult="4">
+                SELECT count(*) FROM concept_answer WHERE answer_concept IN(SELECT concept_id FROM concept_name WHERE name IN ("Admit to Surgical Ward", "Admit to Supportive Care Ward", "Movement to Surgical Ward", "Movement to Supportive Care Ward")  AND concept_name_type="FULLY_SPECIFIED") 
                 AND concept_id IN (SELECT concept_id FROM concept_name WHERE name ="Disposition");
             </sqlCheck>
         </preConditions>
@@ -27,35 +27,19 @@
             SELECT concept_id INTO @concept_id2 FROM concept_name WHERE name ="Admit to Supportive Care Ward" AND concept_name_type="FULLY_SPECIFIED";
             SELECT concept_id INTO @concept_id3 FROM concept_name WHERE name ="Movement to Surgical Ward" AND concept_name_type="FULLY_SPECIFIED";
             SELECT concept_id INTO @concept_id4 FROM concept_name WHERE name ="Movement to Supportive Care Ward" AND concept_name_type="FULLY_SPECIFIED";
-            SELECT concept_id INTO @concept_id5 FROM concept_name WHERE name ='Discharge' AND concept_name_type='FULLY_SPECIFIED';
             
             delete from concept_answer where answer_concept=@concept_id1 and concept_id= @concept_id;
             delete from concept_answer where answer_concept=@concept_id2 and concept_id= @concept_id;
             delete from concept_answer where answer_concept=@concept_id3 and concept_id= @concept_id;
             delete from concept_answer where answer_concept=@concept_id4 and concept_id= @concept_id;
-            delete from concept_answer where answer_concept=@concept_id5 and concept_id= @concept_id;
-        </sql>
-    </changeSet>
-
-    <changeSet id="MALAWI_CONFIG_20221027185819499" author="Kiruthiga">
-
-        <comment>Adding New Dispositions</comment>
-        <sql>
-            SELECT concept_id INTO @concept_id FROM concept_name WHERE name ='Disposition' AND concept_name_type='FULLY_SPECIFIED';
-
-            SELECT concept_id INTO @concept_id1 FROM concept_name WHERE name ='Admit to IPD' AND concept_name_type='FULLY_SPECIFIED';
-            SELECT concept_id INTO @concept_id2 FROM concept_name WHERE name ='Discharge' AND concept_name_type='FULLY_SPECIFIED';
-            INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_id1,1,now(),0,uuid());
-            INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_id2,1,now(),1,uuid());
-    
         </sql>
     </changeSet>
 
     <changeSet id="MALAWI_CONFIG_20221028187819485" author="Kiruthiga">
         <preConditions onFail="MARK_RAN">
-            <sqlCheck expectedResult="1">
+            <sqlCheck expectedResult="0">
                 select count(*) From concept_reference_term where `code` in
-                ("ADMIT_TO_IPD", "DISPOSITION_DISCHARGE")
+                ("ADMIT_TO_IPD")
                 and retired = 0 and concept_source_id = ( select concept_source_id from concept_reference_source where `name` = 'org.openmrs.module.emrapi' and retired =0 );
             </sqlCheck>
         </preConditions>
@@ -65,10 +49,22 @@
 
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (4,'ADMIT_TO_IPD',@source_id,uuid(),now());
             call CREATE_REFERENCE_ORG_OPENMRS_MODULE_EMRAPI('Admit to IPD Ward', 'ADMIT_TO_IPD');
+        </sql>
+    </changeSet>
 
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (4,'DISPOSITION_DISCHARGE',@source_id,uuid(),now());
-            call CREATE_REFERENCE_ORG_OPENMRS_MODULE_EMRAPI('Discharge', 'DISPOSITION_DISCHARGE');
+    <changeSet id="MALAWI_CONFIG_20221027185819499" author="Kiruthiga">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="2">
+                SELECT count(*) FROM concept_name WHERE name in ('Admit to IPD','Discharge') AND concept_name_type='FULLY_SPECIFIED';
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding New Dispositions</comment>
+        <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name ='Disposition' AND concept_name_type='FULLY_SPECIFIED';
 
+            SELECT concept_id INTO @concept_id1 FROM concept_name WHERE name ='Admit to IPD' AND concept_name_type='FULLY_SPECIFIED';
+            SELECT concept_id INTO @concept_id2 FROM concept_name WHERE name ='Discharge' AND concept_name_type='FULLY_SPECIFIED';
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_id1,1,now(),0,uuid());
         </sql>
     </changeSet>
 
@@ -134,7 +130,6 @@
         </preConditions>
         <comment>deleting beds from bed </comment>
         <sql>
-          
           delete from bed;
         </sql>
     </changeSet>
@@ -194,7 +189,7 @@
         <comment>Mapping to parent location</comment>
         <sql>
             SELECT location_id INTO @location_id1 FROM location WHERE location.name='Inpatient Department';
-            update location set parent_location = @location_id1 where name = 'Inpatient Department Ward';
+            UPDATE location SET parent_location = @location_id1 WHERE name = 'Inpatient Department Ward';
         </sql>
     </changeSet>
 
