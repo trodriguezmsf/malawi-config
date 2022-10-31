@@ -121,5 +121,8 @@
   "CLINICALSUMMARY_FOLLOW_UP": "Follow up",
   "CLINICALSUMMARY_DISCHARGE": "Discharge",
   "DASHBOARD_TAB_VITALS_SIGNS_AND_LAB_KEY": "Vital Signs",
-  "DASHBOARD_TAB_LAB_KEY":"Laboratory"
+  "DASHBOARD_TAB_LAB_KEY":"Laboratory",
+  "DASHBOARD_TAB_CHEMO_KEY": "Chemo",
+  "DASHBOARD_TITLE_CHEMO_BASELINE": "Chemotherapy Baseline Assessment",
+  "DASHBOARD_TITLE_CHEMO_CLINICAL": "Chemotherapy Clinical Assessment and Treatment"
 }
