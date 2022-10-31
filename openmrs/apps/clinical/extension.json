@@ -4,7 +4,7 @@
     "extensionPointId": "org.bahmni.clinical.consultation.board",
     "type": "link",
     "label": "Observations",
-    "translationKey":"OBSERVATIONS_BOARD_LABEL_KEY",
+    "translationKey": "OBSERVATIONS_BOARD_LABEL_KEY",
     "url": "concept-set-group/observations",
     "default": true,
     "icon": "fa-user-md",
@@ -16,7 +16,7 @@
     "extensionPointId": "org.bahmni.clinical.consultation.board",
     "type": "link",
     "label": "Diagnosis",
-    "translationKey":"DIAGNOSIS_BOARD_LABEL_KEY",
+    "translationKey": "DIAGNOSIS_BOARD_LABEL_KEY",
     "url": "diagnosis",
     "icon": "fa-user-md",
     "order": 2,
@@ -27,7 +27,7 @@
     "extensionPointId": "org.bahmni.clinical.consultation.board",
     "type": "link",
     "label": "Consultation",
-    "translationKey":"CONSULTATION_BOARD_LABEL_KEY",
+    "translationKey": "CONSULTATION_BOARD_LABEL_KEY",
     "url": "consultation",
     "icon": "fa-user-md",
     "order": 5,
@@ -188,26 +188,40 @@
     "order": 6,
     "requiredPrivilege": "Discharge Summary"
   },
-  "bahmniClinicalBillingTreatment": {
+  "bahmniClinicalBillingTreatmentChemoMedicationsTab": {
     "id": "bahmni.clinical.billing.treatment",
     "extensionPointId": "org.bahmni.clinical.consultation.board",
     "type": "link",
-    "label": "Medications",
-    "translationKey":"MEDICATIONS_BOARD_LABEL_KEY",
-    "extensionParams":{
-      "tabConfigName": "allMedicationTabConfig"
+    "label": "Chemo Medications",
+    "translationKey": "CLINICAL_EXTENSION_MEDICATION_CHEMO_TAB",
+    "extensionParams": {
+      "tabConfigName": "chemoTabConfig"
     },
     "url": "treatment",
     "icon": "fa-user-md",
     "order": 7,
-    "requiredPrivilege": "app:clinical:treatmentTab"
+    "requiredPrivilege": "app:clinical:consultationTab"
+  },
+  "bahmniClinicalBillingTreatmentMedicationsTab": {
+    "id": "bahmni.clinical.billing.treatment",
+    "extensionPointId": "org.bahmni.clinical.consultation.board",
+    "type": "link",
+    "label": "Medications",
+    "translationKey": "CLINICAL_EXTENSION_MEDICATION_TAB",
+    "extensionParams": {
+      "tabConfigName": "medicationTabConfig"
+    },
+    "url": "treatment",
+    "icon": "fa-user-md",
+    "order": 8,
+    "requiredPrivilege": "app:clinical:consultationTab"
   },
   "bahmniClinicalConsultationOrders": {
     "id": "bahmni.clinical.consultation.orders",
     "extensionPointId": "org.bahmni.clinical.consultation.board",
     "type": "link",
     "label": "Orders",
-    "translationKey":"ORDERS_BOARD_LABEL_KEY",
+    "translationKey": "ORDERS_BOARD_LABEL_KEY",
     "url": "orders",
     "icon": "icon-user-md",
     "order": 6,
@@ -218,10 +232,10 @@
     "extensionPointId": "org.bahmni.clinical.consultation.board",
     "type": "link",
     "label": "Bacteriology",
-    "translationKey":"BACTERIOLOGY_BOARD_LABEL_KEY",
+    "translationKey": "BACTERIOLOGY_BOARD_LABEL_KEY",
     "url": "bacteriology",
     "icon": "icon-user-md",
     "order": 7,
     "requiredPrivilege": "app:clinical:bacteriologyTab"
   }
-  }
+}
