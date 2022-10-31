@@ -45,10 +45,10 @@
 
     <changeSet id="MALAWI_CONFIG_20221027055138446" author="Shobana">
         <preConditions onFail="MARK_RAN">
-            <sqlCheck expectedResult="3">
+            <sqlCheck expectedResult="4">
                 select count(*) from concept_reference_term
                 where code in
-                ("166925", "160753", "1887")
+                ("166925", "160753", "1887", "140501")
                 and retired = 0
                 and concept_source_id = (
                 select concept_source_id from concept_reference_source where name = "CEIL"  and retired =0
@@ -62,6 +62,7 @@
             call CREATE_REFERENCE_MAPPING_CEIL("CCAT, Gynaecological consultation date","160753");
             call CREATE_REFERENCE_MAPPING_CEIL("CCAT, Reason for referral","1887");
             call CREATE_REFERENCE_MAPPING_CEIL("CCAT, MDT date","160753");
+            call CREATE_REFERENCE_MAPPING_CEIL("Fatigue","140501");
         </sql>
     </changeSet>
 
@@ -70,7 +71,7 @@
             <sqlCheck expectedResult="0">
                 select count(*) from concept_reference_term
                 where code in
-                ("116214", "140501")
+                ("116214", "538", "1601011")
                 and retired = 0
                 and concept_source_id = (
                 select concept_source_id from concept_reference_source where name = "CEIL"  and retired =0
@@ -81,9 +82,11 @@
         <sql>
             SELECT concept_source_id INTO @source_id FROM concept_reference_source where name = "CEIL";  
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"116214",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"140501",@source_id,uuid(),now());
-            call CREATE_REFERENCE_MAPPING_CEIL("Hypotension","116214");
-            call CREATE_REFERENCE_MAPPING_CEIL("Fatigue","140501");
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"538",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1601011",@source_id,uuid(),now());
+            call CREATE_REFERENCE_MAPPING_CEIL("Hypotension","116214");  
+            call CREATE_REFERENCE_MAPPING_CEIL("Chemotherapy extravasation","538");
+            call CREATE_REFERENCE_MAPPING_CEIL("CCAT, Other reason for referral","1601011");
         </sql>
     </changeSet>
 
@@ -327,7 +330,7 @@
         </sql>
     </changeSet>
 
-    <changeSet id="MALAWI_CONFIG_2022102705551102" author="Shobana">
+    <changeSet id="MALAWI_CONFIG_202210270555112" author="Shobana">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="1">
                 select count(*) from concept_name WHERE name = "CCAT, Fatigue severity" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
@@ -336,12 +339,11 @@
         <comment>Insert description for Fatigue severity</comment>
         <sql>
         SELECT concept_id into @concept_id FROM concept_name WHERE name = "CCAT, Fatigue severity" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
-        INSERT INTO concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)
-        VALUES (@concept_id, "Grade 1: Fatigue relieved by rest; Grade 2: Not relieved by rest; limiting instrumental ADL (activities of daily living); Grade 3: Not relieved by rest; limiting self-care ADL.","en",1,now(),NULL,NULL,uuid());
+        call add_concept_description (@concept_id, "Grade 1: Fatigue relieved by rest; Grade 2: Not relieved by rest; limiting instrumental ADL (activities of daily living); Grade 3: Not relieved by rest; limiting self-care ADL.");
         </sql>
     </changeSet>
 
-     <changeSet id="MALAWI_CONFIG_2022102705557617" author="Shobana">
+    <changeSet id="MALAWI_CONFIG_2022102705557617" author="Shobana">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="1">
                 select count(*) from concept_name WHERE name = "CCAT, Mucositis severity" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
@@ -369,7 +371,7 @@
         </sql>
     </changeSet>
 
-    <changeSet id="MALAWI_CONFIG_2022102705557100" author="Shobana">
+    <changeSet id="MALAWI_CONFIG_2022102705567100" author="Shobana">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="1">
                 select count(*) from concept_name WHERE name = "CCAT, Anaemia severity" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
@@ -378,7 +380,7 @@
         <comment>Update description for CCAT, Anaemia severity</comment>
         <sql>
             SELECT concept_id into @concept_id FROM concept_name WHERE name = "CCAT, Anaemia severity" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
-            UPDATE concept_description set description = "Grade 1: Hemoglobin (Hgb) &lt;LLN - 10.0 g/dL; &lt;LLN - 6.2 mmol/L; &lt;LLN - 100 g/L; Grade 2: Hgb &lt;10.0 - 8.0 g/dL; &lt;6.2 - 4.9 mmol/L; &lt;100 - 80g/L; Grade 3: Hgb &lt;8.0 g/dL; &lt;4.9 mmol/L; &lt;80 g/L; transfusion indicated; Grade 4: Life-threatening consequences; urgent intervention indicated. Grade 5: Death" 
+            UPDATE concept_description set description = "Grade 1: Hemoglobin (Hgb) &lt; LLN - 10.0 g/dL; &lt; LLN - 6.2 mmol/L; &lt; LLN - 100 g/L; Grade 2: Hgb &lt; 10.0 - 8.0 g/dL; &lt; 6.2 - 4.9 mmol/L; &lt; 100 - 80g/L; Grade 3: Hgb &lt; 8.0 g/dL; &lt; 4.9 mmol/L; &lt; 80 g/L; transfusion indicated; Grade 4: Life-threatening consequences; urgent intervention indicated. Grade 5: Death" 
             WHERE concept_id = @concept_id; 
         </sql>
     </changeSet>

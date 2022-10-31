@@ -21,3 +21,4 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CCAT, Reason fo
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Fatigue","Fatigue","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Allergic reaction","Allergic reaction","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Hypotension","Hypotension","N/A","Misc",false);
+
