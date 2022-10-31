@@ -44,8 +44,12 @@
                 "color": "#ABB2B9"
             },
             {
-                "name": "OBGYN",
+                "name": "HDU",
                 "color": "#6212AE"
+            },
+            {
+                "name": "MULTITAG_KEY",
+                "color": "#000000"
             }
         ],
         "hideStartNewVisitPopUp": false,

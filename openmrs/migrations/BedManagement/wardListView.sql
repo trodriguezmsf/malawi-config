@@ -10,8 +10,7 @@ VALUES('emrapi.sqlGet.allWardsListDetails',
                 DATE_FORMAT(latestFutureDateofProcedure.dateofProcedure,
                             '%d %b %y')                                                  AS 'Date of Procedure',
                 ' '                                                                               AS 'Procedure',
-                DATE_FORMAT(expected_date_of_discharge.date, '%d %b %y')                          AS 'Expected Date of Discharge',
-                ' '                                                                               AS 'Next Appointment date'
+                DATE_FORMAT(expected_date_of_discharge.date, '%d %b %y')                          AS 'Expected Date of Discharge'
 from bed
          INNER JOIN bed_location_map blm ON blm.bed_id = bed.bed_id
          INNER JOIN location l ON l.location_id = blm.location_id AND l.name = ${location_name} AND l.retired IS FALSE

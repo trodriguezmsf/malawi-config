@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="MALAWI_CONFIG_20221027185819298" author="Suraj">
+        <comment>Adding Concepts for Bed Management</comment>
+        <sqlFile path="BedManagement/BedManagement_1.sql"/>
+    </changeSet>
+
+ <changeSet id="MALAWI_CONFIG_202210271858192991" author="Kiruthiga" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="4">
+                SELECT count(*) FROM concept_answer WHERE answer_concept IN(SELECT concept_id FROM concept_name WHERE name IN ("Admit to Surgical Ward", "Admit to Supportive Care Ward", "Movement to Surgical Ward", "Movement to Supportive Care Ward")  AND concept_name_type="FULLY_SPECIFIED") 
+                AND concept_id IN (SELECT concept_id FROM concept_name WHERE name ="Disposition");
+            </sqlCheck>
+        </preConditions>
+        <comment>Deleting answer concepts from Dispositions </comment>
+        <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name ='Disposition' AND concept_name_type='FULLY_SPECIFIED';
+
+            SELECT concept_id INTO @concept_id1 FROM concept_name WHERE name ="Admit to Surgical Ward" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id2 FROM concept_name WHERE name ="Admit to Supportive Care Ward" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id3 FROM concept_name WHERE name ="Movement to Surgical Ward" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id4 FROM concept_name WHERE name ="Movement to Supportive Care Ward" AND concept_name_type="FULLY_SPECIFIED";
+            
+            delete from concept_answer where answer_concept=@concept_id1 and concept_id= @concept_id;
+            delete from concept_answer where answer_concept=@concept_id2 and concept_id= @concept_id;
+            delete from concept_answer where answer_concept=@concept_id3 and concept_id= @concept_id;
+            delete from concept_answer where answer_concept=@concept_id4 and concept_id= @concept_id;
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_20221028187819485" author="Kiruthiga">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) From concept_reference_term where `code` in
+                ("ADMIT_TO_IPD")
+                and retired = 0 and concept_source_id = ( select concept_source_id from concept_reference_source where `name` = 'org.openmrs.module.emrapi' and retired =0 );
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding codes to specific concepts</comment>
+        <sql>
+            SELECT concept_source_id INTO @source_id FROM concept_reference_source where name = 'org.openmrs.module.emrapi';
+
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (4,'ADMIT_TO_IPD',@source_id,uuid(),now());
+            call CREATE_REFERENCE_ORG_OPENMRS_MODULE_EMRAPI('Admit to IPD Ward', 'ADMIT_TO_IPD');
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_20221027185819499" author="Kiruthiga">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="2">
+                SELECT count(*) FROM concept_name WHERE name in ('Admit to IPD','Discharge') AND concept_name_type='FULLY_SPECIFIED';
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding New Dispositions</comment>
+        <sql>
+            SELECT concept_id INTO @concept_id FROM concept_name WHERE name ='Disposition' AND concept_name_type='FULLY_SPECIFIED';
+
+            SELECT concept_id INTO @concept_id1 FROM concept_name WHERE name ='Admit to IPD' AND concept_name_type='FULLY_SPECIFIED';
+            SELECT concept_id INTO @concept_id2 FROM concept_name WHERE name ='Discharge' AND concept_name_type='FULLY_SPECIFIED';
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,date_created,sort_weight,uuid) VALUES (@concept_id,@concept_id1,1,now(),0,uuid());
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_202210281858108873" author="Kiruthiga" runOnChange="true">
+        <comment>
+            Deleting the global property for Patient Admitted list view and adding with new sql query.
+        </comment>
+        <sql>
+            DELETE FROM global_property WHERE property='emrapi.sqlSearch.patientsAdmittedtoIPD';
+        </sql>
+    </changeSet>
+
+     <changeSet id="MALAWI_CONFIG_2022102819561148141" author="Kiruthiga, Shobana" runOnChange="true">
+        <comment>Bed management patient mapping queue</comment>
+        <sqlFile path="BedManagement/patientsAdmittedtoIPD.sql"/>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_202210281858194809001" author="Kiruthiga">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) FROM bed_tag where name="OBGYN" and voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment>Deleting OBGYN from bed tag</comment>
+        <sql>
+            delete from bed_tag where name="OBGYN" and voided = 0;
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_20221028185819480901" author="Kiruthiga">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from bed_tag where name="HDU" and voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding HDU bed tags</comment>
+        <sql>
+            INSERT INTO bed_tag(name, creator, date_created, voided, uuid) VALUES ("HDU", 1, now(), 0, uuid());
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_2022102818599345670" author="Kiruthiga">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="20">
+                select count(*) from bed_location_map where location_id in(SELECT location_id FROM location where name in ("Surgical Ward", "Supportive Care Ward"));
+            </sqlCheck>
+        </preConditions>
+        <comment>deleting Surgical and Supportive care wards beds from bed_location_map </comment>
+        <sql>
+            SELECT location_id INTO @location_id1 FROM location where name = "Surgical Ward";
+            SELECT location_id INTO @location_id2 FROM location where name = "Supportive Care Ward";
+
+            delete from bed_location_map where location_id= @location_id1;
+            delete from bed_location_map where location_id= @location_id2;
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_20221028185819487" author="Kiruthiga">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="20">
+                SELECT count(*) FROM bed where bed_number in (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, "BF2", "BF1") and voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment>deleting beds from bed </comment>
+        <sql>
+          delete from bed;
+        </sql>
+    </changeSet>
+
+     <changeSet id="MALAWI_CONFIG_2022102818581948734089" author="Kiruthiga">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="2">
+            SELECT count(*) FROM location_tag_map where location_id in (SELECT location_id FROM location where name in ("Surgical Ward", "Supportive Care Ward"));
+            </sqlCheck>
+        </preConditions>
+        <comment>deleting Surgical and Supportive care wards mapping from location tag map </comment>
+        <sql>
+          SELECT location_id INTO @location_id1 FROM location where name = "Surgical Ward";
+          SELECT location_id INTO @location_id2 FROM location where name = "Supportive Care Ward";
+
+          delete from location_tag_map where location_id = @location_id1;
+          delete from location_tag_map where location_id = @location_id2;
+        </sql>
+    </changeSet>
+
+     <changeSet id="MALAWI_CONFIG_2022102818581948734" author="Kiruthiga">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="2">
+                SELECT count(*) FROM location where name in ("Surgical Ward", "Supportive Care Ward");
+            </sqlCheck>
+        </preConditions>
+        <comment>deleting Surgical and Supportive care wards from location </comment>
+        <sql>
+          SELECT name INTO @location_name1 FROM location where name = "Surgical Ward";
+          SELECT name INTO @location_name2 FROM location where name =  "Supportive Care Ward";
+
+          delete from location where name = @location_name1;
+          delete from location where name = @location_name2;
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_202210281045194827" author="Kiruthiga">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from location_tag_map WHERE location_id = (SELECT location_id FROM location WHERE name ='Inpatient Department Ward') 
+                AND location_tag_id = (SELECT location_tag_id FROM location_tag WHERE name = 'Admission Location');
+            </sqlCheck>
+        </preConditions>
+        <comment>Mapping location_tag admission location to location</comment>
+        <sql>
+
+            INSERT INTO location (name, description, retired, uuid, date_created, creator) VALUES ('Inpatient Department Ward', 'Inpatient Department Ward', FALSE, uuid(), NOW(), 1);
+            
+            SELECT location_tag_id INTO @location_tag_id FROM location_tag WHERE name = 'Admission Location';
+
+            SELECT location_id INTO @location_id1 FROM location WHERE location.name='Inpatient Department Ward';
+            INSERT INTO location_tag_map(location_id, location_tag_id) VALUES(@location_id1, @location_tag_id);
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_20221028204519687" author="Kiruthiga">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from location where name = "Inpatient Department Ward" and
+                parent_location is null;
+            </sqlCheck>
+        </preConditions>
+        <comment>Mapping to parent location</comment>
+        <sql>
+            SELECT location_id INTO @location_id1 FROM location WHERE location.name='Inpatient Department';
+            UPDATE location SET parent_location = @location_id1 WHERE name = 'Inpatient Department Ward';
+        </sql>
+    </changeSet>
+
+     <changeSet id="MALAWI_CONFIG_202210282045196870091223" author="Kiruthiga">
+        <comment>Adding bed layout to Ward</comment>
+        <sqlFile path="BedManagement/InpatientDepartment_Bed_Layout_1.sql"/>
+    </changeSet>
+
+    </databaseChangeLog>
