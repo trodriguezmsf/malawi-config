@@ -166,7 +166,13 @@
         </sql>
     </changeSet>
 
-<changeSet id="MALAWI_CONFIG_202210281045194827" author="Kiruthiga">
+    <changeSet id="MALAWI_CONFIG_202210281045194827" author="Kiruthiga">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from location_tag_map WHERE location_id = (SELECT location_id FROM location WHERE name ='Inpatient Department Ward') 
+                AND location_tag_id = (SELECT location_tag_id FROM location_tag WHERE name = 'Admission Location');
+            </sqlCheck>
+        </preConditions>
         <comment>Mapping location_tag admission location to location</comment>
         <sql>
 
