@@ -1,0 +1,509 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+
+    <changeSet id="Malawi_CONFIG_20221027055449403" author="Shobana">
+        <comment>Adding Concepts for ChemotherapyClinicalAssessmentTreatment Form</comment>
+        <sqlFile path="ChemotherapyClinicalAssessmentTreatment/ChemotherapyClinicalAssessmentTreatment_1.sql"/>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_20221027123654092" author="Shobana">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Neoadjuvant Chemotherapy (NAC)", "Adjuvant chemotherapy", "Palliative chemotherapy")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "CCAT, Type of chemotherapy");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to CCAT, Type of chemotherapy</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "CCAT, Type of chemotherapy" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Neoadjuvant Chemotherapy (NAC)" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Adjuvant chemotherapy" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Palliative chemotherapy" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_20221027055138446" author="Shobana">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="3">
+                select count(*) from concept_reference_term
+                where code in
+                ("166925", "160753", "1887")
+                and retired = 0
+                and concept_source_id = (
+                select concept_source_id from concept_reference_source where name = "CEIL"  and retired =0
+                );
+            </sqlCheck>
+        </preConditions>
+        <comment>Add CEIL codes to concepts</comment>
+        <sql>
+            SELECT concept_source_id INTO @source_id FROM concept_reference_source where name = "CEIL";  
+            call CREATE_REFERENCE_MAPPING_CEIL("CCAT, Type of chemotherapy","166925");
+            call CREATE_REFERENCE_MAPPING_CEIL("CCAT, Gynaecological consultation date","160753");
+            call CREATE_REFERENCE_MAPPING_CEIL("CCAT, Reason for referral","1887");
+            call CREATE_REFERENCE_MAPPING_CEIL("CCAT, MDT date","160753");
+        </sql>
+    </changeSet>
+
+     <changeSet id="MALAWI_CONFIG_20221027055138000" author="Shobana">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_reference_term
+                where code in
+                ("116214", "140501")
+                and retired = 0
+                and concept_source_id = (
+                select concept_source_id from concept_reference_source where name = "CEIL"  and retired =0
+                );
+            </sqlCheck>
+        </preConditions>
+        <comment>Add CEIL codes to concepts</comment>
+        <sql>
+            SELECT concept_source_id INTO @source_id FROM concept_reference_source where name = "CEIL";  
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"116214",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"140501",@source_id,uuid(),now());
+            call CREATE_REFERENCE_MAPPING_CEIL("Hypotension","116214");
+            call CREATE_REFERENCE_MAPPING_CEIL("Fatigue","140501");
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_20221027055507422" author="Shobana">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="32">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Anaemia", "Leukopenia", "Thrombocytopenia", "Loss of appetite", "Nausea", "Vomiting", "Diarrhea", "Weight loss", "Thrush", "Change of taste", "Abdominal pain", "Renal failure", "Mucositis", "Neuropathy", "Constipation", "Other")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "CCAT, Side effects");
+            </sqlCheck>
+        </preConditions>
+        <comment>Delete Answers for CCAT, Side effects</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "CCAT, Side effects" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+          
+            select concept_id into @concept_id1 from concept_name where name ="Anaemia" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @concept_id2 from concept_name where name ="Leukopenia" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @concept_id3 from concept_name where name ="Thrombocytopenia" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @concept_id4 from concept_name where name ="Loss of appetite" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @concept_id5 from concept_name where name ="Nausea" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @concept_id6 from concept_name where name ="Vomiting" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @concept_id7 from concept_name where name ="Diarrhea" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @concept_id8 from concept_name where name ="Weight loss" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @concept_id9 from concept_name where name ="Thrush" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @concept_id10 from concept_name where name ="Change of taste" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @concept_id11 from concept_name where name ="Abdominal pain" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @concept_id12 from concept_name where name ="Renal failure" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @concept_id13 from concept_name where name ="Mucositis" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @concept_id14 from concept_name where name ="Neuropathy" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @concept_id15 from concept_name where name ="Constipation" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @concept_id16 from concept_name where name ="Other" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            
+            delete from concept_answer where answer_concept=@concept_id1 and concept_id=@concept_id;
+            delete from concept_answer where answer_concept=@concept_id2 and concept_id=@concept_id;
+            delete from concept_answer where answer_concept=@concept_id3 and concept_id=@concept_id;
+            delete from concept_answer where answer_concept=@concept_id4 and concept_id=@concept_id;
+            delete from concept_answer where answer_concept=@concept_id5 and concept_id=@concept_id;
+            delete from concept_answer where answer_concept=@concept_id6 and concept_id=@concept_id;
+            delete from concept_answer where answer_concept=@concept_id7 and concept_id=@concept_id;
+            delete from concept_answer where answer_concept=@concept_id8 and concept_id=@concept_id;
+            delete from concept_answer where answer_concept=@concept_id9 and concept_id=@concept_id;
+            delete from concept_answer where answer_concept=@concept_id10 and concept_id=@concept_id;
+            delete from concept_answer where answer_concept=@concept_id11 and concept_id=@concept_id;
+            delete from concept_answer where answer_concept=@concept_id12 and concept_id=@concept_id;
+            delete from concept_answer where answer_concept=@concept_id13 and concept_id=@concept_id;
+            delete from concept_answer where answer_concept=@concept_id14 and concept_id=@concept_id;
+            delete from concept_answer where answer_concept=@concept_id15 and concept_id=@concept_id;
+            delete from concept_answer where answer_concept=@concept_id16 and concept_id=@concept_id;
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_20221027055507410" author="Shobana">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Anaemia", "Leukopenia", "Thrombocytopenia", "Loss of appetite", "Nausea", "Vomiting", "Diarrhea", "Weight loss", "Thrush", "Change of taste", "Abdominal pain", "Renal failure", "Mucositis", "Neuropathy", "Constipation", "Other")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "CCAT, Side effects");
+            </sqlCheck>
+        </preConditions>
+        <comment>Add Answers for CCAT, Side effects</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "CCAT, Side effects" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0; 
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            set @child6_concept_id = 0;
+            set @child7_concept_id = 0;
+            set @child8_concept_id = 0;
+            set @child9_concept_id = 0;
+            set @child10_concept_id = 0;
+            set @child11_concept_id = 0;
+            set @child12_concept_id = 0;
+            set @child13_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="None" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Loss of appetite" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Nausea" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Vomiting" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Diarrhea" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child6_concept_id from concept_name where name ="Constipation" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child7_concept_id from concept_name where name ="Fatigue" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child8_concept_id from concept_name where name ="Mucositis" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child9_concept_id from concept_name where name ="Neuropathy" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child10_concept_id from concept_name where name ="Anaemia" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child11_concept_id from concept_name where name ="Leukopenia" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child12_concept_id from concept_name where name ="Thrombocytopenia" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child13_concept_id from concept_name where name ="Other" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+            call add_concept_answer(@concept_id, @child6_concept_id, 6);
+            call add_concept_answer(@concept_id, @child7_concept_id, 7);
+            call add_concept_answer(@concept_id, @child8_concept_id, 8);
+            call add_concept_answer(@concept_id, @child9_concept_id, 9);
+            call add_concept_answer(@concept_id, @child10_concept_id, 10);
+            call add_concept_answer(@concept_id, @child11_concept_id, 11);
+            call add_concept_answer(@concept_id, @child12_concept_id, 12);
+            call add_concept_answer(@concept_id, @child13_concept_id, 13);
+        </sql>
+    </changeSet>
+
+
+    <changeSet id="MALAWI_CONFIG_2022102705550123" author="Shobana">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="4">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Grade 4", "Grade 5")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "CCAT, Nausea severity");
+            </sqlCheck>
+        </preConditions>
+        <comment>Delete Answers for CCAT, Nausea severity</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "CCAT, Nausea severity" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+
+            select concept_id into @concept_id4 from concept_name where name ="Grade 4" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @concept_id5 from concept_name where name ="Grade 5" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            
+            delete from concept_answer where answer_concept=@concept_id4 and concept_id=@concept_id;
+            delete from concept_answer where answer_concept=@concept_id5 and concept_id=@concept_id;
+        </sql>
+    </changeSet>
+
+     <changeSet id="MALAWI_CONFIG_20221027055513403" author="Shobana">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Grade 1", "Grade 2", "Grade 3")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "CCAT, Fatigue severity");
+            </sqlCheck>
+        </preConditions>
+        <comment>Add Answers to CCAT, Fatigue severity</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "CCAT, Fatigue severity" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Grade 1" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Grade 2" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Grade 3" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_2022102705550100" author="Shobana">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="2">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Grade 5")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "CCAT, Neuropathy severity");
+            </sqlCheck>
+        </preConditions>
+        <comment>Delete Answers for CCAT, Neuropathy severity</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "CCAT, Neuropathy severity" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+          
+            select concept_id into @concept_id5 from concept_name where name ="Grade 5" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            DELETE from concept_answer WHERE answer_concept=@concept_id5 and concept_id=@concept_id;
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_20221027055513192" author="Shobana">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from concept_name WHERE name = "CCAT, Nausea severity" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment>Update description for CCAT, Nausea severity</comment>
+        <sql>
+            SELECT concept_id into @concept_id FROM concept_name WHERE name = "CCAT, Nausea severity" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            UPDATE concept_description set description = "Grade 1: Loss of appetite without alteration in eating habits; Grade 2: Oral intake decreased without significant weight loss; dehydration or malnutrition; Grade 3: Inadequate oral caloric or fluid intake; tube feeding, TPN or hospitalization indicated" 
+            WHERE concept_id = @concept_id; 
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_2022102705551124" author="Shobana">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from concept_name WHERE name = "CCAT, Vomiting severity" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment>Update description for Vomiting severity</comment>
+        <sql>
+
+            SELECT concept_id into @concept_id FROM concept_name WHERE name = "CCAT, Vomiting severity" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            UPDATE concept_description set description = "Grade 1: Intervention not indicated; Grade 2: Outpatient IV hydration, medical intervention indicated; Grade 3: Tube feeding, TPN or hospitalization indicated; Grade 4: Life-threatening consequences; Grade 5 Death" 
+            WHERE concept_id = @concept_id; 
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_2022102705551151" author="Shobana">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from concept_name WHERE name = "CCAT, Constipation severity" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment>Update description for Constipation severity</comment>
+        <sql>
+            SELECT concept_id into @concept_id FROM concept_name WHERE name = "CCAT, Constipation severity" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            UPDATE concept_description set description = "Grade 1: Occasional or intermittent symptoms; occasional use of stool softeners, laxatives, dietary modification, or enema; Grade 2: Persistent symptoms with regular use of laxatives or enemas; limiting instrumental AD; Grade 3:Obstipation with manual evacuation indicated; limiting self care ADL; Grade 4: Life-threatening consequences; urgent intervention indicated. Grade 5 Death" 
+            WHERE concept_id = @concept_id; 
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_2022102705551102" author="Shobana">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from concept_name WHERE name = "CCAT, Fatigue severity" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment>Insert description for Fatigue severity</comment>
+        <sql>
+        SELECT concept_id into @concept_id FROM concept_name WHERE name = "CCAT, Fatigue severity" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+        INSERT INTO concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)
+        VALUES (@concept_id, "Grade 1: Fatigue relieved by rest; Grade 2: Not relieved by rest; limiting instrumental ADL (activities of daily living); Grade 3: Not relieved by rest; limiting self-care ADL.","en",1,now(),NULL,NULL,uuid());
+        </sql>
+    </changeSet>
+
+     <changeSet id="MALAWI_CONFIG_2022102705557617" author="Shobana">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from concept_name WHERE name = "CCAT, Mucositis severity" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment>Update description for Mucositis severity</comment>
+        <sql>
+            SELECT concept_id into @concept_id FROM concept_name WHERE name = "CCAT, Mucositis severity" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            UPDATE concept_description set description = "Grade 1: Asymptomatic or mild symptoms; intervention not indicated; Grade 2: Moderate pain or ulcer that does not interfere with oral intake; modified diet indicated; Grade 3: Severe pain interfering with oral intake; Grade 4: Life-threatening consequences; urgent intervention indicated. Grade 5 Death" 
+            WHERE concept_id = @concept_id; 
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_2022102705557172" author="Shobana">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from concept_name WHERE name = "CCAT, Neuropathy severity" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment>Update description for Neuropathy severity</comment>
+        <sql>
+            SELECT concept_id into @concept_id FROM concept_name WHERE name = "CCAT, Neuropathy severity" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            UPDATE concept_description set description = "Grade 1: Asymptomatic; Grade 2: Moderate symptom limiting instrumental ADL; Grade 3: Severe symptom limiting self care ADL; Grade 4: Life-threatening consequences; urgent intervention indicated" 
+            WHERE concept_id = @concept_id; 
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_2022102705557100" author="Shobana">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from concept_name WHERE name = "CCAT, Anaemia severity" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment>Update description for CCAT, Anaemia severity</comment>
+        <sql>
+            SELECT concept_id into @concept_id FROM concept_name WHERE name = "CCAT, Anaemia severity" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            UPDATE concept_description set description = "Grade 1: Hemoglobin (Hgb) &lt;LLN - 10.0 g/dL; &lt;LLN - 6.2 mmol/L; &lt;LLN - 100 g/L; Grade 2: Hgb &lt;10.0 - 8.0 g/dL; &lt;6.2 - 4.9 mmol/L; &lt;100 - 80g/L; Grade 3: Hgb &lt;8.0 g/dL; &lt;4.9 mmol/L; &lt;80 g/L; transfusion indicated; Grade 4: Life-threatening consequences; urgent intervention indicated. Grade 5: Death" 
+            WHERE concept_id = @concept_id; 
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_20221027131513398" author="Shobana">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT count(*) from concept_name where name ="CCAT, Reason for delay" AND concept_name_type="FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>Update CCAT, Reason for delay to CCAT, Reason for delaying chemotherapy</comment>
+        <sql>
+            select concept_id into @concept_id1 from concept_name where name = "CCAT, Reason for delay" AND concept_name_type="FULLY_SPECIFIED";
+
+            UPDATE concept_name SET name ="CCAT, Reason for delaying chemotherapy" WHERE concept_id = @concept_id1 AND concept_name_type="FULLY_SPECIFIED";
+            UPDATE concept_name SET name ="Reason for delaying chemotherapy" WHERE concept_id = @concept_id1 AND concept_name_type="SHORT";
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_20221027055511928" author="Shobana">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Gynaecological consultation", "Patient support", "Therapeutic patient education (TPE)", "Counselling", "Other")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "CCAT, Reason for referral");
+            </sqlCheck>
+        </preConditions>
+        <comment>Add Answers to CCAT, Reason for referral</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "CCAT, Reason for referral" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Gynaecological consultation" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Patient support" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Therapeutic patient education (TPE)" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Counselling" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Other" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_202210270555074182" author="Shobana">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="6">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Chemotherapy extravasation", "Serious adverse events", "Other")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "CCAT, Complications during the infusion");
+            </sqlCheck>
+        </preConditions>
+        <comment>Delete Answers for CCAT, Complications during the infusion</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "CCAT, Complications during the infusion" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+          
+            select concept_id into @concept_id1 from concept_name where name ="Chemotherapy extravasation" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @concept_id2 from concept_name where name ="Serious adverse events" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @concept_id3 from concept_name where name ="Other" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+
+            delete from concept_answer where answer_concept=@concept_id1 and concept_id=@concept_id;
+            delete from concept_answer where answer_concept=@concept_id2 and concept_id=@concept_id;
+            delete from concept_answer where answer_concept=@concept_id3 and concept_id=@concept_id;
+        </sql>
+    </changeSet>
+
+     <changeSet id="MALAWI_CONFIG_20221027055511029" author="Shobana">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Allergic reaction", "Dizziness", "Vomiting", "Hypotension", "Hypertension", "Chemotherapy extravasation", "Other")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "CCAT, Complications during the infusion");
+            </sqlCheck>
+        </preConditions>
+        <comment>Add Answers to CCAT, Complications during the infusion</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "CCAT, Complications during the infusion" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            set @child6_concept_id = 0;
+            set @child7_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Allergic reaction" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Dizziness" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Vomiting" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Hypotension" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Hypertension" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child6_concept_id from concept_name where name ="Chemotherapy extravasation" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child7_concept_id from concept_name where name ="Other" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+            call add_concept_answer(@concept_id, @child6_concept_id, 6);
+            call add_concept_answer(@concept_id, @child7_concept_id, 7);
+        </sql>
+    </changeSet>
+
+
+</databaseChangeLog>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="MALAWI_CONFIG_20221026185819193" author="Shobana">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_name where name IN ("CBA, Cardiac examination comments", "CBA, Respiratory system examination comments")  and concept_name_type ="FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding concepts for chemotherapy baseline form</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_short_id = 0;
+            set @concept_full_id = 0;
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CBA, Cardiac examination comments","Cardiac examination comments","Text","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"CBA, Respiratory system examination comments","Respiratory system examination comments","Text","Misc",false);
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_20221025131527111" author="Shobana">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from concept_reference_term
+                where code in
+                ("161011")
+                and retired = 0
+                and concept_source_id = (
+		        select concept_source_id from concept_reference_source where name = "CEIL"  
+                and retired =0);
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding CEIL codes to concepts</comment>
+        <sql>
+            SELECT concept_source_id INTO @source_id FROM concept_reference_source where name = "CEIL";
+            call CREATE_REFERENCE_MAPPING_CEIL("CBA, Cardiac examination comments","161011");
+            call CREATE_REFERENCE_MAPPING_CEIL("CBA, Respiratory system examination comments","161011");
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
