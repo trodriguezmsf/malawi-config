@@ -11,10 +11,19 @@
                     "url": "/bahmni/bedmanagement/#/bedManagement/patient/{{patientUuid}}",
                     "linkColumn": "Bed Management",
                     "newTab": false
-                }],
-                "view": "tabular",
+                }
+            ],
+            "view": "tabular",
             "forwardUrl": "#/programs/patient/{{patientUuid}}/consultationContext",
-            "searchColumns": ["ID", "Name","DOB","Date of Registration","Oncogynae Program State","Palliative Program State","Bed Number"]
+            "searchColumns": [
+                "ID",
+                "Name",
+                "DOB",
+                "Date of Registration",
+                "Oncogynae Program State",
+                "Palliative Program State",
+                "Bed Number"
+            ]
         },
         "label": "Programs",
         "order": 1,
@@ -112,21 +121,35 @@
         "order": 1,
         "requiredPrivilege": "app:clinical:observationTab"
     },
-    "bahmniClinicalBillingTreatment": {
+    "bahmniClinicalBillingTreatmentChemoMedicationsTab": {
+        "id": "bahmni.clinical.billing.treatment",
+        "extensionPointId": "org.bahmni.clinical.consultation.board",
+        "type": "link",
+        "label": "Chemo Medications",
+        "translationKey": "CLINICAL_EXTENSION_MEDICATION_CHEMO_TAB",
+        "extensionParams": {
+            "tabConfigName": "chemoTabConfig"
+        },
+        "url": "treatment",
+        "icon": "fa-user-md",
+        "order": 7,
+        "requiredPrivilege": "app:clinical:consultationTab"
+    },
+    "bahmniClinicalBillingTreatmentMedicationsTab": {
         "id": "bahmni.clinical.billing.treatment",
         "extensionPointId": "org.bahmni.clinical.consultation.board",
         "type": "link",
         "label": "Medications",
-        "translationKey":"MEDICATIONS_BOARD_LABEL_KEY",
+        "translationKey": "CLINICAL_EXTENSION_MEDICATION_TAB",
         "extensionParams": {
-          "tabConfigName": "allMedicationTabConfig"
+            "tabConfigName": "medicationTabConfig"
         },
         "url": "treatment",
         "icon": "fa-user-md",
-        "order": 14,
-        "requiredPrivilege": "app:clinical:treatmentTab"
-      },
-      "disposition": {
+        "order": 8,
+        "requiredPrivilege": "app:clinical:consultationTab"
+    },
+    "disposition": {
         "id": "bahmni.clinical.consultation.disposition",
         "extensionPointId": "org.bahmni.clinical.consultation.board",
         "type": "link",
@@ -136,5 +159,5 @@
         "icon": "fa-user-md",
         "order": 13,
         "requiredPrivilege": "app:clinical:dispositionTab"
-      }
+    }
 }

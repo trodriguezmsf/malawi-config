@@ -811,7 +811,7 @@
       "Chemotherapy Clinical Assessment and Treatment": {
         "translationKey": "DASHBOARD_TITLE_CHEMO_CLINICAL",
         "isObservation": true,
-        "displayOrder": 3,
+        "displayOrder": 2,
         "dashboardConfig": {
           "showDetailsButton": true,
           "numberOfEncounters": 6,
@@ -851,6 +851,33 @@
           "isEditable": true,
           "showDetailsButton": true,
           "pivotTable": {}
+        }
+      },
+      "Chemotherapy Medication Chart": {
+        "translationKey": "DASHBOARD_TITLE_CHEMO_MEDICATION_KEY",
+        "type": "chronicTreatmentChart",
+        "displayOrder": 3,
+        "displayType": "Full-Page",
+        "dashboardConfig": {
+          "showFlowSheet": true,
+          "showListView": true,
+          "showRoute": true,
+          "showDrugForm": true,
+          "numberOfVisits": 5,
+          "showOtherActive": true,
+          "showDetailsButton": false,
+          "drugs": "All Chemo Drugs"
+        },
+        "expandedViewConfig": {
+          "translationKey": "DASHBOARD_TITLE_CHEMO_MEDICATION_KEY",
+          "showFlowSheet": true,
+          "showListView": true,
+          "showRoute": true,
+          "showDrugForm": true,
+          "numberOfVisits": 10,
+          "showOtherActive": true,
+          "showDetailsButton": false,
+          "drugs": "All Chemo Drugs"
         }
       }
     }

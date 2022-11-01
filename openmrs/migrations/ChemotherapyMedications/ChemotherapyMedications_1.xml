@@ -1,0 +1,888 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="MALAWI_CONFIG_20221027185819193" author="Shobana">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_name where name IN ("All Chemo Drugs", "All Other Drugs")  and concept_name_type ="FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>Create concepts for All chemo and All other drugs</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_short_id = 0;
+            set @concept_full_id = 0;
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"All Chemo Drugs","","N/A","Misc",true);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"All Other Drugs","","N/A","Misc",true);
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_20221027185819123" author="Shobana">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_name where name IN ("mg/m2", "AUC")  and concept_name_type ="FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>Create dosing units</comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_short_id = 0;
+            set @concept_full_id = 0;
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"mg/m2","mg/m2","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"AUC","AUC","N/A","Misc",false);
+        </sql>
+    </changeSet>
+
+     <changeSet id="MALAWI_CONFIG_20221027131527111" author="Shobana" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_set where concept_id in (select concept_id from concept_name where name in ("mg/m2", "AUC") and concept_name_type = "FULLY_SPECIFIED") AND concept_set =(SELECT concept_id  from concept_name where name= 'Dosing Units' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Add mg/m2 and AUC to dosing units </comment>
+        <sql>
+            SELECT concept_id INTO @concept_set  from concept_name where name= 'Dosing Units' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id1 FROM concept_name WHERE name = 'mg/m2' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id2 FROM concept_name WHERE name = 'AUC' AND concept_name_type="FULLY_SPECIFIED";
+
+            call add_concept_set_members(@concept_set, @concept_id1, 1);
+            call add_concept_set_members(@concept_set, @concept_id2, 2);
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_2022102613151" author="Shobana">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM drug WHERE name IN ("Paclitaxel (mg/m2)", "Docetaxel (mg/m2)", "Carboplatin (AUC)", "Cisplatin (mg/m2)", "5FU (mg/m2)", "Gemcitabine (mg/m2)", "Ifosfamide (mg/m2)", "Vinorelbine (mg/m2)", "Mitomycin (mg/m2)", "Irinotecan (mg/m2)", "Filgrastim (µg)", "Pegfilgrastim (mg)");
+            </sqlCheck>
+        </preConditions>
+        <comment>Add new chemo drugs</comment>
+        <sql>
+            set @locale = "en";
+            # Add new drug (drug_name, drug_strength, dosage_form_name, locale)
+            CALL add_new_drug("Paclitaxel (mg/m2)", "", "", @locale);
+            CALL add_new_drug("Docetaxel (mg/m2)", "", "", @locale);
+            CALL add_new_drug("Carboplatin (AUC)", "", "", @locale);
+            CALL add_new_drug("Cisplatin (mg/m2)", "", "", @locale);
+            CALL add_new_drug("5FU (mg/m2)", "", "", @locale);
+            CALL add_new_drug("Gemcitabine (mg/m2)", "", "", @locale);
+            CALL add_new_drug("Ifosfamide (mg/m2)", "", "", @locale);
+            CALL add_new_drug("Vinorelbine (mg/m2)", "", "", @locale);
+            CALL add_new_drug("Mitomycin (mg/m2)", "", "", @locale);
+            CALL add_new_drug("Irinotecan (mg/m2)", "", "", @locale);
+            CALL add_new_drug("Filgrastim (µg)", "", "", @locale);
+            CALL add_new_drug("Pegfilgrastim (mg)", "", "", @locale);
+            </sql>
+    </changeSet>
+    
+    <changeSet id="MALAWI_CONFIG_202210261311234" author="Shobana">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select COUNT(*) from concept_set cs
+                join concept_name cn
+                on cs.concept_id = cn.concept_id
+                where cs.concept_id IN (select concept_id from concept_name where name in ("Paclitaxel (mg/m2)", "Docetaxel (mg/m2)", "Carboplatin (AUC)", "Cisplatin (mg/m2)", "5FU (mg/m2)", "Gemcitabine (mg/m2)", "Ifosfamide (mg/m2)", "Vinorelbine (mg/m2)", "Mitomycin (mg/m2)", "Irinotecan (mg/m2)", "Filgrastim (µg)", "Pegfilgrastim (mg)")
+                AND concept_name_type = "FULLY_SPECIFIED")
+                and cs.concept_set IN (select concept_id from concept_name where name = 'All Chemo Drugs') and
+                concept_name_type = "FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding set members for "All Chemo drugs" concept</comment>
+        <sql>
+            select concept_id into @all_chemo_concept_id from concept_name where name = "All Chemo Drugs" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            set @child6_concept_id = 0;
+            set @child7_concept_id = 0;
+            set @child8_concept_id = 0;
+            set @child9_concept_id = 0;
+            set @child10_concept_id = 0;
+            set @child11_concept_id = 0;
+            set @child12_concept_id = 0;
+
+            select concept_id into @child1_concept_id from concept_name where name ="Paclitaxel (mg/m2)" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Docetaxel (mg/m2)" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Carboplatin (AUC)" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Cisplatin (mg/m2)" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="5FU (mg/m2)" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child6_concept_id from concept_name where name ="Gemcitabine (mg/m2)" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child7_concept_id from concept_name where name ="Ifosfamide (mg/m2)" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child8_concept_id from concept_name where name ="Vinorelbine (mg/m2)" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child9_concept_id from concept_name where name ="Mitomycin (mg/m2)" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child10_concept_id from concept_name where name ="Irinotecan (mg/m2)" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child11_concept_id from concept_name where name ="Filgrastim (µg)" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child12_concept_id from concept_name where name ="Pegfilgrastim (mg)" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            call add_concept_set_members(@all_chemo_concept_id, @child1_concept_id, 1);
+            call add_concept_set_members(@all_chemo_concept_id, @child2_concept_id, 2);
+            call add_concept_set_members(@all_chemo_concept_id, @child3_concept_id, 3);
+            call add_concept_set_members(@all_chemo_concept_id, @child4_concept_id, 4);
+            call add_concept_set_members(@all_chemo_concept_id, @child5_concept_id, 5);
+            call add_concept_set_members(@all_chemo_concept_id, @child6_concept_id, 6);
+            call add_concept_set_members(@all_chemo_concept_id, @child7_concept_id, 7);
+            call add_concept_set_members(@all_chemo_concept_id, @child8_concept_id, 8);
+            call add_concept_set_members(@all_chemo_concept_id, @child9_concept_id, 9);
+            call add_concept_set_members(@all_chemo_concept_id, @child10_concept_id, 10);
+            call add_concept_set_members(@all_chemo_concept_id, @child11_concept_id, 11);
+            call add_concept_set_members(@all_chemo_concept_id, @child12_concept_id, 12);
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_20221026131782" author="Shobana">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select COUNT(*) from concept_set cs
+                join concept_name cn
+                on cs.concept_id = cn.concept_id
+                where cs.concept_id IN (select concept_id from concept_name where name in ("CLOTRIMAZOLE 500mg vaginal tab. + applicator", "FENTANYL 2,1 mg 12μg/h, transdermal patch", "FENTANYL 4,2 mg 25μg/h, transdermal patch", "LIDOCAINE 2% Jelly", "PODOPHYLLOTOXIN 0.50% 3.5ml, + 30 applicator tips", "ZINC OXIDE 10% 100 g tube ointment", "DEXTROSE (GLUCOSE) 10% 500ml, flex. bag, PVC free", "DEXTROSE (GLUCOSE) 5% 1l, flex. bag, PVC free", "DEXTROSE (GLUCOSE) 5% 250ml, flex. bag, PVC free", "DEXTROSE (GLUCOSE) 5% 500ml, flex. bag, PVC free", "MODIFIED FLUID GELATIN/POLYGELIN 500ml semi-rigid bt, PVC free", "RINGER lactate 1l, flex. bag, PVC free", "RINGER lactate 500 ml, flex. bag, PVC free", "SODIUM chloride 0.90% 100ml, flex. bag, PVC free", "SODIUM chloride 0.90% 1l, flex. bag, PVC free", "SODIUM chloride 0.90% 250ml, flex. bag, PVC free", "SODIUM chloride 0.90% 500ml, flex. bag, PVC free", "AMIODARONE hydrochloride 50mg/ml Ampoule", "AMOXICILLIN + CLAVULANIC acid 1g + 200mg Powder", "ARTESUNATE +NaHCO3 +NaCl 120mg + 5%+2ml+0.9% 10ml powder vial", "ATRACURIUM besilate 10mg/ml Injection", "ATROPINE sulfate 1mg/ml Injection", "BUPIVACAINE HCl, hyperbaric/spinal eq. 5mg/ml base 4 ml ampoule", "CALCIUM GLUCONATE 100mg/ml 10ml ampoule", "CEFAZOLIN 1g powder vial", "CEFTRIAXONE sodium + lidocaine Intramuscular eq. 250 mg base powder vial", "CEFTRIAXONE sodium eq. 1 g base powder vial", "CHLORPROMAZINE 25mg/ml ampoule", "CIPROFLOXACIN salt eq. 2mg/ml base 100ml, bag/bot PVC free", "CLINDAMYCIN phosphate eq. 150mg base/ml 2ml ampoule", "CLOXACILLIN sodium eq. 500mg base powder", "DEXAMETHASONE phosphate 4mg/ml 1ml ampoule", "DIAZEPAM 5mg/ml 2ml ampoule", "DICLOFENAC sodium 25mg/ml 3ml ampoule", "DIGOXIN 0.25mg/ml 2 ml ampoule", "DILTIAZEM hydrochloride 25mg powder vial", "DOPAMINE hydrochloride 40mg/ml 5 ml ampoule", "EPHEDRINE hydrochloride 30mg/ml 1 ml ampoule", "EPINEPHRINE (adrenaline) tartrate eq. 1mg/ml base 1 ml ampoule", "EPOETIN ALFA 10000 IU/ml 1ml, graduated syringe", "FENTANYL citrate eq. 0.05mg/ml base 2 ml ampoule", "FERRIC carboxymaltose eq. 50mg/ml iron 2 ml ampoule", "FLUMAZENIL 0.1mg/ml 10 ml ampoule", "FUROSEMIDE 10mg/ml 2 ml ampoule", "GENTAMICIN sulfate eq. 40mg/ml 2 ml ampoule", "GLUCOSE hypertonic 50% 50 ml vial", "GLYCOPYRRONIUM bromide 0.2mg/ml 1 ml ampoule", "HALOPERIDOL 5mg/ml 1 ml ampoule", "HEPARIN SODIUM 5000 IU/ml 5 ml ampoule", "HYDRALAZINE hydrochloride 20mg Powder ampoule", "HYDROCORTISONE sodium succinate eq. 100 mg base Powder", "HYOSCINE BUTYLBROMIDE (scopolamine butylbrom) 20mg/1ml Ampoule", "INSULIN HUMAN, RAPID 100 IU/ml 10ml, vial N", "ISOSORBIDE DINITRATE 1mg/ml 10 ml ampoule", "KETAMINE hydrochloride eq. 50mg/ml base 5 ml ampoule", "LABETALOL hydrochloride 5mg/ml 20 ml ampoule", "LEVOBUPIVACAINE hydrochloride eq. 5mg/ml base 10 ml ampoule", "LIDOCAINE + EPINEPHRINE 2% + 1/80000 1,8 ml cartridge", "LIDOCAINE hydrochloride 1% 10 ml ampoule", "LIPID emulsion 20% 250ml, flex. bag, PVC free", "MAGNESIUM sulfate 0.5g/ml 10 ml ampoule", "MEROPENEM 500mg powder vial", "METRONIDAZOLE 5mg/ml 100ml, bag/bottle PVC free", "METOCLOPRAMIDE hydrochloride 5mg/ml 2 ml ampoule", "MIDAZOLAM 1mg/ml 5 ml ampoule", "MORPHINE hydrochloride 10mg/ml 1 ml ampoule", "NADROPARIN calcium 3800 IU/0.4ml Filled syringe", "NALOXONE hydrochloride 0.4mg/ml 1 ml ampoule", "NEOSTIGMINE methylsulfate 2.5mg/ml 1 ml ampoule", "NICARDIPINE hydrochloride 1mg/ml 10 ml ampoule", "OMEPRAZOLE sodium eq. 40 mg base powder vial", "ONDANSETRON hydrochloride eq. 2mg/ml base 2 ml ampoule", "PARACETAMOL (acetaminophen) 10mg/ml 100ml, flex.bag PVC free", "PARACETAMOL (acetaminophen) 10mg/ml 50ml bottle", "BENZATHINE BENZYLPENICILLIN 2.4miu powder vial + solvent", "PHENYLEPHRINE hydrochloride eq. 0.05 mg base/ml 10 ml ampoule", "PIPERACILLIN + TAZOBACTAM 4g + 500mg powder vial", "POTASSIUM chloride 1.34mmol/ml (10%) 10 ml ampoule", "POTASSIUM chloride 2mmol/ml (15%) 10 ml ampoule", "PROMETHAZINE hydrochloride eq. 25mg/ml base 2 ml ampoule", "PROPOFOL 10mg/ml 20 ml ampoule", "PROTAMINE sulfate 10mg/ml 5 ml ampoule", "SODIUM BICARBONATE 8.40% 1mEq/ml, 20ml, amp.", "SODIUM chloride 0.90% 10 ml ampoule", "SUXAMETHONIUM chloride 50mg/ml 2 ml ampoule", "THIOPENTAL sodium 500mg powder vial", "TRAMADOL hydrochloride 50mg/ml 2 ml ampoule", "TRANEXAMIC acid 100mg/ml 5 ml ampoule", "ACICLOVIR 800mg Tablet", "ACETYLSALICYLIC acid (aspirin) 75mg Tablet", "ALUMINIUM hydroxide + MAGNESIUM hydrox. 400mg + 400mg Tablet", "AMITRIPTYLINE hydrochloride 25mg Tablet", "AMLODIPINE 5mg Tablet", "AMOXICILLIN + CLAVULANIC acid 500mg + 125mg Tablet", "AMOXICILLIN + CLAVULANIC acid 875 + 125mg Tablet", "AMOXICILLIN 500mg Tablet", "ARTHEMETER + LUMEFRANTINE 20 mg + 120 mg Tablet", "ASCORBIC acid (vitamin C), 250mg, chewable tab. 250mg Tablet", "AZITHROMYCIN 250mg Tablet", "BISACODYL 5mg Tablet", "BISOPROLOL fumarate 2.5mg Tablet", "CARBAMAZEPINE 200mg Tablet", "CEFIXIME 200mg Tablet", "CHLORPROMAZINE hydrochloride eq. 25 mg base Tablet", "CIPROFLOXACIN hydrochloride eq. 500 mg base Tablet", "CLINDAMYCIN hydrochloride eq. 300mg base Capsule", "CLOXACILLIN sodium eq. 250 mg base Capsule", "CLOXACILLIN sodium eq. 500 mg base Capsule", "CODEINE phosphate 30mg Tablet", "DIAZEPAM 5mg Tablet", "DIGOXIN 0.25mg Tablet", "DOXYCYCLINE salt eq. 100 mg base Tablet", "ENALAPRIL maleate 5mg Tablet", "ERYTHROMYCIN stearate eq. 250 mg base Tablet", "ERYTHROMYCIN stearate eq. 500 mg base Tablet", "FERROUS salt + FOLIC acid eq. 60 mg + 0.4mg Tablet", "FLUCONAZOLE 200mg Capsule", "FOLIC acid 5mg Tablet", "FOSFOMYCIN trometamol eq. 3 g base Sachet", "FUROSEMIDE 40mg Tablet", "GABAPENTIN 100mg Capsule", "GABAPENTIN 300mg Capsule", "HALOPERIDOL 2mg/ml Oral solution", "HYDROCHLOROTHIAZIDE 25mg Tablet", "HYOSCINE BUTYLBROMIDE (scopolamine butylbromide) 10mg Tablet", "IBUPROFEN 400mg Tablet", "ISOSORBIDE DINITRATE 5mg Tablet", "ISOFLURANE 250 ml Bottle", "LABETALOL hydrochloride 200mg Tablet", "LACTULOSE 3.1mg/5ml Oral solution", "LEVOFLOXACIN 500mg Tablet", "LOPERAMIDE hydrochloride 2mg Capsule", "LOPERAMIDE hydrochloride 2mg Tablet", "METFORMIN hydrochloride 500mg Tablet", "METRONIDAZOLE 500mg Tablet", "METOCLOPRAMIDE hydrochloride anhydrous 10mg Tablet", "MORPHINE sulfate 10mg Capsule", "MORPHINE sulfate 10mg/5ml Oral solution", "MORPHINE sulfate 10mg Tablet", "MORPHINE sulfate 30mg Capsule", "NIFEDIPINE 10mg Tablet", "NYSTATIN 100,000 IU/ml Oral drops", "OMEPRAZOLE 20mg Capsule", "ORAL REHYDRATION SALTS (ORS) 20.5g/1l Sachet", "PARACETAMOL (acetaminophen) 500mg Tablet", "PRAZIQUANTEL 600mg Tablet", "PREDNISOLONE 20mg Tablet", "PREDNISOLONE 5mg Tablet", "PROMETHAZINE hydrochloride eq. 25 mg base Tablet", "SALBUTAMOL sulfate eq. 0.1mg base/puff Aerosol", "SPIRONOLACTONE 25mg Tablet", "TRAMADOL hydrochloride 100mg/ml/40 drops Oral drops", "TRAMADOL hydrochloride 50mg Capsule", "TRANEXAMIC acid 500mg Tablet", "AMPICILLIN, 500mg 500mg powder vial", "PARACETAMOL (acetaminophen) 10mg/ml 50ml, flex.bag PVC free", "PHENYTOIN sodium 50mg/ml 5 ml ampoule", "PHYTOMENADIONE (vitamin K1) 10mg/ml (2mg/0,2ml) 0,2 ml ampoule", "ARTESUNATE +NaHCO3+NaCl 60 mg + 5% + 1 ml + 0,9% 5 ml powder vial", "BISOPROLOL fumarate 10mg Tablet", "CIMETIDINE 200mg Tablet", "GABAPENTIN 400mg Capsule", "GLIBENCLAMIDE 5mg Tablet", "LEVOFLOXACIN 500mg Tablet", "LEVOFLOXACIN 500mg Tablet, Blister Oral", "MICONAZOLE 2% 80 g tube", "VALPROATE SODIUM 200mg Tablet", "ZINC sulfate eq. 20 mg Tablet", "BECLOMETASONE dipropionate 0.10mg/puff Aerosol", "BIPERIDEN hydrochloride 2mg Tablet", "METRONIDAZOLE 250mg Tablet", "METHYLDOPA 250mg Tablet")
+                AND concept_name_type = "FULLY_SPECIFIED")
+                and cs.concept_set IN (select concept_id from concept_name where name = 'All Other Drugs') and
+                concept_name_type = "FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+        <comment>Add set members for "All Other drugs" concept</comment>
+        <sql>
+            select concept_id into @all_other_drugs_concept_id from concept_name where name = "All Other Drugs" and
+            concept_name_type = 'FULLY_SPECIFIED' and locale = "en" and voided = 0;
+
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            set @child6_concept_id = 0;
+            set @child7_concept_id = 0;
+            set @child8_concept_id = 0;
+            set @child9_concept_id = 0;
+            set @child10_concept_id = 0;
+            set @child11_concept_id = 0;
+            set @child12_concept_id = 0;
+            set @child13_concept_id = 0;
+            set @child14_concept_id = 0;
+            set @child15_concept_id = 0;
+            set @child16_concept_id = 0;
+            set @child17_concept_id = 0;
+            set @child18_concept_id = 0;
+            set @child19_concept_id = 0;
+            set @child20_concept_id = 0;
+            set @child21_concept_id = 0;
+            set @child22_concept_id = 0;
+            set @child23_concept_id = 0;
+            set @child24_concept_id = 0;
+            set @child25_concept_id = 0;
+            set @child26_concept_id = 0;
+            set @child27_concept_id = 0;
+            set @child28_concept_id = 0;
+            set @child29_concept_id = 0;
+            set @child30_concept_id = 0;
+            set @child31_concept_id = 0;
+            set @child32_concept_id = 0;
+            set @child33_concept_id = 0;
+            set @child34_concept_id = 0;
+            set @child35_concept_id = 0;
+            set @child36_concept_id = 0;
+            set @child37_concept_id = 0;
+            set @child38_concept_id = 0;
+            set @child39_concept_id = 0;
+            set @child40_concept_id = 0;
+            set @child41_concept_id = 0;
+            set @child42_concept_id = 0;
+            set @child43_concept_id = 0;
+            set @child44_concept_id = 0;
+            set @child45_concept_id = 0;
+            set @child46_concept_id = 0;
+            set @child47_concept_id = 0;
+            set @child48_concept_id = 0;
+            set @child49_concept_id = 0;
+            set @child50_concept_id = 0;
+            set @child51_concept_id = 0;
+            set @child52_concept_id = 0;
+            set @child53_concept_id = 0;
+            set @child54_concept_id = 0;
+            set @child55_concept_id = 0;
+            set @child56_concept_id = 0;
+            set @child57_concept_id = 0;
+            set @child58_concept_id = 0;
+            set @child59_concept_id = 0;
+            set @child60_concept_id = 0;
+            set @child61_concept_id = 0;
+            set @child62_concept_id = 0;
+            set @child63_concept_id = 0;
+            set @child64_concept_id = 0;
+            set @child65_concept_id = 0;
+            set @child66_concept_id = 0;
+            set @child67_concept_id = 0;
+            set @child68_concept_id = 0;
+            set @child69_concept_id = 0;
+            set @child70_concept_id = 0;
+            set @child71_concept_id = 0;
+            set @child72_concept_id = 0;
+            set @child73_concept_id = 0;
+            set @child74_concept_id = 0;
+            set @child75_concept_id = 0;
+            set @child76_concept_id = 0;
+            set @child77_concept_id = 0;
+            set @child78_concept_id = 0;
+            set @child79_concept_id = 0;
+            set @child80_concept_id = 0;
+            set @child81_concept_id = 0;
+            set @child82_concept_id = 0;
+            set @child83_concept_id = 0;
+            set @child84_concept_id = 0;
+            set @child85_concept_id = 0;
+            set @child86_concept_id = 0;
+            set @child87_concept_id = 0;
+            set @child88_concept_id = 0;
+            set @child89_concept_id = 0;
+            set @child90_concept_id = 0;
+            set @child91_concept_id = 0;
+            set @child92_concept_id = 0;
+            set @child93_concept_id = 0;
+            set @child94_concept_id = 0;
+            set @child95_concept_id = 0;
+            set @child96_concept_id = 0;
+            set @child97_concept_id = 0;
+            set @child98_concept_id = 0;
+            set @child99_concept_id = 0;
+            set @child100_concept_id = 0;
+            set @child101_concept_id = 0;
+            set @child102_concept_id = 0;
+            set @child103_concept_id = 0;
+            set @child104_concept_id = 0;
+            set @child105_concept_id = 0;
+            set @child106_concept_id = 0;
+            set @child107_concept_id = 0;
+            set @child108_concept_id = 0;
+            set @child109_concept_id = 0;
+            set @child110_concept_id = 0;
+            set @child111_concept_id = 0;
+            set @child112_concept_id = 0;
+            set @child113_concept_id = 0;
+            set @child114_concept_id = 0;
+            set @child115_concept_id = 0;
+            set @child116_concept_id = 0;
+            set @child117_concept_id = 0;
+            set @child118_concept_id = 0;
+            set @child119_concept_id = 0;
+            set @child120_concept_id = 0;
+            set @child121_concept_id = 0;
+            set @child122_concept_id = 0;
+            set @child123_concept_id = 0;
+            set @child124_concept_id = 0;
+            set @child125_concept_id = 0;
+            set @child126_concept_id = 0;
+            set @child127_concept_id = 0;
+            set @child128_concept_id = 0;
+            set @child129_concept_id = 0;
+            set @child130_concept_id = 0;
+            set @child131_concept_id = 0;
+            set @child132_concept_id = 0;
+            set @child133_concept_id = 0;
+            set @child134concept_id = 0;
+            set @child135_concept_id = 0;
+            set @child136_concept_id = 0;
+            set @child137_concept_id = 0;
+            set @child138_concept_id = 0;
+            set @child139_concept_id = 0;
+            set @child140_concept_id = 0;
+            set @child141_concept_id = 0;
+            set @child142_concept_id = 0;
+            set @child143_concept_id = 0;
+            set @child144_concept_id = 0;
+            set @child145_concept_id = 0;
+            set @child146_concept_id = 0;
+            set @child147_concept_id = 0;
+            set @child148_concept_id = 0;
+            set @child149_concept_id = 0;
+            set @child150_concept_id = 0;
+            set @child151_concept_id = 0;
+            set @child152_concept_id = 0;
+            set @child153_concept_id = 0;
+            set @child154_concept_id = 0;
+            set @child155_concept_id = 0;
+            set @child156_concept_id = 0;
+            set @child157_concept_id = 0;
+            set @child158_concept_id = 0;
+            set @child159_concept_id = 0;
+            set @child160_concept_id = 0;
+            set @child161_concept_id = 0;
+            set @child162_concept_id = 0;
+            set @child163_concept_id = 0;
+            set @child164_concept_id = 0;
+            set @child165_concept_id = 0;
+            set @child166_concept_id = 0;
+            set @child167_concept_id = 0;
+            set @child168_concept_id = 0;
+            set @child169_concept_id = 0;
+            set @child170_concept_id = 0;
+            set @child171_concept_id = 0;
+            set @child172_concept_id = 0;
+            set @child173_concept_id = 0;
+            set @child174_concept_id = 0;
+            set @child175_concept_id = 0;
+            set @child176_concept_id = 0;
+            set @child177_concept_id = 0; 
+                        
+
+            select concept_id into @child1_concept_id from concept_name where name ="CLOTRIMAZOLE 500mg vaginal tab. + applicator" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="FENTANYL 2,1 mg 12μg/h, transdermal patch" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="FENTANYL 4,2 mg 25μg/h, transdermal patch" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="LIDOCAINE 2% Jelly" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="PODOPHYLLOTOXIN 0.50% 3.5ml, + 30 applicator tips" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child6_concept_id from concept_name where name ="ZINC OXIDE 10% 100 g tube ointment" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child7_concept_id from concept_name where name ="DEXTROSE (GLUCOSE) 10% 500ml, flex. bag, PVC free" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child8_concept_id from concept_name where name ="DEXTROSE (GLUCOSE) 5% 1l, flex. bag, PVC free" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child9_concept_id from concept_name where name ="DEXTROSE (GLUCOSE) 5% 250ml, flex. bag, PVC free" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child10_concept_id from concept_name where name ="DEXTROSE (GLUCOSE) 5% 500ml, flex. bag, PVC free" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child11_concept_id from concept_name where name ="MODIFIED FLUID GELATIN/POLYGELIN 500ml semi-rigid bt, PVC free" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child12_concept_id from concept_name where name ="RINGER lactate 1l, flex. bag, PVC free" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child13_concept_id from concept_name where name ="RINGER lactate 500 ml, flex. bag, PVC free" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child14_concept_id from concept_name where name ="SODIUM chloride 0.90% 100ml, flex. bag, PVC free" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child15_concept_id from concept_name where name ="SODIUM chloride 0.90% 1l, flex. bag, PVC free" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child16_concept_id from concept_name where name ="SODIUM chloride 0.90% 250ml, flex. bag, PVC free" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child17_concept_id from concept_name where name ="SODIUM chloride 0.90% 500ml, flex. bag, PVC free" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child18_concept_id from concept_name where name ="AMIODARONE hydrochloride 50mg/ml Ampoule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child19_concept_id from concept_name where name ="AMOXICILLIN + CLAVULANIC acid 1g + 200mg Powder" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child20_concept_id from concept_name where name ="ARTESUNATE +NaHCO3 +NaCl 120mg + 5%+2ml+0.9% 10ml powder vial" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child21_concept_id from concept_name where name ="ATRACURIUM besilate 10mg/ml Injection" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child22_concept_id from concept_name where name ="ATROPINE sulfate 1mg/ml Injection" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child23_concept_id from concept_name where name ="BUPIVACAINE HCl, hyperbaric/spinal eq. 5mg/ml base 4 ml ampoule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child24_concept_id from concept_name where name ="CALCIUM GLUCONATE 100mg/ml 10ml ampoule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child25_concept_id from concept_name where name ="CEFAZOLIN 1g powder vial" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child26_concept_id from concept_name where name ="CEFTRIAXONE sodium + lidocaine Intramuscular eq. 250 mg base powder vial" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child27_concept_id from concept_name where name ="CEFTRIAXONE sodium eq. 1 g base powder vial" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child28_concept_id from concept_name where name ="CHLORPROMAZINE 25mg/ml ampoule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child29_concept_id from concept_name where name ="CIPROFLOXACIN salt eq. 2mg/ml base 100ml, bag/bot PVC free" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child30_concept_id from concept_name where name ="CLINDAMYCIN phosphate eq. 150mg base/ml 2ml ampoule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child31_concept_id from concept_name where name ="CLOXACILLIN sodium eq. 500mg base powder" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child32_concept_id from concept_name where name ="DEXAMETHASONE phosphate 4mg/ml 1ml ampoule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child33_concept_id from concept_name where name ="DIAZEPAM 5mg/ml 2ml ampoule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child34_concept_id from concept_name where name ="DICLOFENAC sodium 25mg/ml 3ml ampoule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child35_concept_id from concept_name where name ="DIGOXIN 0.25mg/ml 2 ml ampoule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child36_concept_id from concept_name where name ="DILTIAZEM hydrochloride 25mg powder vial" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child37_concept_id from concept_name where name ="DOPAMINE hydrochloride 40mg/ml 5 ml ampoule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child38_concept_id from concept_name where name ="EPHEDRINE hydrochloride 30mg/ml 1 ml ampoule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child39_concept_id from concept_name where name ="EPINEPHRINE (adrenaline) tartrate eq. 1mg/ml base 1 ml ampoule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child40_concept_id from concept_name where name ="EPOETIN ALFA 10000 IU/ml 1ml, graduated syringe" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child41_concept_id from concept_name where name ="FENTANYL citrate eq. 0.05mg/ml base 2 ml ampoule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child42_concept_id from concept_name where name ="FERRIC carboxymaltose eq. 50mg/ml iron 2 ml ampoule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child43_concept_id from concept_name where name ="FLUMAZENIL 0.1mg/ml 10 ml ampoule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child44_concept_id from concept_name where name ="FUROSEMIDE 10mg/ml 2 ml ampoule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child45_concept_id from concept_name where name ="GENTAMICIN sulfate eq. 40mg/ml 2 ml ampoule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child46_concept_id from concept_name where name ="GLUCOSE hypertonic 50% 50 ml vial" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child47_concept_id from concept_name where name ="GLYCOPYRRONIUM bromide 0.2mg/ml 1 ml ampoule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child48_concept_id from concept_name where name ="HALOPERIDOL 5mg/ml 1 ml ampoule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child49_concept_id from concept_name where name ="HEPARIN SODIUM 5000 IU/ml 5 ml ampoule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child50_concept_id from concept_name where name ="HYDRALAZINE hydrochloride 20mg Powder ampoule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child51_concept_id from concept_name where name ="HYDROCORTISONE sodium succinate eq. 100 mg base Powder" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child52_concept_id from concept_name where name ="HYOSCINE BUTYLBROMIDE (scopolamine butylbrom) 20mg/1ml Ampoule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child53_concept_id from concept_name where name ="INSULIN HUMAN, RAPID 100 IU/ml 10ml, vial N" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child54_concept_id from concept_name where name ="ISOSORBIDE DINITRATE 1mg/ml 10 ml ampoule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child55_concept_id from concept_name where name ="KETAMINE hydrochloride eq. 50mg/ml base 5 ml ampoule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child56_concept_id from concept_name where name ="LABETALOL hydrochloride 5mg/ml 20 ml ampoule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child57_concept_id from concept_name where name ="LEVOBUPIVACAINE hydrochloride eq. 5mg/ml base 10 ml ampoule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child58_concept_id from concept_name where name ="LIDOCAINE + EPINEPHRINE 2% + 1/80000 1,8 ml cartridge" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child59_concept_id from concept_name where name ="LIDOCAINE hydrochloride 1% 10 ml ampoule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child60_concept_id from concept_name where name ="LIPID emulsion 20% 250ml, flex. bag, PVC free" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child61_concept_id from concept_name where name ="MAGNESIUM sulfate 0.5g/ml 10 ml ampoule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child62_concept_id from concept_name where name ="MEROPENEM 500mg powder vial" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child63_concept_id from concept_name where name ="METRONIDAZOLE 5mg/ml 100ml, bag/bottle PVC free" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child64_concept_id from concept_name where name ="METOCLOPRAMIDE hydrochloride 5mg/ml 2 ml ampoule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child65_concept_id from concept_name where name ="MIDAZOLAM 1mg/ml 5 ml ampoule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child66_concept_id from concept_name where name ="MORPHINE hydrochloride 10mg/ml 1 ml ampoule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child67_concept_id from concept_name where name ="NADROPARIN calcium 3800 IU/0.4ml Filled syringe" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child68_concept_id from concept_name where name ="NALOXONE hydrochloride 0.4mg/ml 1 ml ampoule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child69_concept_id from concept_name where name ="NEOSTIGMINE methylsulfate 2.5mg/ml 1 ml ampoule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child70_concept_id from concept_name where name ="NICARDIPINE hydrochloride 1mg/ml 10 ml ampoule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child71_concept_id from concept_name where name ="OMEPRAZOLE sodium eq. 40 mg base powder via" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child72_concept_id from concept_name where name ="ONDANSETRON hydrochloride eq. 2mg/ml base 2 ml ampoule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child73_concept_id from concept_name where name ="PARACETAMOL (acetaminophen) 10mg/ml 100ml, flex.bag PVC free" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child74_concept_id from concept_name where name ="PARACETAMOL (acetaminophen) 10mg/ml 50ml bottle" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child75_concept_id from concept_name where name ="BENZATHINE BENZYLPENICILLIN 2.4miu powder vial + solvent" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child76_concept_id from concept_name where name ="PHENYLEPHRINE hydrochloride eq. 0.05 mg base/ml 10 ml ampoule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child77_concept_id from concept_name where name ="PIPERACILLIN + TAZOBACTAM 4g + 500mg powder vial" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child78_concept_id from concept_name where name ="POTASSIUM chloride 1.34mmol/ml (10%) 10 ml ampoule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child79_concept_id from concept_name where name ="POTASSIUM chloride 2mmol/ml (15%) 10 ml ampoule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child80_concept_id from concept_name where name ="PROMETHAZINE hydrochloride eq. 25mg/ml base 2 ml ampoule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child81_concept_id from concept_name where name ="PROPOFOL 10mg/ml 20 ml ampoule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child82_concept_id from concept_name where name ="SODIUM BICARBONATE 8.40% 1mEq/ml, 20ml, amp." and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child83_concept_id from concept_name where name ="SODIUM chloride 0.90% 10 ml ampoule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child84_concept_id from concept_name where name ="SUXAMETHONIUM chloride 50mg/ml 2 ml ampoule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child85_concept_id from concept_name where name ="THIOPENTAL sodium 500mg powder vial" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child86_concept_id from concept_name where name ="TRAMADOL hydrochloride 50mg/ml 2 ml ampoule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child87_concept_id from concept_name where name ="TRANEXAMIC acid 100mg/ml 5 ml ampoule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child88_concept_id from concept_name where name ="ACICLOVIR 800mg Tablet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child89_concept_id from concept_name where name ="ACETYLSALICYLIC acid (aspirin) 75mg Tablet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child90_concept_id from concept_name where name ="ALUMINIUM hydroxide + MAGNESIUM hydrox. 400mg + 400mg Tablet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child91_concept_id from concept_name where name ="AMITRIPTYLINE hydrochloride 25mg Tablet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child92_concept_id from concept_name where name ="AMLODIPINE 5mg Tablet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child93_concept_id from concept_name where name ="AMOXICILLIN + CLAVULANIC acid 500mg + 125mg Tablet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child94_concept_id from concept_name where name ="AMOXICILLIN + CLAVULANIC acid 875 + 125mg Tablet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child95_concept_id from concept_name where name ="AMOXICILLIN 500mg Tablet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child96_concept_id from concept_name where name ="ARTHEMETER + LUMEFRANTINE 20 mg + 120 mg Tablet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child97_concept_id from concept_name where name ="ASCORBIC acid (vitamin C), 250mg, chewable tab. 250mg Tablet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child98_concept_id from concept_name where name ="AZITHROMYCIN 250mg Tablet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child99_concept_id from concept_name where name ="BISACODYL 5mg Tablet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child100_concept_id from concept_name where name ="BISOPROLOL fumarate 2.5mg Tablet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child101_concept_id from concept_name where name ="CARBAMAZEPINE 200mg Tablet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child102_concept_id from concept_name where name ="CEFIXIME 200mg Tablet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child103_concept_id from concept_name where name ="CHLORPROMAZINE hydrochloride eq. 25 mg base Tablet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child104_concept_id from concept_name where name ="CIPROFLOXACIN hydrochloride eq. 500 mg base Tablet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child105_concept_id from concept_name where name ="CLINDAMYCIN hydrochloride eq. 300mg base Capsule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child106_concept_id from concept_name where name ="CLOXACILLIN sodium eq. 250 mg base Capsule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child107_concept_id from concept_name where name ="CLOXACILLIN sodium eq. 500 mg base Capsule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child108_concept_id from concept_name where name ="CODEINE phosphate 30mg Tablet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child109_concept_id from concept_name where name ="DIAZEPAM 5mg Tablet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child110_concept_id from concept_name where name ="DIGOXIN 0.25mg Tablet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child111_concept_id from concept_name where name ="DOXYCYCLINE salt eq. 100 mg base Tablet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child112_concept_id from concept_name where name ="ENALAPRIL maleate 5mg Tablet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child113_concept_id from concept_name where name ="ERYTHROMYCIN stearate eq. 250 mg base Tablet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child114_concept_id from concept_name where name ="ERYTHROMYCIN stearate eq. 500 mg base Tablet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child115_concept_id from concept_name where name ="FERROUS salt + FOLIC acid eq. 60 mg + 0.4mg Tablet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child116_concept_id from concept_name where name ="FLUCONAZOLE 200mg Capsule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child117_concept_id from concept_name where name ="FOLIC acid 5mg Tablet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child118_concept_id from concept_name where name ="FOSFOMYCIN trometamol eq. 3 g base Sachet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child119_concept_id from concept_name where name ="FUROSEMIDE 40mg Tablet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child120_concept_id from concept_name where name ="GABAPENTIN 100mg Capsule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child121_concept_id from concept_name where name ="GABAPENTIN 300mg Capsule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child122_concept_id from concept_name where name ="HALOPERIDOL 2mg/ml Oral solution" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child123_concept_id from concept_name where name ="HYDROCHLOROTHIAZIDE 25mg Tablet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child124_concept_id from concept_name where name ="HYOSCINE BUTYLBROMIDE (scopolamine butylbromide) 10mg Tablet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child125_concept_id from concept_name where name ="IBUPROFEN 400mg Tablet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child126_concept_id from concept_name where name ="ISOSORBIDE DINITRATE 5mg Tablet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child127_concept_id from concept_name where name ="ISOFLURANE 250 ml Bottle" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child128_concept_id from concept_name where name ="LABETALOL hydrochloride 200mg Tablet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child129_concept_id from concept_name where name ="LACTULOSE 3.1mg/5ml Oral solution" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child130_concept_id from concept_name where name ="LEVOFLOXACIN 500mg Tablet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child131_concept_id from concept_name where name ="LOPERAMIDE hydrochloride 2mg Capsule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child132_concept_id from concept_name where name ="LOPERAMIDE hydrochloride 2mg Tablet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child133_concept_id from concept_name where name ="METFORMIN hydrochloride 500mg Tablet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child134_concept_id from concept_name where name ="METRONIDAZOLE 500mg Tablet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child135_concept_id from concept_name where name ="METOCLOPRAMIDE hydrochloride anhydrous 10mg Tablet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child136_concept_id from concept_name where name ="MORPHINE sulfate 10mg Capsule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child137_concept_id from concept_name where name ="MORPHINE sulfate 10mg/5ml Oral solution" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child138_concept_id from concept_name where name ="MORPHINE sulfate 10mg Tablet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child139_concept_id from concept_name where name ="MORPHINE sulfate 30mg Capsule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child140_concept_id from concept_name where name ="NIFEDIPINE 10mg Tablet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child141_concept_id from concept_name where name ="NYSTATIN 100,000 IU/ml Oral drops" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child142_concept_id from concept_name where name ="OMEPRAZOLE 20mg Capsule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child143_concept_id from concept_name where name ="ORAL REHYDRATION SALTS (ORS) 20.5g/1l Sachet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child144_concept_id from concept_name where name ="PARACETAMOL (acetaminophen) 500mg Tablet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child145_concept_id from concept_name where name ="PRAZIQUANTEL 600mg Tablet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child146_concept_id from concept_name where name ="PREDNISOLONE 20mg Tablet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child147_concept_id from concept_name where name ="PREDNISOLONE 5mg Tablet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child148_concept_id from concept_name where name ="PROMETHAZINE hydrochloride eq. 25 mg base Tablet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child149_concept_id from concept_name where name ="SALBUTAMOL sulfate eq. 0.1mg base/puff Aerosol" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child150_concept_id from concept_name where name ="SPIRONOLACTONE 25mg Tablet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child151_concept_id from concept_name where name ="TRAMADOL hydrochloride 100mg/ml/40 drops Oral drops" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child152_concept_id from concept_name where name ="TRAMADOL hydrochloride 50mg Capsule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child153_concept_id from concept_name where name ="TRANEXAMIC acid 500mg Tablet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child154_concept_id from concept_name where name ="AMPICILLIN, 500mg 500mg powder vial" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child155_concept_id from concept_name where name ="PARACETAMOL (acetaminophen) 10mg/ml 50ml, flex.bag PVC free" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child156_concept_id from concept_name where name ="PHENYTOIN sodium 50mg/ml 5 ml ampoule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child157_concept_id from concept_name where name ="PHYTOMENADIONE (vitamin K1) 10mg/ml (2mg/0,2ml) 0,2 ml ampoule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child158_concept_id from concept_name where name ="ARTESUNATE +NaHCO3+NaCl 60 mg + 5% + 1 ml + 0,9% 5 ml powder vial" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child159_concept_id from concept_name where name ="BISOPROLOL fumarate 10mg Tablet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child160_concept_id from concept_name where name ="CIMETIDINE 200mg Tablet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child161_concept_id from concept_name where name ="GABAPENTIN 400mg Capsule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child162_concept_id from concept_name where name ="GLIBENCLAMIDE 5mg Tablet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child163_concept_id from concept_name where name ="LEVOFLOXACIN 500mg Tablet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child164_concept_id from concept_name where name ="LEVOFLOXACIN 500mg Tablet, Blister Oral" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child165_concept_id from concept_name where name ="MICONAZOLE 2% 80 g tube" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child166_concept_id from concept_name where name ="VALPROATE SODIUM 200mg Tablet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child167_concept_id from concept_name where name ="ZINC sulfate eq. 20 mg Tablet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child168_concept_id from concept_name where name ="BECLOMETASONE dipropionate 0.10mg/puff Aerosol" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child169_concept_id from concept_name where name ="BIPERIDEN hydrochloride 2mg Tablet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child170_concept_id from concept_name where name ="METRONIDAZOLE 250mg Tablet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child171_concept_id from concept_name where name ="METHYLDOPA 250mg Tablet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child172_concept_id from concept_name where name ="FENTANYL 2,1 mg 12?g/h, transdermal patch" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child173_concept_id from concept_name where name ="FENTANYL 4,2 mg 25?g/h, transdermal patch" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child174_concept_id from concept_name where name ="SODIUM BICARBONATE 5.00% 1ml ampoule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child175_concept_id from concept_name where name ="SODIUM chloride 0.90% 5 ml ampoule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child176_concept_id from concept_name where name ="BISOPROLOL fumarate 200mg Tablet" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            select concept_id into @child177_concept_id from concept_name where name ="PROTAMINE sulfate 10mg/ml 5 ml ampoule" and concept_name_type =
+            'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+
+            
+
+            call add_concept_set_members(@all_other_drugs_concept_id, @child1_concept_id, 1);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child2_concept_id, 2);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child3_concept_id, 3);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child4_concept_id, 4);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child5_concept_id, 5);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child6_concept_id, 6);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child7_concept_id, 7);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child8_concept_id, 8);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child9_concept_id, 9);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child10_concept_id, 10);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child11_concept_id, 11);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child12_concept_id, 12);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child13_concept_id, 13);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child14_concept_id, 14);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child15_concept_id, 15);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child16_concept_id, 16);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child17_concept_id, 17);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child18_concept_id, 18);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child19_concept_id, 19);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child20_concept_id, 20);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child21_concept_id, 21);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child22_concept_id, 22);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child23_concept_id, 23);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child24_concept_id, 24);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child25_concept_id, 25);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child26_concept_id, 26);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child27_concept_id, 27);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child28_concept_id, 28);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child29_concept_id, 29);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child30_concept_id, 30);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child31_concept_id, 31);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child32_concept_id, 32);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child33_concept_id, 33);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child34_concept_id, 34);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child35_concept_id, 35);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child36_concept_id, 36);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child37_concept_id, 37);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child38_concept_id, 38);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child39_concept_id, 39);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child40_concept_id, 40);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child41_concept_id, 41);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child42_concept_id, 42);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child43_concept_id, 43);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child44_concept_id, 44);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child45_concept_id, 45);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child46_concept_id, 46);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child47_concept_id, 47);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child48_concept_id, 48);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child49_concept_id, 49);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child50_concept_id, 50);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child51_concept_id, 51);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child52_concept_id, 52);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child53_concept_id, 53);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child54_concept_id, 54);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child55_concept_id, 55);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child56_concept_id, 56);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child57_concept_id, 57);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child58_concept_id, 58);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child59_concept_id, 59);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child60_concept_id, 60);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child61_concept_id, 61);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child62_concept_id, 62);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child63_concept_id, 63);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child64_concept_id, 64);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child65_concept_id, 65);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child66_concept_id, 66);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child67_concept_id, 67);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child68_concept_id, 68);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child69_concept_id, 69);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child70_concept_id, 70);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child71_concept_id, 71);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child72_concept_id, 72);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child73_concept_id, 73);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child74_concept_id, 74);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child75_concept_id, 75);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child76_concept_id, 76);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child77_concept_id, 77);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child78_concept_id, 78);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child79_concept_id, 79);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child80_concept_id, 80);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child81_concept_id, 81);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child82_concept_id, 82);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child83_concept_id, 83);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child84_concept_id, 84);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child85_concept_id, 85);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child86_concept_id, 86);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child87_concept_id, 87);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child88_concept_id, 88);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child89_concept_id, 89);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child90_concept_id, 90);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child91_concept_id, 91);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child92_concept_id, 92);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child93_concept_id, 93);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child94_concept_id, 94);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child95_concept_id, 95);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child96_concept_id, 96);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child97_concept_id, 97);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child98_concept_id, 98);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child99_concept_id, 99);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child100_concept_id, 100);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child101_concept_id, 101);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child102_concept_id, 102);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child103_concept_id, 103);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child104_concept_id, 104);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child105_concept_id, 105);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child106_concept_id, 106);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child107_concept_id, 107);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child108_concept_id, 108);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child109_concept_id, 109);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child110_concept_id, 110);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child111_concept_id, 111);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child112_concept_id, 112);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child113_concept_id, 113);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child114_concept_id, 114);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child115_concept_id, 115);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child116_concept_id, 116);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child117_concept_id, 117);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child118_concept_id, 118);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child119_concept_id, 119);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child120_concept_id, 120);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child121_concept_id, 121);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child122_concept_id, 122);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child123_concept_id, 123);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child124_concept_id, 124);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child125_concept_id, 125);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child126_concept_id, 126);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child127_concept_id, 127);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child128_concept_id, 128);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child129_concept_id, 129);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child130_concept_id, 130);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child131_concept_id, 131);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child132_concept_id, 132);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child133_concept_id, 133);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child134_concept_id, 134);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child135_concept_id, 135);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child136_concept_id, 136);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child137_concept_id, 137);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child138_concept_id, 138);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child139_concept_id, 139);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child140_concept_id, 140);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child141_concept_id, 141);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child142_concept_id, 142);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child143_concept_id, 143);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child144_concept_id, 144);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child145_concept_id, 145);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child146_concept_id, 146);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child147_concept_id, 147);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child148_concept_id, 148);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child149_concept_id, 149);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child150_concept_id, 150);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child151_concept_id, 151);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child152_concept_id, 152);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child153_concept_id, 153);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child154_concept_id, 154);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child155_concept_id, 155);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child156_concept_id, 156);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child157_concept_id, 157);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child158_concept_id, 158);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child159_concept_id, 159);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child160_concept_id, 160);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child161_concept_id, 161);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child162_concept_id, 162);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child163_concept_id, 163);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child164_concept_id, 164);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child165_concept_id, 165);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child166_concept_id, 166);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child167_concept_id, 167);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child168_concept_id, 168);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child169_concept_id, 169);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child170_concept_id, 170);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child171_concept_id, 171);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child172_concept_id, 172);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child173_concept_id, 173);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child174_concept_id, 174);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child175_concept_id, 175);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child176_concept_id, 176);
+            call add_concept_set_members(@all_other_drugs_concept_id, @child177_concept_id, 177);
+            
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

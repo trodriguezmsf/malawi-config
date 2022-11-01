@@ -1,43 +1,171 @@
 {
+  "shouldOverRideConfig": true,
+  "commonConfig": {},
   "tabConfig": {
-    "allMedicationTabConfig": {
+    "chemoTabConfig": {
+      "hideBulkChangeDurationButton": true,
       "inputOptionsConfig": {
+        "duration": {
+          "required": false
+        },
+        "drugConceptSet": "All Chemo Drugs",
+        "isDropDown": true,
+        "hideOrderSet": true,
+        "labels": {
+          "drugNamePlaceHolder": "MEDICATION_LABEL_DRUG_NAME_PLACEHOLDER_CHEMO_TAB",
+          "dose": "MEDICATION_LABEL_DOSE_CHEMO_TAB",
+          "doseUnitsPlaceHolder": "MEDICATION_LABEL_DOSE_UNITS_PLACEHOLDER_CHEMO_TAB",
+          "frequency": "MEDICATION_LABEL_FREQUENCY_CHEMO_TAB",
+          "frequencyUnitsPlaceHolder": "MEDICATION_LABEL_FREQUENCY_UNIT_CHEMO_TAB"
+        },
         "hiddenFields": [
-          "dosingInstructions",
+          "dosingTypeToggle",
+          "duration",
+          "durationUnits",
           "quantity",
           "quantityUnits",
+          "dosingInstructions",
+          "sos"
+        ],
+        "defaultStartDate": true,
+        "defaultDurationUnit": "Day(s)",
+        "defaultInstructions": "As directed",
+        "frequencyDefaultDurationUnitsMap": [
+          {
+            "minFrequency": 5,
+            "maxFrequency": null,
+            "defaultDurationUnit": "Hour(s)"
+          },
+          {
+            "minFrequency": "1/7",
+            "maxFrequency": 5,
+            "defaultDurationUnit": "Day(s)"
+          },
+          {
+            "minFrequency": "1/30",
+            "maxFrequency": "1/7",
+            "defaultDurationUnit": "Week(s)"
+          },
+          {
+            "minFrequency": null,
+            "maxFrequency": "1/30",
+            "defaultDurationUnit": "Month(s)"
+          }
+        ],
+        "drugFormDefaults": {}
+      },
+      "drugOrderHistoryConfig": {
+        "view": "custom",
+        "sections": {
+          "activeChemoDrugs": {
+            "title": "Chemo Drugs",
+            "includeConceptSet": "All Chemo Drugs",
+            "captureStopReason": true,
+            "columnHeaders": {
+              "drugName": "DRUG_HISTORY_CHEMO_DRUGNAME",
+              "dosage": "DRUG_HISTORY_CHEMO_DOSAGE",
+              "frequency": "DRUG_HISTORY_CHEMO_FREQUENCY",
+              "startDate": "DRUG_HISTORY_CHEMO_STARTDATE",
+              "stopDate": "DRUG_HISTORY_CHEMO_STOPDATE",
+              "stopReason": "DRUG_HISTORY_CHEMO_STOPREASON"
+            },
+            "actions": [
+              "stop",
+              "refill",
+              "void"
+            ],
+            "columns": [
+              "dosage",
+              "frequency",
+              "route",
+              "startDate",
+              "stopDate"
+            ]
+          }
+        }
+      }
+    },
+    "medicationTabConfig": {
+      "inputOptionsConfig": {
+        "defaultStartDate": true,
+        "drugConceptSet": "All Other Drugs",
+        "hideOrderSet": true,
+        "duration": {
+          "required": false
+        },
+        "labels": {
+          "dose": "MEDICATION_LABEL_DOSE_NON_CHEMO_TAB",
+          "doseUnitsPlaceHolder": "MEDICATION_LABEL_DOSE_UNITS_PLACEHOLDER_NON_CHEMO_TAB",
+          "dosingInstructions": "MEDICATION_LABEL_DOSING_INSTRUCTIONS_NON_CHEMO_TAB",
+          "dosingInstructionsPlaceHolder": "MEDICATION_LABEL_DOSING_INSTRUCTIONS_PLACEHOLDER_NON_CHEMO_TAB"
+        },
+        "hiddenFields": [
+          "dosingTypeToggle",
+          "quantity",
+          "quantityUnits",
+          "dosingInstructions",
           "sos"
         ],
         "defaultDurationUnit": "Day(s)",
-        "defaultInstructions": "As directed",
-        "hideOrderSet": true,
-        "drugFormDefaults": {
-          "Aerosol": {
-            "doseUnits": "puff"
+        "frequencyDefaultDurationUnitsMap": [
+          {
+            "minFrequency": 5,
+            "maxFrequency": null,
+            "defaultDurationUnit": "Hour(s)"
           },
-          "Capsule": {
-            "Capsule": "mg"
+          {
+            "minFrequency": "1/7",
+            "maxFrequency": 5,
+            "defaultDurationUnit": "Day(s)"
           },
-          "Oral solution": {
-            "doseUnits": "mg/ml"
+          {
+            "minFrequency": "1/30",
+            "maxFrequency": "1/7",
+            "defaultDurationUnit": "Week(s)"
           },
-          "Powder": {
-            "doseUnits": "mg"
-          },
-          "Tablet": {
-            "doseUnits": "mg"
-          },
-          "Ovule": {
-            "doseUnits": "mg"
-          },
-          "Patch": {
-            "doseUnits": "mg"
-          },
-          "Jelly": {
-            "doseUnits": "Application"
-          },
-          "Oinment": {
-            "doseUnits": "Application"
+          {
+            "minFrequency": null,
+            "maxFrequency": "1/30",
+            "defaultDurationUnit": "Month(s)"
+          }
+        ],
+        "drugFormDefaults": {}
+      },
+      "drugOrderHistoryConfig": {
+        "view": "custom",
+        "numberOfVisits": 0,
+        "sections": {
+          "otherDrugs": {
+            "title": "Other Drugs",
+            "captureStopReason": true,
+            "columnHeaders": {
+              "drugName": "DRUG_HISTORY_NON_CHEMO_DRUGNAME",
+              "dosage": "DRUG_HISTORY_NON_CHEMO_DOSAGE",
+              "route": "DRUG_HISTORY_NON_CHEMO_ROUTE",
+              "duration": "DRUG_HISTORY_NON_CHEMO_DURATION",
+              "frequency": "DRUG_HISTORY_NON_CHEMO_FREQUENCY",
+              "startDate": "DRUG_HISTORY_NON_CHEMO_STARTDATE",
+              "stopDate": "DRUG_HISTORY_NON_CHEMO_STOPDATE",
+              "stopReason": "DRUG_HISTORY_NON_CHEMO_STOPREASON",
+              "quantity": "DRUG_HISTORY_NON_CHEMO_QUANTITY",
+              "instructions": "DRUG_HISTORY_NON_CHEMO_INSTRUCTIONS"
+            },
+            "actions": [
+              "stop",
+              "refill",
+              "void"
+            ],
+            "excludeConceptSet": "All Chemo Drugs",
+            "columns": [
+              "dosage",
+              "frequency",
+              "route",
+              "duration",
+              "instructions",
+              "quantity",
+              "startDate",
+              "stopDate"
+            ]
           }
         }
       }

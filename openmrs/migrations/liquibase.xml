@@ -1514,4 +1514,6 @@
     <include file="ChemotherapyClinicalAssessmentTreatment/ChemotherapyClinicalAssessmentTreatment_1.xml"/>
     <include file="BedManagement/BedManagement_1.xml"/>
     
+    <include file="ChemotherapyMedications/ChemotherapyMedications_1.xml"/>
+
 </databaseChangeLog>
