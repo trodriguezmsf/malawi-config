@@ -48,7 +48,7 @@
             SELECT concept_source_id INTO @source_id FROM concept_reference_source where name = 'org.openmrs.module.emrapi';
 
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (4,'ADMIT_TO_IPD',@source_id,uuid(),now());
-            call CREATE_REFERENCE_ORG_OPENMRS_MODULE_EMRAPI('Admit to IPD Ward', 'ADMIT_TO_IPD');
+            call CREATE_REFERENCE_ORG_OPENMRS_MODULE_EMRAPI('Admit to IPD', 'ADMIT_TO_IPD');
         </sql>
     </changeSet>
 
