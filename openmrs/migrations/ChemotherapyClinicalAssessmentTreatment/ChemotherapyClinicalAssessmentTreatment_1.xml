@@ -43,12 +43,12 @@
         </sql>
     </changeSet>
 
-    <changeSet id="MALAWI_CONFIG_20221027055138446" author="Shobana">
+    <changeSet id="MALAWI_CONFIG_20221027055138413" author="Shobana">
         <preConditions onFail="MARK_RAN">
-            <sqlCheck expectedResult="4">
+            <sqlCheck expectedResult="5">
                 select count(*) from concept_reference_term
                 where code in
-                ("166925", "160753", "1887", "140501")
+                ("166925", "160753", "1887", "140501", "161011")
                 and retired = 0
                 and concept_source_id = (
                 select concept_source_id from concept_reference_source where name = "CEIL"  and retired =0
@@ -63,6 +63,7 @@
             call CREATE_REFERENCE_MAPPING_CEIL("CCAT, Reason for referral","1887");
             call CREATE_REFERENCE_MAPPING_CEIL("CCAT, MDT date","160753");
             call CREATE_REFERENCE_MAPPING_CEIL("Fatigue","140501");
+            call CREATE_REFERENCE_MAPPING_CEIL("CCAT, Other reason for referral","161011");
         </sql>
     </changeSet>
 
@@ -71,7 +72,7 @@
             <sqlCheck expectedResult="0">
                 select count(*) from concept_reference_term
                 where code in
-                ("116214", "538", "1601011")
+                ("116214", "538")
                 and retired = 0
                 and concept_source_id = (
                 select concept_source_id from concept_reference_source where name = "CEIL"  and retired =0
@@ -83,10 +84,8 @@
             SELECT concept_source_id INTO @source_id FROM concept_reference_source where name = "CEIL";  
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"116214",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"538",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1601011",@source_id,uuid(),now());
             call CREATE_REFERENCE_MAPPING_CEIL("Hypotension","116214");  
             call CREATE_REFERENCE_MAPPING_CEIL("Chemotherapy extravasation","538");
-            call CREATE_REFERENCE_MAPPING_CEIL("CCAT, Other reason for referral","1601011");
         </sql>
     </changeSet>
 
