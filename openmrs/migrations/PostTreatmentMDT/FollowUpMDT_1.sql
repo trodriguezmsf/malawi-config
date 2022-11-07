@@ -27,6 +27,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"POMDT, Post-che
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"POMDT, Post-chemo FIGO staging for cancer of the cervix","Post-chemo FIGO staging for cancer of the cervix","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"POMDT, Post-chemo FIGO staging for cancer of the uterus","Post-chemo FIGO staging for cancer of the uterus","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"POMDT, Post-chemo FIGO staging for cancer of the ovary","Post-chemo FIGO staging for cancer of the ovary","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"POMDT, Conservative surgery type","Conservative surgery type","Coded","Misc",false);
 
 #Add Child Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Complete response","Complete response","N/A","Misc",false);
