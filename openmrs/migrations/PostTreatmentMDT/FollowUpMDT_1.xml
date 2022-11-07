@@ -895,6 +895,37 @@
             call CREATE_REFERENCE_MAPPING_CEIL("POMDT, Post-chemo FIGO staging for cancer of the cervix","160786");
             call CREATE_REFERENCE_MAPPING_CEIL("POMDT, Post-chemo FIGO staging for cancer of the uterus","160786");
             call CREATE_REFERENCE_MAPPING_CEIL("POMDT, Post-chemo FIGO staging for cancer of the ovary","160786");
+            call CREATE_REFERENCE_MAPPING_CEIL("POMDT, Conservative surgery type","159619");
+        </sql>
+    </changeSet>
+
+    <changeSet id="Malawi_CONFIG_20221107131527111" author="Kiruthiga">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Cervical conization", "LEEP", "Examination under anaesthesia")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "POMDT, Conservative surgery type");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to POMDT, Conservative surgery type</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "POMDT, Conservative surgery type" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Cervical conization" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="LEEP" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Examination under anaesthesia" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
         </sql>
     </changeSet>
 
