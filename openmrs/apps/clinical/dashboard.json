@@ -938,7 +938,7 @@
           "pivotTable": {}
         }
       },
-      "Post-treatment MDT": {
+      "Follow up MDT": {
         "translationKey": "DASHBOARD_TITLE_POST_TREATMENT_MDT",
         "isObservation": true,
         "displayOrder": 2,
