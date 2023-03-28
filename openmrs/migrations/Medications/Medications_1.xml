@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+   <changeSet id="MALAWI_CONFIG_20230327110901631" author="Kiruthiga">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult = "10">
+                SELECT COUNT(*) from concept_set cs
+                JOIN
+                concept_name cn
+                on cs.concept_id=cn.concept_id
+                WHERE cs.concept_id in (SELECT concept_id FROM concept_name WHERE name IN ('tablet(s)','capsule(s)','ml','mg','IU''Unit(s)','Sub Cutaneous')
+                AND concept_name_type = "FULLY_SPECIFIED")
+                AND cs.concept_set IN (SELECT concept_id FROM concept_name WHERE name = "Drug Routes");
+            </sqlCheck>
+        </preConditions>
+        <comment>Remove the mappings of tablet(s), capsule(s), ml,mg,IU,Unit(s),Sub Cutaneous from drug routes</comment>
+        <sql>
+            SELECT concept_id INTO @conceptcoded FROM concept_name WHERE name ="Drug Routes" AND concept_name_type="FULLY_SPECIFIED";
+
+            SELECT concept_id INTO @conceptID1 FROM concept_set WHERE concept_id IN (SELECT concept_id FROM concept_name WHERE name ="tablet(s)"
+            AND concept_name_type="FULLY_SPECIFIED") AND concept_set = @conceptcoded;
+
+            SELECT concept_id INTO @conceptID2 FROM concept_set WHERE concept_id IN (SELECT concept_id FROM concept_name WHERE name ="capsule(s)"
+            AND concept_name_type="FULLY_SPECIFIED") AND concept_set = @conceptcoded;
+
+            SELECT concept_id INTO @conceptID3 FROM concept_set WHERE concept_id IN (SELECT concept_id FROM concept_name WHERE name ="ml"
+            AND concept_name_type="FULLY_SPECIFIED") AND concept_set = @conceptcoded;
+
+            SELECT concept_id INTO @conceptID4 FROM concept_set WHERE concept_id IN (SELECT concept_id FROM concept_name WHERE name ="mg"
+            AND concept_name_type="FULLY_SPECIFIED") AND concept_set = @conceptcoded;
+
+            SELECT concept_id INTO @conceptID5 FROM concept_set WHERE concept_id IN (SELECT concept_id FROM concept_name WHERE name ="IU"
+            AND concept_name_type="FULLY_SPECIFIED") AND concept_set = @conceptcoded;
+
+            SELECT concept_id INTO @conceptID6 FROM concept_set WHERE concept_id IN (SELECT concept_id FROM concept_name WHERE name ="Unit(s)"
+            AND concept_name_type="FULLY_SPECIFIED") AND concept_set = @conceptcoded;
+
+            SELECT concept_id INTO @conceptID7 FROM concept_set WHERE concept_id IN (SELECT concept_id FROM concept_name WHERE name ="Sub Cutaneous"
+            AND concept_name_type="FULLY_SPECIFIED") AND concept_set = @conceptcoded;
+
+            DELETE FROM concept_set WHERE concept_id=@conceptID1 and concept_set = @conceptcoded;
+            DELETE FROM concept_set WHERE concept_id=@conceptID2 and concept_set = @conceptcoded;
+            DELETE FROM concept_set WHERE concept_id=@conceptID3 and concept_set = @conceptcoded;
+            DELETE FROM concept_set WHERE concept_id=@conceptID4 and concept_set = @conceptcoded;
+            DELETE FROM concept_set WHERE concept_id=@conceptID5 and concept_set = @conceptcoded;
+            DELETE FROM concept_set WHERE concept_id=@conceptID6 and concept_set = @conceptcoded;
+            DELETE FROM concept_set WHERE concept_id=@conceptID7 and concept_set = @conceptcoded;
+        </sql>
+    </changeSet>
+        
+    <changeSet id="MALAWI_CONFIG_20230327110901632" author="Kiruthiga">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT COUNT(*) FROM concept_name WHERE name in ("Transdermal") AND concept_name_type =
+                'FULLY_SPECIFIED' AND locale = 'en' AND voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new route </comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_short_id = 0;
+            set @concept_full_id = 0;
+            set @count = 0;
+            set @uuid = NULL;
+
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Transdermal","Transdermal","N/A","Misc",false);
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_20230327110901633" author="Kiruthiga">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult = "0">
+                SELECT COUNT(*) FROM concept_set cs
+                JOIN
+                concept_name cn
+                on cs.concept_id=cn.concept_id
+                WHERE cs.concept_id in (SELECT concept_id FROM concept_name WHERE name IN ('Transdermal')
+                AND concept_name_type = "FULLY_SPECIFIED")
+                AND cs.concept_set IN (SELECT concept_id FROM concept_name WHERE name = "Drug Routes");
+            </sqlCheck>
+        </preConditions>
+        <comment>Add the mappings of Transdermal to drug routes</comment>
+        <sql>
+            SELECT concept_id INTO @concept_set FROM concept_name WHERE name= 'Drug routes' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id1 FROM concept_name WHERE name = 'Transdermal' AND concept_name_type="FULLY_SPECIFIED";
+
+            INSERT INTO concept_set(concept_id,concept_set,creator,date_created,uuid) VALUES (@concept_id1,@concept_set,8,now(),uuid());
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_2023032711090165" author="Kiruthiga">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="6">
+                SELECT count(*) FROM concept_set WHERE concept_id in (SELECT concept_id FROM concept_name WHERE name IN ("tablet(s)", "capsule(s)","Tablespoon","Teaspoon")) 
+                AND concept_set = (SELECT concept_id FROM concept_name WHERE name = "Dosing Units" AND concept_name_type ="FULLY_SPECIFIED" );
+            </sqlCheck>
+        </preConditions>
+        <comment>Delete dosing units capsule(s) and tablet(s)</comment>
+        <sql>
+            SELECT concept_id INTO @parent_concept_id FROM concept_name WHERE name = "Dosing Units" AND concept_name_type ="FULLY_SPECIFIED";
+
+            SELECT concept_id INTO @concept_id1 FROM concept_name WHERE name = "capsule(s)" AND concept_name_type ="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id2 FROM concept_name WHERE name = "tablet(s)" AND concept_name_type ="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id3 FROM concept_name WHERE name = "Tablespoon" AND concept_name_type ="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id4 FROM concept_name WHERE name = "Teaspoon" AND concept_name_type ="FULLY_SPECIFIED";
+            
+            DELETE FROM concept_set WHERE concept_id=@concept_id1 and concept_set= @parent_concept_id;
+            DELETE FROM concept_set WHERE concept_id=@concept_id2 and concept_set= @parent_concept_id;
+            DELETE FROM concept_set WHERE concept_id=@concept_id3 and concept_set= @parent_concept_id;
+            DELETE FROM concept_set WHERE concept_id=@concept_id4 and concept_set= @parent_concept_id;
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_20230327110901605" author="Kiruthiga">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM concept_name WHERE name IN ("Tablespoon (15ml)", "Teaspoon (5ml)") AND concept_name_type =
+                'FULLY_SPECIFIED' AND locale = 'en' AND voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment>creating routes </comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_short_id = 0;
+            set @concept_full_id = 0;
+            set @count = 0;
+            set @uuid = NULL;
+
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Tablespoon (15ml)","Tablespoon (15ml)","N/A","Misc",false);
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Teaspoon (5ml)","Teaspoon (5ml)","N/A","Misc",false);
+        </sql>
+    </changeSet>
+
+     <changeSet id="MALAWI_CONFIG_20230327110901606" author="Kiruthiga" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_set where concept_id in (select concept_id from concept_name where name in ("Tablespoon (15ml)", "Teaspoon (5ml)","Capsule(s)", "Tablet(s)","Patch")  
+                AND concept_name_type ="FULLY_SPECIFIED") 
+                AND concept_set =(SELECT concept_id  from concept_name where name= 'Dosing Units' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Add to dosing units </comment>
+        <sql>
+            SELECT concept_id INTO @concept_set  from concept_name where name= 'Dosing Units' AND concept_name_type="FULLY_SPECIFIED";
+
+            SELECT concept_id INTO @concept_id1 FROM concept_name WHERE name = 'Tablespoon (15ml)' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id2 FROM concept_name WHERE name = 'Teaspoon (5ml)' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id3 FROM concept_name WHERE name = 'Capsule(s)' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id4 FROM concept_name WHERE name = 'Patch' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id5 FROM concept_name WHERE name = 'Tablet(s)' AND concept_name_type="FULLY_SPECIFIED";
+
+            call add_concept_set_members(@concept_set, @concept_id1, 1);
+            call add_concept_set_members(@concept_set, @concept_id2, 2);
+            call add_concept_set_members(@concept_set, @concept_id3, 3);
+            call add_concept_set_members(@concept_set, @concept_id4, 4);
+            call add_concept_set_members(@concept_set, @concept_id5, 5); 
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_20230327110901607" author="Kiruthiga">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT COUNT(*) FROM concept_name WHERE name in ("PRN") AND concept_name_type =
+                'FULLY_SPECIFIED' AND locale = 'en' and voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment>Add new concept for frequency </comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_short_id = 0;
+            set @concept_full_id = 0;
+            set @count = 0;
+            set @uuid = NULL;
+
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"PRN","PRN)","N/A","Misc",false);
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_20230327110901608" author="Kiruthiga">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) FROM order_frequency WHERE concept_id in (SELECT concept_id FROM concept_name WHERE name IN ("PRN") AND concept_name_type ="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding PRN to frequency</comment>
+        <sql>
+
+            SELECT concept_id INTO @concept_id1 FROM concept_name WHERE name = "PRN" AND concept_name_type ="FULLY_SPECIFIED";
+
+            SELECT user_id INTO @user_id from users where username ='admin';
+            
+            INSERT INTO order_frequency (concept_id,frequency_per_day,creator,date_created,retired,uuid)
+            values (@concept_id1, 1,@user_id, now(),0,uuid());
+
+        </sql>
+    </changeSet>
+</databaseChangeLog>
