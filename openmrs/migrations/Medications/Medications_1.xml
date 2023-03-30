@@ -96,8 +96,8 @@
 
     <changeSet id="MALAWI_CONFIG_2023032711090165" author="Kiruthiga">
         <preConditions onFail="MARK_RAN">
-            <sqlCheck expectedResult="6">
-                SELECT count(*) FROM concept_set WHERE concept_id in (SELECT concept_id FROM concept_name WHERE name IN ("tablet(s)", "capsule(s)","Tablespoon","Teaspoon")) 
+            <sqlCheck expectedResult="9">
+                SELECT count(*) FROM concept_set WHERE concept_id in (SELECT concept_id FROM concept_name WHERE name IN ("tablet(s)", "capsule(s)","Tablespoon","Teaspoon","AUC","mg/m2","Drop")
                 AND concept_set = (SELECT concept_id FROM concept_name WHERE name = "Dosing Units" AND concept_name_type ="FULLY_SPECIFIED" );
             </sqlCheck>
         </preConditions>
@@ -109,11 +109,17 @@
             SELECT concept_id INTO @concept_id2 FROM concept_name WHERE name = "tablet(s)" AND concept_name_type ="FULLY_SPECIFIED";
             SELECT concept_id INTO @concept_id3 FROM concept_name WHERE name = "Tablespoon" AND concept_name_type ="FULLY_SPECIFIED";
             SELECT concept_id INTO @concept_id4 FROM concept_name WHERE name = "Teaspoon" AND concept_name_type ="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id5 FROM concept_name WHERE name = "AUC" AND concept_name_type ="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id6 FROM concept_name WHERE name = "mg/m2" AND concept_name_type ="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id7 FROM concept_name WHERE name = "Drop" AND concept_name_type ="FULLY_SPECIFIED";
             
             DELETE FROM concept_set WHERE concept_id=@concept_id1 and concept_set= @parent_concept_id;
             DELETE FROM concept_set WHERE concept_id=@concept_id2 and concept_set= @parent_concept_id;
             DELETE FROM concept_set WHERE concept_id=@concept_id3 and concept_set= @parent_concept_id;
             DELETE FROM concept_set WHERE concept_id=@concept_id4 and concept_set= @parent_concept_id;
+            DELETE FROM concept_set WHERE concept_id=@concept_id5 and concept_set= @parent_concept_id;
+            DELETE FROM concept_set WHERE concept_id=@concept_id6 and concept_set= @parent_concept_id;
+            DELETE FROM concept_set WHERE concept_id=@concept_id7 and concept_set= @parent_concept_id;
         </sql>
     </changeSet>
 
@@ -140,7 +146,7 @@
      <changeSet id="MALAWI_CONFIG_20230327110901606" author="Kiruthiga" >
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
-                SELECT count(*) from concept_set where concept_id in (select concept_id from concept_name where name in ("Tablespoon (15ml)", "Teaspoon (5ml)","Capsule(s)", "Tablet(s)","Patch")  
+                SELECT count(*) from concept_set where concept_id in (select concept_id from concept_name where name in ("Tablespoon (15ml)", "Teaspoon (5ml)","Capsule(s)", "Tablet(s)","Patch") 
                 AND concept_name_type ="FULLY_SPECIFIED") 
                 AND concept_set =(SELECT concept_id  from concept_name where name= 'Dosing Units' AND concept_name_type="FULLY_SPECIFIED");
             </sqlCheck>
