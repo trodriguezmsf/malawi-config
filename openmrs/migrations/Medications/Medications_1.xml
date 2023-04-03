@@ -96,9 +96,10 @@
 
     <changeSet id="MALAWI_CONFIG_2023032711090165" author="Kiruthiga">
         <preConditions onFail="MARK_RAN">
-            <sqlCheck expectedResult="9">
-                SELECT count(*) FROM concept_set WHERE concept_id in (SELECT concept_id FROM concept_name WHERE name IN ("tablet(s)", "capsule(s)","Tablespoon","Teaspoon","AUC","mg/m2","Drop")
+            <sqlCheck expectedResult="8">
+                SELECT count(*) FROM concept_set WHERE concept_id in (SELECT concept_id FROM concept_name WHERE name IN ("tablet(s)", "capsule(s)","Tablespoon","Teaspoon","AUC","Drop"))
                 AND concept_set = (SELECT concept_id FROM concept_name WHERE name = "Dosing Units" AND concept_name_type ="FULLY_SPECIFIED" );
+
             </sqlCheck>
         </preConditions>
         <comment>Delete dosing units capsule(s) and tablet(s)</comment>
@@ -110,8 +111,7 @@
             SELECT concept_id INTO @concept_id3 FROM concept_name WHERE name = "Tablespoon" AND concept_name_type ="FULLY_SPECIFIED";
             SELECT concept_id INTO @concept_id4 FROM concept_name WHERE name = "Teaspoon" AND concept_name_type ="FULLY_SPECIFIED";
             SELECT concept_id INTO @concept_id5 FROM concept_name WHERE name = "AUC" AND concept_name_type ="FULLY_SPECIFIED";
-            SELECT concept_id INTO @concept_id6 FROM concept_name WHERE name = "mg/m2" AND concept_name_type ="FULLY_SPECIFIED";
-            SELECT concept_id INTO @concept_id7 FROM concept_name WHERE name = "Drop" AND concept_name_type ="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id6 FROM concept_name WHERE name = "Drop" AND concept_name_type ="FULLY_SPECIFIED";
             
             DELETE FROM concept_set WHERE concept_id=@concept_id1 and concept_set= @parent_concept_id;
             DELETE FROM concept_set WHERE concept_id=@concept_id2 and concept_set= @parent_concept_id;
@@ -119,7 +119,6 @@
             DELETE FROM concept_set WHERE concept_id=@concept_id4 and concept_set= @parent_concept_id;
             DELETE FROM concept_set WHERE concept_id=@concept_id5 and concept_set= @parent_concept_id;
             DELETE FROM concept_set WHERE concept_id=@concept_id6 and concept_set= @parent_concept_id;
-            DELETE FROM concept_set WHERE concept_id=@concept_id7 and concept_set= @parent_concept_id;
         </sql>
     </changeSet>
 
@@ -130,7 +129,7 @@
                 'FULLY_SPECIFIED' AND locale = 'en' AND voided = 0;
             </sqlCheck>
         </preConditions>
-        <comment>creating routes </comment>
+        <comment>creating Dosing Units </comment>
         <sql>
             set @concept_id = 0;
             set @concept_short_id = 0;

@@ -8,6 +8,39 @@
         "duration": {
           "required": false
         },
+        "doseUnits": [
+          "mg/m2",
+          "ml",
+          "microgram (mcg)"
+        ],
+        "routes": [
+          "Intravenous"
+        ],
+        "frequencies": [
+          "Immediately",
+          "Once a day",
+          "Twice a day",
+          "Thrice a day",
+          "Four times a day",
+          "Five times a day",
+          "Every hour",
+          "Every 2 hours",
+          "Every 3 hours",
+          "Every 4 hours",
+          "Every 6 hours",
+          "Every 8 hours",
+          "Every 12 hours",
+          "On alternate days",
+          "Once a Week",
+          "Twice a week",
+          "Thrice a week",
+          "Four days a week",
+          "Five days a week",
+          "Six days a week",
+          "Every 2 weeks",
+          "Every 3 weeks",
+          "Once a month"
+      ],
         "drugConceptSet": "All Chemo Drugs",
         "isDropDown": true,
         "hideOrderSet": true,
@@ -88,6 +121,27 @@
     "medicationTabConfig": {
       "inputOptionsConfig": {
         "defaultStartDate": true,
+        "doseUnits": [
+          "puff",
+          "mg/ml",
+          "gram",
+          "IU/ml",
+          "g/ml",
+          "g/mg",
+          "mmol/ml",
+          "g/l",
+          "Application",
+          "Tablet(s)",
+          "Capsule(s)",
+          "ml",
+          "mg",
+          "IU",
+          "Drop",
+          "Tablespoon (15ml)",
+          "Teaspoon (5ml)",
+          "Units(s)",
+          "Patch"
+        ],
         "drugConceptSet": "All Other Drugs",
         "hideOrderSet": true,
         "duration": {
