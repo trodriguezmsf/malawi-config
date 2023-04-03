@@ -130,45 +130,7 @@
           }
         ],
         "drugFormDefaults": {}
-      },
-      "drugOrderHistoryConfig": {
-        "view": "custom",
-        "numberOfVisits": 0,
-        "sections": {
-          "otherDrugs": {
-            "title": "Other Drugs",
-            "captureStopReason": true,
-            "columnHeaders": {
-              "drugName": "DRUG_HISTORY_NON_CHEMO_DRUGNAME",
-              "dosage": "DRUG_HISTORY_NON_CHEMO_DOSAGE",
-              "route": "DRUG_HISTORY_NON_CHEMO_ROUTE",
-              "duration": "DRUG_HISTORY_NON_CHEMO_DURATION",
-              "frequency": "DRUG_HISTORY_NON_CHEMO_FREQUENCY",
-              "startDate": "DRUG_HISTORY_NON_CHEMO_STARTDATE",
-              "stopDate": "DRUG_HISTORY_NON_CHEMO_STOPDATE",
-              "stopReason": "DRUG_HISTORY_NON_CHEMO_STOPREASON",
-              "quantity": "DRUG_HISTORY_NON_CHEMO_QUANTITY",
-              "instructions": "DRUG_HISTORY_NON_CHEMO_INSTRUCTIONS"
-            },
-            "actions": [
-              "stop",
-              "refill",
-              "void"
-            ],
-            "excludeConceptSet": "All Chemo Drugs",
-            "columns": [
-              "dosage",
-              "frequency",
-              "route",
-              "duration",
-              "instructions",
-              "quantity",
-              "startDate",
-              "stopDate"
-            ]
-          }
-        }
-      }
+      } 
     }
   }
 }
