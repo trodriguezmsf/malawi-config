@@ -339,7 +339,8 @@
           "18 PSA Discharge",
           "Chemotherapy Clinical Assessment and Treatment",
           "Chemotherapy Baseline Assessment",
-          "Medications Administered"
+          "Medications Administered",
+          "17 Ovarian"
         ],
         "translationKey": "DASHBOARD_TITLE_EDIT_FORMS"
       },
