@@ -1525,4 +1525,8 @@
         <comment>Add Date of Oncogynae Program enrollment in program queues</comment>
         <sqlFile path="ProgramQueues/activeProgramsQueue_v2.sql"/>
     </changeSet>
+
+    <include file="Medications/Medications_1.xml"/>
+    <include file="PatientHistory/PatientHistory_5.xml"/>
+    <include file="ChemotherapyClinicalAssessmentTreatment/ChemotherapyClinicalAssessmentTreatment_2.xml"/>
 </databaseChangeLog>
