@@ -109,11 +109,11 @@ VALUES ((select concept_id from concept_name where name = "OV, Pre-surgery PCI" 
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
 VALUES ((select concept_id from concept_name where name = "OV, Number of anastomoses" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),5,NULL,NULL,-0.1,NULL,NULL,"",0,0);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "OV, Residual small bowel" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"cm",1,1);
+VALUES ((select concept_id from concept_name where name = "OV, Residual small bowel" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,-0.0000000001,NULL,NULL,"cm",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
 VALUES ((select concept_id from concept_name where name = "OV, Post-surgery PCI" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "OV, Estimated blood loss" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"in L",1,1);
+VALUES ((select concept_id from concept_name where name = "OV, Estimated blood loss" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,-0.0000000001,NULL,NULL,"L",1,1);
 
 #Add Time Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"OV, Start time of operation","Start time of operation","Datetime","Misc",false);
@@ -133,7 +133,6 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Anemia due to a
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Lesser omentum","Lesser omentum","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Vascular Injury","Vascular Injury","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Left tube","Left tube","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"No residual disease=R","No residual disease=R","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"No tumor seen = 0","No tumor seen = 0","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Radical omentectomy","Radical omentectomy","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Large bowel resection","Large bowel resection","N/A","Misc",false);
@@ -147,13 +146,10 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Nasogastric tub
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Foley catheter","Foley catheter","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Hysterectomy","Hysterectomy","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Liver parenchymal","Liver parenchymal","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Tumor > 5cm or confluence = 13","Tumor > 5cm or confluence = 13","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Tumor > 5cm or confluence = 3","Tumor > 5cm or confluence = 3","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Tumor > 5cm or confluence = 14","Tumor > 5cm or confluence = 14","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Chest tube","Chest tube","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"More than 500ml","More than 500ml","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Staging","Staging","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Tumor > 5cm or confluence = 8","Tumor > 5cm or confluence = 8","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Small bowel","Small bowel","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Abdominal wall","Abdominal wall","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Liver","Liver","N/A","Misc",false);
@@ -165,7 +161,6 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Paraaortic node
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Stomach","Stomach","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Partial hepatectomy","Partial hepatectomy","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Gastrostomy","Gastrostomy","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Tumor > 5cm or confluence = 5","Tumor > 5cm or confluence = 5","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Incorrect","Incorrect","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Right ovary","Right ovary","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Peritonectomy gutters","Peritonectomy gutters","N/A","Misc",false);
@@ -182,7 +177,6 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Diaphragmatic r
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Definitive","Definitive","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Splenectomy","Splenectomy","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Tumor up to 5cm = 2","Tumor up to 5cm = 2","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Tumor > 5cm or confluence = 7","Tumor > 5cm or confluence = 7","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Spleen","Spleen","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"3rd debulking","3rd debulking","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Small bowel resection","Small bowel resection","N/A","Misc",false);
@@ -202,7 +196,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Absorbable runn
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Colorectal resection","Colorectal resection","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Inguinal nodes","Inguinal nodes","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Emergency","Emergency","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Suspicion or Positive","Suspicion or Positive","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Suspicion","Suspicion","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Infracolic omentectomy","Infracolic omentectomy","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Correct","Correct","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Non absorbable interrupted suture","Non absorbable interrupted suture","N/A","Misc",false);
@@ -216,7 +210,6 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"0.1-0.5cm","0.1
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"No residual disease=R0","No residual disease=R0","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Recurrent tumor","Recurrent tumor","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Left gutter","Left gutter","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Tumor > 5cm or confluence = 4","Tumor > 5cm or confluence = 4","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Resection lesser omentum","Resection lesser omentum","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Intraoperative death","Intraoperative death","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"0.6-1cm","0.6-1cm","N/A","Misc",false);
@@ -225,12 +218,10 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Atypical liver 
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Partial gastrectomy","Partial gastrectomy","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Celiac axis","Celiac axis","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Instrument","Instrument","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Tumor > 5cm or confluence = 11","Tumor > 5cm or confluence = 11","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Breach of sterility","Breach of sterility","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Liver surface","Liver surface","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Interval debulking surgery after NACT","Interval debulking surgery after NACT","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"No macroscopic","No macroscopic","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Tumor > 5cm or confluence = 10","Tumor > 5cm or confluence = 10","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Pelvic nodes","Pelvic nodes","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Pelvic wall","Pelvic wall","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Metastases","Metastases","N/A","Misc",false);
@@ -246,13 +237,10 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Peri-operative 
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Appendix","Appendix","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Primary debulking","Primary debulking","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Partial cystectomy","Partial cystectomy","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Tumor > 5cm or confluence = 9","Tumor > 5cm or confluence = 9","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Ileostomy","Ileostomy","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Pericardiophrenic nodes","Pericardiophrenic nodes","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Tumor > 5cm or confluence = 12","Tumor > 5cm or confluence = 12","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Douglas","Douglas","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Right diaphragm","Right diaphragm","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Tumor > 5cm or confluence = 6","Tumor > 5cm or confluence = 6","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Cytoreduction","Cytoreduction","N/A","Misc",false);
 
 #Add Help Text to Concepts

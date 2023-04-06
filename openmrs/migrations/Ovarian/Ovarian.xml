@@ -812,7 +812,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Suspicion or Positive")
+                ("Suspicion", "Positive")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "OV, Pre-surgery Interaortocava");
@@ -823,8 +823,11 @@
             select concept_id into @concept_id from concept_name where name = "OV, Pre-surgery Interaortocava" and
             concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Suspicion or Positive" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Suspicion" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Positive" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
         </sql>
     </changeSet>
 
@@ -836,7 +839,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Suspicion or Positive")
+                ("Suspicion", "Positive")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "OV, Pre-surgery Porta hepatis");
@@ -847,8 +850,11 @@
             select concept_id into @concept_id from concept_name where name = "OV, Pre-surgery Porta hepatis" and
             concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Suspicion or Positive" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Suspicion" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Positive" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
         </sql>
     </changeSet>
 
@@ -860,7 +866,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Suspicion or Positive")
+                ("Suspicion", "Positive")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "OV, Pre-surgery Celiac axis");
@@ -871,8 +877,11 @@
             select concept_id into @concept_id from concept_name where name = "OV, Pre-surgery Celiac axis" and
             concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Suspicion or Positive" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Suspicion" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Positive" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
         </sql>
     </changeSet>
 
@@ -884,7 +893,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Suspicion or Positive")
+                ("Suspicion", "Positive")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "OV, Pre-surgery Suprarenal/Splenic");
@@ -895,8 +904,11 @@
             select concept_id into @concept_id from concept_name where name = "OV, Pre-surgery Suprarenal/Splenic" and
             concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Suspicion or Positive" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Suspicion" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Positive" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
         </sql>
     </changeSet>
 
@@ -908,7 +920,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Suspicion or Positive")
+                ("Suspicion", "Positive")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "OV, Pre-surgery Left aortic");
@@ -919,8 +931,11 @@
             select concept_id into @concept_id from concept_name where name = "OV, Pre-surgery Left aortic" and
             concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Suspicion or Positive" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Suspicion" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Positive" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
         </sql>
     </changeSet>
 
@@ -932,7 +947,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Suspicion or Positive")
+                ("Suspicion", "Positive")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "OV, Pre-surgery Left external iliac");
@@ -943,8 +958,11 @@
             select concept_id into @concept_id from concept_name where name = "OV, Pre-surgery Left external iliac" and
             concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Suspicion or Positive" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Suspicion" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Positive" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
         </sql>
     </changeSet>
 
@@ -956,7 +974,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Suspicion or Positive")
+                ("Suspicion", "Positive")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "OV, Pre-surgery Left inguinal");
@@ -967,8 +985,11 @@
             select concept_id into @concept_id from concept_name where name = "OV, Pre-surgery Left inguinal" and
             concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Suspicion or Positive" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Suspicion" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Positive" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
         </sql>
     </changeSet>
 
@@ -980,7 +1001,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Suspicion or Positive")
+                ("Suspicion", "Positive")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "OV, Pre-surgery Right inguinal");
@@ -991,8 +1012,11 @@
             select concept_id into @concept_id from concept_name where name = "OV, Pre-surgery Right inguinal" and
             concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Suspicion or Positive" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Suspicion" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Positive" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
         </sql>
     </changeSet>
 
@@ -1004,7 +1028,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Suspicion or Positive")
+                ("Suspicion", "Positive")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "OV, Pre-surgery Right external iliac");
@@ -1015,8 +1039,11 @@
             select concept_id into @concept_id from concept_name where name = "OV, Pre-surgery Right external iliac" and
             concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Suspicion or Positive" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Suspicion" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Positive" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
         </sql>
     </changeSet>
 
@@ -1028,7 +1055,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Suspicion or Positive")
+                ("Suspicion", "Positive")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "OV, Pre-surgery Right common iliac");
@@ -1039,8 +1066,11 @@
             select concept_id into @concept_id from concept_name where name = "OV, Pre-surgery Right common iliac" and
             concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Suspicion or Positive" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Suspicion" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Positive" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
         </sql>
     </changeSet>
 
@@ -1052,7 +1082,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Suspicion or Positive")
+                ("Suspicion", "Positive")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "OV, Pre-surgery Pre-paracava");
@@ -1063,8 +1093,11 @@
             select concept_id into @concept_id from concept_name where name = "OV, Pre-surgery Pre-paracava" and
             concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Suspicion or Positive" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Suspicion" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Positive" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
         </sql>
     </changeSet>
 
@@ -1076,7 +1109,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Suspicion or Positive")
+                ("Suspicion", "Positive")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "OV, Pre-surgery Right cardio phrenic");
@@ -1087,8 +1120,11 @@
             select concept_id into @concept_id from concept_name where name = "OV, Pre-surgery Right cardio phrenic" and
             concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Suspicion or Positive" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Suspicion" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Positive" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
         </sql>
     </changeSet>
 
@@ -1100,7 +1136,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Suspicion or Positive")
+                ("Suspicion", "Positive")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "OV, Pre-surgery Left cardio phrenic");
@@ -1111,8 +1147,11 @@
             select concept_id into @concept_id from concept_name where name = "OV, Pre-surgery Left cardio phrenic" and
             concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
             set @child1_concept_id = 0;
-            select concept_id into @child1_concept_id from concept_name where name ="Suspicion or Positive" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            set @child2_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Suspicion" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Positive" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
         </sql>
     </changeSet>
 
@@ -1385,7 +1424,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("No tumor seen = 0", "Tumor up to 0.5cm = 1", "Tumor up to 5cm = 2", "Tumor > 5cm or confluence = 4")
+                ("No tumor seen = 0", "Tumor up to 0.5cm = 1", "Tumor up to 5cm = 2", "Tumor > 5cm or confluence = 3")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "OV, Post-surgery Right upper");
@@ -1402,7 +1441,7 @@
             select concept_id into @child1_concept_id from concept_name where name ="No tumor seen = 0" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child2_concept_id from concept_name where name ="Tumor up to 0.5cm = 1" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child3_concept_id from concept_name where name ="Tumor up to 5cm = 2" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Tumor > 5cm or confluence = 4" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Tumor > 5cm or confluence = 3" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -1418,7 +1457,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("No tumor seen = 0", "Tumor up to 0.5cm = 1", "Tumor up to 5cm = 2", "Tumor > 5cm or confluence = 5")
+                ("No tumor seen = 0", "Tumor up to 0.5cm = 1", "Tumor up to 5cm = 2", "Tumor > 5cm or confluence = 3")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "OV, Post-surgery Epigastrium");
@@ -1435,7 +1474,7 @@
             select concept_id into @child1_concept_id from concept_name where name ="No tumor seen = 0" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child2_concept_id from concept_name where name ="Tumor up to 0.5cm = 1" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child3_concept_id from concept_name where name ="Tumor up to 5cm = 2" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Tumor > 5cm or confluence = 5" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Tumor > 5cm or confluence = 3" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -1451,7 +1490,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("No tumor seen = 0", "Tumor up to 0.5cm = 1", "Tumor up to 5cm = 2", "Tumor > 5cm or confluence = 6")
+                ("No tumor seen = 0", "Tumor up to 0.5cm = 1", "Tumor up to 5cm = 2", "Tumor > 5cm or confluence = 3")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "OV, Post-surgery Left upper");
@@ -1468,7 +1507,7 @@
             select concept_id into @child1_concept_id from concept_name where name ="No tumor seen = 0" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child2_concept_id from concept_name where name ="Tumor up to 0.5cm = 1" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child3_concept_id from concept_name where name ="Tumor up to 5cm = 2" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Tumor > 5cm or confluence = 6" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Tumor > 5cm or confluence = 3" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -1484,7 +1523,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("No tumor seen = 0", "Tumor up to 0.5cm = 1", "Tumor up to 5cm = 2", "Tumor > 5cm or confluence = 7")
+                ("No tumor seen = 0", "Tumor up to 0.5cm = 1", "Tumor up to 5cm = 2", "Tumor > 5cm or confluence = 3")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "OV, Post-surgery Left blank");
@@ -1501,7 +1540,7 @@
             select concept_id into @child1_concept_id from concept_name where name ="No tumor seen = 0" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child2_concept_id from concept_name where name ="Tumor up to 0.5cm = 1" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child3_concept_id from concept_name where name ="Tumor up to 5cm = 2" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Tumor > 5cm or confluence = 7" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Tumor > 5cm or confluence = 3" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -1517,7 +1556,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("No tumor seen = 0", "Tumor up to 0.5cm = 1", "Tumor up to 5cm = 2", "Tumor > 5cm or confluence = 8")
+                ("No tumor seen = 0", "Tumor up to 0.5cm = 1", "Tumor up to 5cm = 2", "Tumor > 5cm or confluence = 3")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "OV, Post-surgery Left lower");
@@ -1534,7 +1573,7 @@
             select concept_id into @child1_concept_id from concept_name where name ="No tumor seen = 0" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child2_concept_id from concept_name where name ="Tumor up to 0.5cm = 1" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child3_concept_id from concept_name where name ="Tumor up to 5cm = 2" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Tumor > 5cm or confluence = 8" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Tumor > 5cm or confluence = 3" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -1550,7 +1589,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("No tumor seen = 0", "Tumor up to 0.5cm = 1", "Tumor up to 5cm = 2", "Tumor > 5cm or confluence = 9")
+                ("No tumor seen = 0", "Tumor up to 0.5cm = 1", "Tumor up to 5cm = 2", "Tumor > 5cm or confluence = 3")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "OV, Post-surgery Pelvis");
@@ -1567,7 +1606,7 @@
             select concept_id into @child1_concept_id from concept_name where name ="No tumor seen = 0" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child2_concept_id from concept_name where name ="Tumor up to 0.5cm = 1" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child3_concept_id from concept_name where name ="Tumor up to 5cm = 2" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Tumor > 5cm or confluence = 9" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Tumor > 5cm or confluence = 3" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -1583,7 +1622,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("No tumor seen = 0", "Tumor up to 0.5cm = 1", "Tumor up to 5cm = 2", "Tumor > 5cm or confluence = 10")
+                ("No tumor seen = 0", "Tumor up to 0.5cm = 1", "Tumor up to 5cm = 2", "Tumor > 5cm or confluence = 3")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "OV, Post-surgery Right lower");
@@ -1600,7 +1639,7 @@
             select concept_id into @child1_concept_id from concept_name where name ="No tumor seen = 0" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child2_concept_id from concept_name where name ="Tumor up to 0.5cm = 1" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child3_concept_id from concept_name where name ="Tumor up to 5cm = 2" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Tumor > 5cm or confluence = 10" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Tumor > 5cm or confluence = 3" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -1616,7 +1655,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("No tumor seen = 0", "Tumor up to 0.5cm = 1", "Tumor up to 5cm = 2", "Tumor > 5cm or confluence = 11")
+                ("No tumor seen = 0", "Tumor up to 0.5cm = 1", "Tumor up to 5cm = 2", "Tumor > 5cm or confluence = 3")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "OV, Post-surgery Right flank");
@@ -1633,7 +1672,7 @@
             select concept_id into @child1_concept_id from concept_name where name ="No tumor seen = 0" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child2_concept_id from concept_name where name ="Tumor up to 0.5cm = 1" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child3_concept_id from concept_name where name ="Tumor up to 5cm = 2" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Tumor > 5cm or confluence = 11" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Tumor > 5cm or confluence = 3" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -1649,7 +1688,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("No tumor seen = 0", "Tumor up to 0.5cm = 1", "Tumor up to 5cm = 2", "Tumor > 5cm or confluence = 12")
+                ("No tumor seen = 0", "Tumor up to 0.5cm = 1", "Tumor up to 5cm = 2", "Tumor > 5cm or confluence = 3")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "OV, Post-surgery Upper jejunum");
@@ -1666,7 +1705,7 @@
             select concept_id into @child1_concept_id from concept_name where name ="No tumor seen = 0" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child2_concept_id from concept_name where name ="Tumor up to 0.5cm = 1" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child3_concept_id from concept_name where name ="Tumor up to 5cm = 2" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Tumor > 5cm or confluence = 12" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Tumor > 5cm or confluence = 3" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -1682,7 +1721,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("No tumor seen = 0", "Tumor up to 0.5cm = 1", "Tumor up to 5cm = 2", "Tumor > 5cm or confluence = 13")
+                ("No tumor seen = 0", "Tumor up to 0.5cm = 1", "Tumor up to 5cm = 2", "Tumor > 5cm or confluence = 3")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "OV, Post-surgery Upper ileum");
@@ -1699,7 +1738,7 @@
             select concept_id into @child1_concept_id from concept_name where name ="No tumor seen = 0" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child2_concept_id from concept_name where name ="Tumor up to 0.5cm = 1" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child3_concept_id from concept_name where name ="Tumor up to 5cm = 2" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Tumor > 5cm or confluence = 13" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Tumor > 5cm or confluence = 3" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -1715,7 +1754,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("No tumor seen = 0", "Tumor up to 0.5cm = 1", "Tumor up to 5cm = 2", "Tumor > 5cm or confluence = 14")
+                ("No tumor seen = 0", "Tumor up to 0.5cm = 1", "Tumor up to 5cm = 2", "Tumor > 5cm or confluence = 3")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "OV, Post-surgery Lower ileum");
@@ -1732,7 +1771,7 @@
             select concept_id into @child1_concept_id from concept_name where name ="No tumor seen = 0" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child2_concept_id from concept_name where name ="Tumor up to 0.5cm = 1" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child3_concept_id from concept_name where name ="Tumor up to 5cm = 2" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child4_concept_id from concept_name where name ="Tumor > 5cm or confluence = 14" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Tumor > 5cm or confluence = 3" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -1991,7 +2030,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Residual disease=R+", "No residual disease=R")
+                ("Residual disease=R+", "No residual disease=R0")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "OV, Post-surgery Right common iliac");
@@ -2004,7 +2043,7 @@
             set @child1_concept_id = 0;
             set @child2_concept_id = 0;
             select concept_id into @child1_concept_id from concept_name where name ="Residual disease=R+" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child2_concept_id from concept_name where name ="No residual disease=R" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="No residual disease=R0" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
         </sql>
