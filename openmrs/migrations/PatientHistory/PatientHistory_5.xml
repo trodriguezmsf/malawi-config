@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+
+    <changeSet id="MALAWI_CONFIG_20230327110901001" author="Kiruthiga">
+    <preConditions onFail="MARK_RAN">
+      <sqlCheck expectedResult = "0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN ("Thyolo DHO")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "PH, MOH health facility name");
+      </sqlCheck>
+    </preConditions>
+    <comment>Adding New answer None to PH, MOH health facility name </comment>
+    <sql>
+            SELECT concept_id INTO @conceptcoded FROM concept_name WHERE name = "PH, MOH health facility name" AND
+            concept_name_type = "FULLY_SPECIFIED" AND locale = "en" AND voided = 0;
+
+            SELECT user_id INTO @user_id from users where username ='admin';
+
+            select concept_id into @conceptID1 from concept_name where name ="Thyolo DHO" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,sort_weight,date_created,uuid) VALUES (@conceptcoded,@conceptID1,@user_id,89,now(),uuid());
+            
+    </sql>
+  </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="Malawi_CONFIG_20232814055509781" author="Kiruthiga">
+        <comment>Adding Concepts for ChemotherapyClinicalAssessmentTreatment Form</comment>
+        <sqlFile path="ChemotherapyClinicalAssessmentTreatment/ChemotherapyClinicalAssessmentTreatment_2.sql"/>
+    </changeSet>
+
+    <changeSet id="Malawi_CONFIG_20232814055509782" author="Kiruthiga">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Grade 1", "Grade 2", "Grade 3", "Grade 4", "Grade 5")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "CCAT, Neutropenia severity");
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding Answers to CCAT, Neutropenia severity</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "CCAT, Neutropenia severity" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0;
+            set @child1_concept_id = 0;
+            set @child2_concept_id = 0;
+            set @child3_concept_id = 0;
+            set @child4_concept_id = 0;
+            set @child5_concept_id = 0;
+            select concept_id into @child1_concept_id from concept_name where name ="Grade 1" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child2_concept_id from concept_name where name ="Grade 2" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child3_concept_id from concept_name where name ="Grade 3" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child4_concept_id from concept_name where name ="Grade 4" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child5_concept_id from concept_name where name ="Grade 5" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            call add_concept_answer(@concept_id, @child1_concept_id, 1);
+            call add_concept_answer(@concept_id, @child2_concept_id, 2);
+            call add_concept_answer(@concept_id, @child3_concept_id, 3);
+            call add_concept_answer(@concept_id, @child4_concept_id, 4);
+            call add_concept_answer(@concept_id, @child5_concept_id, 5);
+        </sql>
+    </changeSet>
+
+    <changeSet id="Malawi_CONFIG_20232814055509784" author="Kiruthiga">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                 select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Neutropenia")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "CCAT, Side effects");
+            </sqlCheck>
+        </preConditions>
+        <comment>Add Answers for CCAT, Side effects</comment>
+        <sql>
+            select concept_id into @concept_id from concept_name where name = "CCAT, Side effects" and
+            concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0; 
+            
+            set @child14_concept_id = 0;
+            
+            select concept_id into @child14_concept_id from concept_name where name ="Neutropenia" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+
+            call add_concept_answer(@concept_id, @child14_concept_id, 14);
+        </sql>
+    </changeSet>
+
+    <changeSet id="Malawi_CONFIG_20232814055509787" author="Kiruthiga">
+        <preConditions onFail="MARK_RAN">
+
+            <sqlCheck expectedResult="3">
+                 select count(*) from concept_answer ca
+                join
+                concept_name cn
+                on ca.concept_id = cn.concept_id
+                where ca.answer_concept IN (select concept_id from concept_name where name IN
+                ("Neutropenia","Thrombocytopenia","Other")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cn.concept_id IN (select concept_id from concept_name where name = "CCAT, Side effects" and concept_name_type ="FULLY_SPECIFIED")
+                AND cn.concept_name_type = "FULLY_SPECIFIED";
+            </sqlCheck>
+        </preConditions>
+
+    <comment> Reorderof CCAT, Side effects</comment>
+    <sql>
+            set @parent_concept = "CCAT, Side effects";
+            
+            call reorder_concept_answer(@parent_concept, "Neutropenia", 12);
+            call reorder_concept_answer(@parent_concept, "Thrombocytopenia", 13);
+            call reorder_concept_answer(@parent_concept, "Other", 14);
+    </sql>
+  </changeSet>
+</databaseChangeLog>

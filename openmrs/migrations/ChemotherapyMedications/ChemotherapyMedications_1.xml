@@ -885,4 +885,37 @@
         </sql>
     </changeSet>
 
+    <changeSet id="MALAWI_CONFIG_20230330110901639" author="Kiruthiga">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT COUNT(*) FROM concept_name WHERE name in ("microgram (mcg)") AND concept_name_type =
+                'FULLY_SPECIFIED' AND locale = 'en' AND voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding new route </comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_short_id = 0;
+            set @concept_full_id = 0;
+            set @count = 0;
+            set @uuid = NULL;
+
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"microgram (mcg)","microgram (mcg)","N/A","Misc",false);
+        </sql>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_20230330110901637" author="Kiruthiga" >
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT count(*) from concept_set where concept_id in (select concept_id from concept_name where name in ("microgram (mcg)") and concept_name_type = "FULLY_SPECIFIED") AND concept_set =(SELECT concept_id  from concept_name where name= 'Dosing Units' AND concept_name_type="FULLY_SPECIFIED");
+            </sqlCheck>
+        </preConditions>
+        <comment>Add microgram (mcg) to dosing units </comment>
+        <sql>
+            SELECT concept_id INTO @concept_set  from concept_name where name= 'Dosing Units' AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @concept_id1 FROM concept_name WHERE name = 'microgram (mcg)' AND concept_name_type="FULLY_SPECIFIED";
+
+            call add_concept_set_members(@concept_set, @concept_id1, 1);
+        </sql>
+    </changeSet>
 </databaseChangeLog>
