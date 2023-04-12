@@ -1515,7 +1515,6 @@
     <include file="BedManagement/BedManagement_1.xml"/>
     
     <include file="ChemotherapyMedications/ChemotherapyMedications_1.xml"/>
-    <include file="Hysterectomy/Hysterectomy.xml"/>
     <include file="Ovarian/Ovarian.xml"/>
 
     <changeSet id="MALAWI-2023033011246" author="Kiruthiga">
@@ -1531,4 +1530,5 @@
     <include file="Medications/Medications_1.xml"/>
     <include file="PatientHistory/PatientHistory_5.xml"/>
     <include file="ChemotherapyClinicalAssessmentTreatment/ChemotherapyClinicalAssessmentTreatment_2.xml"/>
+    <include file="Hysterectomy/Hysterectomy.xml"/>
 </databaseChangeLog>
