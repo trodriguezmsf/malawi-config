@@ -340,6 +340,8 @@
           "Chemotherapy Clinical Assessment and Treatment",
           "Chemotherapy Baseline Assessment",
           "Medications Administered",
+          "Ovarian",
+          "Hysterectomy",
           "Vulvectomy"
         ],
         "translationKey": "DASHBOARD_TITLE_EDIT_FORMS"
