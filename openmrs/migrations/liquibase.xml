@@ -1530,4 +1530,5 @@
     <include file="Medications/Medications_1.xml"/>
     <include file="PatientHistory/PatientHistory_5.xml"/>
     <include file="ChemotherapyClinicalAssessmentTreatment/ChemotherapyClinicalAssessmentTreatment_2.xml"/>
+    <include file="Hysterectomy/Hysterectomy.xml"/>
 </databaseChangeLog>
