@@ -55,67 +55,38 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"HY, Start time 
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"HY, End time of operation","End time of operation","Datetime","Misc",false);
 
 #Add Child Concepts
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Needle","Needle","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Mobilization of rectum to below middle vagina","Mobilization of rectum to below middle vagina","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Correct","Correct","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Absorbable running suture","Absorbable running suture","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Ureteral bed","Ureteral bed","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Endotracheal tube","Endotracheal tube","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Gauze","Gauze","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Metastases","Metastases","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Incorrect","Incorrect","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Partial excision of the vesico-uterine ligament","Partial excision of the vesico-uterine ligament","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Bilateral oophorectomy","Bilateral oophorectomy","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Vertical laparotomy","Vertical laparotomy","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Minimal","Minimal","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Partial excision of rectouterine-rectovaginal ligament","Partial excision of rectouterine-rectovaginal ligament","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Bladder with nerve sparing","Bladder with nerve sparing","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Intraoperative death","Intraoperative death","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Rectum with nerve sparing","Rectum with nerve sparing","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Lateral parametrium excision","Lateral parametrium excision","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Mobilization of bladder to upper vagina","Mobilization of bladder to upper vagina","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Ureter injury","Ureter injury","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Pelvic lymphadenectomy","Pelvic lymphadenectomy","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Passive drain","Passive drain","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Half way between cervix and ureter","Half way between cervix and ureter","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Peritoneal carcinomatosis","Peritoneal carcinomatosis","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Iliac vessels","Iliac vessels","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Laparoscopy","Laparoscopy","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Ventral parametrium excision","Ventral parametrium excision","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Primary tumor","Primary tumor","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Paraaortic nodes","Paraaortic nodes","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Right pelvic nodes","Right pelvic nodes","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Mobilization of ureter through broad ligament","Mobilization of ureter through broad ligament","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Paracaval nodes","Paracaval nodes","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Left pelvic nodes","Left pelvic nodes","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Mobilization of rectum to below the cervix","Mobilization of rectum to below the cervix","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Nasogastric tube","Nasogastric tube","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Mobilization of bladder to middle vagina","Mobilization of bladder to middle vagina","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Non absorbable interrupted suture","Non absorbable interrupted suture","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Lomboaortic lymphadenectomy","Lomboaortic lymphadenectomy","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Right oophorectomy","Right oophorectomy","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Mobilization of bladder to base of the cervix","Mobilization of bladder to base of the cervix","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Recurrent tumor","Recurrent tumor","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Iliac vessels transversally and caudally preserved","Iliac vessels transversally and caudally preserved","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Chest tube","Chest tube","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Foley catheter","Foley catheter","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Dorsal parametrium excision","Dorsal parametrium excision","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Breach of sterility","Breach of sterility","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Peri-operative myocardial infarction","Peri-operative myocardial infarction","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Transverse laparotomy","Transverse laparotomy","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Bladder injury","Bladder injury","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Left oophorectomy","Left oophorectomy","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Anemia due to acute blood loss","Anemia due to acute blood loss","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Rectum without nerve sparing","Rectum without nerve sparing","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Cardiac Arrhythmia","Cardiac Arrhythmia","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Instrument","Instrument","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Anesthetic complication in OT","Anesthetic complication in OT","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Bladder without nerve sparing","Bladder without nerve sparing","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Vascular Injury","Vascular Injury","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Nerve injury","Nerve injury","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Transvaginal","Transvaginal","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Suction drain","Suction drain","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Digestive injury","Digestive injury","N/A","Misc",false);
 
 #Add Help Text to Concepts
 INSERT INTO concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)
