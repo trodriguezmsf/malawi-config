@@ -43,9 +43,9 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"VU, Extent of r
 
 #Add Numeric concepts to concept Numeric Table
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "VU, Estimated blood loss" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"L",1,1);
+VALUES ((select concept_id from concept_name where name = "VU, Estimated blood loss" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,-0.0000000001,NULL,NULL,"L",1,1);
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
-VALUES ((select concept_id from concept_name where name = "VU, Extent of resection" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,NULL,NULL,NULL,"mm",1,1);
+VALUES ((select concept_id from concept_name where name = "VU, Extent of resection" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),NULL,NULL,NULL,-0.1,NULL,NULL,"mm",1,1);
 
 #Add Datetime Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"VU, Start time of operation","Start time of operation","Datetime","Misc",false);
