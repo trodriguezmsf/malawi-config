@@ -52,51 +52,21 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"VU, Start time 
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"VU, End time of operation","End time of operation","Datetime","Misc",false);
 
 #Add Child Concepts
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Recurrent tumor","Recurrent tumor","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Nasogastric tube","Nasogastric tube","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Foley catheter","Foley catheter","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"V-Y Flap","V-Y Flap","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Passive drain","Passive drain","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Gauze","Gauze","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Vascular Injury","Vascular Injury","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Primary tumor","Primary tumor","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Labium majus involvement","Labium majus involvement","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Labius minus involvement","Labius minus involvement","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Wide local excision","Wide local excision","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Ileostomy","Ileostomy","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Suction drain","Suction drain","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Intraoperative death","Intraoperative death","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Incorrect","Incorrect","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Digestive injury","Digestive injury","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Chest tube","Chest tube","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Urethral resection","Urethral resection","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Lotus petal flap","Lotus petal flap","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Cardiac Arrhythmia","Cardiac Arrhythmia","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Endotracheal tube","Endotracheal tube","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Definitive","Definitive","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Instrument","Instrument","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Breach of sterility","Breach of sterility","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Needle","Needle","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Nerve injury","Nerve injury","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Rhomboid flap","Rhomboid flap","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Anesthetic complication in OT","Anesthetic complication in OT","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Rectal mucosa involvement","Rectal mucosa involvement","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Correct","Correct","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Primary closure","Primary closure","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Clitoris involvement","Clitoris involvement","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Bartholin gland involvement","Bartholin gland involvement","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Groin lymphnode dissection","Groin lymphnode dissection","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Jejunostomy","Jejunostomy","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Ipsilateral groin lymphnode dissection","Ipsilateral groin lymphnode dissection","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Anemia due to acute blood loss","Anemia due to acute blood loss","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Ureter injury","Ureter injury","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Temporary","Temporary","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Gastrostomy","Gastrostomy","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Peri-operative myocardial infarction","Peri-operative myocardial infarction","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Bladder injury","Bladder injury","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Colostomy","Colostomy","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Urethra invovlement","Urethra invovlement","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Bartholin gland involvement","Bartholin gland involvement","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Wide local excision","Wide local excision","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Labium majus involvement","Labium majus involvement","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Lymph node involvement","Lymph node involvement","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Labius minus involvement","Labius minus involvement","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Lotus petal flap","Lotus petal flap","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Rhomboid flap","Rhomboid flap","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Primary closure","Primary closure","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Groin lymphnode dissection","Groin lymphnode dissection","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Urethral resection","Urethral resection","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Rectal mucosa involvement","Rectal mucosa involvement","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Ipsilateral groin lymphnode dissection","Ipsilateral groin lymphnode dissection","N/A","Misc",false);
 
 #Add Help Text to Concepts
 INSERT INTO concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)
