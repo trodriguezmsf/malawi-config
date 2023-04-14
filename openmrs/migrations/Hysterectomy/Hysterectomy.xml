@@ -703,30 +703,10 @@
     </changeSet>
 
     <changeSet id="Malawi_CONFIG_20230405052108005" author="Bindu">
-        <preConditions onFail="MARK_RAN">
-            <sqlCheck expectedResult="0">
-                select count(*) from concept_reference_term
-                where code in
-                ("2323","395","407","875","389","7","218","431","390")
-                and retired = 0
-                and concept_source_id = (
-                select concept_source_id from concept_reference_source where name = "CEIL"  and retired =0
-                );
-            </sqlCheck>
-        </preConditions>
         <comment>Adding CEIL codes to concepts</comment>
         <sql>
             SELECT concept_source_id INTO @source_id FROM concept_reference_source where name = "CEIL";
 
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"2323",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"395",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"407",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"875",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"389",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"7",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"218",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"431",@source_id,uuid(),now());
-            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"390",@source_id,uuid(),now());
             call CREATE_REFERENCE_MAPPING_CEIL("HY, ECOG Performance Status","160379");
             call CREATE_REFERENCE_MAPPING_CEIL("Intraoperative death","2323");
             call CREATE_REFERENCE_MAPPING_CEIL("Peri-operative myocardial infarction","407");
