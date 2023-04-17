@@ -548,7 +548,7 @@
             call CREATE_REFERENCE_MAPPING_CEIL("VU, Procedure performed, other","166635");
             call CREATE_REFERENCE_MAPPING_CEIL("VU, Procedure planned,other","166635");
             call CREATE_REFERENCE_MAPPING_CEIL("Cardiac Arrhythmia","395");
-            call CREATE_REFERENCE_MAPPING_CEIL("VU, ECOG Performance Status","");
+            call CREATE_REFERENCE_MAPPING_CEIL("VU, ECOG Performance Status","160379");
             call CREATE_REFERENCE_MAPPING_CEIL("Wide local excision","166921");
             call CREATE_REFERENCE_MAPPING_CEIL("Nerve injury","218");
             call CREATE_REFERENCE_MAPPING_CEIL("Vascular Injury","431");
