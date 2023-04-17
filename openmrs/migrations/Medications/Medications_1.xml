@@ -206,4 +206,93 @@
 
         </sql>
     </changeSet>
+
+    <changeSet id="Malawi_CONFIG_202328140555097862301" author="Kiruthiga">
+        <preConditions onFail="MARK_RAN">
+
+            <sqlCheck expectedResult="18">
+                select count(*) from concept_set cs
+                join
+                concept_name cn
+                on cs.concept_set = cn.concept_id
+                where cs.concept_id IN (select concept_id from concept_name where name IN
+                ("Vaginal","Topical","Spinal","Subcutaneous","Nasal","Inhalation","Intraosseous","Intravenous","Oral","Per Vaginal","Per Rectum",
+                "Sub Lingual","Nasogastric","Intradermal","Intraperitoneal","Intrathecal","Intramuscular","Transdermal")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cs.concept_set IN (select concept_id from concept_name where name = "Drug Routes" and concept_name_type ="FULLY_SPECIFIED")
+                AND cn.concept_name_type = "FULLY_SPECIFIED";
+
+            </sqlCheck>
+        </preConditions>
+
+    <comment> Reorderof Drug Routes</comment>
+    <sql>
+            set @parent_concept = "Drug Routes";
+            
+            call reorder_concept_set(@parent_concept, "Vaginal", 1);
+            call reorder_concept_set(@parent_concept, "Topical", 2);
+            call reorder_concept_set(@parent_concept, "Spinal", 3);
+            call reorder_concept_set(@parent_concept, "Subcutaneous", 4);
+            call reorder_concept_set(@parent_concept, "Nasal", 5);
+            call reorder_concept_set(@parent_concept, "Inhalation", 6);
+            call reorder_concept_set(@parent_concept, "Intraosseous", 7);
+            call reorder_concept_set(@parent_concept, "Intravenous", 8);
+            call reorder_concept_set(@parent_concept, "Oral", 9);
+            call reorder_concept_set(@parent_concept, "Per Vaginal", 10);
+            call reorder_concept_set(@parent_concept, "Per Rectum", 11);
+            call reorder_concept_set(@parent_concept, "Sub Lingual", 12);
+            call reorder_concept_set(@parent_concept, "Nasogastric", 13);
+            call reorder_concept_set(@parent_concept, "Intradermal", 14);
+            call reorder_concept_set(@parent_concept, "Intraperitoneal", 15);
+            call reorder_concept_set(@parent_concept, "Intrathecal", 16);
+            call reorder_concept_set(@parent_concept, "Intramuscular", 17);
+            call reorder_concept_set(@parent_concept, "Transdermal", 18);
+    </sql>
+  </changeSet>
+
+  <changeSet id="Malawi_CONFIG_202328140555097862302" author="Kiruthiga">
+        <preConditions onFail="MARK_RAN">
+
+            <sqlCheck expectedResult="19">
+                select count(*) from concept_set cs
+                join
+                concept_name cn
+                on cs.concept_set = cn.concept_id
+                where cs.concept_id IN (select concept_id from concept_name where name IN
+                ("puff","mg/ml","gram","IU/ml","g/ml","g/mg","mmol/ml","g/l","Application","Tablet(s)","Capsule(s)",
+                "ml","mg","IU","Drop","Tablespoon (15ml)","Teaspoon (5ml)","Units(s)","Patch")
+                and concept_name_type = "FULLY_SPECIFIED")
+                AND
+                cs.concept_set IN (select concept_id from concept_name where name = "Dosing Units" and concept_name_type ="FULLY_SPECIFIED")
+                AND cn.concept_name_type = "FULLY_SPECIFIED";
+
+            </sqlCheck>
+        </preConditions>
+
+    <comment> Reorderof Dosing Units</comment>
+    <sql>
+            set @parent_concept = "Dosing Units";
+            
+            call reorder_concept_set(@parent_concept, "puff", 1);
+            call reorder_concept_set(@parent_concept, "mg/ml", 2);
+            call reorder_concept_set(@parent_concept, "gram", 3);
+            call reorder_concept_set(@parent_concept, "IU/ml", 4);
+            call reorder_concept_set(@parent_concept, "g/ml", 5);
+            call reorder_concept_set(@parent_concept, "g/mg", 6);
+            call reorder_concept_set(@parent_concept, "mmol/ml", 7);
+            call reorder_concept_set(@parent_concept, "g/l", 8);
+            call reorder_concept_set(@parent_concept, "Application", 9);
+            call reorder_concept_set(@parent_concept, "Tablet(s)", 10);
+            call reorder_concept_set(@parent_concept, "Capsule(s)", 11);
+            call reorder_concept_set(@parent_concept, "ml", 12);
+            call reorder_concept_set(@parent_concept, "mg", 13);
+            call reorder_concept_set(@parent_concept, "IU", 14);
+            call reorder_concept_set(@parent_concept, "Drop", 15);
+            call reorder_concept_set(@parent_concept, "Tablespoon (15ml)", 16);
+            call reorder_concept_set(@parent_concept, "Teaspoon (5ml)", 17);
+            call reorder_concept_set(@parent_concept, "Units(s)", 18);
+            call reorder_concept_set(@parent_concept, "Patch", 19);
+    </sql>
+  </changeSet>
 </databaseChangeLog>

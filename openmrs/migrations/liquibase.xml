@@ -1526,10 +1526,18 @@
         <comment>Add Date of Oncogynae Program enrollment in program queues</comment>
         <sqlFile path="ProgramQueues/activeProgramsQueue_v2.sql"/>
     </changeSet>
-
+    <changeSet id="MALAWI-202304161124601" author="Kiruthiga">
+        <comment>MOBN-841 | Adding a new procedure to reorder concept set</comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS reorder_concept_set;
+        </sql>
+        <sqlFile splitStatements="false" path="utils/ReorderConceptSet.sql"/>
+    </changeSet>
     <include file="Medications/Medications_1.xml"/>
     <include file="PatientHistory/PatientHistory_5.xml"/>
     <include file="ChemotherapyClinicalAssessmentTreatment/ChemotherapyClinicalAssessmentTreatment_2.xml"/>
     <include file="Hysterectomy/Hysterectomy.xml"/>
     <include file="Vulvectomy/Vulvectomy.xml"/>
+
+    
 </databaseChangeLog>
