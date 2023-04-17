@@ -54,6 +54,6 @@ from patient_program patientprogram
             (select b.bed_number, bpam.patient_id from bed_patient_assignment_map bpam
                join bed b on bpam.bed_id = b.bed_id AND bpam.date_stopped IS NULL group by bpam.patient_id
             ) bednumber on bednumber.patient_id = patientprogram.patient_id
-where patientprogram.voided = 0 and patientprogram.outcome_concept_id is NULL group by patientprogram.patient_id, programstate.date_created order by programstate.date_created desc;" ,
+where patientprogram.voided = 0 and patientprogram.outcome_concept_id is NULL group by patientprogram.patient_id, programstate.date_created order by DATE(Oncogynae.Date_of_Oncogynae_Program) desc;" ,
         'Active Programs',
         @uuid);
