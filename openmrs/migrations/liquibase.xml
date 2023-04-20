@@ -1538,6 +1538,12 @@
     <include file="ChemotherapyClinicalAssessmentTreatment/ChemotherapyClinicalAssessmentTreatment_2.xml"/>
     <include file="Hysterectomy/Hysterectomy.xml"/>
     <include file="Vulvectomy/Vulvectomy.xml"/>
-
-    
+    <changeSet id="MALAWI-2023041911246" author="venky">
+        <comment>modified to be scheduled queue OT</comment>
+        <sqlFile path="OT/patientListingQueueToBeScheduled_v2.sql"/>
+    </changeSet>
+    <changeSet id="MALAWI-2023041911256" author="venky">
+        <comment>modified scheduled queue in OT</comment>
+        <sqlFile path="OT/patientListingQueueScheduled_v2.sql"/>
+    </changeSet>
 </databaseChangeLog>
