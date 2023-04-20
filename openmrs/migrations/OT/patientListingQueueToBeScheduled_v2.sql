@@ -73,8 +73,6 @@ FROM
       )
       AND coded_concept.name IN ('Surgical Procedure', 'Cervical Conization')
       AND obs.voided = 0
-    GROUP BY
-      obs.person_id
   ) obs_data
   left JOIN (
     SELECT
@@ -273,8 +271,22 @@ FROM
       obs.concept_id
   ) result_of_hiv_test ON result_of_hiv_test.person_id = obs_data.person_id
 WHERE
-  sa_data.status NOT IN ('SCHEDULED', 'COMPLETED', 'CANCELLED')
-  OR sa_data.status is NULL
+  (
+    sa_data.status NOT IN ('SCHEDULED', 'COMPLETED', 'CANCELLED')
+    OR sa_data.status is NULL
+  )
+  and obs_data.person_id not in (
+    SELECT
+      saa.patient_id
+    FROM
+      surgical_appointment saa
+    WHERE
+      saa.status = 'SCHEDULED'
+    GROUP BY
+      saa.patient_id
+  )
+GROUP BY
+  obs_data.person_id
 ORDER BY
   sa_data.start_datetime ASC;",
     'SQL for to be scheduled patient listing queues for OT module',
