@@ -1546,4 +1546,7 @@
         <comment>modified scheduled queue in OT</comment>
         <sqlFile path="OT/patientListingQueueScheduled_v2.sql"/>
     </changeSet>
+    <include file="OT-Scheduling/addSurgicalProviders.xml"/>
+
+
 </databaseChangeLog>
