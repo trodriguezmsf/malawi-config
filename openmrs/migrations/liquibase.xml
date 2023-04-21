@@ -1513,7 +1513,7 @@
     <include file="ChemotherapyBaselineAssessment/ChemotherapyBaselineAssessment_1.xml"/>
     <include file="ChemotherapyClinicalAssessmentTreatment/ChemotherapyClinicalAssessmentTreatment_1.xml"/>
     <include file="BedManagement/BedManagement_1.xml"/>
-    
+
     <include file="ChemotherapyMedications/ChemotherapyMedications_1.xml"/>
     <include file="Ovarian/Ovarian.xml"/>
 
@@ -1547,6 +1547,30 @@
         <sqlFile path="OT/patientListingQueueScheduled_v2.sql"/>
     </changeSet>
     <include file="OT-Scheduling/addSurgicalProviders.xml"/>
-
-
+    <changeSet id="MALAWI-2023041911246" author="Venky">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from surgical_appointment_attribute_type where name in ('Blood order (units)')
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding surgical appointment attribute type 'Blood order (units)'</comment>
+        <sql>
+            SELECT max(sort_weight) INTO @last_sort_weight FROM surgical_appointment_attribute_type;
+            INSERT INTO surgical_appointment_attribute_type (name, description, format, sort_weight, creator, date_created, uuid)
+            VALUES('Blood order (units)', 'Blood order (units)', 'java.lang.Stirng' , @last_sort_weight+1, 8, NOW(), UUID());
+        </sql>
+    </changeSet>
+    <changeSet id="MALAWI-2023041911247" author="Venky">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from surgical_appointment_attribute_type where name in ('Expected date of Admission')
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding surgical appointment attribute type 'Expected date of Admission'</comment>
+        <sql>
+            SELECT max(sort_weight) INTO @last_sort_weight FROM surgical_appointment_attribute_type;
+            INSERT INTO surgical_appointment_attribute_type (name, description, format, sort_weight, creator, date_created, uuid)
+            VALUES('Expected date of Admission', 'Expected date of Admission', 'java.lang.Stirng' , @last_sort_weight+1, 8, NOW(), UUID());
+        </sql>
+    </changeSet>
 </databaseChangeLog>
