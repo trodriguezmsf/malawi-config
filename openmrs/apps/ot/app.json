@@ -8,11 +8,11 @@
       "errorMessage": "The patient is not enrolled to the program"
     },
     "surgeryAttributes": ["procedure", "estTimeHours", "estTimeMinutes", "cleaningTime", "Surgeon Name", "otherSurgeon", "Other Surgeon Name", "surgicalAssistant", "anaesthetist", "Anaesthetist Technician", "scrubNurse", "circulatingNurse", "HIV Status", "notes"],
-    "primarySurgeonsForOT" : ["George Chilinda","Oncologist Surgeon","MOH Surgeon"],
+    "primarySurgeonsForOT" : ["George Chilinda", "Sam Meja","Oncologist Surgeon","MOH Surgeon"],
     "printListViewTemplateUrl" : "/bahmni_config/openmrs/apps/ot/printListView.html",
     "calendarView": {
-      "dayViewStart": "07:30",
-      "dayViewEnd": "16:30",
+      "dayViewStart": "07:00",
+      "dayViewEnd": "17:00",
       "dayViewSplit": "60"
     },
     "startOfWeek": "Monday"
