@@ -1513,7 +1513,7 @@
     <include file="ChemotherapyBaselineAssessment/ChemotherapyBaselineAssessment_1.xml"/>
     <include file="ChemotherapyClinicalAssessmentTreatment/ChemotherapyClinicalAssessmentTreatment_1.xml"/>
     <include file="BedManagement/BedManagement_1.xml"/>
-    
+
     <include file="ChemotherapyMedications/ChemotherapyMedications_1.xml"/>
     <include file="Ovarian/Ovarian.xml"/>
 
@@ -1546,6 +1546,7 @@
         <comment>modified scheduled queue in OT</comment>
         <sqlFile path="OT/patientListingQueueScheduled_v2.sql"/>
     </changeSet>
+    <include file="OT-Scheduling/addSurgicalProviders.xml"/>
     <changeSet id="MALAWI-2023041911246" author="Venky">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">

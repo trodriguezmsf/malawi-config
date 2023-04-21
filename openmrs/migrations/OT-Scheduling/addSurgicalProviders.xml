@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="MALAWI_CONFIG_20230420105413" author="Bindu">
+        <comment>Add Create Surgical Provider Procedure</comment>
+        <sql>
+            DROP PROCEDURE IF EXISTS create_surgical_provider_for_roles;
+        </sql>
+        <sqlFile splitStatements="false" path="utils/CreateSurgicalProviderForRoles.sql"/>
+    </changeSet>
+
+    <changeSet id="MALAWI_CONFIG_20230420035311" author="Bindu">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="12">
+                select count(*) from users where username IN
+                ("p_muwanya","s_meja","a_mkwezalamba","u_lebkuechner","d_chidati","e_majawa","r_hirayama","t_botomani","i_hansen","i_kriegel","naomi_s","l_gada");
+            </sqlCheck>
+        </preConditions>
+        <comment>Update Roles and Gender in OT for Users </comment>
+        <sql>
+            call create_surgical_provider_for_roles('p_muwanya','F','OT: FullAccess,');
+            call create_surgical_provider_for_roles('s_meja','M','OT: FullAccess,');
+            call create_surgical_provider_for_roles('a_mkwezalamba','F','');
+            call create_surgical_provider_for_roles('u_lebkuechner','M','');
+            call create_surgical_provider_for_roles('d_chidati','M','OT: ReadOnly,');
+            
+            call create_surgical_provider_for_roles('e_majawa','M','');
+            call create_surgical_provider_for_roles('r_hirayama','F','');
+            call create_surgical_provider_for_roles('t_botomani','F','');
+            call create_surgical_provider_for_roles('i_hansen','F','');
+
+            call create_surgical_provider_for_roles('i_kriegel','F','Registration-App,');
+            call create_surgical_provider_for_roles('naomi_s','F','Registration-App,');
+            call create_surgical_provider_for_roles('l_gada','F','Radiology-App-Read-Only,');
+
+            Delete from user_role where user_id=(select user_id from users where username='p_muwanya') and role='OT: ReadOnly';
+            Delete from user_role where user_id=(select user_id from users where username='s_meja') and role='OT: ReadOnly';
+            Delete from user_role where user_id=(select user_id from users where username='i_kriegel') and role='Registration-App-Read-Only';
+            Delete from user_role where user_id=(select user_id from users where username='naomi_s') and role='Registrar';
+            Delete from user_role where user_id=(select user_id from users where username='d_chidati') and role='OT: FullAccess';
+            Delete from user_role where user_id=(select user_id from users where username='i_hansen') and role='Clinical-App-Read-Only';
+            
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
