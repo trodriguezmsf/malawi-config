@@ -28,15 +28,16 @@
             call create_surgical_provider_for_roles('s_meja','M','OT: FullAccess,');
             call create_surgical_provider_for_roles('a_mkwezalamba','F','');
             call create_surgical_provider_for_roles('u_lebkuechner','M','');
+            
             call create_surgical_provider_for_roles('d_chidati','M','OT: ReadOnly,');
             
             call create_surgical_provider_for_roles('e_majawa','M','');
-            call create_surgical_provider_for_roles('r_hirayama','F','');
-            call create_surgical_provider_for_roles('t_botomani','F','');
+            call create_surgical_provider_for_roles('r_hirayama','F','OT: FullAccess,');
+            call create_surgical_provider_for_roles('t_botomani','F','OT: ReadOnly,');
             call create_surgical_provider_for_roles('i_hansen','F','');
 
             call create_surgical_provider_for_roles('i_kriegel','F','Registration-App,');
-            call create_surgical_provider_for_roles('naomi_s','F','Registration-App,');
+            call create_surgical_provider_for_roles('naomi_s','F','Registration-App,OT: FullAccess,');
             call create_surgical_provider_for_roles('l_gada','F','Radiology-App-Read-Only,');
 
             Delete from user_role where user_id=(select user_id from users where username='p_muwanya') and role='OT: ReadOnly';
