@@ -1,21 +1,28 @@
 <style>
-    h4, p {
+    h4,
+    p {
         text-align: center;
     }
+
     table {
         border: none;
     }
-    table th, table td {
+
+    table th,
+    table td {
         border: 1px solid #444;
         border-left: none;
         text-align: center;
     }
+
     table th:first-child {
         border-left: 1px solid #444;
     }
+
     table td:first-child {
         border-left: 1px solid #444;
     }
+
     .largeWidth {
         min-width: 100px;
     }
@@ -28,9 +35,12 @@
 <p ng-if="weekOrDay === 'week'">
     {{weekStartDate | date : 'dd MMM yyyy, EEE'}} to {{weekEndDate | date : 'dd MMM yyyy, EEE'}}
 </p>
-    <table cellpadding="2" cellspacing="0">
-        <thead>
+<table cellpadding="2" cellspacing="0">
+    <thead>
         <tr>
+            <th>
+                Status
+            </th>
             <th width="80px">
                 Day
             </th>
@@ -47,30 +57,32 @@
                 Patient Age
             </th>
             <th>
+                Start time
+            </th>
+            <th>
                 Est Time
+            </th>
+            <th class="largeWidth">
+                Actual Time
             </th>
             <th class="largeWidth">
                 Procedure(s)
             </th>
-            <th class="largeWidth">
-                Notes
-            </th>
-            <th class="largeWidth">
-                Surgeon
+            <th>
+                Blood order
             </th>
             <th>
-                Status
+                Expected Admission date
             </th>
-            <th>
-                Bed Location
-            </th>
-            <th>
-                Bed ID
-            </th>
+
         </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="appointment in surgicalAppointmentList" ng-class="{'current-date': isCurrentDate(appointment.derivedAttributes.expectedStartDate)}">
+    </thead>
+    <tbody>
+        <tr ng-repeat="appointment in surgicalAppointmentList"
+            ng-class="{'current-date': isCurrentDate(appointment.derivedAttributes.expectedStartDate)}">
+            <td>
+                {{appointment.status}}
+            </td>
             <td width="80px">
                 {{appointment.derivedAttributes.expectedStartDate | date : 'EEEE'}}
             </td>
@@ -80,11 +92,14 @@
             <td width="80px">
                 {{appointment.derivedAttributes.patientIdentifier}}
             </td>
-            <td  class="largeWidth">
+            <td class="largeWidth">
                 {{appointment.derivedAttributes.patientName}}
             </td>
             <td>
                 {{appointment.derivedAttributes.patientAge}}
+            </td>
+            <td>
+                {{appointment.derivedAttributes.expectedStartTime | bahmniTime}}
             </td>
             <td>
                 {{appointment.surgicalAppointmentAttributes.estTimeHours.value}} {{'OT_SURGICAL_APPOINTMENT_HOURS' |
@@ -93,25 +108,18 @@
                 + {{appointment.surgicalAppointmentAttributes.cleaningTime.value}} {{'OT_SURGICAL_APPOINTMENT_MINUTES' |
                 translate}}
             </td>
+            <td>
+                {{appointment.actualStartDatetime | bahmniTime}} - {{appointment.actualEndDatetime | bahmniTime}}
+            </td>
             <td class="largeWidth">
                 {{appointment.surgicalAppointmentAttributes.procedure.value}}
             </td>
             <td class="largeWidth">
-                {{appointment.surgicalAppointmentAttributes.notes.value}}
+                {{appointment.surgicalAppointmentAttributes['Blood order (units)'].value}}
             </td>
             <td class="largeWidth">
-                {{appointment.surgicalBlock.provider.person.display}}
-            </td>
-            <td>
-                {{appointment.status}}
-            </td>
-            <td>
-                {{appointment.bedLocation}}
-            </td>
-            <td>
-                {{appointment.bedNumber}}
+                {{appointment.surgicalAppointmentAttributes['Expected date of Admission'].value}}
             </td>
         </tr>
-        </tbody>
-    </table>
-
+    </tbody>
+</table>

@@ -1547,7 +1547,7 @@
         <sqlFile path="OT/patientListingQueueScheduled_v2.sql"/>
     </changeSet>
     <include file="OT-Scheduling/addSurgicalProviders.xml"/>
-    <changeSet id="MALAWI-2023041911246" author="Venky">
+    <changeSet id="MALAWI-2023041911248" author="Venky">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
                 select count(*) from surgical_appointment_attribute_type where name in ('Blood order (units)')

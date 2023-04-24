@@ -29,7 +29,7 @@ VALUES
     pre_planned_Procedure.value,
     follow_planned_Procedure.value
   ) AS `Planned Procedure`,
-  result_of_hiv_test.value AS `HIV Status`,
+  result_of_hiv_test.value AS `Result of HIV test`,
   sa_data.status AS `Status`,
   appointment_block.notes AS `Reason for Change`
 FROM
@@ -45,17 +45,6 @@ FROM
       obs
       JOIN patient_program pp ON obs.person_id = pp.patient_id
       AND pp.voided = 0
-      JOIN (
-        SELECT
-          MAX(encounter_id) AS encounter_id,
-          patient_id
-        FROM
-          encounter
-        WHERE
-          voided = 0
-        GROUP BY
-          patient_id
-      ) e ON obs.encounter_id = e.encounter_id
       JOIN concept_name obs_question ON obs_question.concept_id = obs.concept_id
       AND obs_question.locale = 'en'
       AND obs_question.voided = 0
@@ -73,6 +62,8 @@ FROM
       )
       AND coded_concept.name IN ('Surgical Procedure', 'Cervical Conization')
       AND obs.voided = 0
+    GROUP BY
+      obs.person_id
   ) obs_data
   left JOIN (
     SELECT
@@ -102,7 +93,7 @@ FROM
     WHERE
       person.voided IS FALSE
   ) person_data ON obs_data.person_id = person_data.person_id
-  LEFT JOIN (
+  LEFT OUTER JOIN (
     SELECT
       p.patient_id,
       appoinment.date_created,
@@ -144,17 +135,6 @@ FROM
       obs
       JOIN patient_program AS pp ON obs.person_id = pp.patient_id
       AND pp.voided = 0
-      JOIN (
-        SELECT
-          MAX(encounter_id) AS encounter_id,
-          patient_id
-        FROM
-          encounter
-        WHERE
-          voided = 0
-        GROUP BY
-          patient_id
-      ) e ON obs.encounter_id = e.encounter_id
       JOIN concept_name AS obs_question ON obs_question.concept_id = obs.concept_id
       AND obs_question.concept_name_type = 'FULLY_SPECIFIED'
       AND obs_question.voided = 0
@@ -178,17 +158,6 @@ FROM
       obs
       JOIN patient_program AS pp ON obs.person_id = pp.patient_id
       AND pp.voided = 0
-      JOIN (
-        SELECT
-          MAX(encounter_id) AS encounter_id,
-          patient_id
-        FROM
-          encounter
-        WHERE
-          voided = 0
-        GROUP BY
-          patient_id
-      ) e ON obs.encounter_id = e.encounter_id
       JOIN concept_name AS obs_question ON obs_question.concept_id = obs.concept_id
       AND obs_question.concept_name_type = 'FULLY_SPECIFIED'
       AND obs_question.voided = 0
@@ -212,17 +181,6 @@ FROM
       obs
       JOIN patient_program AS pp ON obs.person_id = pp.patient_id
       AND pp.voided = 0
-      JOIN (
-        SELECT
-          MAX(encounter_id) AS encounter_id,
-          patient_id
-        FROM
-          encounter
-        WHERE
-          voided = 0
-        GROUP BY
-          patient_id
-      ) e ON obs.encounter_id = e.encounter_id
       JOIN concept_name AS obs_question ON obs_question.concept_id = obs.concept_id
       AND obs_question.concept_name_type = 'FULLY_SPECIFIED'
       AND obs_question.voided = 0
@@ -246,17 +204,6 @@ FROM
       obs
       JOIN patient_program AS pp ON obs.person_id = pp.patient_id
       AND pp.voided = 0
-      JOIN (
-        SELECT
-          MAX(encounter_id) AS encounter_id,
-          patient_id
-        FROM
-          encounter
-        WHERE
-          voided = 0
-        GROUP BY
-          patient_id
-      ) e ON obs.encounter_id = e.encounter_id
       JOIN concept_name AS obs_question ON obs_question.concept_id = obs.concept_id
       AND obs_question.concept_name_type = 'FULLY_SPECIFIED'
       AND obs_question.voided = 0

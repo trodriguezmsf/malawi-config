@@ -80,17 +80,6 @@ FROM
       obs
       JOIN patient_program AS pp ON obs.person_id = pp.patient_id
       AND pp.voided = 0
-      JOIN (
-        SELECT
-          MAX(encounter_id) AS encounter_id,
-          patient_id
-        FROM
-          encounter
-        WHERE
-          voided = 0
-        GROUP BY
-          patient_id
-      ) e ON obs.encounter_id = e.encounter_id
       JOIN concept_name AS obs_question ON obs_question.concept_id = obs.concept_id
       AND obs_question.concept_name_type = 'FULLY_SPECIFIED'
       AND obs_question.voided = 0
@@ -114,17 +103,6 @@ FROM
       obs
       JOIN patient_program AS pp ON obs.person_id = pp.patient_id
       AND pp.voided = 0
-      JOIN (
-        SELECT
-          MAX(encounter_id) AS encounter_id,
-          patient_id
-        FROM
-          encounter
-        WHERE
-          voided = 0
-        GROUP BY
-          patient_id
-      ) e ON obs.encounter_id = e.encounter_id
       JOIN concept_name AS obs_question ON obs_question.concept_id = obs.concept_id
       AND obs_question.concept_name_type = 'FULLY_SPECIFIED'
       AND obs_question.voided = 0
@@ -148,17 +126,6 @@ FROM
       obs
       JOIN patient_program AS pp ON obs.person_id = pp.patient_id
       AND pp.voided = 0
-      JOIN (
-        SELECT
-          MAX(encounter_id) AS encounter_id,
-          patient_id
-        FROM
-          encounter
-        WHERE
-          voided = 0
-        GROUP BY
-          patient_id
-      ) e ON obs.encounter_id = e.encounter_id
       JOIN concept_name AS obs_question ON obs_question.concept_id = obs.concept_id
       AND obs_question.concept_name_type = 'FULLY_SPECIFIED'
       AND obs_question.voided = 0
@@ -182,17 +149,6 @@ FROM
       obs
       JOIN patient_program AS pp ON obs.person_id = pp.patient_id
       AND pp.voided = 0
-      JOIN (
-        SELECT
-          MAX(encounter_id) AS encounter_id,
-          patient_id
-        FROM
-          encounter
-        WHERE
-          voided = 0
-        GROUP BY
-          patient_id
-      ) e ON obs.encounter_id = e.encounter_id
       JOIN concept_name AS obs_question ON obs_question.concept_id = obs.concept_id
       AND obs_question.concept_name_type = 'FULLY_SPECIFIED'
       AND obs_question.voided = 0
