@@ -26,8 +26,28 @@ VALUES
   clinical_diagnosis.value AS `Clinician Diagnosis`,
   concat_ws(
     ',',
-    pre_planned_Procedure.value,
-    follow_planned_Procedure.value
+    if(
+      IFNULL(
+        pre_planned_Procedure.encounter_datetime,
+        '0000-00-00'
+      ) >= IFNULL(
+        follow_planned_Procedure.encounter_datetime,
+        '0000-00-00'
+      ),
+      pre_planned_Procedure.value,
+      NULL
+    ),
+    if(
+      IFNULL(
+        follow_planned_Procedure.encounter_datetime,
+        '0000-00-00'
+      ) >= IFNULL(
+        pre_planned_Procedure.encounter_datetime,
+        '0000-00-00'
+      ),
+      follow_planned_Procedure.value,
+      NULL
+    )
   ) AS `Planned Procedure`,
   result_of_hiv_test.value AS `Result of HIV test`,
   if(
@@ -175,7 +195,8 @@ FROM
       GROUP_CONCAT(
         DISTINCT (COALESCE(coded_fscn.name, coded_scn.name))
       ) AS 'value',
-      o.obs_datetime
+      o.obs_datetime,
+      latest_encounter.encounter_datetime
     FROM
       obs o
       INNER JOIN encounter e ON e.encounter_id = o.encounter_id
@@ -216,7 +237,8 @@ FROM
       o.person_id,
       GROUP_CONCAT(
         DISTINCT (COALESCE(coded_fscn.name, coded_scn.name))
-      ) AS 'value'
+      ) AS 'value',
+      latest_encounter.encounter_datetime
     FROM
       obs o
       INNER JOIN encounter e ON e.encounter_id = o.encounter_id
