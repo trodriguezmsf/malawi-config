@@ -302,7 +302,7 @@ FROM
     FROM
       surgical_appointment
     where
-      status = 'POSTPONED' and voided IS FALSE
+      voided IS FALSE
     order by
       date_changed DESC
     limit
@@ -318,6 +318,7 @@ WHERE
     or (
       postponed.date_changed is not null
       and postponed.date_changed > appointment_block.date_created
+      and postponed.status = 'POSTPONED'
     )
   )
 ORDER BY
