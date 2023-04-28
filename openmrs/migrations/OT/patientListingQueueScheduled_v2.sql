@@ -63,6 +63,9 @@ FROM
   AND pn.voided IS FALSE
   INNER JOIN patient_identifier pi ON pi.patient_id = pn.person_id
   AND pi.voided IS FALSE
+  INNER JOIN patient_program pp ON pp.patient_id = sa.patient_id
+  AND pp.voided IS FALSE
+  AND pp.date_completed IS NULL
   LEFT OUTER JOIN (
     SELECT
       l.name AS locationName,
