@@ -6,14 +6,12 @@ into @uuid;
 INSERT INTO global_property (`property`, `property_value`, `description`, `uuid`)
 VALUES ('emrapi.sqlSearch.activePrograms', "select patientIdentifier.identifier   as 'ID',
        concat(personName.given_name, ' ', ifnull(personName.family_name, '')) as 'Name',
-       DATE_FORMAT(programstate.birthdate, '%d %b %Y')                  as 'DOB',
-       DATE_FORMAT(programstate.date_created, '%d %b %Y')               as 'Date of Registration',
+       DATE_FORMAT(programstate.birthdate, '%d %b %Y')        as 'DOB',
+       DATE_FORMAT(programstate.date_created, '%d %b %Y')     as 'Date of Registration',
        DATE_FORMAT(Oncogynae.Date_of_Oncogynae_Program, '%d %b %Y')     as 'Date of Oncogynae Program Enrollment',
-       Oncogynae.oncogynaeName                                          as 'Oncogynae Program State',
-       Palliative.palliativeName                                        as 'Palliative Program State',
-       bednumber.bed_number                                             as 'Bed Number',
-       'Admit/Transfer'                                                 as 'Bed Management',
-       concat('', programstate.uuid)                                    as uuid
+       Oncogynae.oncogynaeName                                as 'Oncogynae Program State',
+       Palliative.palliativeName                              as 'Palliative Program State',
+       concat('', programstate.uuid)                          as uuid
 from patient_program patientprogram
     #Block to fetch the values for 'Oncogynae program state' column
          LEFT OUTER JOIN
