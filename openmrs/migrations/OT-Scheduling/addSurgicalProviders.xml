@@ -51,25 +51,22 @@
         </sql>
     </changeSet>
 
-    <changeSet id="MALAWI_CONFIG_20230505134533" author="Kiruthiga, Kathir">
+    <changeSet id="MALAWI_CONFIG_20230805134533" author="Kiruthiga">
         <preConditions onFail="MARK_RAN">
-            <sqlCheck expectedResult="2">
-                select count(*) from surgical_appointment_attribute_type where name in ('Surgeon Name', 'otherSurgeon') and retired = 0;
+            <sqlCheck expectedResult="1">
+                select count(*) from surgical_appointment_attribute_type where name in ('Surgeon Name') and retired = 0;
             </sqlCheck>
         </preConditions>
         <comment>Retire surgical appointment attribute types 'Surgeon Name', 'Other Surgeon' </comment>
         <sql>
             SET @attribute_id1 = 0;
-            SET @attribute_id2 = 0;
             SET @user_id = 0;
 
             SELECT user_id INTO @user_id from users where username ='admin';
 
             SELECT surgical_appointment_attribute_type_id INTO @attribute_id1 FROM surgical_appointment_attribute_type WHERE name = 'Surgeon Name';
-            SELECT surgical_appointment_attribute_type_id INTO @attribute_id2 FROM surgical_appointment_attribute_type WHERE name = 'otherSurgeon';
 
-            UPDATE surgical_appointment_attribute_type SET retired = 1, retired_by = @user_id, date_retired = now() WHERE surgical_appointment_attribute_type_id IN (@attribute_id1, @attribute_id2);
+            UPDATE surgical_appointment_attribute_type SET retired = 1, retired_by = @user_id, date_retired = now() WHERE surgical_appointment_attribute_type_id IN (@attribute_id1);
         </sql>
     </changeSet>
-
 </databaseChangeLog>
