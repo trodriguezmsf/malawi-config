@@ -53,22 +53,20 @@
 
     <changeSet id="MALAWI_CONFIG_20230905134533" author="Kiruthiga">
         <preConditions onFail="MARK_RAN">
-            <sqlCheck expectedResult="2">
-                select count(*) from surgical_appointment_attribute_type where name in ('Surgeon Name','Other Surgeon Name') and retired = 0;
+            <sqlCheck expectedResult="1">
+                select count(*) from surgical_appointment_attribute_type where name in ('Surgeon Name') and retired = 0;
             </sqlCheck>
         </preConditions>
         <comment>Delete surgical appointment attribute types 'Surgeon Name', 'Other Surgeon Name' </comment>
         <sql>
             SET @attribute_id1 = 0;
-            SET @attribute_id2 = 0;
             SET @user_id = 0;
 
             SELECT user_id INTO @user_id from users where username ='admin';
 
             SELECT surgical_appointment_attribute_type_id INTO @attribute_id1 FROM surgical_appointment_attribute_type WHERE name = 'Surgeon Name';
-            SELECT surgical_appointment_attribute_type_id INTO @attribute_id2 FROM surgical_appointment_attribute_type WHERE name = 'Other Surgeon Name';
 
-            DELETE FROM surgical_appointment_attribute_type WHERE surgical_appointment_attribute_type_id IN (@attribute_id1, @attribute_id2);
+            DELETE FROM surgical_appointment_attribute_type WHERE surgical_appointment_attribute_type_id IN (@attribute_id1);
         </sql>
     </changeSet>
 </databaseChangeLog>
