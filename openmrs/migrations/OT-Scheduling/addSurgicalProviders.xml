@@ -54,7 +54,7 @@
     <changeSet id="MALAWI_CONFIG_20230905134533" author="Kiruthiga">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="2">
-                select count(*) from surgical_appointment_attribute_type where name in ('Surgeon Name,'Other Surgeon Name') and retired = 0;
+                select count(*) from surgical_appointment_attribute_type where name in ('Surgeon Name','Other Surgeon Name') and retired = 0;
             </sqlCheck>
         </preConditions>
         <comment>Retire surgical appointment attribute types 'Surgeon Name', 'Other Surgeon Name' </comment>
