@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="MALAWI_CONFIG_20231205185819190" author="Kiruthiga">
+    <comment>Adding Concepts for SubsequentConsultation Form</comment>
+    <sqlFile path="SubsequentConsultation/SubsequentConsultation_3.sql"/>
+  </changeSet>
+
+  <changeSet id="MALAWI_CONFIG_202312051858191901" author="Kiruthiga">
+    <preConditions onFail="MARK_RAN">
+      <sqlCheck expectedResult = "0">
+                SELECT count(*) from concept_answer where concept_id = (select concept_id from concept_name where name ="SC, Reason for referral" and concept_name_type = "FULLY_SPECIFIED") AND answer_concept =(SELECT concept_id  from concept_name where name= 'Physiotherapy' AND concept_name_type="FULLY_SPECIFIED");
+      </sqlCheck>
+    </preConditions>
+    <comment>Adding New answer Physiotherapy to Reason for referral</comment>
+    <sql>
+            SELECT concept_id INTO @conceptcoded FROM concept_name WHERE name ="SC, Reason for referral" AND concept_name_type="FULLY_SPECIFIED";
+            SELECT concept_id INTO @conceptID1 FROM concept_name WHERE name ="Physiotherapy" AND concept_name_type="FULLY_SPECIFIED";
+            INSERT INTO concept_answer(concept_id,answer_concept,creator,sort_weight,date_created,uuid) VALUES (@conceptcoded,@conceptID1,27,4,now(),uuid());
+    </sql>
+  </changeSet>
+</databaseChangeLog>
