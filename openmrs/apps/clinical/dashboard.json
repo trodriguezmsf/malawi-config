@@ -337,12 +337,13 @@
           "16 Intake for Psychological Assessment",
           "17 PSA Follow up",
           "18 PSA Discharge",
-          "Chemotherapy Clinical Assessment and Treatment",
-          "Chemotherapy Baseline Assessment",
-          "Medications Administered",
-          "Ovarian",
-          "Hysterectomy",
-          "Vulvectomy"
+          "19 Surgical-Hysterectomy",
+          "20 Surgical-Ovarian",
+          "21 Surgical-Vulvectomy",
+          "22 Chemotherapy Baseline Assessment",
+          "23 Chemotherapy Clinical Assessment and Treatment",
+          "Medications Administered"
+          
         ],
         "translationKey": "DASHBOARD_TITLE_EDIT_FORMS"
       },

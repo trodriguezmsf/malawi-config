@@ -190,4 +190,17 @@
         </sql>
     </changeSet>
 
+    <changeSet id="Malawi_CONFIG_202312140555097862302" author="Kiruthiga">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+             select count(*) from person_name pn JOIN provider p ON pn.person_id = p.person_id and  given_name ="Sam" and family_name ="Meja";
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding specific colors to surgeon to display on calender</comment>
+        <sql>
+            select provider_id INTO @providerID from person_name pn JOIN provider p ON pn.person_id = p.person_id and  given_name ="Sam" and family_name ="Meja";
+            select provider_attribute_type_id INTO @provideratID from provider_attribute_type where name ="otCalendarColor";
+            INSERT into provider_attribute(provider_id,attribute_type_id,value_reference,uuid,creator,date_created) values (@providerID,@provideratID,60,uuid(),8,now());
+        </sql>
+    </changeSet>
 </databaseChangeLog>

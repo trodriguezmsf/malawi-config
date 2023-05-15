@@ -38,9 +38,6 @@
 <table cellpadding="2" cellspacing="0">
     <thead>
         <tr>
-            <th>
-                Status
-            </th>
             <th width="80px">
                 Day
             </th>
@@ -63,9 +60,6 @@
                 Est Time
             </th>
             <th class="largeWidth">
-                Actual Time
-            </th>
-            <th class="largeWidth">
                 Procedure(s)
             </th>
             <th>
@@ -74,15 +68,15 @@
             <th>
                 Expected Admission date
             </th>
+            <th class="largeWidth">
+                Notes
+            </th>
 
         </tr>
     </thead>
     <tbody>
         <tr ng-repeat="appointment in surgicalAppointmentList"
             ng-class="{'current-date': isCurrentDate(appointment.derivedAttributes.expectedStartDate)}">
-            <td>
-                {{appointment.status}}
-            </td>
             <td width="80px">
                 {{appointment.derivedAttributes.expectedStartDate | date : 'EEEE'}}
             </td>
@@ -108,9 +102,6 @@
                 + {{appointment.surgicalAppointmentAttributes.cleaningTime.value}} {{'OT_SURGICAL_APPOINTMENT_MINUTES' |
                 translate}}
             </td>
-            <td>
-                {{appointment.actualStartDatetime | bahmniTime}} - {{appointment.actualEndDatetime | bahmniTime}}
-            </td>
             <td class="largeWidth">
                 {{appointment.surgicalAppointmentAttributes.procedure.value}}
             </td>
@@ -119,6 +110,9 @@
             </td>
             <td class="largeWidth">
                 {{appointment.surgicalAppointmentAttributes['Expected date of Admission'].value}}
+            </td>
+            <td class="largeWidth">
+                {{appointment.surgicalAppointmentAttributes.notes.value}}
             </td>
         </tr>
     </tbody>
