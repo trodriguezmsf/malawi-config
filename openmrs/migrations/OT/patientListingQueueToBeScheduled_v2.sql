@@ -69,61 +69,64 @@ VALUES
 FROM
   (
     SELECT
-  o.person_id,
-  GROUP_CONCAT(
-    DISTINCT (COALESCE(coded_fscn.name, coded_scn.name))
-  ) AS 'value',
-  pp.date_completed
-FROM
-  obs o
-  JOIN patient_program pp ON o.person_id = pp.patient_id
-  AND pp.voided = 0
-  INNER JOIN encounter e ON e.encounter_id = o.encounter_id
-  AND o.voided IS FALSE
-  AND e.voided IS FALSE
-  INNER JOIN concept_name cn ON cn.concept_id = o.concept_id
-  AND cn.voided IS FALSE
-  AND cn.concept_name_type = 'FULLY_SPECIFIED'
-  AND cn.name IN (
-    'POMDT, Proposed management plan',
-    'POMDT, Conservative surgery type',
-    'PTMDT, Proposed management plan',
-    'PTMDT, Conservative surgery type'
-  )
-  LEFT OUTER JOIN concept_name coded_fscn ON coded_fscn.concept_id = o.value_coded
-  AND coded_fscn.concept_name_type = 'FULLY_SPECIFIED'
-  AND coded_fscn.voided IS FALSE
-  LEFT OUTER JOIN concept_name coded_scn ON coded_scn.concept_id = o.value_coded
-  AND coded_scn.concept_name_type = 'SHORT'
-  AND coded_scn.voided IS FALSE
-  INNER JOIN (
-    SELECT
       o.person_id,
-      MAX(e.encounter_datetime) AS encounter_datetime
+      GROUP_CONCAT(
+        DISTINCT (COALESCE(coded_fscn.name, coded_scn.name))
+      ) AS 'value',
+      pp.date_completed,
+      e.encounter_id
     FROM
       obs o
+      JOIN patient_program pp ON o.person_id = pp.patient_id
+      AND pp.voided = 0
+      INNER JOIN encounter e ON e.encounter_id = o.encounter_id
+      AND o.voided IS FALSE
+      AND e.voided IS FALSE
       INNER JOIN concept_name cn ON cn.concept_id = o.concept_id
+      AND cn.voided IS FALSE
+      AND cn.concept_name_type = 'FULLY_SPECIFIED'
       AND cn.name IN (
         'POMDT, Proposed management plan',
         'POMDT, Conservative surgery type',
         'PTMDT, Proposed management plan',
         'PTMDT, Conservative surgery type'
       )
-      AND cn.concept_name_type = 'FULLY_SPECIFIED'
-      AND cn.voided IS FALSE
-      AND o.voided IS FALSE
-      INNER JOIN encounter e ON e.encounter_id = o.encounter_id
-      AND e.voided IS FALSE
+      LEFT OUTER JOIN concept_name coded_fscn ON coded_fscn.concept_id = o.value_coded
+      AND coded_fscn.concept_name_type = 'FULLY_SPECIFIED'
+      AND coded_fscn.voided IS FALSE
+      LEFT OUTER JOIN concept_name coded_scn ON coded_scn.concept_id = o.value_coded
+      AND coded_scn.concept_name_type = 'SHORT'
+      AND coded_scn.voided IS FALSE
+      INNER JOIN (
+        SELECT
+          o.person_id,
+          MAX(e.encounter_datetime) AS encounter_datetime
+        FROM
+          obs o
+          INNER JOIN concept_name cn ON cn.concept_id = o.concept_id
+          AND cn.name IN (
+            'POMDT, Proposed management plan',
+            'POMDT, Conservative surgery type',
+            'PTMDT, Proposed management plan',
+            'PTMDT, Conservative surgery type'
+          )
+          AND cn.concept_name_type = 'FULLY_SPECIFIED'
+          AND cn.voided IS FALSE
+          AND o.voided IS FALSE
+          INNER JOIN encounter e ON e.encounter_id = o.encounter_id
+          AND e.voided IS FALSE
+        GROUP BY
+          person_id
+      ) latest_encounter ON latest_encounter.encounter_datetime = e.encounter_datetime
+      AND latest_encounter.person_id = o.person_id
+    WHERE
+      (
+        coded_fscn.name in ('Surgical Procedure', 'Cervical Conization')
+        or coded_scn.name in ('Surgical Procedure', 'Cervical Conization')
+      )
+      and pp.date_completed IS NULL
     GROUP BY
-      person_id
-  ) latest_encounter ON latest_encounter.encounter_datetime = e.encounter_datetime
-  AND latest_encounter.person_id = o.person_id
-WHERE
-  (coded_fscn.name in ('Surgical Procedure', 'Cervical Conization')
-  or coded_scn.name in ('Surgical Procedure', 'Cervical Conization'))
-  and pp.date_completed IS NULL
-GROUP BY
-  o.person_id
+      o.person_id
   ) obs_data
   LEFT JOIN (
     SELECT
@@ -221,7 +224,8 @@ GROUP BY
         DISTINCT (COALESCE(coded_fscn.name, coded_scn.name))
       ) AS 'value',
       o.obs_datetime,
-      latest_encounter.encounter_datetime
+      latest_encounter.encounter_datetime,
+      e.encounter_id
     FROM
       obs o
       INNER JOIN encounter e ON e.encounter_id = o.encounter_id
@@ -257,13 +261,15 @@ GROUP BY
     GROUP BY
       o.person_id
   ) pre_planned_Procedure ON pre_planned_Procedure.person_id = obs_data.person_id
+  and pre_planned_Procedure.encounter_id = obs_data.encounter_id
   LEFT JOIN(
     SELECT
       o.person_id,
       GROUP_CONCAT(
         DISTINCT (COALESCE(coded_fscn.name, coded_scn.name))
       ) AS 'value',
-      latest_encounter.encounter_datetime
+      latest_encounter.encounter_datetime,
+      e.encounter_id
     FROM
       obs o
       INNER JOIN encounter e ON e.encounter_id = o.encounter_id
@@ -299,6 +305,7 @@ GROUP BY
     GROUP BY
       o.person_id
   ) follow_planned_Procedure ON follow_planned_Procedure.person_id = obs_data.person_id
+  and follow_planned_Procedure.encounter_id = obs_data.encounter_id
   LEFT JOIN(
     SELECT
       o.person_id,
@@ -356,15 +363,15 @@ GROUP BY
       1
   ) postponed on postponed.patient_id = obs_data.person_id
 WHERE
-    (
-      appointment_block.status not in ('SCHEDULED', 'COMPLETED', 'CANCELLED')
-      OR appointment_block.status is NULL
-    )
-    or (
-      postponed.date_changed is not null
-      and postponed.date_changed > appointment_block.date_created
-      and postponed.status = 'POSTPONED'
-    )
+  (
+    appointment_block.status not in ('SCHEDULED', 'COMPLETED', 'CANCELLED')
+    OR appointment_block.status is NULL
+  )
+  or (
+    postponed.date_changed is not null
+    and postponed.date_changed > appointment_block.date_created
+    and postponed.status = 'POSTPONED'
+  )
 ORDER BY
   CASE
     WHEN pre_planned_Procedure.encounter_datetime IS NULL
@@ -372,7 +379,7 @@ ORDER BY
     ELSE 0
   END ASC,
   CASE
-   WHEN IFNULL(
+    WHEN IFNULL(
       pre_planned_Procedure.encounter_datetime,
       '0000-00-00'
     ) >= IFNULL(
