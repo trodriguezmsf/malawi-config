@@ -387,7 +387,8 @@ ORDER BY
       '0000-00-00'
     ) THEN pre_planned_Procedure.encounter_datetime
     ELSE follow_planned_Procedure.encounter_datetime
-  END ASC;",
+  END ASC,
+  obs_data.encounter_id ASC;",
     'SQL for to be scheduled patient listing queues for OT module',
     @uuid
   );
