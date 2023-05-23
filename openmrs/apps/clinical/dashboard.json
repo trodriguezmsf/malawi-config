@@ -337,9 +337,9 @@
           "16 Intake for Psychological Assessment",
           "17 PSA Follow up",
           "18 PSA Discharge",
-          "19 Surgical-Hysterectomy",
-          "20 Surgical-Ovarian",
-          "21 Surgical-Vulvectomy",
+          "19 Surgical_Hysterectomy",
+          "20 Surgical_Ovarian",
+          "21 Surgical_Vulvectomy",
           "22 Chemotherapy Baseline Assessment",
           "23 Chemotherapy Clinical Assessment and Treatment",
           "Medications Administered"
