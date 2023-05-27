@@ -244,7 +244,7 @@
         <sql>
             update form set name="22 Chemotherapy Baseline Assessment" where name="Chemotherapy Baseline Assessment";
             update form_resource set name="22 Chemotherapy Baseline Assessment" where name="Chemotherapy Baseline Assessment";
-            update form_resource set name="22 Chemotherapy Baseline Assessment Form_FormName_Translation" where name="Chemotherapy Baseline Assessment Form_FormName_Translation";
+            update form_resource set name="22 Chemotherapy Baseline Assessment_FormName_Translation" where name="Chemotherapy Baseline Assessment_FormName_Translation";
             update obs set form_namespace_and_path=concat('Bahmni^22 ', substring(form_namespace_and_path,8)) where form_namespace_and_path like 'Bahmni^Chemotherapy Baseline Assessment%';
             update form_resource set value_reference='[{"display":"22.Chemotherapy Baseline Assessment","locale":"en"}]', datatype_config='[{"display":"22.Chemotherapy Baseline Assessment","locale":"en"}]' where name='22.Chemotherapy Baseline Assessment_FormName_Translation';
         </sql>
@@ -259,8 +259,8 @@
         <comment>Add form number to Chemotherapy Clinical Assessment and Treatment</comment>
         <sql>
             update form set name="23 Chemotherapy Clinical Assessment and Treatment" where name="Chemotherapy Clinical Assessment and Treatment";
-            update form_resource set name="23 Chemotherapy Clinical Assessment and Treatment" where name="Chemotherapy Baseline Assessment";
-            update form_resource set name="23 Chemotherapy Clinical Assessment and Treatment Form_FormName_Translation" where name="Chemotherapy Clinical Assessment and Treatment Form_FormName_Translation";
+            update form_resource set name="23 Chemotherapy Clinical Assessment and Treatment" where name="Chemotherapy Clinical Assessment and Treatment";
+            update form_resource set name="23 Chemotherapy Clinical Assessment and Treatment_FormName_Translation" where name="Chemotherapy Clinical Assessment and Treatment_FormName_Translation";
             update obs set form_namespace_and_path=concat('Bahmni^23 ', substring(form_namespace_and_path,8)) where form_namespace_and_path like 'Bahmni^Chemotherapy Clinical Assessment and Treatment%';
             update form_resource set value_reference='[{"display":"23.Chemotherapy Clinical Assessment and Treatment","locale":"en"}]', datatype_config='[{"display":"23.Chemotherapy Clinical Assessment and Treatment","locale":"en"}]' where name='23.Chemotherapy Clinical Assessment and Treatment_FormName_Translation';
         </sql>
