@@ -273,7 +273,7 @@
         </preConditions>
         <comment>One time query to update missed form translation to Chemotherapy Baseline Assessment in form_resource table</comment>
         <sql>
-            update form_re  source set name="22 Chemotherapy Baseline Assessment_FormName_Translation" where name="Chemotherapy Baseline Assessment_FormName_Translation";
+            update form_resource set name="22 Chemotherapy Baseline Assessment_FormName_Translation" where name="Chemotherapy Baseline Assessment_FormName_Translation";
         </sql>
     </changeSet>
 
