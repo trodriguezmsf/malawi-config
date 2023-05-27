@@ -265,5 +265,28 @@
             update form_resource set value_reference='[{"display":"23.Chemotherapy Clinical Assessment and Treatment","locale":"en"}]', datatype_config='[{"display":"23.Chemotherapy Clinical Assessment and Treatment","locale":"en"}]' where name='23.Chemotherapy Clinical Assessment and Treatment_FormName_Translation';
         </sql>
     </changeSet>
+    <changeSet id="Malawi_CONFIG_20232705152746" author="Kiruthiga">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="2">
+                select count(*) from form_resource where name="22 Chemotherapy Baseline Assessment";
+            </sqlCheck>
+        </preConditions>
+        <comment>One time query to update missed form translation to Chemotherapy Baseline Assessment in form_resource table</comment>
+        <sql>
+            update form_re  source set name="22 Chemotherapy Baseline Assessment_FormName_Translation" where name="Chemotherapy Baseline Assessment_FormName_Translation";
+        </sql>
+    </changeSet>
 
+    <changeSet id="Malawi_CONFIG_20232705152747" author="Kiruthiga">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from form_resource where name="23 Chemotherapy Clinical Assessment and Treatment";
+            </sqlCheck>
+        </preConditions>
+        <comment>One time query to update missed form number and translation to Chemotherapy Clinical Assessment and Treatment in form_resource table</comment>
+        <sql>
+            update form_resource set name="23 Chemotherapy Clinical Assessment and Treatment" where name="Chemotherapy Clinical Assessment and Treatment";
+            update form_resource set name="23 Chemotherapy Clinical Assessment and Treatment_FormName_Translation" where name="Chemotherapy Clinical Assessment and Treatment_FormName_Translation";
+        </sql>
+    </changeSet>
 </databaseChangeLog>
