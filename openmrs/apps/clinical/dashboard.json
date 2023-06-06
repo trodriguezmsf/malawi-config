@@ -342,7 +342,8 @@
           "21 Surgical_Vulvectomy",
           "22 Chemotherapy Baseline Assessment",
           "23 Chemotherapy Clinical Assessment and Treatment",
-          "Medications Administered"
+          "Medications Administered",
+          "Blood Transfusion"
           
         ],
         "translationKey": "DASHBOARD_TITLE_EDIT_FORMS"
