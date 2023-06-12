@@ -343,7 +343,8 @@
           "22 Chemotherapy Baseline Assessment",
           "23 Chemotherapy Clinical Assessment and Treatment",
           "Medications Administered",
-          "24 Blood Transfusion"
+          "24 Blood Transfusion",
+          "22 Anesthesia Pre Op Assessment"
         ],
         "translationKey": "DASHBOARD_TITLE_EDIT_FORMS"
       },

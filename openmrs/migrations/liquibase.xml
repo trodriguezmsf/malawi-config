@@ -1575,4 +1575,5 @@
     </changeSet>
     <include file="SubsequentConsultation/SubsequentConsultation_3.xml"/>
     <include file="BloodTransfusion/BloodTransfusion.xml"/>
+    <include file="AnesthesiaPreOpAssessment/AnesthesiaPreOpAssessment.xml"/>
 </databaseChangeLog>
