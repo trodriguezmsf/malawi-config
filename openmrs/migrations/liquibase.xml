@@ -1577,4 +1577,5 @@
     <include file="BloodTransfusion/BloodTransfusion.xml"/>
     <include file="AnesthesiaPreOpAssessment/AnesthesiaPreOpAssessment.xml"/>
     <include file="AnesthesiaPostOpAssessment/AnesthesiaPostOpAssessment.xml"/>
+    <include file="IPDAssessment/IPDAssessment.xml"/>
 </databaseChangeLog>
