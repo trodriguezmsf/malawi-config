@@ -1578,4 +1578,5 @@
     <include file="AnesthesiaPreOpAssessment/AnesthesiaPreOpAssessment.xml"/>
     <include file="AnesthesiaPostOpAssessment/AnesthesiaPostOpAssessment.xml"/>
     <include file="IPDAssessment/IPDAssessment.xml"/>
+    <include file="Surgical-Hysterectomy/Surgical-Hysterectomy_2.xml"/>
 </databaseChangeLog>
