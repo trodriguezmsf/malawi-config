@@ -1581,4 +1581,5 @@
     <include file="Surgical-Hysterectomy/Surgical-Hysterectomy_2.xml"/>
     <include file="Surgical-Ovarian/Surgical-Ovarian_2.xml"/>
     <include file="Surgical-Vulvectomy/Surgical-Vulvectomy_2.xml"/>
+    <sqlFile path="OT/patientListingQueueToBeScheduled_v3.sql"/>
 </databaseChangeLog>
