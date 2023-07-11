@@ -1579,5 +1579,6 @@
     <include file="AnesthesiaPostOpAssessment/AnesthesiaPostOpAssessment.xml"/>
     <include file="IPDAssessment/IPDAssessment.xml"/>
     <include file="Surgical-Hysterectomy/Surgical-Hysterectomy_2.xml"/>
+    <include file="Surgical-Ovarian/Surgical-Ovarian_2.xml"/>
     <include file="Surgical-Vulvectomy/Surgical-Vulvectomy_2.xml"/>
 </databaseChangeLog>
