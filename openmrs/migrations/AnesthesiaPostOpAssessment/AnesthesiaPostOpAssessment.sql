@@ -49,6 +49,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"HDU","HDU","N/A
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Local anesthesia systemic toxicity","Local anesthesia systemic toxicity","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Nausea and vomiting","Nausea and vomiting","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Cardiac arrest","Cardiac arrest","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Unanticipated difficult intubation","Unanticipated difficult intubation","N/A","Misc",false);
 
 #Add Help Text to Concepts
 INSERT INTO concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)
