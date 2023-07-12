@@ -256,8 +256,8 @@ FROM
         GROUP BY
           o.encounter_id,
           o.person_id
-      ) post_operative_diagnosis on post_operative_diagnosis.person_id = surgical_procedure_type.person_id
-      and post_operative_diagnosis.encounter_id = surgical_procedure_type.encounter_id
+      ) post_operative_diagnosis on post_operative_diagnosis.person_id = date_recorded.person_id
+      and post_operative_diagnosis.encounter_id = date_recorded.encounter_id
       LEFT JOIN (
         SELECT
           o.encounter_id,
@@ -281,8 +281,8 @@ FROM
         GROUP BY
           o.encounter_id,
           o.person_id
-      ) conservative_surgery_type on conservative_surgery_type.person_id = surgical_procedure_type.person_id
-      and conservative_surgery_type.encounter_id = surgical_procedure_type.encounter_id
+      ) conservative_surgery_type on conservative_surgery_type.person_id = date_recorded.person_id
+      and conservative_surgery_type.encounter_id = date_recorded.encounter_id
       and conservative_surgery_type.value != 'LEEP'
   ) follow_up_form on follow_up_form.person_id = obs_data.person_id
   and follow_up_form.encounter_id = obs_data.encounter_id
@@ -357,8 +357,8 @@ FROM
         GROUP BY
           o.encounter_id,
           o.person_id
-      ) clinical_diagnosis on clinical_diagnosis.person_id = surgical_procedure_type.person_id
-      and clinical_diagnosis.encounter_id = surgical_procedure_type.encounter_id
+      ) clinical_diagnosis on clinical_diagnosis.person_id = date_recorded.person_id
+      and clinical_diagnosis.encounter_id = date_recorded.encounter_id
       LEFT JOIN (
         SELECT
           o.encounter_id,
@@ -382,8 +382,8 @@ FROM
         GROUP BY
           o.encounter_id,
           o.person_id
-      ) conservative_surgery_type on conservative_surgery_type.person_id = surgical_procedure_type.person_id
-      and conservative_surgery_type.encounter_id = surgical_procedure_type.encounter_id
+      ) conservative_surgery_type on conservative_surgery_type.person_id = date_recorded.person_id
+      and conservative_surgery_type.encounter_id = date_recorded.encounter_id
       and conservative_surgery_type.value != 'LEEP'
   ) pre_treatment_form on pre_treatment_form.person_id = obs_data.person_id
   and pre_treatment_form.encounter_id = obs_data.encounter_id
