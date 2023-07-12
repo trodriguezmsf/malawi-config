@@ -51,17 +51,7 @@ VALUES
     ),
     postponed.notes,
     appointment_block.notes
-  ) AS `Reason for Change`,
-  obs_data.person_id,
-  obs_data.encounter_id,
-  DATE_FORMAT(
-    pre_treatment_form.date_recorded_value,
-    '%Y-%m-%d'
-  ) as pre6,
-  DATE_FORMAT(
-    follow_up_form.date_recorded_value,
-    '%Y-%m-%d'
-  ) as ate
+  ) AS `Reason for Change`
 FROM
   (
     SELECT
@@ -296,7 +286,7 @@ FROM
       and conservative_surgery_type.value != 'LEEP'
   ) follow_up_form on follow_up_form.person_id = obs_data.person_id
   and follow_up_form.encounter_id = obs_data.encounter_id
-  and follow_up_form.date_recorded_value >= '2023-07-06'
+  and follow_up_form.date_recorded_value >= '2023-07-21'
   LEFT JOIN(
     select
       date_recorded.person_id,
@@ -397,7 +387,7 @@ FROM
       and conservative_surgery_type.value != 'LEEP'
   ) pre_treatment_form on pre_treatment_form.person_id = obs_data.person_id
   and pre_treatment_form.encounter_id = obs_data.encounter_id
-  and pre_treatment_form.date_recorded_value >= '2023-07-06'
+  and pre_treatment_form.date_recorded_value >= '2023-07-21'
   LEFT JOIN(
     SELECT
       o.person_id,
@@ -441,8 +431,8 @@ FROM
   ) patient_history_form ON patient_history_form.person_id = obs_data.person_id
 WHERE
   (
-    pre_treatment_form.date_recorded_value >= '2023-07-06'
-    OR follow_up_form.date_recorded_value >= '2023-07-06'
+    pre_treatment_form.date_recorded_value >= '2023-07-21'
+    OR follow_up_form.date_recorded_value >= '2023-07-21'
   )
   AND (
     (
