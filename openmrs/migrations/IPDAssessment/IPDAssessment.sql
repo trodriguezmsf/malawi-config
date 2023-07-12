@@ -6,15 +6,21 @@ set @uuid = NULL;
 
 #Add Parent Concepts
 #Add Date Concepts
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IPDA, Date","Date","Date","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IPDA, Discharge date","Discharge date","Date","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IPDA, Date of Foley catheter removal","Date of Foley catheter removal","Date","Misc",false);
+
+#Add Date/time Concepts
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IPDA, Date/Time recorded","Date/Time recorded","Datetime","Misc",false);
 
 #Add Numeric Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IPDA, VAS score","VAS score","Numeric","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IPDA, Post-void residual","Post-void residual","Numeric","Misc",false);
 
 #Add Numeric concepts to concept Numeric Table
 INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
 VALUES ((select concept_id from concept_name where name = "IPDA, VAS score" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),10,NULL,NULL,-0.0000000001,NULL,NULL,"",0,1);
+INSERT INTO concept_numeric (concept_id,hi_absolute,hi_critical,hi_normal,low_absolute,low_critical,low_normal,units,precise,display_precision)
+VALUES ((select concept_id from concept_name where name = "IPDA, Post-void residual" and concept_name_type = "FULLY_SPECIFIED"  and locale = "en"  and voided = 0),999,NULL,NULL,-0.0000000001,NULL,NULL,"ml",0,1);
 
 #Add Text Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IPDA, Main Complain","Main Complain","Text","Misc",false);
@@ -35,7 +41,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IPDA, Abdominal
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IPDA, Wound site","Wound site","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IPDA, Surgical wound status","Surgical wound status","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IPDA, Patient complication","Patient complication","Coded","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IPDA, Complication grade","Complication grade","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IPDA, Clavien Dindo classification","Clavien Dindo classification","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IPDA, Transfusion","Transfusion","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IPDA, Level of infection","Level of infection","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IPDA, SSI treatment","SSI treatment","Coded","Misc",false);
@@ -47,6 +53,7 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IPDA, Fistula d
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IPDA, Patient condition","Patient condition","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IPDA, Discharged","Discharged","Coded","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IPDA, Exit status","Exit status","Coded","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"IPDA, Insertion of Foley catheter","Insertion of Foley catheter","Coded","Misc",false);
 
 #Add Child Concepts
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"1.Anemia due to acute blood loss","1.Anemia due to acute blood loss","N/A","Misc",false);
@@ -113,10 +120,10 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Acute kidney in
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Bowel sounds","Bowel sounds","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Antibiotic therapy","Antibiotic therapy","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Urogenital fistula","Urogenital fistula","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Patient condition improved","Patient condition improved","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Improved","Improved","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Drainage","Drainage","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Deep Incisional","Deep Incisional","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Patient condition unchanged","Patient condition unchanged","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Stable","Stable","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Clean","Clean","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Debridement","Debridement","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Febrile reaction","Febrile reaction","N/A","Misc",false);
@@ -134,12 +141,12 @@ call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Dirty infected"
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Graft","Graft","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Severe nausea and vomiting","Severe nausea and vomiting","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Rectal fistula","Rectal fistula","N/A","Misc",false);
-call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Patient condition worse","Patient condition worse","N/A","Misc",false);
+call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Worse","Worse","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Discharged home","Discharged home","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Discharged against medical advice","Discharged against medical advice","N/A","Misc",false);
 call add_concept(@concept_id,@concept_short_id,@concept_full_id,"Referred","Referred","N/A","Misc",false);
 
 #Add Help Text to Concepts
 INSERT INTO concept_description (concept_id,description,locale,creator,date_created,changed_by,date_changed,uuid)
-VALUES ((select concept_id from concept_name where name = "IPDA, Complication grade" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0),
+VALUES ((select concept_id from concept_name where name = "IPDA, Clavien Dindo classification" and concept_name_type = "FULLY_SPECIFIED" and locale = "en" and voided = 0),
 "Grade I - No treatment, Grade II - Requiring drug treatment,  Grade IIIa - Interventions with local anaesthesia, Grade IIIb - Interventions under general anaesthesia, Grade IVa - Single-organ dysfunction, Grade IVb - Multi-organ dysfunction, Grade V - Death of patient","en",1,now(),NULL,NULL,uuid());
