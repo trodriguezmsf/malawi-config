@@ -51,17 +51,7 @@ VALUES
     ),
     postponed.notes,
     appointment_block.notes
-  ) AS `Reason for Change`,
-  obs_data.person_id,
-  obs_data.encounter_id,
-  DATE_FORMAT(
-    pre_treatment_form.date_recorded_value,
-    '%Y-%m-%d'
-  ) as pre6,
-  DATE_FORMAT(
-    follow_up_form.date_recorded_value,
-    '%Y-%m-%d'
-  ) as ate
+  ) AS `Reason for Change`
 FROM
   (
     SELECT
