@@ -86,7 +86,7 @@
                 concept_name cn
                 on ca.concept_id = cn.concept_id
                 where ca.answer_concept IN (select concept_id from concept_name where name IN
-                ("Allergic reaction", "Hypothermia (&lt;36)", "Hyperthermia (&gt;39)", "Cardiac arrest", "Bronchospasm", "Hypoxia", "Nausea and vomiting", "Hypotension", "Spinal headache", "Aspiration", "Pneumonia", "Unanticipated movement to ICU", "Local anesthesia systemic toxicity", "Other")
+                ("Allergic reaction", "Hypothermia (&lt;36)", "Hyperthermia (&gt;39)", "Cardiac arrest", "Bronchospasm", "Hypoxia", "Nausea and vomiting", "Hypotension", "Spinal headache", "Aspiration", "Pneumonia", "Unanticipated movement to ICU", "Local anesthesia systemic toxicity", "Other", "Unanticipated difficult intubation")
                 and concept_name_type = "FULLY_SPECIFIED")
                 AND
                 cn.concept_id IN (select concept_id from concept_name where name = "AAPOSTOP, Complication");
@@ -110,6 +110,7 @@
             set @child12_concept_id = 0;
             set @child13_concept_id = 0;
             set @child14_concept_id = 0;
+            set @child15_concept_id = 0;
             select concept_id into @child1_concept_id from concept_name where name ="Allergic reaction" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child2_concept_id from concept_name where name ="Hypothermia (&lt;36)" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child3_concept_id from concept_name where name ="Hyperthermia (&gt;39)" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
@@ -121,9 +122,10 @@
             select concept_id into @child9_concept_id from concept_name where name ="Spinal headache" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child10_concept_id from concept_name where name ="Aspiration" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             select concept_id into @child11_concept_id from concept_name where name ="Pneumonia" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child12_concept_id from concept_name where name ="Unanticipated movement to ICU" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child13_concept_id from concept_name where name ="Local anesthesia systemic toxicity" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
-            select concept_id into @child14_concept_id from concept_name where name ="Other" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child12_concept_id from concept_name where name ="Unanticipated difficult intubation" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child13_concept_id from concept_name where name ="Unanticipated movement to ICU" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child14_concept_id from concept_name where name ="Local anesthesia systemic toxicity" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
+            select concept_id into @child15_concept_id from concept_name where name ="Other" and concept_name_type ="FULLY_SPECIFIED" and locale ="en" and voided = 0;
             call add_concept_answer(@concept_id, @child1_concept_id, 1);
             call add_concept_answer(@concept_id, @child2_concept_id, 2);
             call add_concept_answer(@concept_id, @child3_concept_id, 3);
@@ -138,6 +140,7 @@
             call add_concept_answer(@concept_id, @child12_concept_id, 12);
             call add_concept_answer(@concept_id, @child13_concept_id, 13);
             call add_concept_answer(@concept_id, @child14_concept_id, 14);
+            call add_concept_answer(@concept_id, @child15_concept_id, 15);
         </sql>
     </changeSet>
 
@@ -176,7 +179,7 @@
             <sqlCheck expectedResult="0">
                 select count(*) from concept_reference_term
                 where code in
-                ("158592","114100","158443","158855","17311")
+                ("158592","114100","158443","158855","17311", "1919")
                 and retired = 0
                 and concept_source_id = (
                 select concept_source_id from concept_reference_source where name = "CEIL"  and retired =0
@@ -192,11 +195,13 @@
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"158443",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"158855",@source_id,uuid(),now());
             INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"17311",@source_id,uuid(),now());
+            INSERT INTO concept_reference_term (creator,code,concept_source_id,uuid,date_created) VALUES (1,"1919",@source_id,uuid(),now());
             call CREATE_REFERENCE_MAPPING_CEIL("Spinal headache","158855");
             call CREATE_REFERENCE_MAPPING_CEIL("Hypoxia","17311");
             call CREATE_REFERENCE_MAPPING_CEIL("Aspiration","158592");
             call CREATE_REFERENCE_MAPPING_CEIL("Pneumonia","114100");
             call CREATE_REFERENCE_MAPPING_CEIL("Nausea and vomiting","158443");
+            call CREATE_REFERENCE_MAPPING_CEIL("Unanticipated difficult intubation","1919");
         </sql>
     </changeSet>
 </databaseChangeLog>
