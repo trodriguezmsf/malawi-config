@@ -1581,5 +1581,8 @@
     <include file="Surgical-Hysterectomy/Surgical-Hysterectomy_2.xml"/>
     <include file="Surgical-Ovarian/Surgical-Ovarian_2.xml"/>
     <include file="Surgical-Vulvectomy/Surgical-Vulvectomy_2.xml"/>
-    <sqlFile path="OT/patientListingQueueToBeScheduled_v3.sql"/>
+    <changeSet id="MALAWI-2023071211246" author="venky">
+        <comment>modified to be scheduled queue OT</comment>
+        <sqlFile path="OT/patientListingQueueToBeScheduled_v3.sql"/>
+    </changeSet>
 </databaseChangeLog>
