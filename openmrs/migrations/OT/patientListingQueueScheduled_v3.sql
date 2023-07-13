@@ -19,32 +19,15 @@ VALUES ('emrapi.sqlSearch.otScheduledQueue',
            WHEN pre_clinical.encounter_id > post_clinical.encounter_id THEN pre_clinical.value
            ELSE NULL
            END                                    AS `Diagnosis`,
-       concat_ws(
-               ',',
-               if(
-                           IFNULL(
-                                   pre_planned_Procedure.encounter_datetime,
-                                   '0000-00-00'
-                               ) >= IFNULL(
-                                   follow_planned_Procedure.encounter_datetime,
-                                   '0000-00-00'
-                               ),
-                           pre_planned_Procedure.value,
-                           NULL
-                   ),
-               if(
-                           IFNULL(
-                                   follow_planned_Procedure.encounter_datetime,
-                                   '0000-00-00'
-                               ) >= IFNULL(
-                                   pre_planned_Procedure.encounter_datetime,
-                                   '0000-00-00'
-                               ),
-                           follow_planned_Procedure.value,
-                           NULL
-                   )
-           )                                      AS `Planned Procedure`,
-       result_of_hiv_test.value                   AS `HIV Status`,
+       CASE
+           WHEN latest_mdt.encounter_id NOT IN (pre_planned_Procedure.encounter_id, post_planned_Procedure.encounter_id)
+               THEN NULL
+           WHEN pre_planned_Procedure.encounter_id <= post_planned_Procedure.encounter_id
+               THEN post_planned_Procedure.value
+           WHEN pre_planned_Procedure.encounter_id > post_planned_Procedure.encounter_id
+               THEN pre_planned_Procedure.value
+           ELSE NULL
+           END                                    AS `Planned Procedure`,
        DATE_FORMAT(sb.start_datetime, '%d/%m/%Y') AS `Date of Surgery`,
        surgeon_name.SurgeonName                   AS `Surgeon`,
        sa.status                                  AS `Status`,
@@ -83,11 +66,13 @@ FROM surgical_block sb
                                    INNER JOIN surgical_block sb ON sb.primary_provider_id = pro.provider_id
                               AND sb.voided IS FALSE) surgeon_name ON surgeon_name.provider_id = sb.primary_provider_id
          INNER JOIN (SELECT max(ob.encounter_id) as encounter_id, ob.person_id
-                          from obs ob
-                                   INNER JOIN encounter en ON ob.person_id = en.patient_id
-                              AND (ob.form_namespace_and_path LIKE '%Bahmni\^__ Follow up MDT%' OR ob.form_namespace_and_path LIKE '%Bahmni\^__ Pre Treatment MDT%')
-                          GROUP BY en.patient_id) latest_mdt ON latest_mdt.person_id = sa.patient_id
-         LEFT OUTER JOIN (SELECT o.encounter_id, o.person_id,
+                     from obs ob
+                              INNER JOIN encounter en ON ob.person_id = en.patient_id
+                         AND (ob.form_namespace_and_path LIKE '%Bahmni\^__ Follow up MDT%' OR
+                              ob.form_namespace_and_path LIKE '%Bahmni\^__ Pre Treatment MDT%')
+                     GROUP BY en.patient_id) latest_mdt ON latest_mdt.person_id = sa.patient_id
+         LEFT OUTER JOIN (SELECT o.encounter_id,
+                                 o.person_id,
                                  GROUP_CONCAT(
                                      DISTINCT (COALESCE(coded_fscn.name, coded_scn.name))
        ) AS 'value'
@@ -102,9 +87,11 @@ FROM surgical_block sb
                                    LEFT OUTER JOIN concept_name coded_scn ON coded_scn.concept_id = o.value_coded
                               AND coded_scn.concept_name_type = 'SHORT'
                               AND coded_scn.voided IS FALSE
-                          WHERE o.encounter_id = (SELECT max(o.encounter_id) from obs o where concept_id = cn.concept_id)
+                          WHERE o.encounter_id =
+                                (SELECT max(ob.encounter_id) from obs ob where ob.concept_id = cn.concept_id)
                           GROUP BY o.person_id) pre_clinical ON pre_clinical.person_id = latest_mdt.person_id
-         LEFT OUTER JOIN (SELECT o.encounter_id, o.person_id,
+         LEFT OUTER JOIN (SELECT o.encounter_id,
+                                 o.person_id,
                                  GROUP_CONCAT(
                                      DISTINCT (COALESCE(coded_fscn.name, coded_scn.name))
        ) AS 'value'
@@ -119,16 +106,15 @@ FROM surgical_block sb
                                    LEFT OUTER JOIN concept_name coded_scn ON coded_scn.concept_id = o.value_coded
                               AND coded_scn.concept_name_type = 'SHORT'
                               AND coded_scn.voided IS FALSE
-                          WHERE o.encounter_id = (SELECT max(o.encounter_id) from obs o where concept_id = cn.concept_id)
+                          WHERE o.encounter_id =
+                                (SELECT max(ob.encounter_id) from obs ob where ob.concept_id = cn.concept_id)
                           GROUP BY o.person_id) post_clinical ON post_clinical.person_id = latest_mdt.person_id
-         LEFT JOIN(SELECT o.person_id,
+         LEFT JOIN(SELECT o.encounter_id,
+                          o.person_id,
                           GROUP_CONCAT(
                               DISTINCT (COALESCE(coded_fscn.name, coded_scn.name))
-       ) AS 'value', latest_encounter.encounter_datetime
+    ) AS 'value'
                    FROM obs o
-                            INNER JOIN encounter e ON e.encounter_id = o.encounter_id
-                       AND o.voided IS FALSE
-                       AND e.voided IS FALSE
                             INNER JOIN concept_name cn ON cn.concept_id = o.concept_id
                        AND cn.voided IS FALSE
                        AND cn.concept_name_type = 'FULLY_SPECIFIED'
@@ -139,55 +125,29 @@ FROM surgical_block sb
                             LEFT OUTER JOIN concept_name coded_scn ON coded_scn.concept_id = o.value_coded
                        AND coded_scn.concept_name_type = 'SHORT'
                        AND coded_scn.voided IS FALSE
-                            INNER JOIN (
-                       SELECT o.person_id,
-                              MAX(e.encounter_datetime) AS encounter_datetime
-                       FROM obs o
-                                INNER JOIN concept_name cn ON cn.concept_id = o.concept_id
-                           AND cn.name = 'PTMDT, Surgical procedure type'
-                           AND cn.concept_name_type = 'FULLY_SPECIFIED'
-                           AND cn.voided IS FALSE
-                           AND o.voided IS FALSE
-                                INNER JOIN encounter e ON e.encounter_id = o.encounter_id
-                           AND e.voided IS FALSE
-                       GROUP BY person_id
-                   ) latest_encounter
-                                       ON latest_encounter.encounter_datetime = e.encounter_datetime
-                                           AND latest_encounter.person_id = o.person_id
-                   GROUP BY o.person_id) pre_planned_Procedure
-                  ON pre_planned_Procedure.person_id = sa.patient_id
-         LEFT JOIN (SELECT o.person_id,
-                           GROUP_CONCAT(
-                               DISTINCT (COALESCE (coded_fscn.name, coded_scn.name))
-                        ) AS 'value', latest_encounter.encounter_datetime
-                    FROM obs o
-                             INNER JOIN encounter e ON e.encounter_id = o.encounter_id
-                        AND o.voided IS FALSE
-                        AND e.voided IS FALSE
-                             INNER JOIN concept_name cn ON cn.concept_id = o.concept_id
-                        AND cn.voided IS FALSE
-                        AND cn.concept_name_type = 'FULLY_SPECIFIED'
-                        AND cn.name = 'POMDT, Surgical procedure type'
-                             LEFT OUTER JOIN concept_name coded_fscn ON coded_fscn.concept_id = o.value_coded
-                        AND coded_fscn.concept_name_type = 'FULLY_SPECIFIED'
-                        AND coded_fscn.voided IS FALSE
-                             LEFT OUTER JOIN concept_name coded_scn ON coded_scn.concept_id = o.value_coded
-                        AND coded_scn.concept_name_type = 'SHORT'
-                        AND coded_scn.voided IS FALSE
-                             INNER JOIN (SELECT o.person_id,
-                                                MAX(e.encounter_datetime) AS encounter_datetime
-                                         FROM obs o
-                                                  INNER JOIN concept_name cn ON cn.concept_id = o.concept_id
-                                             AND cn.name = 'POMDT, Surgical procedure type'
-                                             AND cn.concept_name_type = 'FULLY_SPECIFIED'
-                                             AND cn.voided IS FALSE
-                                             AND o.voided IS FALSE
-                                                  INNER JOIN encounter e ON e.encounter_id = o.encounter_id
-                                             AND e.voided IS FALSE
-                                         GROUP BY person_id) latest_encounter
-                                        ON latest_encounter.encounter_datetime = e.encounter_datetime
-                                            AND latest_encounter.person_id = o.person_id
-                    GROUP BY o.person_id) follow_planned_Procedure ON follow_planned_Procedure.person_id = sa.patient_id
+                   WHERE o.encounter_id =
+                         (SELECT max(ob.encounter_id) from obs ob where ob.concept_id = cn.concept_id)
+                   GROUP BY o.person_id) pre_planned_Procedure ON pre_planned_Procedure.person_id = latest_mdt.person_id
+         LEFT JOIN(SELECT o.encounter_id,
+                          o.person_id,
+                          GROUP_CONCAT(
+                              DISTINCT (COALESCE(coded_fscn.name, coded_scn.name))
+    ) AS 'value'
+                   FROM obs o
+                            INNER JOIN concept_name cn ON cn.concept_id = o.concept_id
+                       AND cn.voided IS FALSE
+                       AND cn.concept_name_type = 'FULLY_SPECIFIED'
+                       AND cn.name = 'POMDT, Surgical procedure type'
+                            LEFT OUTER JOIN concept_name coded_fscn ON coded_fscn.concept_id = o.value_coded
+                       AND coded_fscn.concept_name_type = 'FULLY_SPECIFIED'
+                       AND coded_fscn.voided IS FALSE
+                            LEFT OUTER JOIN concept_name coded_scn ON coded_scn.concept_id = o.value_coded
+                       AND coded_scn.concept_name_type = 'SHORT'
+                       AND coded_scn.voided IS FALSE
+                   WHERE o.encounter_id =
+                         (SELECT max(ob.encounter_id) from obs ob where ob.concept_id = cn.concept_id)
+                   GROUP BY o.person_id) post_planned_Procedure
+                  ON post_planned_Procedure.person_id = latest_mdt.person_id
          LEFT JOIN (SELECT o.person_id,
                            GROUP_CONCAT(
                                DISTINCT (COALESCE (coded_fscn.name, coded_scn.name))
