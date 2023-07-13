@@ -15,17 +15,15 @@ VALUES ('emrapi.sqlSearch.otScheduledQueue',
        bed_info.bedNumber                         AS `Bed #`,
        CASE
            WHEN latest_mdt.encounter_id NOT IN (pre_clinical.encounter_id, post_clinical.encounter_id) THEN NULL
-           WHEN pre_clinical.encounter_id <= post_clinical.encounter_id THEN post_clinical.value
-           WHEN pre_clinical.encounter_id > post_clinical.encounter_id THEN pre_clinical.value
+           WHEN latest_mdt.encounter_id = post_clinical.encounter_id THEN post_clinical.value
+           WHEN latest_mdt.encounter_id = pre_clinical.encounter_id THEN pre_clinical.value
            ELSE NULL
            END                                    AS `Diagnosis`,
        CASE
            WHEN latest_mdt.encounter_id NOT IN (pre_planned_Procedure.encounter_id, post_planned_Procedure.encounter_id)
                THEN NULL
-           WHEN pre_planned_Procedure.encounter_id <= post_planned_Procedure.encounter_id
-               THEN post_planned_Procedure.value
-           WHEN pre_planned_Procedure.encounter_id > post_planned_Procedure.encounter_id
-               THEN pre_planned_Procedure.value
+           WHEN latest_mdt.encounter_id = post_planned_Procedure.encounter_id THEN post_planned_Procedure.value
+           WHEN latest_mdt.encounter_id = pre_planned_Procedure.encounter_id THEN pre_planned_Procedure.value
            ELSE NULL
            END                                    AS `Planned Procedure`,
        DATE_FORMAT(sb.start_datetime, '%d/%m/%Y') AS `Date of Surgery`,
