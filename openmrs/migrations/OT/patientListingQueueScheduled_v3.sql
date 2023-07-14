@@ -26,6 +26,7 @@ VALUES ('emrapi.sqlSearch.otScheduledQueue',
            WHEN latest_mdt.encounter_id = pre_planned_Procedure.encounter_id THEN pre_planned_Procedure.value
            ELSE NULL
            END                                    AS `Planned Procedure`,
+       result_of_hiv_test.value                   AS `HIV Status`,
        DATE_FORMAT(sb.start_datetime, '%d/%m/%Y') AS `Date of Surgery`,
        surgeon_name.SurgeonName                   AS `Surgeon`,
        sa.status                                  AS `Status`,
