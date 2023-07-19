@@ -87,7 +87,10 @@ FROM surgical_block sb
                               AND coded_scn.concept_name_type = 'SHORT'
                               AND coded_scn.voided IS FALSE
                           WHERE o.encounter_id =
-                                (SELECT max(ob.encounter_id) from obs ob where ob.concept_id = cn.concept_id)
+                                (SELECT max(ob.encounter_id)
+                                 from obs ob
+                                 where ob.concept_id = cn.concept_id
+                                   and ob.person_id = o.person_id)
                           GROUP BY o.person_id) pre_clinical ON pre_clinical.person_id = latest_mdt.person_id
          LEFT OUTER JOIN (SELECT o.encounter_id,
                                  o.person_id,
@@ -106,7 +109,10 @@ FROM surgical_block sb
                               AND coded_scn.concept_name_type = 'SHORT'
                               AND coded_scn.voided IS FALSE
                           WHERE o.encounter_id =
-                                (SELECT max(ob.encounter_id) from obs ob where ob.concept_id = cn.concept_id)
+                                (SELECT max(ob.encounter_id)
+                                 from obs ob
+                                 where ob.concept_id = cn.concept_id
+                                   and ob.person_id = o.person_id)
                           GROUP BY o.person_id) post_clinical ON post_clinical.person_id = latest_mdt.person_id
          LEFT JOIN(SELECT o.encounter_id,
                           o.person_id,
@@ -125,7 +131,10 @@ FROM surgical_block sb
                        AND coded_scn.concept_name_type = 'SHORT'
                        AND coded_scn.voided IS FALSE
                    WHERE o.encounter_id =
-                         (SELECT max(ob.encounter_id) from obs ob where ob.concept_id = cn.concept_id)
+                         (SELECT max(ob.encounter_id)
+                          from obs ob
+                          where ob.concept_id = cn.concept_id
+                            and ob.person_id = o.person_id)
                    GROUP BY o.person_id) pre_planned_Procedure ON pre_planned_Procedure.person_id = latest_mdt.person_id
          LEFT JOIN(SELECT o.encounter_id,
                           o.person_id,
@@ -144,7 +153,10 @@ FROM surgical_block sb
                        AND coded_scn.concept_name_type = 'SHORT'
                        AND coded_scn.voided IS FALSE
                    WHERE o.encounter_id =
-                         (SELECT max(ob.encounter_id) from obs ob where ob.concept_id = cn.concept_id)
+                         (SELECT max(ob.encounter_id)
+                          from obs ob
+                          where ob.concept_id = cn.concept_id
+                            and ob.person_id = o.person_id)
                    GROUP BY o.person_id) post_planned_Procedure
                   ON post_planned_Procedure.person_id = latest_mdt.person_id
          LEFT JOIN (SELECT o.person_id,
