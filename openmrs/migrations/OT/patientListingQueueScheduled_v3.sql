@@ -30,7 +30,7 @@ VALUES ('emrapi.sqlSearch.otScheduledQueue',
        DATE_FORMAT(sb.start_datetime, '%d/%m/%Y') AS `Date of Surgery`,
        surgeon_name.SurgeonName                   AS `Surgeon`,
        sa.status                                  AS `Status`,
-       ' '                                        AS `Outcome of Anesthesia`
+       outcome_of_anesthesia.value                AS `Outcome of Anesthesia`
 FROM surgical_block sb
          INNER JOIN surgical_appointment sa ON sb.surgical_block_id = sa.surgical_block_id
     AND sb.voided IS FALSE
@@ -64,7 +64,7 @@ FROM surgical_block sb
                               AND pro.retired IS FALSE
                                    INNER JOIN surgical_block sb ON sb.primary_provider_id = pro.provider_id
                               AND sb.voided IS FALSE) surgeon_name ON surgeon_name.provider_id = sb.primary_provider_id
-         INNER JOIN (SELECT max(ob.encounter_id) as encounter_id, ob.person_id
+         LEFT OUTER JOIN (SELECT max(ob.encounter_id) as encounter_id, ob.person_id
                      from obs ob
                               INNER JOIN encounter en ON ob.person_id = en.patient_id
                          AND (ob.form_namespace_and_path LIKE '%Bahmni\^__ Follow up MDT%' OR
@@ -191,6 +191,35 @@ FROM surgical_block sb
                                         ON latest_encounter.encounter_datetime = e.encounter_datetime
                                             AND latest_encounter.person_id = o.person_id
                     GROUP BY o.person_id) result_of_hiv_test ON result_of_hiv_test.person_id = sa.patient_id
+         LEFT OUTER JOIN (SELECT o.person_id,
+                                 GROUP_CONCAT(
+                                     DISTINCT (COALESCE (coded_fscn.name, coded_scn.name))
+                        ) AS 'value'
+                          FROM obs o
+                                   INNER JOIN concept_name cn ON cn.concept_id = o.concept_id AND o.voided IS FALSE
+                              AND cn.voided IS FALSE
+                              AND cn.concept_name_type = 'FULLY_SPECIFIED'
+                              AND cn.name = 'AAPREOP, Outcome of initial anesthesia assessment'
+                                   LEFT OUTER JOIN concept_name coded_fscn ON coded_fscn.concept_id = o.value_coded
+                              AND coded_fscn.concept_name_type = 'FULLY_SPECIFIED'
+                              AND coded_fscn.voided IS FALSE
+                                   LEFT OUTER JOIN concept_name coded_scn ON coded_scn.concept_id = o.value_coded
+                              AND coded_scn.concept_name_type = 'SHORT'
+                              AND coded_scn.voided IS FALSE
+                                   INNER JOIN (SELECT o.person_id,
+                                                      MAX(e.encounter_id) AS encounter_id
+                                               FROM obs o
+                                                        INNER JOIN concept_name cn ON cn.concept_id = o.concept_id
+                                                   AND cn.name = 'AAPREOP, Outcome of initial anesthesia assessment'
+                                                   AND cn.concept_name_type = 'FULLY_SPECIFIED'
+                                                   AND cn.voided IS FALSE
+                                                   AND o.voided IS FALSE
+                                                        INNER JOIN encounter e ON e.encounter_id = o.encounter_id
+                                                   AND e.voided IS FALSE
+                                               GROUP BY person_id) latest_encounter
+                                              ON latest_encounter.encounter_id = o.encounter_id
+                                                  AND latest_encounter.person_id = o.person_id
+                          GROUP BY o.person_id) outcome_of_anesthesia ON outcome_of_anesthesia.person_id = sa.patient_id
 GROUP BY sa.surgical_appointment_id
 ORDER BY sb.start_datetime ASC;",
         'SQL for scheduled patient listing queues for OT module',
