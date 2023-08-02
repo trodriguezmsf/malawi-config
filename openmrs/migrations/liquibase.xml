@@ -1589,4 +1589,8 @@
         <comment>MOBN-2130 | Feedback on clinical diagnosis scheduled queue</comment>
         <sqlFile path="OT/patientListingQueueScheduled_v3.sql"/>
     </changeSet>
+    <changeSet id="MALAWI-202308011922" author="Venky">
+        <comment>complication controller</comment>
+        <sqlFile path="CustomSql/complicationsDisplayControl.sql"/>
+    </changeSet>
 </databaseChangeLog>

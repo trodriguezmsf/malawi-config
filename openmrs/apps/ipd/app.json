@@ -402,6 +402,15 @@
                         "pivotTable": {
                         }
                     }
+                },
+                "complications": {
+                    "type": "custom",
+                    "displayType": "Full-Page",
+                    "displayOrder": 9,
+                    "config": {
+                        "title": "DASHBOARD_TITLE_COMPLICATIONS_KEY",
+                        "template": "<complications section='section' patient='patient' visitUuid='visitUuid'></complications>"
+                    }
                 }
             }
         }
