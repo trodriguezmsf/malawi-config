@@ -74,10 +74,28 @@
                         "familyIncome"
                     ],
                     "addressFields": [
-                        "address1",
-                        "address2",
-                        "cityVillage",
-                        "countryDistrict"
+                        "address3"
+                    ]
+                },
+                "navigationLinksControl": {
+                    "translationKey": "DASHBOARD_TITLE_NAVIGATION_LINKS_CONTROL_KEY",
+                    "type": "navigationLinksControl",
+                    "displayOrder": 1,
+                    "showLinks": [
+                        "home",
+                        "registration",
+                        "enrolment"
+                    ],
+                    "customLinks": [
+                        {
+                            "translationKey": "DASHBOARD_TITLE_RADIOLOGY_KEY",
+                            "url": "../document-upload/?encounterType=RADIOLOGY&topLevelConcept=Radiology#/patient/{{patientUuid}}/document"
+                        },
+                        {
+                            "name": "bedManagement1",
+                            "translationKey": "PATIENT_BED_MANAGEMENT_PAGE_KEY",
+                            "url": "../bedmanagement/#/bedManagement/patient/{{patientUuid}}/visit/{{visitUuid}}"
+                        }
                     ]
                 },
                 "admissionDetails": {
@@ -88,58 +106,6 @@
                         "numberOfVisits": 3,
                         "showDetailsButton": true,
                         "pivotTable": {}
-                    }
-                },
-                "Initial Anaesthesia Assessment": {
-                    "translationKey": "DASHBOARD_INITIAL_ANAESTHESIA_ASSESSMENT",
-                    "type": "vitals",
-                    "isObservation": true,
-                    "displayOrder": 8,
-                    "dashboardConfig": {
-                        "showDetailsButton": true,
-                        "isEditable": true,
-                        "conceptNames": [
-                            "IAA, Date of Consultation",
-                            "IAA, Outcome of initial anaesthesia assessment"
-                        ],
-                        "numberOfVisits": 2
-                    },
-                    "expandedViewConfig": {
-                        "conceptNames": [
-                            "IAA, Date of Consultation",
-                            "IAA, Outcome of initial anaesthesia assessment"
-                        ],
-                        "isEditable": true,
-                        "showDetailsButton": true,
-                        "numberOfVisits": 2,
-                        "pivotTable": {
-                        }
-                    }
-                },
-                "Pre-operative Assessment": {
-                    "translationKey": "DASHBOARD_PRE_OPERATIVE_ASSESSMENT",
-                    "type": "vitals",
-                    "isObservation": true,
-                    "displayOrder": 8,
-                    "dashboardConfig": {
-                        "showDetailsButton": true,
-                        "isEditable": true,
-                        "conceptNames": [
-                            "SPOA, Date recorded",
-                            "SPOA, Surgeon validation"
-                        ],
-                        "numberOfVisits": 2
-                    },
-                    "expandedViewConfig": {
-                        "conceptNames": [
-                            "SPOA, Date recorded",
-                            "SPOA, Surgeon validation"
-                        ],
-                        "isEditable": true,
-                        "showDetailsButton": true,
-                        "numberOfVisits": 2,
-                        "pivotTable": {
-                        }
                     }
                 },
                 "Post-operative Assessment": {
