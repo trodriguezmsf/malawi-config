@@ -108,70 +108,43 @@
                         "pivotTable": {}
                     }
                 },
-                "Post-operative Assessment": {
-                    "translationKey": "DASHBOARD_POST_OPERATIVE_ASSESSMENT",
-                    "type": "vitals",
+                "Post Operative Anaesthesia note": {
+                    "translationKey": "POST_OPERATIVE_ANAESTHESIA_NOTE_KEY",
                     "isObservation": true,
                     "displayOrder": 8,
                     "dashboardConfig": {
                         "showDetailsButton": true,
+                        "numberOfEncounters": 6,
                         "isEditable": true,
                         "conceptNames": [
-                            "POAN, Anaesthesia start time",
-                            "POAN, Anaesthesia end time",
-                            "POAN, Primary type of anaesthesia administered",
-                            "POAN, Secondary type of anaesthesia administered",
-                            "POAN, Special drugs used during surgery",
-                            "POAN, Complication of anaesthesia",
-                            "POAN, Description of complication",
-                            "POAN, Fluid intake (ml)",
-                            "POAN, Blood transfusion",
-                            "POAN, Intra-operative blood products",
-                            "POAN, Intra-operative blood products, other",
-                            "POAN, Number of units given",
-                            "POAN, Intra-operative transfusion related reaction",
-                            "POAN, Intra-operative transfusion related reaction, comment",
-                            "POAN, Haemoglobin (g/dl)",
-                            "POAN, Blood sugar (mg/dl)",
-                            "POAN, Other intra-operative lab",
-                            "POAN, Blood loss (ml)",
-                            "POAN, Urine output (ml)",
-                            "POAN, Devices present",
-                            "POAN, Devices present, describe",
-                            "POAN, Anaesthetic post-operative notes"
+                            "AAPOSTOP, Date recorded",
+                            "AAPOSTOP, Anesthesia technique",
+                            "AAPOSTOP, Mobilization date/time",
+                            "AAPOSTOP, Resume drinking time",
+                            "AAPOSTOP, Resume eating time",
+                            "AAPOSTOP, Prescription comments",
+                            "AAPOSTOP, Movement to",
+                            "AAPOSTOP, Movement time (hour)",
+                            "AAPOSTOP, Complication"
                         ],
-                        "numberOfVisits": 2
+                        "pivotTable": {}
                     },
                     "expandedViewConfig": {
+                        "numberOfEncounters": 6,
                         "conceptNames": [
-                            "POAN, Anaesthesia start time",
-                            "POAN, Anaesthesia end time",
-                            "POAN, Primary type of anaesthesia administered",
-                            "POAN, Secondary type of anaesthesia administered",
-                            "POAN, Special drugs used during surgery",
-                            "POAN, Complication of anaesthesia",
-                            "POAN, Description of complication",
-                            "POAN, Fluid intake (ml)",
-                            "POAN, Blood transfusion",
-                            "POAN, Intra-operative blood products",
-                            "POAN, Intra-operative blood products, other",
-                            "POAN, Number of units given",
-                            "POAN, Intra-operative transfusion related reaction",
-                            "POAN, Intra-operative transfusion related reaction, comment",
-                            "POAN, Haemoglobin (g/dl)",
-                            "POAN, Blood sugar (mg/dl)",
-                            "POAN, Other intra-operative lab",
-                            "POAN, Blood loss (ml)",
-                            "POAN, Urine output (ml)",
-                            "POAN, Devices present",
-                            "POAN, Devices present, describe",
-                            "POAN, Anaesthetic post-operative notes"
+                            "AAPOSTOP, Date recorded",
+                            "AAPOSTOP, Anesthesia technique",
+                            "AAPOSTOP, Mobilization date/time",
+                            "AAPOSTOP, Resume drinking time",
+                            "AAPOSTOP, Resume eating time",
+                            "AAPOSTOP, Prescription comments",
+                            "AAPOSTOP, Movement to",
+                            "AAPOSTOP, Movement time (hour)",
+                            "AAPOSTOP, Complication"
                         ],
                         "isEditable": true,
                         "showDetailsButton": true,
-                        "numberOfVisits": 2,
-                        "pivotTable": {
-                        }
+                        "pivotTable": {}
                     }
                 },
                 "Complications": {
