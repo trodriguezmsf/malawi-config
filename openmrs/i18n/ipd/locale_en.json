@@ -53,5 +53,6 @@
   "DASHBOARD_TAB_LAB_KEY":"Laboratory",
   "MODULE_LABEL_ADMITTEDTOIPD_PATIENT_KEY":"Admitted to IPD",
   "DASHBOARD_TITLE_RADIOLOGY_KEY": "Patient Medical Document Upload",
-  "PATIENT_BED_MANAGEMENT_PAGE_KEY": "Patient Bed Management"
+  "PATIENT_BED_MANAGEMENT_PAGE_KEY": "Patient Bed Management",
+  "DASHBOARD_BLOOD_TRANSFUSION_KEY": "Blood Transfusion"
 }
