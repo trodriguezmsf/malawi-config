@@ -24,8 +24,7 @@ INSERT INTO global_property (property, property_value, description, uuid)
   ) AS `Description 1`,
   description_two.value AS `Description 2`,
   treatmentPlan.value AS `Treatment Plan`,
-  patientCondition.value AS `Patient condition`,
-  patient_encounters.encounter_id
+  patientCondition.value AS `Patient condition`
 FROM
   (
     SELECT
