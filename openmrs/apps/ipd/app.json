@@ -229,8 +229,7 @@
                 },
                 "surgicalAppointments": {
                     "type": "custom",
-                    "displayOrder": 7,
-                    "displayType": "Full-Page",
+                    "displayOrder": 3,
                     "config": {
                         "title": "DASHBOARD_TITLE_SURGICAL_APPOINTMENTS_KEY",
                         "template": "<surgical-appointments section='section' patient='patient'></surgical-appointments>"
