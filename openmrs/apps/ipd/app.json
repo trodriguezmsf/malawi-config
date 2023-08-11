@@ -74,10 +74,28 @@
                         "familyIncome"
                     ],
                     "addressFields": [
-                        "address1",
-                        "address2",
-                        "cityVillage",
-                        "countryDistrict"
+                        "address3"
+                    ]
+                },
+                "navigationLinksControl": {
+                    "translationKey": "DASHBOARD_TITLE_NAVIGATION_LINKS_CONTROL_KEY",
+                    "type": "navigationLinksControl",
+                    "displayOrder": 1,
+                    "showLinks": [
+                        "home",
+                        "registration",
+                        "enrolment"
+                    ],
+                    "customLinks": [
+                        {
+                            "translationKey": "DASHBOARD_TITLE_RADIOLOGY_KEY",
+                            "url": "../document-upload/?encounterType=RADIOLOGY&topLevelConcept=Radiology#/patient/{{patientUuid}}/document"
+                        },
+                        {
+                            "name": "bedManagement1",
+                            "translationKey": "PATIENT_BED_MANAGEMENT_PAGE_KEY",
+                            "url": "../bedmanagement/#/bedManagement/patient/{{patientUuid}}/visit/{{visitUuid}}"
+                        }
                     ]
                 },
                 "complications": {
@@ -88,122 +106,43 @@
                         "template": "<ipd-admission-discharge-history section='section' patient='patient' visitUuid='visitUuid'></ipd-admission-discharge-history>"
                     }
                 },
-                "Initial Anaesthesia Assessment": {
-                    "translationKey": "DASHBOARD_INITIAL_ANAESTHESIA_ASSESSMENT",
-                    "type": "vitals",
+                "Post Operative Anaesthesia note": {
+                    "translationKey": "POST_OPERATIVE_ANAESTHESIA_NOTE_KEY",
                     "isObservation": true,
                     "displayOrder": 8,
                     "dashboardConfig": {
                         "showDetailsButton": true,
+                        "numberOfEncounters": 6,
                         "isEditable": true,
                         "conceptNames": [
-                            "IAA, Date of Consultation",
-                            "IAA, Outcome of initial anaesthesia assessment"
+                            "AAPOSTOP, Date recorded",
+                            "AAPOSTOP, Anesthesia technique",
+                            "AAPOSTOP, Mobilization date/time",
+                            "AAPOSTOP, Resume drinking time",
+                            "AAPOSTOP, Resume eating time",
+                            "AAPOSTOP, Prescription comments",
+                            "AAPOSTOP, Movement to",
+                            "AAPOSTOP, Movement time (hour)",
+                            "AAPOSTOP, Complication"
                         ],
-                        "numberOfVisits": 2
+                        "pivotTable": {}
                     },
                     "expandedViewConfig": {
+                        "numberOfEncounters": 6,
                         "conceptNames": [
-                            "IAA, Date of Consultation",
-                            "IAA, Outcome of initial anaesthesia assessment"
+                            "AAPOSTOP, Date recorded",
+                            "AAPOSTOP, Anesthesia technique",
+                            "AAPOSTOP, Mobilization date/time",
+                            "AAPOSTOP, Resume drinking time",
+                            "AAPOSTOP, Resume eating time",
+                            "AAPOSTOP, Prescription comments",
+                            "AAPOSTOP, Movement to",
+                            "AAPOSTOP, Movement time (hour)",
+                            "AAPOSTOP, Complication"
                         ],
                         "isEditable": true,
                         "showDetailsButton": true,
-                        "numberOfVisits": 2,
-                        "pivotTable": {
-                        }
-                    }
-                },
-                "Pre-operative Assessment": {
-                    "translationKey": "DASHBOARD_PRE_OPERATIVE_ASSESSMENT",
-                    "type": "vitals",
-                    "isObservation": true,
-                    "displayOrder": 8,
-                    "dashboardConfig": {
-                        "showDetailsButton": true,
-                        "isEditable": true,
-                        "conceptNames": [
-                            "SPOA, Date recorded",
-                            "SPOA, Surgeon validation"
-                        ],
-                        "numberOfVisits": 2
-                    },
-                    "expandedViewConfig": {
-                        "conceptNames": [
-                            "SPOA, Date recorded",
-                            "SPOA, Surgeon validation"
-                        ],
-                        "isEditable": true,
-                        "showDetailsButton": true,
-                        "numberOfVisits": 2,
-                        "pivotTable": {
-                        }
-                    }
-                },
-                "Post-operative Assessment": {
-                    "translationKey": "DASHBOARD_POST_OPERATIVE_ASSESSMENT",
-                    "type": "vitals",
-                    "isObservation": true,
-                    "displayOrder": 8,
-                    "dashboardConfig": {
-                        "showDetailsButton": true,
-                        "isEditable": true,
-                        "conceptNames": [
-                            "POAN, Anaesthesia start time",
-                            "POAN, Anaesthesia end time",
-                            "POAN, Primary type of anaesthesia administered",
-                            "POAN, Secondary type of anaesthesia administered",
-                            "POAN, Special drugs used during surgery",
-                            "POAN, Complication of anaesthesia",
-                            "POAN, Description of complication",
-                            "POAN, Fluid intake (ml)",
-                            "POAN, Blood transfusion",
-                            "POAN, Intra-operative blood products",
-                            "POAN, Intra-operative blood products, other",
-                            "POAN, Number of units given",
-                            "POAN, Intra-operative transfusion related reaction",
-                            "POAN, Intra-operative transfusion related reaction, comment",
-                            "POAN, Haemoglobin (g/dl)",
-                            "POAN, Blood sugar (mg/dl)",
-                            "POAN, Other intra-operative lab",
-                            "POAN, Blood loss (ml)",
-                            "POAN, Urine output (ml)",
-                            "POAN, Devices present",
-                            "POAN, Devices present, describe",
-                            "POAN, Anaesthetic post-operative notes"
-                        ],
-                        "numberOfVisits": 2
-                    },
-                    "expandedViewConfig": {
-                        "conceptNames": [
-                            "POAN, Anaesthesia start time",
-                            "POAN, Anaesthesia end time",
-                            "POAN, Primary type of anaesthesia administered",
-                            "POAN, Secondary type of anaesthesia administered",
-                            "POAN, Special drugs used during surgery",
-                            "POAN, Complication of anaesthesia",
-                            "POAN, Description of complication",
-                            "POAN, Fluid intake (ml)",
-                            "POAN, Blood transfusion",
-                            "POAN, Intra-operative blood products",
-                            "POAN, Intra-operative blood products, other",
-                            "POAN, Number of units given",
-                            "POAN, Intra-operative transfusion related reaction",
-                            "POAN, Intra-operative transfusion related reaction, comment",
-                            "POAN, Haemoglobin (g/dl)",
-                            "POAN, Blood sugar (mg/dl)",
-                            "POAN, Other intra-operative lab",
-                            "POAN, Blood loss (ml)",
-                            "POAN, Urine output (ml)",
-                            "POAN, Devices present",
-                            "POAN, Devices present, describe",
-                            "POAN, Anaesthetic post-operative notes"
-                        ],
-                        "isEditable": true,
-                        "showDetailsButton": true,
-                        "numberOfVisits": 2,
-                        "pivotTable": {
-                        }
+                        "pivotTable": {}
                     }
                 },
                 "Complications": {
