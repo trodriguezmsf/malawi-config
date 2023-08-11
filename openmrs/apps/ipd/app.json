@@ -88,16 +88,6 @@
                         "template": "<ipd-admission-discharge-history section='section' patient='patient' visitUuid='visitUuid'></ipd-admission-discharge-history>"
                     }
                 },
-                "admissionDetails": {
-                    "translationKey": "DASHBOARD_TITLE_ADMISSION_DETAILS_KEY",
-                    "type": "admissionDetails",
-                    "displayOrder": 3,
-                    "expandedViewConfig": {
-                        "numberOfVisits": 3,
-                        "showDetailsButton": true,
-                        "pivotTable": {}
-                    }
-                },
                 "Initial Anaesthesia Assessment": {
                     "translationKey": "DASHBOARD_INITIAL_ANAESTHESIA_ASSESSMENT",
                     "type": "vitals",

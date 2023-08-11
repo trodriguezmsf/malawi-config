@@ -6,8 +6,8 @@ INSERT INTO global_property (property, property_value, description, uuid)
 "SELECT
   `Bed Number`,
   ACTION,
-  DATE_FORMAT(bpamStartDate, '%d %b %Y %h:%i %p') AS `Assigned On`,
-  DATE_FORMAT(dischargeDate, '%d %b %Y %h:%i %p') AS `Discharged On`,
+  DATE_FORMAT(bpamStartDate, '%d %b %Y %h:%i %p') AS `Admission Date`,
+  DATE_FORMAT(dischargeDate, '%d %b %Y %h:%i %p') AS `Discharge Date`,
   `Bed Tags`
 FROM
   (
