@@ -1,0 +1,29 @@
+<div id="customControl">
+  <h2 class="section-title">{{title | titleTranslate}} </h2>
+  <section class="block hierarchy">
+    <div ng-if="ipdAdmissionDischargeHistory.length > 0">
+      <table>
+        <thead>
+          <tr>
+            <th ng-repeat="header in ::headings track by $index">
+              <span>{{header}}</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="entry in ::ipdAdmissionDischargeHistory track by $index">
+            <td ng-repeat="header in ::headings track by $index">
+              <span ng-bind-html="entry[header]"></span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div ng-if="ipdAdmissionDischargeHistory.length == 0">
+      <div class="placeholder-text">
+        <p translate="DISPLAY_CONTROL_ERROR_MESSAGE_KEY"
+          translate-values="::{displayControl : '{{'IPD Admission/Discharge History' | translate}}'}"></p>
+      </div>
+    </div>
+  </section>
+</div>

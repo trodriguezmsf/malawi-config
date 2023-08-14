@@ -236,4 +236,42 @@ angular.module('bahmni.common.displaycontrol.custom')
         link: link,
         template: '<ng-include src="contentUrl"/>'
     }
+}]).directive('ipdAdmissionDischargeHistory', ['$http', '$stateParams', 'appService', 'spinner', function ($http, $stateParams, appService, spinner) {
+    var controller = function ($scope) {
+        $scope.contentUrl = appService.configBaseUrl() + "/customDisplayControl/views/ipdAdmissionDischargeHistory.html";
+        $scope.title = $scope.config.title;
+
+        var emitNoDataPresentEvent = function () {
+            return $scope.$emit("no-data-present-event");
+        };
+
+        var getResponseFromQuery = function () {
+            var params = {
+                patientUuid: $scope.patient.uuid,
+                visitUuid: $stateParams.visitUuid,
+                q: "bahmni.sqlGet.ipdAdmissionDischargeHistory",
+                v: "full"
+            };
+            return $http.get('/openmrs/ws/rest/v1/bahmnicore/sql', {
+                method: "GET",
+                params: params,
+                withCredentials: true
+            });
+        };
+
+        spinner.forPromise(getResponseFromQuery().then(function (response) {
+            $scope.ipdAdmissionDischargeHistory = response.data;
+            if ($scope.ipdAdmissionDischargeHistory.length <= 0) {
+                emitNoDataPresentEvent();
+            } else {
+                $scope.headings = _.keys($scope.ipdAdmissionDischargeHistory[0]);
+            }
+        }));
+    };
+
+    return {
+        restrict: 'E',
+        controller: controller,
+        template: '<ng-include src="contentUrl"/>'
+    }
 }]);

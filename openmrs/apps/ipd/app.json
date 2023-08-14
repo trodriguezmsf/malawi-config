@@ -98,14 +98,12 @@
                         }
                     ]
                 },
-                "admissionDetails": {
-                    "translationKey": "DASHBOARD_TITLE_ADMISSION_DETAILS_KEY",
-                    "type": "admissionDetails",
-                    "displayOrder": 3,
-                    "expandedViewConfig": {
-                        "numberOfVisits": 3,
-                        "showDetailsButton": true,
-                        "pivotTable": {}
+                "complications": {
+                    "type": "custom",
+                    "displayOrder": 4,
+                    "config": {
+                        "title": "DASHBOARD_IPD_ADMISSION_DISCHARGE_HISTORY_KEY",
+                        "template": "<ipd-admission-discharge-history section='section' patient='patient' visitUuid='visitUuid'></ipd-admission-discharge-history>"
                     }
                 },
                 "Post Operative Anaesthesia note": {
@@ -231,8 +229,7 @@
                 },
                 "surgicalAppointments": {
                     "type": "custom",
-                    "displayOrder": 7,
-                    "displayType": "Full-Page",
+                    "displayOrder": 3,
                     "config": {
                         "title": "DASHBOARD_TITLE_SURGICAL_APPOINTMENTS_KEY",
                         "template": "<surgical-appointments section='section' patient='patient'></surgical-appointments>"
