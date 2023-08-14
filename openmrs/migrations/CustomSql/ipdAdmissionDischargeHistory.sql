@@ -186,11 +186,11 @@ FROM
             AND bpam.bed_patient_assignment_map_id = bedTagsInfo.bed_patient_assignment_map_id
         ) latestBpam ON latestBpam.patient_id = p.person_id
     )
-  ) patientMovementHistory
+  ) ipdAdmissionDischargeHistory
 ORDER BY
   CASE
-    WHEN patientMovementHistory.dischargeDate IS NULL THEN 0
+    WHEN ipdAdmissionDischargeHistory.dischargeDate IS NULL THEN 0
     ELSE 1
   END DESC,
-  patientMovementHistory.dischargeDate"
+  ipdAdmissionDischargeHistory.dischargeDate"
 , 'patient movement history in bed management', @uuid);
