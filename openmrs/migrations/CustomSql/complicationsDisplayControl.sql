@@ -4,13 +4,19 @@ SELECT uuid() INTO @uuid;
 INSERT INTO global_property (property, property_value, description, uuid)
  VALUES ('bahmni.sqlGet.complications',
 "SELECT
-  DATE_FORMAT(dateRecorded.value, '%d %b %Y') AS `Date Recorded`,
-  REPLACE(complications.form, '_', ' ') AS form,
+  DATE_FORMAT(dateRecorded.value, '%d %b %Y') AS `Date recorded`,
+  CASE
+    WHEN complications.form = '19 Surgical_Hysterectomy' THEN 'Hysterectomy'
+    WHEN complications.form = '20 Surgical_Ovarian' THEN 'Ovarian'
+    WHEN complications.form = '21 Surgical_Vulvectomy' THEN 'Vulvectomy'
+    WHEN complications.form = '23 Anesthesia Post Op Assessment' THEN 'Anesthesia Post Op Assessment'
+    WHEN complications.form = '25 IPD Assessment' THEN 'IPD Assessment'
+  END AS Form,
   CASE
     WHEN complications.value = 'Other' THEN complicationsOther.value
     ELSE complications.value
   END AS `Patient Complications`,
-  complicationsGrade.value AS `Complication grade`,
+  GROUP_CONCAT(complicationsGrade.value SEPARATOR ', ') AS `Complication grade`,
   concat_ws(
     ':<br>',
     description_one_transfusion.value,
@@ -35,7 +41,7 @@ FROM
       INNER JOIN encounter e ON p.person_id = e.patient_id
       AND e.voided IS FALSE
       AND p.voided IS FALSE
-      AND p.uuid = 'f753a49c-4d49-4216-b94a-41b3a5f0c0bf'
+      AND p.uuid = 'a4d0acc9-d409-4028-9c52-4783479d5e0e'
       INNER JOIN visit v ON e.visit_id = v.visit_id
       AND v.voided IS FALSE
       AND v.visit_type_id = 5
@@ -53,6 +59,11 @@ FROM
         '.',
         1
       ) AS form,
+      SUBSTRING_INDEX(
+        SUBSTRING_INDEX(o.form_namespace_and_path, '/', -2),
+        '/',
+        1
+      ) multiSelect,
       coded_fscn.name 'value'
     FROM
       obs o
@@ -70,11 +81,6 @@ FROM
       LEFT OUTER JOIN concept_name coded_fscn ON coded_fscn.concept_id = o.value_coded
       AND coded_fscn.concept_name_type = 'FULLY_SPECIFIED'
       AND coded_fscn.voided IS FALSE
-    GROUP BY
-      o.encounter_id,
-      o.person_id,
-      form,
-      coded_fscn.name
   ) complications ON complications.encounter_id = patient_encounters.encounter_id
   LEFT JOIN (
     SELECT
@@ -85,7 +91,12 @@ FROM
         '.',
         1
       ) AS form,
-      GROUP_CONCAT(coded_fscn.name SEPARATOR ', ') AS 'value'
+      SUBSTRING_INDEX(
+        SUBSTRING_INDEX(o.form_namespace_and_path, '/', -2),
+        '/',
+        1
+      ) multiSelect,
+      coded_fscn.name AS 'value'
     FROM
       obs o
       INNER JOIN concept_name cn ON cn.concept_id = o.concept_id
@@ -96,11 +107,9 @@ FROM
       LEFT OUTER JOIN concept_name coded_fscn ON coded_fscn.concept_id = o.value_coded
       AND coded_fscn.concept_name_type = 'FULLY_SPECIFIED'
       AND coded_fscn.voided IS FALSE
-    GROUP BY
-      o.encounter_id,
-      o.person_id
   ) complicationsGrade ON complicationsGrade.encounter_id = patient_encounters.encounter_id
   AND complicationsGrade.form = complications.form
+  AND complicationsGrade.multiSelect = complications.multiSelect
   LEFT JOIN (
     SELECT
       o.encounter_id,
@@ -201,12 +210,10 @@ FROM
         '.',
         1
       ) AS form,
-      GROUP_CONCAT(
-        concat_ws(
-          ':<br>',
-          cn_scn.name,
-          coded_fscn.name
-        ) SEPARATOR '<br>'
+      concat_ws(
+        ':<br>',
+        cn_scn.name,
+        GROUP_CONCAT(coded_fscn.name SEPARATOR ', ')
       ) AS 'value'
     FROM
       obs o
@@ -236,12 +243,10 @@ FROM
         '.',
         1
       ) AS form,
-      GROUP_CONCAT(
-        concat_ws(
-          ':<br>',
-          cn_scn.name,
-          coded_fscn.name
-        ) SEPARATOR '<br>'
+      concat_ws(
+        ':<br>',
+        cn_scn.name,
+        GROUP_CONCAT(coded_fscn.name SEPARATOR ', ')
       ) AS 'value'
     FROM
       obs o
@@ -271,12 +276,10 @@ FROM
         '.',
         1
       ) AS form,
-      GROUP_CONCAT(
-        concat_ws(
-          ':<br>',
-          cn_scn.name,
-          coded_fscn.name
-        ) SEPARATOR '<br>'
+      concat_ws(
+        ':<br>',
+        cn_scn.name,
+        GROUP_CONCAT(coded_fscn.name SEPARATOR ', ')
       ) AS 'value'
     FROM
       obs o
@@ -306,12 +309,10 @@ FROM
         '.',
         1
       ) AS form,
-      GROUP_CONCAT(
-        concat_ws(
-          ':<br>',
-          cn_scn.name,
-          coded_fscn.name
-        ) SEPARATOR '<br>'
+      concat_ws(
+        ':<br>',
+        cn_scn.name,
+        GROUP_CONCAT(coded_fscn.name SEPARATOR ', ')
       ) AS 'value'
     FROM
       obs o
@@ -341,12 +342,10 @@ FROM
         '.',
         1
       ) AS form,
-      GROUP_CONCAT(
-        concat_ws(
-          ':<br>',
-          cn_scn.name,
-          coded_fscn.name
-        ) SEPARATOR '<br>'
+      concat_ws(
+        ':<br>',
+        cn_scn.name,
+        GROUP_CONCAT(coded_fscn.name SEPARATOR ', ')
       ) AS 'value'
     FROM
       obs o
@@ -376,12 +375,10 @@ FROM
         '.',
         1
       ) AS form,
-      GROUP_CONCAT(
-        concat_ws(
-          ':<br>',
-          cn_scn.name,
-          coded_fscn.name
-        ) SEPARATOR '<br>'
+      concat_ws(
+        ':<br>',
+        cn_scn.name,
+        GROUP_CONCAT(coded_fscn.name SEPARATOR ', ')
       ) AS 'value'
     FROM
       obs o
@@ -411,12 +408,10 @@ FROM
         '.',
         1
       ) AS form,
-      GROUP_CONCAT(
-        concat_ws(
-          ':<br>',
-          cn_scn.name,
-          coded_fscn.name
-        ) SEPARATOR '<br>'
+      concat_ws(
+        ':<br>',
+        cn_scn.name,
+        GROUP_CONCAT(coded_fscn.name SEPARATOR ', ')
       ) AS 'value'
     FROM
       obs o
@@ -446,12 +441,10 @@ FROM
         '.',
         1
       ) AS form,
-      GROUP_CONCAT(
-        concat_ws(
-          ':<br>',
-          cn_scn.name,
-          o.value_text
-        ) SEPARATOR '<br>'
+      concat_ws(
+        ':<br>',
+        cn_scn.name,
+        GROUP_CONCAT(o.value_text SEPARATOR ', ')
       ) AS 'value'
     FROM
       obs o
@@ -463,6 +456,9 @@ FROM
       LEFT OUTER JOIN concept_name cn_scn ON cn_scn.concept_id = o.concept_id
       AND cn_scn.concept_name_type = 'SHORT'
       AND cn_scn.voided IS FALSE
+    GROUP BY
+      o.encounter_id,
+      o.person_id
   ) description_one_non_coded ON description_one_non_coded.encounter_id = patient_encounters.encounter_id
   AND description_one_non_coded.form = complications.form
   AND complications.value = '49.Other'
@@ -498,5 +494,10 @@ FROM
       o.person_id
   ) description_two ON description_two.encounter_id = patient_encounters.encounter_id
   AND description_two.form = complications.form
-  AND complications.value = '3.Surgical Site Infection'"
+  AND complications.value = '3.Surgical Site Infection'
+GROUP BY
+  complications.encounter_id,
+  complications.person_id,
+  complications.form,
+  complications.value"
 , 'Complications', @uuid);
