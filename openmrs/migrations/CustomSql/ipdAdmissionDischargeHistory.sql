@@ -5,7 +5,7 @@ INSERT INTO global_property (property, property_value, description, uuid)
  VALUES ('bahmni.sqlGet.ipdAdmissionDischargeHistory',
 "SELECT
   `Bed Number`,
-  ACTION,
+  Action,
   DATE_FORMAT(bpamStartDate, '%d %b %Y %h:%i %p') AS `Admission Date`,
   DATE_FORMAT(dischargeDate, '%d %b %Y %h:%i %p') AS `Discharge Date`,
   `Bed Tags`
