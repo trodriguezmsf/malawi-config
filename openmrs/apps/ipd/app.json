@@ -235,6 +235,64 @@
                         "template": "<surgical-appointments section='section' patient='patient'></surgical-appointments>"
                     }
                 },
+                "IPD Assessment": {
+                    "translationKey": "IPD_ASSESSMENT_KEY",
+                    "isObservation": true,
+                    "displayOrder": 8,
+                    "dashboardConfig": {
+                        "showDetailsButton": true,
+                        "numberOfEncounters": 6,
+                        "isEditable": true,
+                        "conceptNames": [
+                            "IPDA, Date/Time recorded",
+                            "IPDA, Main Complain",
+                            "IPDA, Neurological examination",
+                            "IPDA, Cardiac examination",
+                            "IPDA, Respiratory system",
+                            "IPDA, Abdominal examination",
+                            "IPDA, Urogenital examination",
+                            "IPDA, Extremities examination",
+                            "IPDA, Skin examination",
+                            "IPDA, VAS Score",
+                            "IPDA, Wound site",
+                            "IPDA, Surgical wound status",
+                            "IPDA, Treatment Plan",
+                            "IPDA, Patient condition",
+                            "IPDA, Discharge Date",
+                            "IPDA, Exit status",
+                            "IPDA, Next appointment to be scheduled",
+                            "IPDA, Comment on process of discharge"
+                        ],
+                        "pivotTable": {}
+                    },
+                    "expandedViewConfig": {
+                        "numberOfEncounters": 6,
+                        "conceptNames": [
+                            "IPDA, Date/Time recorded",
+                            "IPDA, Main Complain",
+                            "IPDA, Neurological examination",
+                            "IPDA, Cardiac examination",
+                            "IPDA, Respiratory system",
+                            "IPDA, Abdominal examination",
+                            "IPDA, Urogenital examination",
+                            "IPDA, Extremities examination",
+                            "IPDA, Skin examination",
+                            "IPDA, VAS Score",
+                            "IPDA, Wound site",
+                            "IPDA, Surgical wound status",
+                            "IPDA, Treatment Plan",
+                            "IPDA, Patient condition",
+                            "IPDA, Discharge Date",
+                            "IPDA, Exit status",
+                            "IPDA, Next appointment to be scheduled",
+                            "IPDA, Comment on process of discharge"
+                            "IPDA, Comment on process of discharge"
+                        ],
+                        "isEditable": true,
+                        "showDetailsButton": true,
+                        "pivotTable": {}
+                    }
+                },
                 "Operative Report": {
                     "translationKey": "DASHBOARD_OPERATIVE_REPORT",
                     "type": "vitals",
