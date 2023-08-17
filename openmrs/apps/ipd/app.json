@@ -286,7 +286,6 @@
                             "IPDA, Exit status",
                             "IPDA, Next appointment to be scheduled",
                             "IPDA, Comment on process of discharge"
-                            "IPDA, Comment on process of discharge"
                         ],
                         "isEditable": true,
                         "showDetailsButton": true,
