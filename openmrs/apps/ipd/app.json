@@ -98,14 +98,6 @@
                         }
                     ]
                 },
-                "complications": {
-                    "type": "custom",
-                    "displayOrder": 4,
-                    "config": {
-                        "title": "DASHBOARD_IPD_ADMISSION_DISCHARGE_HISTORY_KEY",
-                        "template": "<ipd-admission-discharge-history section='section' patient='patient' visitUuid='visitUuid'></ipd-admission-discharge-history>"
-                    }
-                },
                 "Post Operative Anaesthesia note": {
                     "translationKey": "POST_OPERATIVE_ANAESTHESIA_NOTE_KEY",
                     "isObservation": true,
@@ -143,88 +135,6 @@
                         "isEditable": true,
                         "showDetailsButton": true,
                         "pivotTable": {}
-                    }
-                },
-                "Complications": {
-                    "translationKey": "DASHBOARD_COMPLICATIONS",
-                    "type": "vitals",
-                    "isObservation": true,
-                    "displayOrder": 8,
-                    "dashboardConfig": {
-                        "showDetailsButton": true,
-                        "isEditable": true,
-                        "conceptNames": [
-                            "CM, Patient complication",
-                            "CM, Patient complication, other",
-                            "CM, Start date of complication",
-                            "CM, Anemia due to acute blood loss, description",
-                            "CM, Anaesthetic complication in OT, description",
-                            "CM, Anaesthetic complication in OT, other",
-                            "CM, Antibiotic adverse reaction, description",
-                            "CM, Antibiotic adverse reaction, other",
-                            "CM, Cardiac arrhythmia, description",
-                            "CM, Cardiac arrhythmia, other",
-                            "CM, Flap necrosis, description",
-                            "CM, Stress ulcer, description",
-                            "CM, Any intervention(s) or surgeries prior to initial MSF surgery?",
-                            "CM, Intervention(s) or surgeries prior to initial MSF surgery, describe",
-                            "CM, Delay between surgery and initial signs",
-                            "CM, Preparation",
-                            "CM, Did SSI develop while under MSF medical care?",
-                            "CM, During hospitalization or after discharge?",
-                            "CM, Level of infection",
-                            "CM, Treatment",
-                            "CM, SSI, Surgical treatment",
-                            "CM, Surgical treatment, describe",
-                            "CM, Antibiotic",
-                            "CM, Specimen sent to lab?",
-                            "CM, Specimen, other",
-                            "CM, Description of complication",
-                            "CM, Grade of complication",
-                            "CM, Outcome of complication",
-                            "CM, End date of complication",
-                            "CM, Additional comments, complications"
-                        ],
-                        "numberOfVisits": 2
-                    },
-                    "expandedViewConfig": {
-                        "conceptNames": [
-                            "CM, Patient complication",
-                            "CM, Patient complication, other",
-                            "CM, Start date of complication",
-                            "CM, Anemia due to acute blood loss, description",
-                            "CM, Anaesthetic complication in OT, description",
-                            "CM, Anaesthetic complication in OT, other",
-                            "CM, Antibiotic adverse reaction, description",
-                            "CM, Antibiotic adverse reaction, other",
-                            "CM, Cardiac arrhythmia, description",
-                            "CM, Cardiac arrhythmia, other",
-                            "CM, Flap necrosis, description",
-                            "CM, Stress ulcer, description",
-                            "CM, Any intervention(s) or surgeries prior to initial MSF surgery?",
-                            "CM, Intervention(s) or surgeries prior to initial MSF surgery, describe",
-                            "CM, Delay between surgery and initial signs",
-                            "CM, Preparation",
-                            "CM, Did SSI develop while under MSF medical care?",
-                            "CM, During hospitalization or after discharge?",
-                            "CM, Level of infection",
-                            "CM, Treatment",
-                            "CM, SSI, Surgical treatment",
-                            "CM, Surgical treatment, describe",
-                            "CM, Antibiotic",
-                            "CM, Specimen sent to lab?",
-                            "CM, Specimen, other",
-                            "CM, Description of complication",
-                            "CM, Grade of complication",
-                            "CM, Outcome of complication",
-                            "CM, End date of complication",
-                            "CM, Additional comments, complications"
-                        ],
-                        "isEditable": true,
-                        "showDetailsButton": true,
-                        "numberOfVisits": 2,
-                        "pivotTable": {
-                        }
                     }
                 },
                 "surgicalAppointments": {
@@ -394,6 +304,15 @@
                         "numberOfVisits": 2,
                         "pivotTable": {
                         }
+                    }
+                },
+                "complications": {
+                    "type": "custom",
+                    "displayType": "Full-Page",
+                    "displayOrder": 9,
+                    "config": {
+                        "title": "DASHBOARD_TITLE_COMPLICATIONS_KEY",
+                        "template": "<complications section='section' patient='patient' visitUuid='visitUuid'></complications>"
                     }
                 }
             }
