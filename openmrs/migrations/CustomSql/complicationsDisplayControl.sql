@@ -14,7 +14,7 @@ INSERT INTO global_property (property, property_value, description, uuid)
   END AS Form,
   CASE
     WHEN complications.value = 'Other' THEN complicationsOther.value
-    ELSE complications.value
+    ELSE SUBSTRING_INDEX(complications.value, '.', -1)
   END AS `Patient Complications`,
   GROUP_CONCAT(complicationsGrade.value SEPARATOR ', ') AS `Complication grade`,
   concat_ws(
@@ -41,7 +41,7 @@ FROM
       INNER JOIN encounter e ON p.person_id = e.patient_id
       AND e.voided IS FALSE
       AND p.voided IS FALSE
-      AND p.uuid = 'a4d0acc9-d409-4028-9c52-4783479d5e0e'
+      AND p.uuid = ${patientUuid}
       INNER JOIN visit v ON e.visit_id = v.visit_id
       AND v.voided IS FALSE
       AND v.visit_type_id = 5
@@ -495,6 +495,12 @@ FROM
   ) description_two ON description_two.encounter_id = patient_encounters.encounter_id
   AND description_two.form = complications.form
   AND complications.value = '3.Surgical Site Infection'
+WHERE
+  (
+    complications.value = 'Other'
+    AND complicationsOther.value IS NOT NULL
+  )
+  OR complications.value <> 'Other'
 GROUP BY
   complications.encounter_id,
   complications.person_id,
