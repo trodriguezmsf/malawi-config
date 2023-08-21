@@ -98,6 +98,14 @@
                         }
                     ]
                 },
+                "ipdAdmissionDischargeHistory": {
+                    "type": "custom",
+                    "displayOrder": 4,
+                    "config": {
+                        "title": "DASHBOARD_IPD_ADMISSION_DISCHARGE_HISTORY_KEY",
+                        "template": "<ipd-admission-discharge-history section='section' patient='patient' visitUuid='visitUuid'></ipd-admission-discharge-history>"
+                    }
+                },
                 "Post Operative Anaesthesia note": {
                     "translationKey": "POST_OPERATIVE_ANAESTHESIA_NOTE_KEY",
                     "isObservation": true,
