@@ -4,7 +4,7 @@ SELECT uuid() INTO @uuid;
 INSERT INTO global_property (property, property_value, description, uuid)
  VALUES ('bahmni.sqlGet.complications',
 "SELECT
-  DATE_FORMAT(dateRecorded.value, '%d %b %Y') AS `Date recorded`,
+  DATE_FORMAT(dateRecorded.value, '%d %b %Y') AS `Date Recorded`,
   CASE
     WHEN complications.form = '19 Surgical_Hysterectomy' THEN 'Hysterectomy'
     WHEN complications.form = '20 Surgical_Ovarian' THEN 'Ovarian'
@@ -16,7 +16,7 @@ INSERT INTO global_property (property, property_value, description, uuid)
     WHEN complications.value = 'Other' THEN complicationsOther.value
     ELSE SUBSTRING_INDEX(complications.value, '.', -1)
   END AS `Patient Complications`,
-  GROUP_CONCAT(complicationsGrade.value SEPARATOR ', ') AS `Complication grade`,
+  GROUP_CONCAT(complicationsGrade.value SEPARATOR ', ') AS `Complication Grade`,
   concat_ws(
     ':<br>',
     description_one_transfusion.value,
@@ -30,7 +30,7 @@ INSERT INTO global_property (property, property_value, description, uuid)
   ) AS `Description 1`,
   description_two.value AS `Description 2`,
   treatmentPlan.value AS `Treatment Plan`,
-  patientCondition.value AS `Patient condition`
+  patientCondition.value AS `Patient Condition`
 FROM
   (
     SELECT
@@ -45,8 +45,6 @@ FROM
       INNER JOIN visit v ON e.visit_id = v.visit_id
       AND v.voided IS FALSE
       AND v.visit_type_id = 5
-    ORDER BY
-      e.encounter_id DESC
     LIMIT
       6
   ) patient_encounters
@@ -505,5 +503,8 @@ GROUP BY
   complications.encounter_id,
   complications.person_id,
   complications.form,
-  complications.value"
+  complications.value
+ORDER BY
+  dateRecorded.value DESC,
+  patient_encounters.encounter_id DESC"
 , 'Complications', @uuid);
