@@ -8,9 +8,9 @@ INSERT INTO global_property (property, property_value, description, uuid)
   surgeon.value AS Surgeon,
   CASE
     WHEN dateRecorded.form = '19 Surgical_Hysterectomy' THEN 'Surgical - Hysterectomy'
-    WHEN dateRecorded.form = '20 Surgical_Ovarian' THEN 'Surgical - Ovaria'
+    WHEN dateRecorded.form = '20 Surgical_Ovarian' THEN 'Surgical - Ovarian'
     WHEN dateRecorded.form = '21 Surgical_Vulvectomy' THEN 'Surgical - Vulvectomy'
-  END AS `Form name`,
+  END AS `Form Name`,
   surgical_approach.value AS `Surgical Approach`,
   concat_ws(
     ', ',
@@ -18,14 +18,14 @@ INSERT INTO global_property (property, property_value, description, uuid)
     VUProcedurePerformed.value,
     HYProcedurePerformed.value,
     procedurePerformedOther.value
-  ) AS `Procedure performed`,
+  ) AS `Procedure Performed`,
   concat_ws(
     ', ',
     OVIntraOperativeComplication.value,
     VUIntraOperativeComplication.value,
     HYIntraOperativeComplication.value
-  ) AS `Intraoperative complication`,
-  estimatedBloodLoss.value AS `Estimated Loss`
+  ) AS `Intraoperative Complication`,
+  estimatedBloodLoss.value AS `Estimated Loss (ml)`
 FROM
   (
     SELECT
@@ -37,8 +37,6 @@ FROM
       AND e.voided IS FALSE
       AND p.voided IS FALSE
       AND p.uuid = ${patientUuid}
-    ORDER BY
-      e.encounter_id DESC
   ) patient_encounters
   LEFT JOIN (
     SELECT
@@ -296,5 +294,8 @@ FROM
       dateRecorded.filed_name = 'HY, Date of surgery'
       AND estimatedBloodLoss.filed_name = 'HY, Estimated blood loss'
     )
-  )"
+  )
+ORDER BY
+  dateRecorded.value DESC,
+  patient_encounters.encounter_id DESC"
 , 'patient movement history in bed management', @uuid);
