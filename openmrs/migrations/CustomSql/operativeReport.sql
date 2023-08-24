@@ -38,7 +38,7 @@ FROM
       AND p.voided IS FALSE
       AND p.uuid = ${patientUuid}
   ) patient_encounters
-  LEFT JOIN (
+  INNER JOIN (
     SELECT
       o.encounter_id,
       o.person_id,
