@@ -1597,4 +1597,8 @@
         <comment>complication controller</comment>
         <sqlFile path="CustomSql/complicationsDisplayControl.sql"/>
     </changeSet>
+    <changeSet id="MALAWI-202321081922" author="venky">
+        <comment>MOBN-2185 | Operative Report controler</comment>
+        <sqlFile path="CustomSql/operativeReport.sql"/>
+    </changeSet>
 </databaseChangeLog>

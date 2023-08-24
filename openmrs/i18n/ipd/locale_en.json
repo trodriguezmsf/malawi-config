@@ -57,5 +57,6 @@
   "POST_OPERATIVE_ANAESTHESIA_NOTE_KEY": "Post-Operative Anaesthesia Note",
   "DASHBOARD_IPD_ADMISSION_DISCHARGE_HISTORY_KEY":"IPD Admission/Discharge History",
   "IPD_ASSESSMENT_KEY": "IPD Assessment",
+  "DASHBOARD_OPERATIVE_REPORT_KEY": "Operative Report",
   "DASHBOARD_TITLE_COMPLICATIONS_KEY": "Complications"
 }
