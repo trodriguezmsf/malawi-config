@@ -274,4 +274,42 @@ angular.module('bahmni.common.displaycontrol.custom')
         controller: controller,
         template: '<ng-include src="contentUrl"/>'
     }
-}]);
+}]).directive('operativeReport', ['$http', '$stateParams', 'appService', 'spinner', function ($http, $stateParams, appService, spinner) {
+    var controller = function ($scope) {
+        $scope.contentUrl = appService.configBaseUrl() + "/customDisplayControl/views/operativeReport.html";
+        $scope.title = $scope.config.title;
+
+        var emitNoDataPresentEvent = function () {
+            return $scope.$emit("no-data-present-event");
+        };
+
+        var getResponseFromQuery = function () {
+            var params = {
+                patientUuid: $scope.patient.uuid,
+                visitUuid: $stateParams.visitUuid,
+                q: "bahmni.sqlGet.operativeReport",
+                v: "full"
+            };
+            return $http.get('/openmrs/ws/rest/v1/bahmnicore/sql', {
+                method: "GET",
+                params: params,
+                withCredentials: true
+            });
+        };
+
+        spinner.forPromise(getResponseFromQuery().then(function (response) {
+            $scope.operativeReport = response.data;
+            if ($scope.operativeReport.length <= 0) {
+                emitNoDataPresentEvent();
+            } else {
+                $scope.headings = _.keys($scope.operativeReport[0]);
+            }
+        }));
+    };
+
+    return {
+        restrict: 'E',
+        controller: controller,
+        template: '<ng-include src="contentUrl"/>'
+    }
+}]);;
