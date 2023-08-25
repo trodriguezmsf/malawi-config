@@ -163,7 +163,7 @@
                     }
                 },
                 "IPD Assessment": {
-                    "translationKey": "IPD_ASSESSMENT_KEY",
+                    "translationKey": "DASHBOARD_IPD_ASSESSMENT_KEY",
                     "isObservation": true,
                     "displayOrder": 8,
                     "dashboardConfig": {
