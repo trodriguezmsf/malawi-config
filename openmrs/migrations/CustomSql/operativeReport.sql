@@ -4,28 +4,44 @@ SELECT uuid() INTO @uuid;
 INSERT INTO global_property (property, property_value, description, uuid)
  VALUES ('bahmni.sqlGet.operativeReport',
 "SELECT
-  DATE_FORMAT(dateRecorded.value, '%d %b %Y') AS `Date of Surgery`,
-  surgeon.value AS Surgeon,
-  CASE
-    WHEN dateRecorded.form = '19 Surgical_Hysterectomy' THEN 'Surgical - Hysterectomy'
-    WHEN dateRecorded.form = '20 Surgical_Ovarian' THEN 'Surgical - Ovarian'
-    WHEN dateRecorded.form = '21 Surgical_Vulvectomy' THEN 'Surgical - Vulvectomy'
-  END AS `Form Name`,
-  surgical_approach.value AS `Surgical Approach`,
+  DATE_FORMAT(date_recorded.value, '%d %b %Y') AS `Date of Surgery`,
   concat_ws(
     ', ',
-    OVProcedurePerformed.value,
-    VUProcedurePerformed.value,
-    HYProcedurePerformed.value,
-    procedurePerformedOther.value
+    hy_surgeon.value,
+    vu_surgeon.value,
+    ov_surgeon.value
+  ) AS Surgeon,
+  CASE
+    WHEN date_recorded.form = '19 Surgical_Hysterectomy' THEN 'Hysterectomy'
+    WHEN date_recorded.form = '20 Surgical_Ovarian' THEN 'Ovarian'
+    WHEN date_recorded.form = '21 Surgical_Vulvectomy' THEN 'Vulvectomy'
+  END AS `Form Name`,
+  concat_ws(
+    ', ',
+    ov_surgical_approach.value,
+    hy_surgical_approach.value
+  ) AS `Surgical Approach`,
+  concat_ws(
+    ', ',
+    ov_procedurePerformed.value,
+    vu_procedurePerformed.value,
+    hy_procedurePerformed.value,
+    hy_procedure_performed_other.value,
+    vu_procedure_performed_other.value,
+    ov_procedure_performed_other.value
   ) AS `Procedure Performed`,
   concat_ws(
     ', ',
-    OVIntraOperativeComplication.value,
-    VUIntraOperativeComplication.value,
-    HYIntraOperativeComplication.value
+    ov_intraOperative_complication.value,
+    vu_intraOperative_complication.value,
+    hy_intraOperative_complication.value
   ) AS `Intraoperative Complication`,
-  estimatedBloodLoss.value AS `Estimated Loss (ml)`
+  concat_ws(
+    ', ',
+    hy_estimated_bloodLoss.value,
+    vu_estimated_bloodLoss.value,
+    ov_estimated_bloodLoss.value
+  ) AS `Estimated Loss (ml)`
 FROM
   (
     SELECT
@@ -60,64 +76,83 @@ FROM
         'OV, Date of surgery',
         'HY, Date of surgery'
       )
-  ) dateRecorded ON dateRecorded.encounter_id = patient_encounters.encounter_id
+  ) date_recorded ON date_recorded.encounter_id = patient_encounters.encounter_id
   LEFT JOIN (
     SELECT
       o.encounter_id,
       o.person_id,
-      o.value_text AS 'value',
-      cn.name AS filed_name
+      o.value_text AS 'value'
     FROM
       obs o
       INNER JOIN concept_name cn ON cn.concept_id = o.concept_id
       AND cn.voided IS FALSE
       AND o.voided IS FALSE
       AND cn.concept_name_type = 'FULLY_SPECIFIED'
-  ) surgeon ON surgeon.encounter_id = patient_encounters.encounter_id
-  AND (
-    (
-      dateRecorded.filed_name = 'OV, Date of surgery'
-      AND surgeon.filed_name = 'OV, Surgeon'
-    )
-    OR (
-      dateRecorded.filed_name = 'VU, Date of surgery'
-      AND surgeon.filed_name = 'VU, Surgeon'
-    )
-    OR (
-      dateRecorded.filed_name = 'HY, Date of surgery'
-      AND surgeon.filed_name = 'HY, Surgeon'
-    )
-  )
+      AND cn.name = 'OV, Surgeon'
+  ) ov_surgeon ON ov_surgeon.encounter_id = patient_encounters.encounter_id
+  AND date_recorded.filed_name = 'OV, Date of surgery'
   LEFT JOIN (
     SELECT
       o.encounter_id,
       o.person_id,
-      coded_fscn.name AS 'value',
-      cn.name AS filed_name
+      o.value_text AS 'value'
     FROM
       obs o
       INNER JOIN concept_name cn ON cn.concept_id = o.concept_id
       AND cn.voided IS FALSE
       AND o.voided IS FALSE
       AND cn.concept_name_type = 'FULLY_SPECIFIED'
+      AND cn.name = 'VU, Surgeon'
+  ) vu_surgeon ON vu_surgeon.encounter_id = patient_encounters.encounter_id
+  AND date_recorded.filed_name = 'VU, Date of surgery'
+  LEFT JOIN (
+    SELECT
+      o.encounter_id,
+      o.person_id,
+      o.value_text AS 'value'
+    FROM
+      obs o
+      INNER JOIN concept_name cn ON cn.concept_id = o.concept_id
+      AND cn.voided IS FALSE
+      AND o.voided IS FALSE
+      AND cn.concept_name_type = 'FULLY_SPECIFIED'
+      AND cn.name = 'HY, Surgeon'
+  ) hy_surgeon ON hy_surgeon.encounter_id = patient_encounters.encounter_id
+  AND date_recorded.filed_name = 'HY, Date of surgery'
+  LEFT JOIN (
+    SELECT
+      o.encounter_id,
+      o.person_id,
+      coded_fscn.name AS 'value'
+    FROM
+      obs o
+      INNER JOIN concept_name cn ON cn.concept_id = o.concept_id
+      AND cn.voided IS FALSE
+      AND o.voided IS FALSE
+      AND cn.concept_name_type = 'FULLY_SPECIFIED'
+      AND cn.name = 'OV, Surgical approach'
       LEFT OUTER JOIN concept_name coded_fscn ON coded_fscn.concept_id = o.value_coded
       AND coded_fscn.concept_name_type = 'FULLY_SPECIFIED'
       AND coded_fscn.voided IS FALSE
-  ) surgical_approach ON surgical_approach.encounter_id = patient_encounters.encounter_id
-  AND (
-    (
-      dateRecorded.filed_name = 'OV, Date of surgery'
-      AND surgical_approach.filed_name = 'OV, Surgical approach'
-    )
-    OR (
-      dateRecorded.filed_name = 'VU, Date of surgery'
-      AND surgical_approach.filed_name = 'VU, Surgical approach'
-    )
-    OR (
-      dateRecorded.filed_name = 'HY, Date of surgery'
-      AND surgical_approach.filed_name = 'HY, Surgical approach'
-    )
-  )
+  ) ov_surgical_approach ON ov_surgical_approach.encounter_id = patient_encounters.encounter_id
+  AND date_recorded.filed_name = 'OV, Date of surgery'
+  LEFT JOIN (
+    SELECT
+      o.encounter_id,
+      o.person_id,
+      coded_fscn.name AS 'value'
+    FROM
+      obs o
+      INNER JOIN concept_name cn ON cn.concept_id = o.concept_id
+      AND cn.voided IS FALSE
+      AND o.voided IS FALSE
+      AND cn.concept_name_type = 'FULLY_SPECIFIED'
+      AND cn.name = 'HY, Surgical approach'
+      LEFT OUTER JOIN concept_name coded_fscn ON coded_fscn.concept_id = o.value_coded
+      AND coded_fscn.concept_name_type = 'FULLY_SPECIFIED'
+      AND coded_fscn.voided IS FALSE
+  ) hy_surgical_approach ON hy_surgical_approach.encounter_id = patient_encounters.encounter_id
+  AND date_recorded.filed_name = 'HY, Date of surgery'
   LEFT JOIN (
     SELECT
       o.encounter_id,
@@ -137,8 +172,8 @@ FROM
     GROUP BY
       o.encounter_id,
       o.person_id
-  ) OVProcedurePerformed ON OVProcedurePerformed.encounter_id = patient_encounters.encounter_id
-  AND dateRecorded.filed_name = 'OV, Date of surgery'
+  ) ov_procedurePerformed ON ov_procedurePerformed.encounter_id = patient_encounters.encounter_id
+  AND date_recorded.filed_name = 'OV, Date of surgery'
   LEFT JOIN (
     SELECT
       o.encounter_id,
@@ -158,8 +193,8 @@ FROM
     GROUP BY
       o.encounter_id,
       o.person_id
-  ) VUProcedurePerformed ON VUProcedurePerformed.encounter_id = patient_encounters.encounter_id
-  AND dateRecorded.filed_name = 'VU, Date of surgery'
+  ) vu_procedurePerformed ON vu_procedurePerformed.encounter_id = patient_encounters.encounter_id
+  AND date_recorded.filed_name = 'VU, Date of surgery'
   LEFT JOIN (
     SELECT
       o.encounter_id,
@@ -179,35 +214,50 @@ FROM
     GROUP BY
       o.encounter_id,
       o.person_id
-  ) HYProcedurePerformed ON HYProcedurePerformed.encounter_id = patient_encounters.encounter_id
-  AND dateRecorded.filed_name = 'HY, Date of surgery'
+  ) hy_procedurePerformed ON hy_procedurePerformed.encounter_id = patient_encounters.encounter_id
+  AND date_recorded.filed_name = 'HY, Date of surgery'
   LEFT JOIN (
     SELECT
       o.encounter_id,
       o.person_id,
-      o.value_text AS 'value',
-      cn.name AS filed_name
+      o.value_text AS 'value'
     FROM
       obs o
       INNER JOIN concept_name cn ON cn.concept_id = o.concept_id
       AND cn.voided IS FALSE
       AND o.voided IS FALSE
       AND cn.concept_name_type = 'FULLY_SPECIFIED'
-  ) procedurePerformedOther ON procedurePerformedOther.encounter_id = patient_encounters.encounter_id
-  AND (
-    (
-      dateRecorded.filed_name = 'OV, Date of surgery'
-      AND procedurePerformedOther.filed_name = 'OV, Procedure performed, other'
-    )
-    OR (
-      dateRecorded.filed_name = 'VU, Date of surgery'
-      AND procedurePerformedOther.filed_name = 'VU, Procedure performed, other'
-    )
-    OR (
-      dateRecorded.filed_name = 'HY, Date of surgery'
-      AND procedurePerformedOther.filed_name = 'HY, Procedure perfomed,other'
-    )
-  )
+      AND cn.name = 'OV, Procedure performed, other'
+  ) ov_procedure_performed_other ON ov_procedure_performed_other.encounter_id = patient_encounters.encounter_id
+  AND date_recorded.filed_name = 'OV, Date of surgery'
+  LEFT JOIN (
+    SELECT
+      o.encounter_id,
+      o.person_id,
+      o.value_text AS 'value'
+    FROM
+      obs o
+      INNER JOIN concept_name cn ON cn.concept_id = o.concept_id
+      AND cn.voided IS FALSE
+      AND o.voided IS FALSE
+      AND cn.concept_name_type = 'FULLY_SPECIFIED'
+      AND cn.name = 'VU, Procedure performed, other'
+  ) vu_procedure_performed_other ON vu_procedure_performed_other.encounter_id = patient_encounters.encounter_id
+  AND date_recorded.filed_name = 'VU, Date of surgery'
+  LEFT JOIN (
+    SELECT
+      o.encounter_id,
+      o.person_id,
+      o.value_text AS 'value'
+    FROM
+      obs o
+      INNER JOIN concept_name cn ON cn.concept_id = o.concept_id
+      AND cn.voided IS FALSE
+      AND o.voided IS FALSE
+      AND cn.concept_name_type = 'FULLY_SPECIFIED'
+      AND cn.name = 'HY, Procedure perfomed,other'
+  ) hy_procedure_performed_other ON hy_procedure_performed_other.encounter_id = patient_encounters.encounter_id
+  AND date_recorded.filed_name = 'HY, Date of surgery'
   LEFT JOIN (
     SELECT
       o.encounter_id,
@@ -226,8 +276,8 @@ FROM
     GROUP BY
       o.encounter_id,
       o.person_id
-  ) HYIntraOperativeComplication ON HYIntraOperativeComplication.encounter_id = patient_encounters.encounter_id
-  AND dateRecorded.filed_name = 'HY, Date of surgery'
+  ) hy_intraOperative_complication ON hy_intraOperative_complication.encounter_id = patient_encounters.encounter_id
+  AND date_recorded.filed_name = 'HY, Date of surgery'
   LEFT JOIN (
     SELECT
       o.encounter_id,
@@ -246,8 +296,8 @@ FROM
     GROUP BY
       o.encounter_id,
       o.person_id
-  ) VUIntraOperativeComplication ON VUIntraOperativeComplication.encounter_id = patient_encounters.encounter_id
-  AND dateRecorded.filed_name = 'VU, Date of surgery'
+  ) vu_intraOperative_complication ON vu_intraOperative_complication.encounter_id = patient_encounters.encounter_id
+  AND date_recorded.filed_name = 'VU, Date of surgery'
   LEFT JOIN (
     SELECT
       o.encounter_id,
@@ -266,36 +316,51 @@ FROM
     GROUP BY
       o.encounter_id,
       o.person_id
-  ) OVIntraOperativeComplication ON OVIntraOperativeComplication.encounter_id = patient_encounters.encounter_id
-  AND dateRecorded.filed_name = 'OV, Date of surgery'
+  ) ov_intraOperative_complication ON ov_intraOperative_complication.encounter_id = patient_encounters.encounter_id
+  AND date_recorded.filed_name = 'OV, Date of surgery'
   LEFT JOIN (
     SELECT
       o.encounter_id,
       o.person_id,
-      o.value_numeric AS 'value',
-      cn.name AS filed_name
+      o.value_numeric AS 'value'
     FROM
       obs o
       INNER JOIN concept_name cn ON cn.concept_id = o.concept_id
       AND cn.voided IS FALSE
       AND o.voided IS FALSE
       AND cn.concept_name_type = 'FULLY_SPECIFIED'
-  ) estimatedBloodLoss ON estimatedBloodLoss.encounter_id = patient_encounters.encounter_id
-  AND (
-    (
-      dateRecorded.filed_name = 'OV, Date of surgery'
-      AND estimatedBloodLoss.filed_name = 'OV, Estimated blood loss'
-    )
-    OR (
-      dateRecorded.filed_name = 'VU, Date of surgery'
-      AND estimatedBloodLoss.filed_name = 'VU, Estimated blood loss'
-    )
-    OR (
-      dateRecorded.filed_name = 'HY, Date of surgery'
-      AND estimatedBloodLoss.filed_name = 'HY, Estimated blood loss'
-    )
-  )
+      AND cn.name = 'OV, Estimated blood loss'
+  ) ov_estimated_bloodLoss ON ov_estimated_bloodLoss.encounter_id = patient_encounters.encounter_id
+  AND date_recorded.filed_name = 'OV, Date of surgery'
+  LEFT JOIN (
+    SELECT
+      o.encounter_id,
+      o.person_id,
+      o.value_numeric AS 'value'
+    FROM
+      obs o
+      INNER JOIN concept_name cn ON cn.concept_id = o.concept_id
+      AND cn.voided IS FALSE
+      AND o.voided IS FALSE
+      AND cn.concept_name_type = 'FULLY_SPECIFIED'
+      AND cn.name = 'VU, Estimated blood loss'
+  ) vu_estimated_bloodLoss ON vu_estimated_bloodLoss.encounter_id = patient_encounters.encounter_id
+  AND date_recorded.filed_name = 'VU, Date of surgery'
+  LEFT JOIN (
+    SELECT
+      o.encounter_id,
+      o.person_id,
+      o.value_numeric AS 'value'
+    FROM
+      obs o
+      INNER JOIN concept_name cn ON cn.concept_id = o.concept_id
+      AND cn.voided IS FALSE
+      AND o.voided IS FALSE
+      AND cn.concept_name_type = 'FULLY_SPECIFIED'
+      AND cn.name = 'HY, Estimated blood loss'
+  ) hy_estimated_bloodLoss ON hy_estimated_bloodLoss.encounter_id = patient_encounters.encounter_id
+  AND date_recorded.filed_name = 'HY, Date of surgery'
 ORDER BY
-  dateRecorded.value DESC,
+  date_recorded.value DESC,
   patient_encounters.encounter_id DESC"
 , 'patient movement history in bed management', @uuid);
