@@ -41,7 +41,7 @@ INSERT INTO global_property (property, property_value, description, uuid)
     hy_estimated_bloodLoss.value,
     vu_estimated_bloodLoss.value,
     ov_estimated_bloodLoss.value
-  ) AS `Estimated Loss (ml)`
+  ) AS `Estimated Blood Loss (ml)`
 FROM
   (
     SELECT
