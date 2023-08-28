@@ -46,7 +46,10 @@
                 "Patient Contact Type 1, Phone",
                 "Primary Emergency Contact, Phone 1",
                 "Primary Emergency Contact, Name",
-                "Primary Emergency Contact, Relationship"
+                "Primary Emergency Contact, Relationship",
+                "givenNameLocal",
+                "familyNameLocal",
+                "middleNameLocal"
             ],
             "patientInformation": {
                 "Additional Information": {
