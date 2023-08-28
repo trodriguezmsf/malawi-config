@@ -1601,4 +1601,24 @@
         <comment>MOBN-2185 | Operative Report controler</comment>
         <sqlFile path="CustomSql/operativeReport.sql"/>
     </changeSet>
+
+    <changeSet id="Malawi-2020020216120" author="Shyam, Sri Laxmi">
+    <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from concept_name where name in ("test1 for bahmni lite") and concept_name_type =
+                'FULLY_SPECIFIED' and locale = 'en' and voided = 0;
+            </sqlCheck>
+        </preConditions>
+        <comment> Adding program concepts </comment>
+        <sql>
+            set @concept_id = 0;
+            set @concept_short_id = 0;
+            set @concept_full_id = 0;
+            set @count = 0;
+            set @uuid = NULL;
+
+            call add_concept(@concept_id,@concept_short_id,@concept_full_id,"test1 for bahmni lite","test1 for bahmni lite","N/A","Misc",false);
+            
+        </sql>
+    </changeSet>
 </databaseChangeLog>
