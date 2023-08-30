@@ -97,7 +97,7 @@
         },
         "allowConsultationWhenNoOpenVisit": false,
         "defaultVisitType": "OPD",
-        "visitTypeForRetrospectiveEntries": "OPD",
+        "visitTypeForRetrospectiveEntries": "IPD",
         "maxConceptSetLevels": 3,
         "allowOnlyCodedDiagnosis": false,
         "conceptSetUI": {
