@@ -88,48 +88,48 @@
         <sql>
             DROP PROCEDURE IF EXISTS add_concept_answer;
         </sql>
-        <sqlFile path="utils/add_concept_answer.sql" endDelimiter="#"/>
+        <sqlFile path="utils/add_concept_answer.sql" endDelimiter="#" relativeToChangelogFile="true"/>
     </changeSet>
     <changeSet id="MALAWI-20200201215" author="Santhosh" runAlways="true">
         <comment>Stored Procedure to add reference term</comment>
         <sql>
             DROP PROCEDURE IF EXISTS add_concept_description;
         </sql>
-        <sqlFile path="utils/add_concept_description.sql" endDelimiter="#"/>
+        <sqlFile path="utils/add_concept_description.sql" endDelimiter="#" relativeToChangelogFile="true"/>
     </changeSet>
     <changeSet id="MALAWI-20200201216" author="Santhosh" runAlways="true">
         <comment>Stored Procedure to add reference term</comment>
         <sql>
             DROP PROCEDURE IF EXISTS add_concept_numeric;
         </sql>
-        <sqlFile path="utils/add_concept_numeric.sql" endDelimiter="#"/>
+        <sqlFile path="utils/add_concept_numeric.sql" endDelimiter="#" relativeToChangelogFile="true"/>
     </changeSet>
     <changeSet id="MALAWI-20200201217" author="Santhosh" runAlways="true">
         <comment>Stored Procedure to add reference term</comment>
         <sql>
             DROP PROCEDURE IF EXISTS add_concept_reference_map;
         </sql>
-        <sqlFile path="utils/add_concept_reference_map.sql" endDelimiter="#"/>
+        <sqlFile path="utils/add_concept_reference_map.sql" endDelimiter="#" relativeToChangelogFile="true"/>
     </changeSet>
     <changeSet id="MALAWI-20200201218" author="Santhosh" runAlways="true">
         <comment>Stored Procedure to add reference term</comment>
         <sql>
             DROP PROCEDURE IF EXISTS add_concept_set_members;
         </sql>
-        <sqlFile path="utils/add_concept_set_members.sql" endDelimiter="#"/>
+        <sqlFile path="utils/add_concept_set_members.sql" endDelimiter="#" relativeToChangelogFile="true"/>
     </changeSet>
     <changeSet id="MALAWI-20200201219" author="Santhosh" runAlways="true">
         <comment>Stored Procedure to add reference term</comment>
         <sql>
             DROP PROCEDURE IF EXISTS add_concept;
         </sql>
-        <sqlFile path="utils/add_concept.sql" endDelimiter="#"/>
+        <sqlFile path="utils/add_concept.sql" endDelimiter="#" relativeToChangelogFile="true"/>
     </changeSet>
     <changeSet id="MALAWI-20200201220" author="Santhosh" runAlways="true">
         <sql>
             DROP PROCEDURE IF EXISTS CREATE_REFERENCE_MAPPING_CEIL;
         </sql>
-        <sqlFile path="utils/createProcedureForCEIL.sql" endDelimiter="#"/>
+        <sqlFile path="utils/createProcedureForCEIL.sql" endDelimiter="#" relativeToChangelogFile="true"/>
     </changeSet>
 
     <changeSet id="Malawi-201704071423" author="Suraj" runAlways="true">
@@ -162,7 +162,7 @@
             DROP PROCEDURE IF EXISTS CREATE_REFERENCE_MAPPING_ICDO;
         </sql>
         <comment>Adding the Procedure for ICDO</comment>
-        <sqlFile path="utils/createProcedureForICDO.sql" endDelimiter="#"/>
+        <sqlFile path="utils/createProcedureForICDO.sql" endDelimiter="#" relativeToChangelogFile="true"/>
     </changeSet>
 
     <changeSet id="MALAWI_CONFIG_050320201212" author="Sreekalyan" runAlways="true">
@@ -477,7 +477,7 @@
             </sqlCheck>
         </preConditions>
         <comment></comment>
-        <sqlFile path="ProgramQueues/activeProgramsQueue.sql"/>
+        <sqlFile path="ProgramQueues/activeProgramsQueue.sql" relativeToChangelogFile="true"/>
     </changeSet>
 
     <changeSet id="MALAWI-170320201547" author="Suraj">
@@ -503,21 +503,21 @@
     <include file="Post-OperativeAnaesthesia_Note/Post-OperativeAnaesthesiaNote.xml"/>
     <include file="Complications/Complications.xml"/>
     -->
-    <include file="OT/OT_Users.xml"/>
+    <include file="OT/OT_Users.xml" relativeToChangelogFile="true"/>
 
     <changeSet id="Malawi-110320201250" author="Suraj">
         <comment>Adding patient listing queues for patients whose are in to be scheduled queue</comment>
         <sql>
             DELETE FROM global_property WHERE property='emrapi.sqlSearch.otToBeScheduledQueue';
         </sql>
-        <sqlFile path="OT/patientListingQueueToBeScheduled.sql"/>
+        <sqlFile path="OT/patientListingQueueToBeScheduled.sql" relativeToChangelogFile="true"/>
     </changeSet>
     <changeSet id="Malawi-110320201251" author="Suraj">
         <comment>Adding patient listing queues for patients whose are in scheduled queue</comment>
         <sql>
             DELETE FROM global_property WHERE property='emrapi.sqlSearch.otScheduledQueue';
         </sql>
-        <sqlFile path="OT/patientListingQueueScheduled.sql"/>
+        <sqlFile path="OT/patientListingQueueScheduled.sql" relativeToChangelogFile="true"/>
     </changeSet>
     <changeSet id="Malawi-180320191212" author="Pritam">
         <preConditions onFail="MARK_RAN">
@@ -628,14 +628,14 @@
 
     <changeSet id="MALAWI_CONFIG-080420202140" author="Suraj">
         <comment>Stored Procedure to add reference term</comment>
-        <sqlFile path="utils/createReferenceMappingORGOPENMRSMODULEEMRAPI.sql" endDelimiter="#"/>
+        <sqlFile path="utils/createReferenceMappingORGOPENMRSMODULEEMRAPI.sql" endDelimiter="#" relativeToChangelogFile="true"/>
     </changeSet>
 
-    <include file="BedManagement/BedManagement.xml"/>
+    <include file="BedManagement/BedManagement.xml" relativeToChangelogFile="true"/>
 
     <changeSet id="malawi-202004231453" author="Vinisha, Bindu">
         <comment>Adding global property for surgical appointments display control</comment>
-        <sqlFile path="OT/surgicalAppointments.sql"/>
+        <sqlFile path="OT/surgicalAppointments.sql" relativeToChangelogFile="true"/>
     </changeSet>
     <changeSet id="malawi-202103222255" author="Tarun, Bindu">
         <preConditions onFail="MARK_RAN">
@@ -678,7 +678,7 @@
         <sql>
             DROP PROCEDURE IF EXISTS CREATE_REFERENCE_MAPPING_MSFOCP;
         </sql>
-        <sqlFile path="utils/createProcedureForMSFOCP.sql" endDelimiter="#"/>
+        <sqlFile path="utils/createProcedureForMSFOCP.sql" endDelimiter="#" relativeToChangelogFile="true"/>
     </changeSet>
 
     <changeSet id="Malawi-202110251822" author="Venky, Supriya">
@@ -758,15 +758,15 @@
         </sql>
     </changeSet>
 
-    <include file="PatientHistory/PatientHistory.xml"/>
-    <include file="Leep/Leep.xml"/>
-    <include file="VitalSigns/VitalSigns.xml"/>
-    <include file="Colposcopy/Colposcopy.xml"/>
-    <include file="Laboratory/Laboratory.xml"/>
-    <include file="SymptomsAssessment/SymptomsAssessment.xml"/>
-    <include file="UltraSound/UltraSound.xml"/>
-    <include file="InitialConsultation/InitialConsultation.xml"/>
-    <include file="SubsequentConsultation/SubsequentConsultation.xml"/>
+    <include file="PatientHistory/PatientHistory.xml" relativeToChangelogFile="true"/>
+    <include file="Leep/Leep.xml" relativeToChangelogFile="true"/>
+    <include file="VitalSigns/VitalSigns.xml" relativeToChangelogFile="true"/>
+    <include file="Colposcopy/Colposcopy.xml" relativeToChangelogFile="true"/>
+    <include file="Laboratory/Laboratory.xml" relativeToChangelogFile="true"/>
+    <include file="SymptomsAssessment/SymptomsAssessment.xml" relativeToChangelogFile="true"/>
+    <include file="UltraSound/UltraSound.xml" relativeToChangelogFile="true"/>
+    <include file="InitialConsultation/InitialConsultation.xml" relativeToChangelogFile="true"/>
+    <include file="SubsequentConsultation/SubsequentConsultation.xml" relativeToChangelogFile="true"/>
     <changeSet id="Malawi-20211130122009" author="Supriya, Bindu">
         <preConditions onFail="CONTINUE">
             <sqlCheck expectedResult="1">
@@ -787,14 +787,14 @@
             </sqlCheck>
         </preConditions>
         <comment>Removed bed management related information in program queues</comment>
-        <sqlFile path="ProgramQueues/activeProgramsQueue_v1.sql"/>
+        <sqlFile path="ProgramQueues/activeProgramsQueue_v1.sql" relativeToChangelogFile="true"/>
     </changeSet>
-    <include file="PreTreatmentMDT/PreTreatmentMDT.xml"/>
-    <include file="Appointment-Scheduling/addProviders.xml"/>
-    <include file="Appointment-Scheduling/addServices.xml"/>
-    <include file="PainAssessment/PainAssessment.xml"/>
-    <include file="PalliativeCareAssessment/PalliativeCareAssessment.xml"/>
-    <include file="PostTreatmentMDT/PostTreatmentMDT.xml"/>
+    <include file="PreTreatmentMDT/PreTreatmentMDT.xml" relativeToChangelogFile="true"/>
+    <include file="Appointment-Scheduling/addProviders.xml" relativeToChangelogFile="true"/>
+    <include file="Appointment-Scheduling/addServices.xml" relativeToChangelogFile="true"/>
+    <include file="PainAssessment/PainAssessment.xml" relativeToChangelogFile="true"/>
+    <include file="PalliativeCareAssessment/PalliativeCareAssessment.xml" relativeToChangelogFile="true"/>
+    <include file="PostTreatmentMDT/PostTreatmentMDT.xml" relativeToChangelogFile="true"/>
     <changeSet id="Malawi-202202281135" author="Supriya">
         <preConditions>
             <sqlCheck expectedResult="0">
@@ -1472,9 +1472,9 @@
             call CREATE_REFERENCE_MAPPING_MSFOCP("METHYLDOPA 250mg Tablet", "DORAMETY2T-");
         </sql>
     </changeSet>
-    <include file="InitialConsultation/InitialConsultation_2.xml"/>
-    <include file="SubsequentConsultation/SubsequentConsultation_2.xml"/>
-    <include file="PatientHistory/PatientHistory_4.xml"/>
+    <include file="InitialConsultation/InitialConsultation_2.xml" relativeToChangelogFile="true"/>
+    <include file="SubsequentConsultation/SubsequentConsultation_2.xml" relativeToChangelogFile="true"/>
+    <include file="PatientHistory/PatientHistory_4.xml" relativeToChangelogFile="true"/>
     <changeSet id="MALAWI-202206141025" author="Supriya">
         <comment>Add BISOPROLOL fumarate 200 mg drug</comment>
         <sql>
@@ -1483,19 +1483,19 @@
             CALL add_new_drug("BISOPROLOL fumarate 200mg Tablet", "10mg", "Tablet", @locale);
         </sql>
     </changeSet>
-    <include file="MedicalSocialAssessment/medicalSocialAssessment.xml"/>
-    <include file="IntakeForPsychologicalAssess/IntakeForPsychologicalAssess.xml"/>
-    <include file="FollowUpForm/FollowUpForm.xml"/>
-    <include file="DischargeForm/DischargeForm.xml"/>
-    <include file="ChemotherapyClinicalAssessmentTreatment/ChemotherapyClinicalAssessmentTreatment.xml"/>
-    <include file="ChemotherapyBaselineAssessment/ChemotherapyBaselineAssessment.xml"/>
-    <include file="utils/ReorderConceptAnswer.sql"/>
-    <include file="BereavementForm/BereavementForm_2.xml"/>
-    <include file="PreTreatmentMDT/PreTreatmentMDT_2.xml"/>
-    <include file="PalliativeCareAssessment/PalliativeCareAssessment_2.xml"/>
-    <include file="VitalSigns/VitalSigns_2.xml"/>
-    <include file="PostTreatmentMDT/FollowUpMDT.xml"/>
-    <include file="FormsNumberingFeedback/FormsNumberingFeedback.xml"/>
+    <include file="MedicalSocialAssessment/medicalSocialAssessment.xml" relativeToChangelogFile="true"/>
+    <include file="IntakeForPsychologicalAssess/IntakeForPsychologicalAssess.xml" relativeToChangelogFile="true"/>
+    <include file="FollowUpForm/FollowUpForm.xml" relativeToChangelogFile="true"/>
+    <include file="DischargeForm/DischargeForm.xml" relativeToChangelogFile="true"/>
+    <include file="ChemotherapyClinicalAssessmentTreatment/ChemotherapyClinicalAssessmentTreatment.xml" relativeToChangelogFile="true"/>
+    <include file="ChemotherapyBaselineAssessment/ChemotherapyBaselineAssessment.xml" relativeToChangelogFile="true"/>
+    <include file="utils/ReorderConceptAnswer.sql" relativeToChangelogFile="true"/>
+    <include file="BereavementForm/BereavementForm_2.xml" relativeToChangelogFile="true"/>
+    <include file="PreTreatmentMDT/PreTreatmentMDT_2.xml" relativeToChangelogFile="true"/>
+    <include file="PalliativeCareAssessment/PalliativeCareAssessment_2.xml" relativeToChangelogFile="true"/>
+    <include file="VitalSigns/VitalSigns_2.xml" relativeToChangelogFile="true"/>
+    <include file="PostTreatmentMDT/FollowUpMDT.xml" relativeToChangelogFile="true"/>
+    <include file="FormsNumberingFeedback/FormsNumberingFeedback.xml" relativeToChangelogFile="true"/>
 
     <changeSet id="MALAWI_CONFIG-20221003" author="Kiruthiga,Shobana">
         <preConditions onFail="MARK_RAN">
@@ -1509,13 +1509,13 @@
         </sql>
     </changeSet>
 
-    <include file="PostTreatmentMDT/FollowUpMDT_1.xml"/>
-    <include file="ChemotherapyBaselineAssessment/ChemotherapyBaselineAssessment_1.xml"/>
-    <include file="ChemotherapyClinicalAssessmentTreatment/ChemotherapyClinicalAssessmentTreatment_1.xml"/>
-    <include file="BedManagement/BedManagement_1.xml"/>
+    <include file="PostTreatmentMDT/FollowUpMDT_1.xml" relativeToChangelogFile="true"/>
+    <include file="ChemotherapyBaselineAssessment/ChemotherapyBaselineAssessment_1.xml" relativeToChangelogFile="true"/>
+    <include file="ChemotherapyClinicalAssessmentTreatment/ChemotherapyClinicalAssessmentTreatment_1.xml" relativeToChangelogFile="true"/>
+    <include file="BedManagement/BedManagement_1.xml" relativeToChangelogFile="true"/>
 
-    <include file="ChemotherapyMedications/ChemotherapyMedications_1.xml"/>
-    <include file="Surgical-Ovarian/Surgical-Ovarian.xml"/>
+    <include file="ChemotherapyMedications/ChemotherapyMedications_1.xml" relativeToChangelogFile="true"/>
+    <include file="Surgical-Ovarian/Surgical-Ovarian.xml" relativeToChangelogFile="true"/>
 
     <changeSet id="MALAWI-2023033011246" author="Kiruthiga">
         <preConditions onFail="CONTINUE">
@@ -1524,7 +1524,7 @@
             </sqlCheck>
         </preConditions>
         <comment>Add Date of Oncogynae Program enrollment in program queues</comment>
-        <sqlFile path="ProgramQueues/activeProgramsQueue_v2.sql"/>
+        <sqlFile path="ProgramQueues/activeProgramsQueue_v2.sql" relativeToChangelogFile="true"/>
     </changeSet>
     <changeSet id="MALAWI-202304161124601" author="Kiruthiga">
         <comment>MOBN-841 | Adding a new procedure to reorder concept set</comment>
@@ -1533,20 +1533,20 @@
         </sql>
         <sqlFile splitStatements="false" path="utils/ReorderConceptSet.sql"/>
     </changeSet>
-    <include file="Medications/Medications_1.xml"/>
-    <include file="PatientHistory/PatientHistory_5.xml"/>
-    <include file="ChemotherapyClinicalAssessmentTreatment/ChemotherapyClinicalAssessmentTreatment_2.xml"/>
-    <include file="Surgical-Hysterectomy/Surgical-Hysterectomy.xml"/>
-    <include file="Surgical-Vulvectomy/Surgical-Vulvectomy.xml"/>
+    <include file="Medications/Medications_1.xml" relativeToChangelogFile="true"/>
+    <include file="PatientHistory/PatientHistory_5.xml" relativeToChangelogFile="true"/>
+    <include file="ChemotherapyClinicalAssessmentTreatment/ChemotherapyClinicalAssessmentTreatment_2.xml" relativeToChangelogFile="true"/>
+    <include file="Surgical-Hysterectomy/Surgical-Hysterectomy.xml" relativeToChangelogFile="true"/>
+    <include file="Surgical-Vulvectomy/Surgical-Vulvectomy.xml" relativeToChangelogFile="true"/>
     <changeSet id="MALAWI-2023041911246" author="venky">
         <comment>modified to be scheduled queue OT</comment>
-        <sqlFile path="OT/patientListingQueueToBeScheduled_v2.sql"/>
+        <sqlFile path="OT/patientListingQueueToBeScheduled_v2.sql" relativeToChangelogFile="true"/>
     </changeSet>
     <changeSet id="MALAWI-2023041911256" author="venky">
         <comment>modified scheduled queue in OT</comment>
-        <sqlFile path="OT/patientListingQueueScheduled_v2.sql"/>
+        <sqlFile path="OT/patientListingQueueScheduled_v2.sql" relativeToChangelogFile="true"/>
     </changeSet>
-    <include file="OT-Scheduling/addSurgicalProviders.xml"/>
+    <include file="OT-Scheduling/addSurgicalProviders.xml" relativeToChangelogFile="true"/>
     <changeSet id="MALAWI-2023041911248" author="Venky">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
@@ -1573,33 +1573,33 @@
             VALUES('Expected date of Admission', 'Expected date of Admission', 'java.lang.Stirng' , @last_sort_weight+1, 8, NOW(), UUID());
         </sql>
     </changeSet>
-    <include file="SubsequentConsultation/SubsequentConsultation_3.xml"/>
-    <include file="BloodTransfusion/BloodTransfusion.xml"/>
-    <include file="AnesthesiaPreOpAssessment/AnesthesiaPreOpAssessment.xml"/>
-    <include file="AnesthesiaPostOpAssessment/AnesthesiaPostOpAssessment.xml"/>
-    <include file="IPDAssessment/IPDAssessment.xml"/>
-    <include file="Surgical-Hysterectomy/Surgical-Hysterectomy_2.xml"/>
-    <include file="Surgical-Ovarian/Surgical-Ovarian_2.xml"/>
-    <include file="Surgical-Vulvectomy/Surgical-Vulvectomy_2.xml"/>
+    <include file="SubsequentConsultation/SubsequentConsultation_3.xml" relativeToChangelogFile="true"/>
+    <include file="BloodTransfusion/BloodTransfusion.xml" relativeToChangelogFile="true"/>
+    <include file="AnesthesiaPreOpAssessment/AnesthesiaPreOpAssessment.xml" relativeToChangelogFile="true"/>
+    <include file="AnesthesiaPostOpAssessment/AnesthesiaPostOpAssessment.xml" relativeToChangelogFile="true"/>
+    <include file="IPDAssessment/IPDAssessment.xml" relativeToChangelogFile="true"/>
+    <include file="Surgical-Hysterectomy/Surgical-Hysterectomy_2.xml" relativeToChangelogFile="true"/>
+    <include file="Surgical-Ovarian/Surgical-Ovarian_2.xml" relativeToChangelogFile="true"/>
+    <include file="Surgical-Vulvectomy/Surgical-Vulvectomy_2.xml" relativeToChangelogFile="true"/>
     <changeSet id="MALAWI-2023071211246" author="venky">
         <comment>modified to be scheduled queue OT</comment>
-        <sqlFile path="OT/patientListingQueueToBeScheduled_v3.sql"/>
+        <sqlFile path="OT/patientListingQueueToBeScheduled_v3.sql" relativeToChangelogFile="true"/>
     </changeSet>
     <changeSet id="MALAWI-202307121922" author="Supriya">
         <comment>MOBN-2130 | Feedback on clinical diagnosis scheduled queue</comment>
-        <sqlFile path="OT/patientListingQueueScheduled_v3.sql"/>
+        <sqlFile path="OT/patientListingQueueScheduled_v3.sql" relativeToChangelogFile="true"/>
     </changeSet>
     <changeSet id="MALAWI-202316081922" author="venky">
         <comment>MOBN-2184 | ipdAdmissionDischargeHistory controler</comment>
-        <sqlFile path="CustomSql/ipdAdmissionDischargeHistory.sql"/>
+        <sqlFile path="CustomSql/ipdAdmissionDischargeHistory.sql" relativeToChangelogFile="true"/>
     </changeSet>
     <changeSet id="MALAWI-202308011922" author="Venky">
         <comment>complication controller</comment>
-        <sqlFile path="CustomSql/complicationsDisplayControl.sql"/>
+        <sqlFile path="CustomSql/complicationsDisplayControl.sql" relativeToChangelogFile="true"/>
     </changeSet>
     <changeSet id="MALAWI-202321081922" author="venky">
         <comment>MOBN-2185 | Operative Report controler</comment>
-        <sqlFile path="CustomSql/operativeReport.sql"/>
+        <sqlFile path="CustomSql/operativeReport.sql" relativeToChangelogFile="true"/>
     </changeSet>
 
     <changeSet id="Malawi-2020020216120" author="Shyam, Sri Laxmi">
