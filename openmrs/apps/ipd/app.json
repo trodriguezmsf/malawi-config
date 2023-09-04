@@ -219,6 +219,29 @@
                         "pivotTable": {}
                     }
                 },
+                "Blood Transfusion": {
+                    "displayType": "Half-Page",
+                    "translationKey": "BLOOD_TRANSFUSION_REPORT_KEY",
+                    "type": "obsToObsFlowSheet",
+                    "dashboardConfig": {
+                        "numberOfVisits": 2,
+                        "groupByConcept": "Date of Transfusion",
+                        "formNames": [
+                            "Blood Transfusion"],
+                        "conceptNames": [
+                            "BT, Location", "BT, Number of units",
+                            "BT, Transfusion Adverse event", "BT, Comment"
+                        ]
+                    },
+                    "expandedViewConfig": {
+                        "formNames": [
+                            "Blood Transfusion"],
+                        "groupByConcept": "Date of Transfusion",
+                        "conceptNames": [
+                            "BT, Location", "BT, Number of units",
+                            "BT, Transfusion Adverse event", "BT, Comment" ]
+                    }
+                },
                 "complications": {
                     "type": "custom",
                     "displayType": "Full-Page",
