@@ -169,7 +169,7 @@
         <sql>
             DROP PROCEDURE IF EXISTS CREATE_REFERENCE_MAPPING_ICHI;
         </sql>
-        <sqlFile  path="utils/createProcedureForICHI.sql" endDelimiter="#"/>
+        <sqlFile  path="openmrs/data/configuration/liquibase/utils/createProcedureForICHI.sql" endDelimiter="#" relativeToChangelogFile="false"/>
     </changeSet>
 
     <changeSet id="Malawi-202002021612" author="Sreekalyan">
@@ -503,7 +503,7 @@
     <include file="Post-OperativeAnaesthesia_Note/Post-OperativeAnaesthesiaNote.xml"/>
     <include file="Complications/Complications.xml"/>
     -->
-    <include file="openmrs/data/configuration/liquibase/OT/OT_Users.xml" relativeToChangelogFile="false"/>
+    <include file="OT/OT_Users.xml" relativeToChangelogFile="true"/>
 
     <changeSet id="Malawi-110320201250" author="Suraj">
         <comment>Adding patient listing queues for patients whose are in to be scheduled queue</comment>
@@ -562,7 +562,7 @@
     </changeSet>
 
    <changeSet id="MALAWI_CONFIG-030420201317" author="Suraj" runAlways="true">
-        <sqlFile  path="utils/bed_allocation.sql" endDelimiter="#"/>
+        <sqlFile  path="openmrs/data/configuration/liquibase/utils/bed_allocation.sql" endDelimiter="#" relativeToChangelogFile="false"/>
     </changeSet>
 
     <changeSet id="Malawi-060420201639" author="Suraj">
@@ -814,16 +814,16 @@
         <sql>
             DROP PROCEDURE IF EXISTS add_new_concept;
         </sql>
-        <sqlFile splitStatements="false" path="utils/AddNewConcept_v1.sql"/>
+        <sqlFile splitStatements="false" path="openmrs/data/configuration/liquibase/utils/AddNewConcept_v1.sql" relativeToChangelogFile="false"/>
     </changeSet>
     <changeSet id="MALAWI-20220211124" author="venky">
         <comment>MOBN-860 | Adding a new procedure to add new drugs</comment>
         <sql>
             DROP PROCEDURE IF EXISTS add_new_drug;
         </sql>
-        <sqlFile splitStatements="false" path="drugs/AddNewDrug.sql"/>
+        <sqlFile splitStatements="false" path="openmrs/data/configuration/liquibase/drugs/AddNewDrug.sql" relativeToChangelogFile="false"/>
     </changeSet>
-    <include file="BereavementForm/BereavementForm.xml"/>
+    <include file="BereavementForm/BereavementForm.xml" relativeToChangelogFile="true"/>
     <changeSet id="MALAWI-20220211125" author="venky">
         <comment>Adding new drugs</comment>
         <sql>
@@ -1104,7 +1104,7 @@
         <sql>
             DROP PROCEDURE IF EXISTS CREATE_REFERENCE_MAPPING_MSFOCP;
         </sql>
-        <sqlFile splitStatements="false" path="utils/createProcedureForMSFOCP_v1.sql"/>
+        <sqlFile splitStatements="false" path="openmrs/data/configuration/liquibase/utils/createProcedureForMSFOCP_v1.sql" relativeToChangelogFile="false"/>
     </changeSet>
     <changeSet id="MALAWI-20220211139" author="Venky">
         <preConditions onFail="MARK_RAN">
@@ -1524,14 +1524,14 @@
             </sqlCheck>
         </preConditions>
         <comment>Add Date of Oncogynae Program enrollment in program queues</comment>
-        <sqlFile path="ProgramQueues/activeProgramsQueue_v2.sql" relativeToChangelogFile="true"/>
+        <sqlFile path="openmrs/data/configuration/liquibase/ProgramQueues/activeProgramsQueue_v2.sql" relativeToChangelogFile="false"/>
     </changeSet>
     <changeSet id="MALAWI-202304161124601" author="Kiruthiga">
         <comment>MOBN-841 | Adding a new procedure to reorder concept set</comment>
         <sql>
             DROP PROCEDURE IF EXISTS reorder_concept_set;
         </sql>
-        <sqlFile splitStatements="false" path="utils/ReorderConceptSet.sql"/>
+        <sqlFile splitStatements="false" path="openmrs/data/configuration/liquibase/utils/ReorderConceptSet.sql" relativeToChangelogFile="false"/>
     </changeSet>
     <include file="Medications/Medications_1.xml" relativeToChangelogFile="true"/>
     <include file="PatientHistory/PatientHistory_5.xml" relativeToChangelogFile="true"/>
