@@ -9,7 +9,7 @@
 
     <changeSet id="malawi_CONFIG_20211101074650832" author="Bindu">
         <comment>Adding Concepts for Ultra Sound Form</comment>
-        <sqlFile path="UltraSound/UltraSound.sql"/>
+        <sqlFile path="openmrs/data/configuration/liquibase/UltraSound/UltraSound.sql"/>
     </changeSet>
 
     <changeSet id="malawi_CONFIG_20211101074652013" author="Bindu">

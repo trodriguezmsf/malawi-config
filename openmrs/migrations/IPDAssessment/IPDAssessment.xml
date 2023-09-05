@@ -9,7 +9,7 @@
 
     <changeSet id="Malawi_CONFIG_20230613100608433" author="Kiruthiga">
         <comment>Adding Concepts for IPDAssessment Form</comment>
-        <sqlFile path="IPDAssessment/IPDAssessment.sql"/>
+        <sqlFile path="openmrs/data/configuration/liquibase/IPDAssessment/IPDAssessment.sql"/>
     </changeSet>
 
     <changeSet id="Malawi_CONFIG_20230613100609808" author="Kiruthiga">

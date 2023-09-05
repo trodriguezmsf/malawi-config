@@ -7,7 +7,7 @@
 
   <changeSet id="MALAWI_CONFIG_20220811185819190" author="Kiruthiga">
     <comment>Adding Concepts for BereavementForm Form</comment>
-    <sqlFile path="BereavementForm/BereavementForm_2.sql"/>
+    <sqlFile path="openmrs/data/configuration/liquibase/BereavementForm/BereavementForm_2.sql"/>
   </changeSet>
 
   <changeSet id="MALAWI_CONFIG_20220811185819191" author="Kiruthiga, Shobana">

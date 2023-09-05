@@ -9,7 +9,7 @@
 
     <changeSet id="MALAWI_CONFIG_20220224131512155" author="Tarun">
         <comment>Adding Concepts for PostTreatmentMDT Form</comment>
-        <sqlFile path="PostTreatmentMDT/PostTreatmentMDT.sql"/>
+        <sqlFile path="openmrs/data/configuration/liquibase/PostTreatmentMDT/PostTreatmentMDT.sql"/>
     </changeSet>
 
     <changeSet id="MALAWI_CONFIG_20220224131512572" author="Tarun">

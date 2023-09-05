@@ -9,7 +9,7 @@
 
     <changeSet id="MALAWI_CONFIG_20211116053040151" author="Bindu, Tarun">
         <comment>Adding Concepts for InitialConsultation Form</comment>
-        <sqlFile path="InitialConsultation/InitialConsultation.sql"/>
+        <sqlFile path="openmrs/data/configuration/liquibase/InitialConsultation/InitialConsultation.sql"/>
     </changeSet>
 
     <changeSet id="MALAWI_CONFIG_20211116053041391" author="Bindu, Tarun">

@@ -9,7 +9,7 @@
 
     <changeSet id="MALAWI_CONFIG_20221027185819298" author="Suraj">
         <comment>Adding Concepts for Bed Management</comment>
-        <sqlFile path="BedManagement/BedManagement_1.sql"/>
+        <sqlFile path="openmrs/data/configuration/liquibase/BedManagement/BedManagement_1.sql"/>
     </changeSet>
 
  <changeSet id="MALAWI_CONFIG_202210271858192991" author="Kiruthiga" >
@@ -79,7 +79,7 @@
 
      <changeSet id="MALAWI_CONFIG_2022102819561148141" author="Kiruthiga, Shobana" runOnChange="true">
         <comment>Bed management patient mapping queue</comment>
-        <sqlFile path="BedManagement/patientsAdmittedtoIPD.sql"/>
+        <sqlFile path="openmrs/data/configuration/liquibase/BedManagement/patientsAdmittedtoIPD.sql"/>
     </changeSet>
 
     <changeSet id="MALAWI_CONFIG_202210281858194809001" author="Kiruthiga">
@@ -201,7 +201,7 @@
 
      <changeSet id="MALAWI_CONFIG_202210282045196870091223" author="Kiruthiga">
         <comment>Adding bed layout to Ward</comment>
-        <sqlFile path="BedManagement/InpatientDepartment_Bed_Layout_1.sql"/>
+        <sqlFile path="openmrs/data/configuration/liquibase/BedManagement/InpatientDepartment_Bed_Layout_1.sql"/>
     </changeSet>
 
     </databaseChangeLog>

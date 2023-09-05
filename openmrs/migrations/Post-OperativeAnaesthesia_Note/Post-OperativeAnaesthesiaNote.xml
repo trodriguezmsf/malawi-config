@@ -9,7 +9,7 @@
 
     <changeSet id="MALAWI_CONFIG_203020201605" author="Suraj">
         <comment>Adding Concepts for Post-operative Anaesthesia Note Form</comment>
-        <sqlFile path="Post-OperativeAnaesthesia_Note/Post-OperativeAnaesthesiaNote.sql"/>
+        <sqlFile path="openmrs/data/configuration/liquibase/Post-OperativeAnaesthesia_Note/Post-OperativeAnaesthesiaNote.sql"/>
     </changeSet>
 
     <changeSet id="MALAWI_CONFIG_203020201606" author="Suraj">

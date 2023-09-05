@@ -7,7 +7,7 @@
 
     <changeSet id="Malawi_CONFIG_20230704052039880" author="venky, sri laxmi">
         <comment>Adding Concepts for Hysterectomy Form</comment>
-        <sqlFile path="Surgical-Hysterectomy/Surgical-Hysterectomy_2.sql"/>
+        <sqlFile path="openmrs/data/configuration/liquibase/Surgical-Hysterectomy/Surgical-Hysterectomy_2.sql"/>
     </changeSet>
 
     <changeSet id="Malawi_CONFIG_20230704052039881" author="Venky, Sri laxmi">

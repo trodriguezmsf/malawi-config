@@ -9,7 +9,7 @@
 
     <changeSet id="MALAWI_CONFIG-030420201312" author="Suraj">
         <comment>Adding Concepts for Bed Management</comment>
-        <sqlFile path="BedManagement/BedManagement.sql"/>
+        <sqlFile path="openmrs/data/configuration/liquibase/BedManagement/BedManagement.sql"/>
     </changeSet>
 
     <changeSet id="MALAWI_CONFIG-030420201313" author="Suraj">
@@ -143,7 +143,7 @@
 
     <changeSet id="MALAWI_CONFIG-030420201318" author="Suraj">
         <comment>Adding bed layout to Ward</comment>
-        <sqlFile path="BedManagement/InpatientDepartment_Bed_Layout.sql"/>
+        <sqlFile path="openmrs/data/configuration/liquibase/BedManagement/InpatientDepartment_Bed_Layout.sql"/>
     </changeSet>
 
        <changeSet id="MALAWI_CONFIG-030420201325" author="Suraj">
@@ -163,9 +163,9 @@
 
     <changeSet id="MALAWI_CONFIG-030420201326" author="Suraj" runOnChange="true">
         <comment>Bed management patient listing queues</comment>
-        <sqlFile path="BedManagement/patientsAdmitted.sql"/>
-        <sqlFile path="BedManagement/patientsAdmittoSurgicalWard.sql"/>
-        <sqlFile path="BedManagement/patientsAdmittoSupportiveCareWard.sql"/>
+        <sqlFile path="openmrs/data/configuration/liquibase/BedManagement/patientsAdmitted.sql"/>
+        <sqlFile path="openmrs/data/configuration/liquibase/BedManagement/patientsAdmittoSurgicalWard.sql"/>
+        <sqlFile path="openmrs/data/configuration/liquibase/BedManagement/patientsAdmittoSupportiveCareWard.sql"/>
     </changeSet>
 
     <changeSet id="MALAWI-202004100906" author="Sreekalyan" runOnChange="true">
@@ -175,7 +175,7 @@
         <sql>
             DELETE FROM global_property WHERE property='emrapi.sqlGet.allWardsListDetails';
         </sql>
-        <sqlFile path="BedManagement/wardListView.sql"/>
+        <sqlFile path="openmrs/data/configuration/liquibase/BedManagement/wardListView.sql"/>
     </changeSet>
 
     <changeSet id="MALAWI_CONFIG_202004091601" author="Sreekalyan">

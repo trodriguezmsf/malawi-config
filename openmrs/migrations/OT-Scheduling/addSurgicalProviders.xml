@@ -12,7 +12,7 @@
         <sql>
             DROP PROCEDURE IF EXISTS create_surgical_provider_for_roles;
         </sql>
-        <sqlFile splitStatements="false" path="utils/CreateSurgicalProviderForRoles.sql"/>
+        <sqlFile splitStatements="false" path="openmrs/data/configuration/liquibase/utils/CreateSurgicalProviderForRoles.sql"/>
     </changeSet>
 
     <changeSet id="MALAWI_CONFIG_20230420035311" author="Bindu">

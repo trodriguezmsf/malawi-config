@@ -7,7 +7,7 @@
 
   <changeSet id="MALAWI_CONFIG_20220819094421311" author="Kiruthiga, Shobana">
         <comment>Adding Concepts for VitalSigns Form</comment>
-        <sqlFile path="PostTreatmentMDT/FollowUpMDT.sql"/>
+        <sqlFile path="openmrs/data/configuration/liquibase/PostTreatmentMDT/FollowUpMDT.sql"/>
   </changeSet>
 
   <changeSet id="MALAWI_CONFIG_20220819185819194" author="Kiruthiga, Shobana">

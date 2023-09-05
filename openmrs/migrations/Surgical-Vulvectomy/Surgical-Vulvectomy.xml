@@ -9,7 +9,7 @@
 
     <changeSet id="Malawi_CONFIG_20230405183108287" author="Kiruthiga">
         <comment>Adding Concepts for Vulvectomy Form</comment>
-        <sqlFile path="Surgical-Vulvectomy/Surgical-Vulvectomy.sql"/>
+        <sqlFile path="openmrs/data/configuration/liquibase/Surgical-Vulvectomy/Surgical-Vulvectomy.sql"/>
     </changeSet>
 
     <changeSet id="Malawi_CONFIG_20230405183109095" author="Kiruthiga">

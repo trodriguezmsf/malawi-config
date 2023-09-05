@@ -9,7 +9,7 @@
 
     <changeSet id="MALAWI_CONFIG_20211018105210845" author="Tarun">
         <comment>Adding Concepts for SymptomsAssessment Form</comment>
-        <sqlFile path="SymptomsAssessment/SymptomsAssessment.sql"/>
+        <sqlFile path="openmrs/data/configuration/liquibase/SymptomsAssessment/SymptomsAssessment.sql"/>
     </changeSet>
 
     <changeSet id="MALAWI_CONFIG_20211018105212012" author="Tarun">

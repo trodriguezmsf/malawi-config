@@ -9,7 +9,7 @@
 
     <changeSet id="MALAWI_CONFIG_20210914112404024" author="Tarun">
         <comment>Adding Concepts for Laboratory Form</comment>
-        <sqlFile path="Laboratory/Laboratory.sql"/>
+        <sqlFile path="openmrs/data/configuration/liquibase/Laboratory/Laboratory.sql"/>
     </changeSet>
 
     <changeSet id="MALAWI_CONFIG_20210914112405026" author="Tarun">
@@ -597,7 +597,7 @@
 
     <changeSet id="MALAWI_CONFIG_20211231112404020" author="Venky">
         <comment>Adding Concepts for Laboratory Form version2</comment>
-        <sqlFile path="Laboratory/Laboratory_2.sql"/>
+        <sqlFile path="openmrs/data/configuration/liquibase/Laboratory/Laboratory_2.sql"/>
     </changeSet>
 
     <changeSet id="MALAWI_CONFIG_20211231112404021" author="Venky">

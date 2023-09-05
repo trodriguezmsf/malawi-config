@@ -9,7 +9,7 @@
 
     <changeSet id="Malawi_CONFIG_20230612094104503" author="Venky">
         <comment>Adding Concepts for AnesthesiaPostOpAssessment Form</comment>
-        <sqlFile path="AnesthesiaPostOpAssessment/AnesthesiaPostOpAssessment.sql"/>
+        <sqlFile path="openmrs/data/configuration/liquibase/AnesthesiaPostOpAssessment/AnesthesiaPostOpAssessment.sql"/>
     </changeSet>
 
     <changeSet id="Malawi_CONFIG_20230612094105527" author="Venky">

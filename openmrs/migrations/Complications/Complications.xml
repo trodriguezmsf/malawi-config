@@ -9,7 +9,7 @@
 
     <changeSet id="MALAWI_CONFIG_202003291105" author="Sreekalyan">
         <comment>Adding Concepts for Complications Form</comment>
-        <sqlFile path="Complications/Complications.sql"/>
+        <sqlFile path="openmrs/data/configuration/liquibase/Complications/Complications.sql"/>
     </changeSet>
     <changeSet id="MALAWI_CONFIG_2020033011228" author="SreeKalyan">
         <preConditions onFail="MARK_RAN">

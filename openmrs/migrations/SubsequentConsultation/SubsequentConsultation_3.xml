@@ -7,7 +7,7 @@
 
     <changeSet id="MALAWI_CONFIG_20231205185819190" author="Kiruthiga">
     <comment>Adding Concepts for SubsequentConsultation Form</comment>
-    <sqlFile path="SubsequentConsultation/SubsequentConsultation_3.sql"/>
+    <sqlFile path="openmrs/data/configuration/liquibase/SubsequentConsultation/SubsequentConsultation_3.sql"/>
   </changeSet>
 
   <changeSet id="MALAWI_CONFIG_202312051858191901" author="Kiruthiga">

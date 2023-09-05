@@ -9,7 +9,7 @@
 
     <changeSet id="Malawi_CONFIG_20230606104558187" author="Venky">
         <comment>Adding Concepts for BloodTransfusion Form</comment>
-        <sqlFile path="BloodTransfusion/BloodTransfusion.sql"/>
+        <sqlFile path="openmrs/data/configuration/liquibase/BloodTransfusion/BloodTransfusion.sql"/>
     </changeSet>
 
     <changeSet id="Malawi_CONFIG_20230606104558819" author="Venky">

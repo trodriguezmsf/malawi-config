@@ -9,7 +9,7 @@
 
     <changeSet id="MALAWI_CONFIG_20220713123623681" author="Tarun, Kiruthiga">
         <comment>Adding Concepts for ChemoBaselineAssessment Form</comment>
-        <sqlFile path="ChemotherapyBaselineAssessment/ChemotherapyBaselineAssessment.sql"/>
+        <sqlFile path="openmrs/data/configuration/liquibase/ChemotherapyBaselineAssessment/ChemotherapyBaselineAssessment.sql"/>
     </changeSet>
 
     <changeSet id="MALAWI_CONFIG_20220713123628194" author="Tarun, Kiruthiga">

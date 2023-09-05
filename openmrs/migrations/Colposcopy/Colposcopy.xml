@@ -9,7 +9,7 @@
 
     <changeSet id="MALAWI_CONFIG_20210913110328320" author="Tarun">
         <comment>Adding Concepts for Colposcopy Form</comment>
-        <sqlFile path="Colposcopy/Colposcopy.sql"/>
+        <sqlFile path="openmrs/data/configuration/liquibase/Colposcopy/Colposcopy.sql"/>
     </changeSet>
 
     <changeSet id="MALAWI_CONFIG_20210913110329543" author="Tarun">
@@ -297,7 +297,7 @@
 
     <changeSet id="MALAWI_CONFIG_20211231110332188" author="Tarun">
         <comment>Adding Concepts for Colposcopy Form version 3</comment>
-        <sqlFile path="Colposcopy/Colposcopy_3.sql"/>
+        <sqlFile path="openmrs/data/configuration/liquibase/Colposcopy/Colposcopy_3.sql"/>
     </changeSet>
 
     <changeSet id="MALAWI_CONFIG_20211231110332189" author="Venky">

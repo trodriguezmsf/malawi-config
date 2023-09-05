@@ -9,7 +9,7 @@
 
     <changeSet id="Malawi_CONFIG_20230403094312369" author="Venky">
         <comment>Adding Concepts for Ovarian Form</comment>
-        <sqlFile path="Surgical-Ovarian/Surgical-Ovarian.sql"/>
+        <sqlFile path="openmrs/data/configuration/liquibase/Surgical-Ovarian/Surgical-Ovarian.sql"/>
     </changeSet>
 
     <changeSet id="Malawi_CONFIG_20230403094313223" author="Venky">

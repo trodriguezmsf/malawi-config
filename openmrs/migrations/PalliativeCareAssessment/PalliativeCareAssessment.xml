@@ -9,7 +9,7 @@
 
     <changeSet id="MALAWI_CONFIG_20220221094421310" author="Tarun">
         <comment>Adding Concepts for PalliativeCareAssessment Form</comment>
-        <sqlFile path="PalliativeCareAssessment/PalliativeCareAssessment.sql"/>
+        <sqlFile path="openmrs/data/configuration/liquibase/PalliativeCareAssessment/PalliativeCareAssessment.sql"/>
     </changeSet>
 
     <changeSet id="MALAWI_CONFIG_20220221094421972" author="Tarun">

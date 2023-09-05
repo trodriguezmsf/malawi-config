@@ -9,7 +9,7 @@
 
     <changeSet id="Malawi_CONFIG_20220221115828580" author="Venky">
         <comment>Adding Concepts for PainAssessment Form</comment>
-        <sqlFile path="PainAssessment/PainAssessment.sql"/>
+        <sqlFile path="openmrs/data/configuration/liquibase/PainAssessment/PainAssessment.sql"/>
     </changeSet>
 
     <changeSet id="Malawi_CONFIG_20220221115829084" author="Venky">

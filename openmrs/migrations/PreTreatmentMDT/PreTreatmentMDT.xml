@@ -9,7 +9,7 @@
 
     <changeSet id="Malawi_CONFIG_20220217015500501" author="Venky">
         <comment>Adding Concepts for PreTreatmentMDT Form</comment>
-        <sqlFile path="PreTreatmentMDT/PreTreatmentMDT.sql"/>
+        <sqlFile path="openmrs/data/configuration/liquibase/PreTreatmentMDT/PreTreatmentMDT.sql"/>
     </changeSet>
 
     <changeSet id="Malawi_CONFIG_20220217015502601" author="Venky">

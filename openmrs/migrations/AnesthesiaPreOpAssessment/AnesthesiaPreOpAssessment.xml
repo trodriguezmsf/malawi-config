@@ -9,7 +9,7 @@
 
     <changeSet id="Malawi_CONFIG_20230606122538017" author="Venky">
         <comment>Adding Concepts for AnesthesiaPreOpAssessment Form</comment>
-        <sqlFile path="AnesthesiaPreOpAssessment/AnesthesiaPreOpAssessment.sql"/>
+        <sqlFile path="openmrs/data/configuration/liquibase/AnesthesiaPreOpAssessment/AnesthesiaPreOpAssessment.sql"/>
     </changeSet>
 
     <changeSet id="Malawi_CONFIG_20230606122539592" author="Venky">

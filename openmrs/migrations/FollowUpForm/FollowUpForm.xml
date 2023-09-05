@@ -9,7 +9,7 @@
 
     <changeSet id="Malawi_CONFIG_20220707115625675" author="Venky">
         <comment>Adding Concepts for FollowUpForm Form</comment>
-        <sqlFile path="FollowUpForm/FollowUpForm.sql"/>
+        <sqlFile path="openmrs/data/configuration/liquibase/FollowUpForm/FollowUpForm.sql"/>
     </changeSet>
 
     <changeSet id="Malawi_CONFIG_20220707115626309" author="Venky">

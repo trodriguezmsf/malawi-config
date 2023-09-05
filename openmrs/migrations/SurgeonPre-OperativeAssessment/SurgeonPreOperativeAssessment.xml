@@ -9,7 +9,7 @@
 
     <changeSet id="MALAWI_CONFIG_202002101145" author="Santhosh">
         <comment>Adding Concepts for OPD Progress Note</comment>
-        <sqlFile path="SurgeonPre-OperativeAssessment/SurgeonPreOperativeAssessment.sql"/>
+        <sqlFile path="openmrs/data/configuration/liquibase/SurgeonPre-OperativeAssessment/SurgeonPreOperativeAssessment.sql"/>
     </changeSet>
 
 

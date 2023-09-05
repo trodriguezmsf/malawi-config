@@ -9,7 +9,7 @@
 
     <changeSet id="MALAWI_CONFIG_202020031133" author="Sreekalyan">
         <comment>Adding Concepts for IAA Form</comment>
-        <sqlFile path="IAA/IAA.sql"/>
+        <sqlFile path="openmrs/data/configuration/liquibase/IAA/IAA.sql"/>
     </changeSet>
 
 

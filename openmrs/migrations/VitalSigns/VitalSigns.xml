@@ -9,7 +9,7 @@
 
     <changeSet id="MALAWI_CONFIG_20210909103539620" author="Tarun">
         <comment>Adding Concepts for VitalSigns Form</comment>
-        <sqlFile path="VitalSigns/VitalSigns.sql"/>
+        <sqlFile path="openmrs/data/configuration/liquibase/VitalSigns/VitalSigns.sql"/>
     </changeSet>
 
     <changeSet id="MALAWI_CONFIG_20210909103540519" author="Tarun">

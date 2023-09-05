@@ -9,7 +9,7 @@
 
     <changeSet id="MALAWI_CONFIG_20210901094831334" author="Tarun">
         <comment>Adding Concepts for Patient History Form</comment>
-        <sqlFile path="PatientHistory/PatientHistory.sql"/>
+        <sqlFile path="openmrs/data/configuration/liquibase/PatientHistory/PatientHistory.sql"/>
     </changeSet>
 
     <changeSet id="MALAWI_CONFIG_20210901094833512" author="Tarun">
@@ -1049,7 +1049,7 @@
 
     <changeSet id="MALAWI_CONFIG_20211231094854122" author="Venky">
         <comment>Adding version 3 Concepts for Patient History Form</comment>
-        <sqlFile path="PatientHistory/PatientHistory_3.sql"/>
+        <sqlFile path="openmrs/data/configuration/liquibase/PatientHistory/PatientHistory_3.sql"/>
     </changeSet>
 
     <changeSet id="MALAWI_CONFIG_20211229094856123" author="Venky">

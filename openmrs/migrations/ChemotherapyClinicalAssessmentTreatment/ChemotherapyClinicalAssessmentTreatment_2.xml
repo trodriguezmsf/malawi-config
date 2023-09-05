@@ -9,7 +9,7 @@
 
     <changeSet id="Malawi_CONFIG_20232814055509781" author="Kiruthiga">
         <comment>Adding Concepts for ChemotherapyClinicalAssessmentTreatment Form</comment>
-        <sqlFile path="ChemotherapyClinicalAssessmentTreatment/ChemotherapyClinicalAssessmentTreatment_2.sql"/>
+        <sqlFile path="openmrs/data/configuration/liquibase/ChemotherapyClinicalAssessmentTreatment/ChemotherapyClinicalAssessmentTreatment_2.sql"/>
     </changeSet>
 
     <changeSet id="Malawi_CONFIG_20232814055509782" author="Kiruthiga">

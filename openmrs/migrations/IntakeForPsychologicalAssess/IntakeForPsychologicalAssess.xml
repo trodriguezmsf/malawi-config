@@ -9,7 +9,7 @@
 
     <changeSet id="Malawi_CONFIG_20220622051112103" author="Venky">
         <comment>Adding Concepts for IntakeForPsychologicalAssess Form</comment>
-        <sqlFile path="IntakeForPsychologicalAssess/IntakeForPsychologicalAssess.sql"/>
+        <sqlFile path="openmrs/data/configuration/liquibase/IntakeForPsychologicalAssess/IntakeForPsychologicalAssess.sql"/>
     </changeSet>
 
     <changeSet id="Malawi_CONFIG_20220622051113850" author="Venky">

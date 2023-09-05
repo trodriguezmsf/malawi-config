@@ -9,7 +9,7 @@
 
     <changeSet id="MALAWI_CONFIG_20210907121852359" author="Tarun">
         <comment>Adding Concepts for Leep Form</comment>
-        <sqlFile path="Leep/Leep.sql"/>
+        <sqlFile path="openmrs/data/configuration/liquibase/Leep/Leep.sql"/>
     </changeSet>
 
     <changeSet id="MALAWI_CONFIG_20210907121853198" author="Tarun">

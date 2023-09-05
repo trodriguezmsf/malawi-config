@@ -12,7 +12,7 @@
         <sql>
             DROP PROCEDURE IF EXISTS add_new_service_and_service_type;
         </sql>
-        <sqlFile splitStatements="false" path="Appointment-Scheduling/addServiceAndServiceType.sql"/>
+        <sqlFile splitStatements="false" path="openmrs/data/configuration/liquibase/Appointment-Scheduling/addServiceAndServiceType.sql"/>
     </changeSet>
 
     <changeSet id="MALAWI_CONFIG_20221602123530" author="Supriya" context="Adding services to Appointment Scheduling">

@@ -12,7 +12,7 @@
         <sql>
             DROP PROCEDURE IF EXISTS create_provider;
         </sql>
-        <sqlFile splitStatements="false" path="utils/CreateProvider.sql"/>
+        <sqlFile splitStatements="false" path="openmrs/data/configuration/liquibase/utils/CreateProvider.sql"/>
     </changeSet>
 
     <changeSet id="MALAWI_CONFIG_20220114193434" author="Supriya">

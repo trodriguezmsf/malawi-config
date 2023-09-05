@@ -9,7 +9,7 @@
 
     <changeSet id="MALAWI_CONFIG_202002210616" author="Santhosh">
         <comment>Adding Concepts for OperativeReport</comment>
-        <sqlFile path="Operative-Report/Operative-Report.sql"/>
+        <sqlFile path="openmrs/data/configuration/liquibase/Operative-Report/Operative-Report.sql"/>
     </changeSet>
 
 

@@ -9,7 +9,7 @@
 
     <changeSet id="MALAWI_CONFIG_20220711190828138" author="Tarun">
         <comment>Adding Concepts for DischargeForm Form</comment>
-        <sqlFile path="DischargeForm/DischargeForm.sql"/>
+        <sqlFile path="openmrs/data/configuration/liquibase/DischargeForm/DischargeForm.sql"/>
     </changeSet>
 
     <changeSet id="MALAWI_CONFIG_20220711190829194" author="Tarun">
