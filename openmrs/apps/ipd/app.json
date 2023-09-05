@@ -224,22 +224,22 @@
                     "translationKey": "BLOOD_TRANSFUSION_REPORT_KEY",
                     "type": "obsToObsFlowSheet",
                     "dashboardConfig": {
-                        "numberOfVisits": 2,
-                        "groupByConcept": "Date of Transfusion",
+                        "numberOfVisits": 1,
+                        "groupByConcept": "BT, Date of transfusion",
                         "formNames": [
-                            "Blood Transfusion"],
+                            "24 Blood Transfusion"],
                         "conceptNames": [
                             "BT, Location", "BT, Number of units",
-                            "BT, Transfusion Adverse event", "BT, Comment"
+                            "BT, Transfusion adverse event", "BT, Comment"
                         ]
                     },
                     "expandedViewConfig": {
                         "formNames": [
-                            "Blood Transfusion"],
-                        "groupByConcept": "Date of Transfusion",
+                            "24 Blood Transfusion"],
+                        "groupByConcept": "BT, Date of transfusion",
                         "conceptNames": [
                             "BT, Location", "BT, Number of units",
-                            "BT, Transfusion Adverse event", "BT, Comment" ]
+                            "BT, Transfusion adverse event", "BT, Comment" ]
                     }
                 },
                 "complications": {
