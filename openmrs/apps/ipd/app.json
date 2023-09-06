@@ -165,7 +165,7 @@
                 "IPD Assessment": {
                     "translationKey": "DASHBOARD_IPD_ASSESSMENT_KEY",
                     "isObservation": true,
-                    "displayOrder": 8,
+                    "displayOrder": 10,
                     "dashboardConfig": {
                         "showDetailsButton": true,
                         "numberOfEncounters": 6,
@@ -223,8 +223,9 @@
                     "displayType": "Half-Page",
                     "translationKey": "BLOOD_TRANSFUSION_REPORT_KEY",
                     "type": "obsToObsFlowSheet",
+                    "displayOrder": 9,
                     "dashboardConfig": {
-                        "numberOfVisits": 1,
+                        "numberOfEncounters": 6,
                         "groupByConcept": "BT, Date of transfusion",
                         "formNames": [
                             "24 Blood Transfusion"],
@@ -234,6 +235,7 @@
                         ]
                     },
                     "expandedViewConfig": {
+                        "numberOfEncounters": 6,
                         "formNames": [
                             "24 Blood Transfusion"],
                         "groupByConcept": "BT, Date of transfusion",
@@ -245,7 +247,7 @@
                 "complications": {
                     "type": "custom",
                     "displayType": "Full-Page",
-                    "displayOrder": 9,
+                    "displayOrder": 11,
                     "config": {
                         "title": "DASHBOARD_TITLE_COMPLICATIONS_KEY",
                         "template": "<complications section='section' patient='patient' visitUuid='visitUuid'></complications>"
