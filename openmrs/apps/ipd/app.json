@@ -60,7 +60,7 @@
                 "patientInformation": {
                     "translationKey": "DASHBOARD_TITLE_PATIENT_INFORMATION_KEY",
                     "type": "patientInformation",
-                    "displayOrder": 0,
+                    "displayOrder": 1,
                     "patientAttributes": [
                         "caste",
                         "class",
@@ -80,7 +80,7 @@
                 "navigationLinksControl": {
                     "translationKey": "DASHBOARD_TITLE_NAVIGATION_LINKS_CONTROL_KEY",
                     "type": "navigationLinksControl",
-                    "displayOrder": 1,
+                    "displayOrder": 2,
                     "showLinks": [
                         "home",
                         "registration",
@@ -97,6 +97,14 @@
                             "url": "../bedmanagement/#/bedManagement/patient/{{patientUuid}}/visit/{{visitUuid}}"
                         }
                     ]
+                },
+                "surgicalAppointments": {
+                    "type": "custom",
+                    "displayOrder": 3,
+                    "config": {
+                        "title": "DASHBOARD_TITLE_SURGICAL_APPOINTMENTS_KEY",
+                        "template": "<surgical-appointments section='section' patient='patient'></surgical-appointments>"
+                    }
                 },
                 "ipdAdmissionDischargeHistory": {
                     "type": "custom",
@@ -118,7 +126,7 @@
                 "Post Operative Anaesthesia note": {
                     "translationKey": "POST_OPERATIVE_ANAESTHESIA_NOTE_KEY",
                     "isObservation": true,
-                    "displayOrder": 8,
+                    "displayOrder": 6,
                     "dashboardConfig": {
                         "showDetailsButton": true,
                         "numberOfEncounters": 6,
@@ -154,12 +162,29 @@
                         "pivotTable": {}
                     }
                 },
-                "surgicalAppointments": {
-                    "type": "custom",
-                    "displayOrder": 3,
-                    "config": {
-                        "title": "DASHBOARD_TITLE_SURGICAL_APPOINTMENTS_KEY",
-                        "template": "<surgical-appointments section='section' patient='patient'></surgical-appointments>"
+                "Blood Transfusion": {
+                    "displayType": "Half-Page",
+                    "translationKey": "BLOOD_TRANSFUSION_REPORT_KEY",
+                    "type": "obsToObsFlowSheet",
+                    "displayOrder": 7,
+                    "dashboardConfig": {
+                        "numberOfVisits": 6,
+                        "groupByConcept": "BT, Date of transfusion",
+                        "formNames": [
+                            "24 Blood Transfusion"],
+                        "conceptNames": [
+                            "BT, Location", "BT, Number of units",
+                            "BT, Transfusion adverse event", "BT, Comment"
+                        ]
+                    },
+                    "expandedViewConfig": {
+                        "numberOfVisits": 6,
+                        "formNames": [
+                            "24 Blood Transfusion"],
+                        "groupByConcept": "BT, Date of transfusion",
+                        "conceptNames": [
+                            "BT, Location", "BT, Number of units",
+                            "BT, Transfusion adverse event", "BT, Comment" ]
                     }
                 },
                 "IPD Assessment": {
