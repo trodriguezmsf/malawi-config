@@ -60,7 +60,7 @@
                 "patientInformation": {
                     "translationKey": "DASHBOARD_TITLE_PATIENT_INFORMATION_KEY",
                     "type": "patientInformation",
-                    "displayOrder": 0,
+                    "displayOrder": 1,
                     "patientAttributes": [
                         "caste",
                         "class",
@@ -80,7 +80,7 @@
                 "navigationLinksControl": {
                     "translationKey": "DASHBOARD_TITLE_NAVIGATION_LINKS_CONTROL_KEY",
                     "type": "navigationLinksControl",
-                    "displayOrder": 1,
+                    "displayOrder": 2,
                     "showLinks": [
                         "home",
                         "registration",
@@ -97,6 +97,14 @@
                             "url": "../bedmanagement/#/bedManagement/patient/{{patientUuid}}/visit/{{visitUuid}}"
                         }
                     ]
+                },
+                "surgicalAppointments": {
+                    "type": "custom",
+                    "displayOrder": 3,
+                    "config": {
+                        "title": "DASHBOARD_TITLE_SURGICAL_APPOINTMENTS_KEY",
+                        "template": "<surgical-appointments section='section' patient='patient'></surgical-appointments>"
+                    }
                 },
                 "ipdAdmissionDischargeHistory": {
                     "type": "custom",
@@ -118,7 +126,7 @@
                 "Post Operative Anaesthesia note": {
                     "translationKey": "POST_OPERATIVE_ANAESTHESIA_NOTE_KEY",
                     "isObservation": true,
-                    "displayOrder": 8,
+                    "displayOrder": 6,
                     "dashboardConfig": {
                         "showDetailsButton": true,
                         "numberOfEncounters": 6,
@@ -148,71 +156,6 @@
                             "AAPOSTOP, Movement to",
                             "AAPOSTOP, Movement time (hour)",
                             "AAPOSTOP, Complication"
-                        ],
-                        "isEditable": true,
-                        "showDetailsButton": true,
-                        "pivotTable": {}
-                    }
-                },
-                "surgicalAppointments": {
-                    "type": "custom",
-                    "displayOrder": 3,
-                    "config": {
-                        "title": "DASHBOARD_TITLE_SURGICAL_APPOINTMENTS_KEY",
-                        "template": "<surgical-appointments section='section' patient='patient'></surgical-appointments>"
-                    }
-                },
-                "IPD Assessment": {
-                    "translationKey": "DASHBOARD_IPD_ASSESSMENT_KEY",
-                    "isObservation": true,
-                    "displayOrder": 10,
-                    "dashboardConfig": {
-                        "showDetailsButton": true,
-                        "numberOfEncounters": 6,
-                        "isEditable": true,
-                        "conceptNames": [
-                            "IPDA, Date/Time recorded",
-                            "IPDA, Main Complain",
-                            "IPDA, Neurological examination",
-                            "IPDA, Cardiac examination",
-                            "IPDA, Respiratory system",
-                            "IPDA, Abdominal examination",
-                            "IPDA, Urogenital examination",
-                            "IPDA, Extremities examination",
-                            "IPDA, Skin examination",
-                            "IPDA, VAS Score",
-                            "IPDA, Wound site",
-                            "IPDA, Surgical wound status",
-                            "IPDA, Treatment Plan",
-                            "IPDA, Patient condition",
-                            "IPDA, Discharge Date",
-                            "IPDA, Exit status",
-                            "IPDA, Next appointment to be scheduled",
-                            "IPDA, Comment on process of discharge"
-                        ],
-                        "pivotTable": {}
-                    },
-                    "expandedViewConfig": {
-                        "numberOfEncounters": 6,
-                        "conceptNames": [
-                            "IPDA, Date/Time recorded",
-                            "IPDA, Main Complain",
-                            "IPDA, Neurological examination",
-                            "IPDA, Cardiac examination",
-                            "IPDA, Respiratory system",
-                            "IPDA, Abdominal examination",
-                            "IPDA, Urogenital examination",
-                            "IPDA, Extremities examination",
-                            "IPDA, Skin examination",
-                            "IPDA, VAS Score",
-                            "IPDA, Wound site",
-                            "IPDA, Surgical wound status",
-                            "IPDA, Treatment Plan",
-                            "IPDA, Patient condition",
-                            "IPDA, Discharge Date",
-                            "IPDA, Exit status",
-                            "IPDA, Next appointment to be scheduled",
-                            "IPDA, Comment on process of discharge"
                         ],
                         "isEditable": true,
                         "showDetailsButton": true,
@@ -223,7 +166,7 @@
                     "displayType": "Half-Page",
                     "translationKey": "BLOOD_TRANSFUSION_REPORT_KEY",
                     "type": "obsToObsFlowSheet",
-                    "displayOrder": 9,
+                    "displayOrder": 7,
                     "dashboardConfig": {
                         "numberOfVisits": 6,
                         "groupByConcept": "BT, Date of transfusion",
@@ -244,10 +187,67 @@
                             "BT, Transfusion adverse event", "BT, Comment" ]
                     }
                 },
+                "IPD Assessment": {
+                    "translationKey": "DASHBOARD_IPD_ASSESSMENT_KEY",
+                    "isObservation": true,
+                    "displayOrder": 8,
+                    "dashboardConfig": {
+                        "showDetailsButton": true,
+                        "numberOfEncounters": 6,
+                        "isEditable": true,
+                        "conceptNames": [
+                            "IPDA, Date/Time recorded",
+                            "IPDA, Main Complain",
+                            "IPDA, Neurological examination",
+                            "IPDA, Cardiac examination",
+                            "IPDA, Respiratory system",
+                            "IPDA, Abdominal examination",
+                            "IPDA, Urogenital examination",
+                            "IPDA, Extremities examination",
+                            "IPDA, Skin examination",
+                            "IPDA, VAS Score",
+                            "IPDA, Wound site",
+                            "IPDA, Surgical wound status",
+                            "IPDA, Treatment Plan",
+                            "IPDA, Patient condition",
+                            "IPDA, Discharge Date",
+                            "IPDA, Exit status",
+                            "IPDA, Next appointment to be scheduled",
+                            "IPDA, Comment on process of discharge"
+                        ],
+                        "pivotTable": {}
+                    },
+                    "expandedViewConfig": {
+                        "numberOfEncounters": 6,
+                        "conceptNames": [
+                            "IPDA, Date/Time recorded",
+                            "IPDA, Main Complain",
+                            "IPDA, Neurological examination",
+                            "IPDA, Cardiac examination",
+                            "IPDA, Respiratory system",
+                            "IPDA, Abdominal examination",
+                            "IPDA, Urogenital examination",
+                            "IPDA, Extremities examination",
+                            "IPDA, Skin examination",
+                            "IPDA, VAS Score",
+                            "IPDA, Wound site",
+                            "IPDA, Surgical wound status",
+                            "IPDA, Treatment Plan",
+                            "IPDA, Patient condition",
+                            "IPDA, Discharge Date",
+                            "IPDA, Exit status",
+                            "IPDA, Next appointment to be scheduled",
+                            "IPDA, Comment on process of discharge"
+                        ],
+                        "isEditable": true,
+                        "showDetailsButton": true,
+                        "pivotTable": {}
+                    }
+                },
                 "complications": {
                     "type": "custom",
                     "displayType": "Full-Page",
-                    "displayOrder": 11,
+                    "displayOrder": 9,
                     "config": {
                         "title": "DASHBOARD_TITLE_COMPLICATIONS_KEY",
                         "template": "<complications section='section' patient='patient' visitUuid='visitUuid'></complications>"
