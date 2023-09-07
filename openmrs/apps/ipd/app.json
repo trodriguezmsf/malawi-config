@@ -225,7 +225,7 @@
                     "type": "obsToObsFlowSheet",
                     "displayOrder": 9,
                     "dashboardConfig": {
-                        "numberOfEncounters": 6,
+                        "numberOfVisits": 6,
                         "groupByConcept": "BT, Date of transfusion",
                         "formNames": [
                             "24 Blood Transfusion"],
@@ -235,7 +235,7 @@
                         ]
                     },
                     "expandedViewConfig": {
-                        "numberOfEncounters": 6,
+                        "numberOfVisits": 6,
                         "formNames": [
                             "24 Blood Transfusion"],
                         "groupByConcept": "BT, Date of transfusion",
