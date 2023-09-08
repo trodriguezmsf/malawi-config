@@ -203,5 +203,11 @@
         <comment>Adding bed layout to Ward</comment>
         <sqlFile path="BedManagement/InpatientDepartment_Bed_Layout_1.sql"/>
     </changeSet>
+     <changeSet id="MALAWI_CONFIG_202309071645196870091223" author="Bindu">
+        <comment>Adding new bed to InPatient department Ward</comment>
+        <sql>
+            CALL BED_ALLOCATION('18', 'Inpatient Department Ward',2,9);
+        </sql>
+    </changeSet>
 
     </databaseChangeLog>
