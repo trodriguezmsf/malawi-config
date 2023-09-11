@@ -59,5 +59,6 @@
   "DASHBOARD_IPD_ASSESSMENT_KEY": "IPD Assessment",
   "DASHBOARD_OPERATIVE_REPORT_KEY": "Operative Report",
   "DASHBOARD_TITLE_COMPLICATIONS_KEY": "Complications",
-  "BLOOD_TRANSFUSION_REPORT_KEY": "Blood Transfusion"
+  "BLOOD_TRANSFUSION_REPORT_KEY": "Blood Transfusion",
+  "NO_DATA_MESSAGE": "No Data Captured"
 }
