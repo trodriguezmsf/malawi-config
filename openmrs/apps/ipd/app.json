@@ -117,7 +117,7 @@
                 "operativeReport": {
                     "type": "custom",
                     "displayType": "Full-Page",
-                    "displayOrder": 5,
+                    "displayOrder": 6,
                     "config": {
                         "title": "DASHBOARD_OPERATIVE_REPORT_KEY",
                         "template": "<operative-report section='section' patient='patient' visitUuid='visitUuid'></operative-report>"
@@ -126,7 +126,7 @@
                 "Post Operative Anaesthesia note": {
                     "translationKey": "POST_OPERATIVE_ANAESTHESIA_NOTE_KEY",
                     "isObservation": true,
-                    "displayOrder": 6,
+                    "displayOrder": 7,
                     "dashboardConfig": {
                         "showDetailsButton": true,
                         "numberOfEncounters": 6,
@@ -166,7 +166,7 @@
                     "displayType": "Half-Page",
                     "translationKey": "BLOOD_TRANSFUSION_REPORT_KEY",
                     "type": "obsToObsFlowSheet",
-                    "displayOrder": 7,
+                    "displayOrder": 5,
                     "dashboardConfig": {
                         "numberOfVisits": 6,
                         "groupByConcept": "BT, Date of transfusion",
