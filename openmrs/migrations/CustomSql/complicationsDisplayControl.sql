@@ -45,6 +45,8 @@ FROM
       INNER JOIN visit v ON e.visit_id = v.visit_id
       AND v.voided IS FALSE
       AND v.visit_type_id = 5
+      ORDER BY
+      e.encounter_id DESC
     LIMIT
       6
   ) patient_encounters
